@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  .vn-links { display:flex; align-items:center; gap:clamp(20px,2.2vw,38px); }
+  .vn-burger { display:none; }
+  .vn-dd { position:relative; }
+  .vn-dd-menu { opacity:0; visibility:hidden; pointer-events:none; transform:translateX(-50%) translateY(-8px); transition:opacity .25s ease, transform .25s ease, visibility .25s ease; }
+  .vn-dd:hover .vn-dd-menu, .vn-dd:focus-within .vn-dd-menu { opacity:1; visibility:visible; pointer-events:auto; transform:translateX(-50%) translateY(0); }
+  .vn-dd-chev { display:inline-block; font-size:11px; transition:transform .25s ease; }
+  .vn-dd:hover .vn-dd-chev { transform:rotate(180deg); }
+  .vn-dd-item:hover .vn-dd-arrow { transform:translateX(3px); color:#fff !important; }
+  .vn-dd-menu::before { content:''; position:absolute; top:-14px; left:0; right:0; height:16px; }
+  @media (max-width: 940px){
+    .vn-links { display:none !important; }
+    .vn-cta { display:none !important; }
+    .vn-burger { display:flex !important; }
+  }
+</style>
+</helmet>
+<nav style="{{ navStyle }}">
+  <div style="width:100%; max-width:1500px; margin:0 auto; padding:0 clamp(20px,5vw,72px); height:66px; display:flex; align-items:center; justify-content:space-between; gap:28px; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif;">
+    <a href="VISTA360.dc.html" style="display:flex; align-items:center; text-decoration:none;">
+      <img src="vista360-logo.png" alt="VISTA360" style="height:30px; width:auto; display:block;" />
+    </a>
+    <div class="vn-links">
+      <a href="VISTA360.dc.html" style="{{ inicioStyle }}" style-hover="color:#fff;">Inicio</a>
+      <div class="vn-dd" style="padding:9px 0;">
+        <a href="SolucionesTradicional.dc.html" style="{{ solTriggerStyle }}" style-hover="color:#fff;">Soluciones <span class="vn-dd-chev">&#9662;</span></a>
+        <div class="vn-dd-menu" style="position:absolute; top:calc(100% + 6px); left:50%; min-width:300px; background:linear-gradient(160deg,#0E254C 0%,#0A1A37 100%); border:1px solid rgba(255,255,255,0.12); border-radius:18px; box-shadow:0 30px 60px rgba(4,10,24,0.6), inset 0 1px 0 rgba(255,255,255,0.06); padding:10px; display:flex; flex-direction:column; gap:4px; z-index:160;">
+          <a href="SolucionesTradicional.dc.html" class="vn-dd-item" style="{{ solItemStyle }}" style-hover="background:rgba(28,111,232,0.16); border-color:rgba(28,111,232,0.45);">
+            <span style="display:flex; flex-direction:column; gap:2px;">
+              <span style="font-size:15px; font-weight:700; color:#fff; letter-spacing:-0.01em;">VISTA360 Classic</span>
+              <span style="font-size:12.5px; font-weight:500; color:rgba(255,255,255,0.55);">Recorridos inmersivos</span>
+            </span>
+            <span class="vn-dd-arrow" style="margin-left:auto; color:rgba(255,255,255,0.4); font-size:16px; transition:transform .2s, color .2s;">&rsaquo;</span>
+          </a>
+          <div style="height:1px; margin:2px 14px; background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0.18) 50%,rgba(255,255,255,0) 100%);"></div>
+          <a href="SolucionesDigital.dc.html" class="vn-dd-item" style="{{ solItemStyle }}" style-hover="background:rgba(28,111,232,0.16); border-color:rgba(28,111,232,0.45);">
+            <span style="display:flex; flex-direction:column; gap:2px;">
+              <span style="font-size:15px; font-weight:700; color:#fff; letter-spacing:-0.01em;">VISTA360 Digital</span>
+              <span style="font-size:12.5px; font-weight:500; color:rgba(255,255,255,0.55);">Experiencias interactivas</span>
+            </span>
+            <span class="vn-dd-arrow" style="margin-left:auto; color:rgba(255,255,255,0.4); font-size:16px; transition:transform .2s, color .2s;">&rsaquo;</span>
+          </a>
+        </div>
+      </div>
+      <a href="Servicios.dc.html" style="{{ serviciosStyle }}" style-hover="color:#fff;">Servicios</a>
+      <a href="Nosotros.dc.html" style="{{ nosotrosStyle }}" style-hover="color:#fff;">Nosotros</a>
+    </div>
+    <a href="Contacto.dc.html" class="vn-cta" style="text-decoration:none; padding:11px 28px; border-radius:999px; background:#1C6FE8; color:#fff; font-size:15px; font-weight:600; white-space:nowrap; transition:background .25s ease, transform .2s ease;" style-hover="background:#1559C4; transform:translateY(-1px);">Cotizar</a>
+    <button class="vn-burger" onClick="{{ toggleMenu }}" aria-label="Menú" style="flex-direction:column; gap:5px; background:transparent; border:none; cursor:pointer; padding:6px;">
+      <span style="width:24px; height:2px; background:#fff; border-radius:2px;"></span>
+      <span style="width:24px; height:2px; background:#fff; border-radius:2px;"></span>
+    </button>
+  </div>
+</nav>
+<div style="{{ menuStyle }}">
+  <button onClick="{{ closeMenu }}" aria-label="Cerrar" style="position:absolute; top:22px; right:24px; background:transparent; border:none; color:#fff; font-size:34px; cursor:pointer; line-height:1; font-family:'Plus Jakarta Sans',sans-serif;">&times;</button>
+  <sc-for list="{{ mlinks }}" as="ml" hint-placeholder-count="6">
+    <a href="{{ ml.href }}" onClick="{{ closeMenu }}" style="text-decoration:none; color:#fff; font-size:28px; font-weight:700; letter-spacing:-0.02em; padding:12px; font-family:'Plus Jakarta Sans',sans-serif;">{{ ml.label }}</a>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:66},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;inicio&quot;,&quot;soluciones&quot;,&quot;servicios&quot;,&quot;ubicaciones&quot;,&quot;portafolio&quot;,&quot;contacto&quot;],&quot;default&quot;:&quot;inicio&quot;},&quot;transparent&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false}}">
+class Component extends DCLogic {
+  state = { scrolled: false, menuOpen: false };
+
+  componentDidMount() {
+    this.onScroll = () => {
+      const s = window.scrollY > 40;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+  }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); }
+
+  renderVals() {
+    const active = this.props.active || 'inicio';
+    const transparent = this.props.transparent ?? false;
+    const scrolled = !!this.state.scrolled;
+    const solid = !transparent || scrolled;
+
+    const navStyle = {
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 150,
+      background: solid ? 'linear-gradient(100deg, #081428 0%, #0C2143 100%)' : 'transparent',
+      boxShadow: scrolled ? '0 8px 30px rgba(5,12,28,0.42)' : 'none',
+      borderBottom: '1px solid ' + (solid ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0)'),
+      transition: 'background .4s ease, box-shadow .4s ease, border-color .4s ease'
+    };
+
+    const baseLink = (key) => ({
+      textDecoration: 'none', fontSize: '16px', whiteSpace: 'nowrap', cursor: 'pointer',
+      fontWeight: key === active ? 700 : 500,
+      color: key === active ? '#fff' : 'rgba(255,255,255,0.82)',
+      transition: 'color .2s'
+    });
+    const inicioStyle = baseLink('inicio');
+    const solTriggerStyle = { ...baseLink('soluciones'), display: 'inline-flex', alignItems: 'center', gap: '6px' };
+    const serviciosStyle = baseLink('servicios');
+    const ubicacionesStyle = baseLink('ubicaciones');
+    const nosotrosStyle = baseLink('nosotros');
+
+    const solItemStyle = {
+      textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '13px',
+      padding: '11px 13px', borderRadius: '12px', whiteSpace: 'nowrap',
+      border: '1px solid transparent',
+      transition: 'background .2s, border-color .2s'
+    };
+
+    const mlinks = [
+      ['Inicio', 'VISTA360.dc.html'],
+      ['VISTA360 Classic', 'SolucionesTradicional.dc.html'],
+      ['VISTA360 Digital', 'SolucionesDigital.dc.html'],
+      ['Servicios', 'Servicios.dc.html'],
+      ['Nosotros', 'Nosotros.dc.html'],
+      ['Contacto', 'Contacto.dc.html']
+    ].map(([label, href]) => ({ label, href }));
+
+    const menuOpen = !!this.state.menuOpen;
+    const menuStyle = {
+      position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(8,16,33,0.98)', backdropFilter: 'blur(20px)',
+      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '4px',
+      opacity: menuOpen ? 1 : 0, visibility: menuOpen ? 'visible' : 'hidden', pointerEvents: menuOpen ? 'auto' : 'none',
+      transition: 'opacity .35s ease, visibility .35s ease'
+    };
+
+    return {
+      navStyle, inicioStyle, solTriggerStyle, serviciosStyle, ubicacionesStyle, nosotrosStyle,
+      solItemStyle, mlinks, menuStyle,
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false })
+    };
+  }
+}
+</script>
+</body>
+</html>
