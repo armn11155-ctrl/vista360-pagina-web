@@ -1,0 +1,10 @@
+# Capturas de pantalla de desarrollo/QA — no deben subirse al repo público
+screenshots/
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+
+# Borradores de páginas no publicadas (usar nombres tipo "-draft" o "-borrador")
+*-draft.*
+*-borrador.*
