@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin:0; background:#ffffff; color:#0E1A2E; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
+  ::selection { background:#1C6FE8; color:#fff; }
+  input, textarea, button { font-family:inherit; }
+  a { -webkit-tap-highlight-color:transparent; }
+  @keyframes vmarquee { from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  @keyframes vkenburns { 0%{ transform:scale(1.05) translate(0,0); } 100%{ transform:scale(1.15) translate(-1.5%,-1.2%); } }
+  @keyframes vbounce { 0%,100%{ transform:translateX(-50%) translateY(0); } 50%{ transform:translateX(-50%) translateY(8px); } }
+  @keyframes vfadeup { 0%{ opacity:0; transform:translateY(22px); } 100%{ opacity:1; transform:translateY(0); } }
+  .v-trust-track { display:flex; width:max-content; align-items:center; gap:clamp(28px,3.5vw,52px); animation:vmarquee 26s linear infinite; }
+  .v-trust-mask:hover .v-trust-track { animation-play-state:paused; }
+  .v-teaser-grid { display:grid; grid-template-columns:1fr; gap:18px; }
+  @media (min-width:680px){ .v-teaser-grid { grid-template-columns:repeat(3,1fr); } }
+  .v-stats-wrap { display:grid; grid-template-columns:1fr; gap:clamp(34px,5vw,56px); align-items:center; }
+  @media (min-width:900px){ .v-stats-wrap { grid-template-columns:0.92fr 1.1fr; } }
+  .v-stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(26px,3.4vw,44px); }
+  .v-hero-stats { display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(22px,3vw,28px) clamp(16px,3vw,30px); }
+  @media (min-width:760px){ .v-hero-stats { grid-template-columns:repeat(4,1fr); } }
+  .v-intro { display:grid; grid-template-columns:1fr; gap:clamp(34px,4.5vw,60px); align-items:center; }
+  @media (min-width:920px){ .v-intro { grid-template-columns:1.04fr 1fr; } }
+  .v-intro-stats { display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,3.6vw,52px) clamp(24px,3vw,40px); }
+  .v-figs { display:grid; grid-template-columns:1fr; border-top:1px solid #E7E4F0; border-bottom:1px solid #E7E4F0; }
+  @media (min-width:560px){ .v-figs { grid-template-columns:1fr 1fr; } }
+  @media (min-width:960px){ .v-figs { grid-template-columns:repeat(4,1fr); } }
+  .v-fig { padding:clamp(26px,3vw,40px) clamp(18px,2.2vw,30px); border-top:1px solid #E7E4F0; }
+  .v-fig:first-child { border-top:none; }
+  @media (min-width:560px){ .v-fig:nth-child(2){ border-top:none; } .v-fig:nth-child(odd){ border-left:none; } .v-fig:nth-child(even){ border-left:1px solid #E7E4F0; } }
+  @media (min-width:960px){ .v-fig { border-top:none !important; border-left:1px solid #E7E4F0 !important; } .v-fig:first-child{ border-left:none !important; } }
+  .v-fig .v-fig-line { width:34px; height:2px; background:#1C6FE8; border-radius:2px; transition:width .5s cubic-bezier(.16,1,.3,1); }
+  .v-fig:hover .v-fig-line { width:62px; }
+  .v-acc { display:flex; gap:0; height:clamp(380px,40vw,520px); width:100%; }
+  .v-acc-panel { position:relative; flex:1 1 0; min-width:74px; overflow:hidden; border-radius:0; cursor:pointer; transition:flex-grow .32s cubic-bezier(.22,1,.36,1); will-change:flex-grow; }
+  .v-acc-panel img { transition:transform .5s cubic-bezier(.22,1,.36,1), filter .35s ease; will-change:transform; }
+  .v-acc-panel:hover { flex-grow:4.2; }
+  .v-acc-panel:hover img { transform:scale(1.05); }
+  .v-acc-open { flex-grow:4.2; }
+  .v-acc-more { opacity:0; transform:translateY(12px); transition:opacity .3s ease .04s, transform .34s cubic-bezier(.22,1,.36,1) .04s; }
+  .v-acc-panel:hover .v-acc-more, .v-acc-open .v-acc-more { opacity:1; transform:none; }
+  .v-prod-grid { display:grid; grid-template-columns:1fr; gap:clamp(16px,1.8vw,22px); }
+  @media (min-width:560px){ .v-prod-grid { grid-template-columns:1fr 1fr; } }
+  @media (min-width:1040px){ .v-prod-grid { grid-template-columns:repeat(4,1fr); } }
+  .v-prod-card { position:relative; display:block; overflow:hidden; border-radius:22px; text-decoration:none; height:clamp(330px,33vw,420px); box-shadow:0 22px 50px -34px rgba(14,26,46,0.5); }
+  .v-prod-card img { transition:transform .7s cubic-bezier(.16,1,.3,1); will-change:transform; }
+  .v-prod-card:hover img { transform:scale(1.07); }
+  .v-prod-card .v-prod-cta { transition:gap .3s cubic-bezier(.16,1,.3,1); }
+  .v-prod-card:hover .v-prod-cta { gap:14px; }
+  .v-home-sv { display:grid; grid-template-columns:1fr; gap:clamp(16px,1.8vw,22px); margin:clamp(26px,3.2vw,40px) 0 clamp(24px,2.8vw,34px); text-align:left; }
+  @media (min-width:760px){ .v-home-sv { grid-template-columns:repeat(3,1fr); } }
+  .v-hsv-card { position:relative; overflow:hidden; display:block; text-decoration:none; padding:clamp(24px,2.2vw,30px); border-radius:18px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); transition:transform .5s cubic-bezier(.16,1,.3,1), background .4s ease, border-color .4s ease; }
+  .v-hsv-card:hover { transform:translateY(-7px); background:rgba(255,255,255,0.09); border-color:rgba(86,162,255,0.55); }
+  .v-hsv-chip { width:50px; height:50px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:rgba(86,162,255,0.15); border:1px solid rgba(86,162,255,0.3); margin-bottom:clamp(16px,1.6vw,20px); transition:transform .5s cubic-bezier(.16,1,.3,1); }
+  .v-hsv-card:hover .v-hsv-chip { transform:translateY(-3px) scale(1.06); }
+  @media (max-width:760px){
+    .v-acc { flex-direction:column; height:auto; }
+    .v-acc-panel { flex:none; height:190px; }
+    .v-acc-panel:hover, .v-acc-open { flex-grow:0; }
+    .v-acc-open { height:300px; }
+    .v-acc-more { opacity:1; transform:none; }
+  }
+</style>
+</helmet>
+
+<div ref="{{ setRoot }}" style="position:relative; width:100%; overflow-x:hidden; background:#ffffff;">
+
+  <dc-import name="SiteNav" active="inicio" transparent="{{ true }}" hint-size="100%,66px"></dc-import>
+
+  <!-- ============ HERO (cinematic full-bleed) ============ -->
+  <section id="top" style="position:relative; min-height:100vh; display:flex; flex-direction:column; overflow:hidden; background:#05080F;">
+    <video id="heroVideo" data-vsrc="uploads/que_el_video_esta_bien_pero_no.mp4" autoPlay muted loop playsInline style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; filter:brightness(0.64) contrast(1.05) saturate(1.05);"></video>
+    <div style="position:absolute; inset:0; background:rgba(7,11,20,0.46);"></div>
+    <div style="position:absolute; top:16%; left:50%; transform:translateX(-50%); width:700px; max-width:92vw; height:430px; background:radial-gradient(circle, rgba(28,111,232,0.32), transparent 66%); filter:blur(20px); pointer-events:none;"></div>
+
+    <div style="position:relative; z-index:3; flex:1; width:100%; display:flex; align-items:center; justify-content:center;">
+    <div style="width:100%; max-width:1000px; padding:104px clamp(20px,5vw,40px) clamp(36px,4vw,56px); text-align:center;">
+      <div style="display:inline-flex; align-items:center; gap:11px; margin-bottom:clamp(22px,3vw,32px); padding:8px 18px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); backdrop-filter:blur(8px); opacity:0; animation:vfadeup .9s cubic-bezier(.16,1,.3,1) .05s forwards;">
+        <span style="width:7px; height:7px; border-radius:50%; background:#56A2FF; box-shadow:0 0 10px #56A2FF;"></span>
+        <span style="font-size:clamp(11px,1.1vw,13px); font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#DCE8FB;">Especialistas en publicidad exterior · Huánuco</span>
+      </div>
+      <h1 style="margin:0; color:#fff; letter-spacing:-0.03em; line-height:0.98; opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .18s forwards;">
+        <span style="display:block; font-size:clamp(23px,4.2vw,44px); font-weight:300; color:rgba(255,255,255,0.9); letter-spacing:-0.005em; margin-bottom:clamp(4px,0.8vw,10px);">Hacemos que tu marca sea</span>
+        <span style="display:block; font-size:clamp(50px,9.6vw,118px); font-weight:800; text-transform:uppercase; letter-spacing:-0.035em; text-shadow:0 18px 54px rgba(0,0,0,0.55);">Imposible<br>no verte</span>
+      </h1>
+      <p style="font-size:clamp(16px,1.5vw,20px); font-weight:400; line-height:1.55; color:rgba(255,255,255,0.82); max-width:560px; margin:clamp(22px,3vw,32px) auto clamp(30px,4vw,40px); opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .32s forwards;">Paneles y murales en los puntos de mayor tránsito de la ciudad. Le damos a tu marca la escala que merece.</p>
+      <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:14px; opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .46s forwards;">
+        <a href="contacto.html" style="text-decoration:none; padding:15px 34px; border-radius:13px; background:#1C6FE8; color:#fff; font-size:16px; font-weight:600; box-shadow:0 18px 40px -10px rgba(28,111,232,0.65); transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Cotizar campaña</a>
+        <a href="portafolio.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:11px; padding:15px 28px; border-radius:13px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.28); color:#fff; font-size:16px; font-weight:600; backdrop-filter:blur(8px); transition:background .2s ease, transform .2s ease;" style-hover="background:rgba(255,255,255,0.16); transform:translateY(-2px);">
+          <span style="width:24px; height:24px; border-radius:50%; background:#1C6FE8; display:inline-flex; align-items:center; justify-content:center;"><svg width="8" height="10" viewBox="0 0 9 11" fill="#fff"><path d="M0 0L9 5.5L0 11Z"></path></svg></span>
+          Ver portafolio
+        </a>
+      </div>
+    </div>
+    </div>
+
+    <!-- ===== SCROLL HINT ===== -->
+    <a href="#stats" aria-label="Desplazarse hacia abajo" style="position:absolute; bottom:clamp(22px,3vw,34px); left:50%; z-index:3; transform:translateX(-50%); width:42px; height:42px; border-radius:50%; border:1px solid rgba(255,255,255,0.3); background:rgba(255,255,255,0.06); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none; animation:vbounce 2s ease-in-out infinite;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"></path></svg>
+    </a>
+  </section>
+
+  <!-- ===== ANIMATED WHITE-SECTION WRAP (constellation canvas) ===== -->
+  <div style="position:relative; background:#ffffff;">
+    <canvas ref="{{ setNet }}" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0;"></canvas>
+    <div style="position:relative; z-index:1;">
+
+  <!-- ============ STATS COUNTER (dark band) ============ -->
+  <!-- ============ CIFRAS (editorial, airy) ============ -->
+  <section id="stats" style="background:transparent; padding:clamp(60px,9vw,120px) clamp(16px,4vw,40px);">
+    <div data-reveal style="max-width:1180px; margin:0 auto;">
+      <div style="text-align:center; max-width:660px; margin:0 auto clamp(40px,5vw,64px);">
+        <div style="display:inline-flex; align-items:center; gap:9px; margin-bottom:18px;"><span style="width:8px; height:8px; border-radius:50%; background:#1C6FE8;"></span><span style="font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#1C6FE8;">Por qué VISTA360</span></div>
+        <h2 style="font-size:clamp(30px,4.2vw,52px); font-weight:800; letter-spacing:-0.035em; line-height:1.04; color:#0E1A2E; margin:0 0 18px;">Llevamos tu marca a la<br>vía pública de Huánuco.</h2>
+        <p style="font-size:clamp(16px,1.3vw,18px); line-height:1.6; color:#6A6A78; margin:0 auto; max-width:440px;">Cada soporte está en un punto pensado para que tu marca se vea —y se recuerde— todos los días.</p>
+      </div>
+
+      <div class="v-figs">
+        <div class="v-fig">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1C6FE8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:18px;"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+          <div class="v-fig-line" style="margin:0 0 18px;"></div>
+          <div style="font-size:clamp(19px,1.9vw,23px); color:#0E1A2E; font-weight:800; letter-spacing:-0.02em; line-height:1.15;">Ubicaciones estratégicas</div>
+          <div style="font-size:13.5px; color:#9097A6; margin-top:7px; line-height:1.5;">Puntos elegidos por su tránsito y visibilidad.</div>
+        </div>
+        <div class="v-fig">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1C6FE8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:18px;"><circle cx="9" cy="8" r="3.2"></circle><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"></path><path d="M16 6.5a3 3 0 0 1 0 5.6"></path><path d="M17 14c2.3.4 4 2.2 4 5"></path></svg>
+          <div class="v-fig-line" style="margin:0 0 18px;"></div>
+          <div style="font-size:clamp(19px,1.9vw,23px); color:#0E1A2E; font-weight:800; letter-spacing:-0.02em; line-height:1.15;">Gran formato</div>
+          <div style="font-size:13.5px; color:#9097A6; margin-top:7px; line-height:1.5;">Murales y soportes que dominan el entorno.</div>
+        </div>
+        <div class="v-fig">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1C6FE8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:18px;"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></svg>
+          <div class="v-fig-line" style="margin:0 0 18px;"></div>
+          <div style="font-size:clamp(19px,1.9vw,23px); color:#0E1A2E; font-weight:800; letter-spacing:-0.02em; line-height:1.15;">Visibilidad 24/7</div>
+          <div style="font-size:13.5px; color:#9097A6; margin-top:7px; line-height:1.5;">Tu marca presente día y noche, sin pausa.</div>
+        </div>
+        <div class="v-fig">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1C6FE8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:18px;"><path d="M4 19V5"></path><path d="M4 19h16"></path><path d="M7 15l3-3 3 2 4-5"></path></svg>
+          <div class="v-fig-line" style="margin:0 0 18px;"></div>
+          <div style="font-size:clamp(19px,1.9vw,23px); color:#0E1A2E; font-weight:800; letter-spacing:-0.02em; line-height:1.15;">Enfoque local</div>
+          <div style="font-size:13.5px; color:#9097A6; margin-top:7px; line-height:1.5;">Conocemos Huánuco calle por calle.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INTRO + STATS (headline left / stat grid right over photo) ============ -->
+  <section style="position:relative; overflow:hidden; background:#05080F; margin-top:clamp(20px,3vw,40px);">
+    <img src="panels/unipolar.png" alt="Panel publicitario VISTA360 iluminado en Huánuco" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:brightness(0.66) contrast(1.04) saturate(1.04);" />
+    <div style="position:absolute; inset:0; background:linear-gradient(105deg, rgba(5,8,15,0.6) 0%, rgba(5,8,15,0.34) 48%, rgba(5,8,15,0.5) 100%);"></div>
+    <div style="position:absolute; top:-22%; right:-6%; width:480px; height:480px; max-width:70vw; border-radius:50%; background:radial-gradient(circle, rgba(28,111,232,0.3), transparent 64%); filter:blur(16px); pointer-events:none;"></div>
+
+    <div class="v-intro" data-reveal style="position:relative; z-index:2; max-width:1280px; margin:0 auto; padding:clamp(56px,7vw,104px) clamp(20px,5vw,40px);">
+      <!-- Left: headline -->
+      <div>
+        <h2 style="font-size:clamp(30px,4vw,54px); font-weight:800; letter-spacing:-0.03em; line-height:1.05; color:#fff; margin:0 0 clamp(22px,2.6vw,30px); max-width:560px;">En VISTA360 somos especialistas en publicidad exterior estática y digital</h2>
+        <p style="font-size:clamp(16px,1.5vw,20px); font-weight:500; line-height:1.5; color:rgba(255,255,255,0.86); margin:0 0 clamp(28px,3.2vw,38px);">¡Elige un producto y manos a la obra!</p>
+        <a href="soluciones.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:11px; padding:15px 32px; border-radius:13px; background:#1C6FE8; color:#fff; font-size:16px; font-weight:600; box-shadow:0 18px 40px -14px rgba(28,111,232,0.6); transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Ver producto <span style="font-size:18px;">&rarr;</span></a>
+      </div>
+      <!-- Right: 2x2 stat grid -->
+      <div class="v-intro-stats">
+        <div style="text-align:center;">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="display:block; margin:0 auto clamp(14px,1.6vw,20px);"><rect x="3" y="4" width="18" height="12" rx="1.5"></rect><path d="M8 20h8M12 16v4"></path></svg>
+          <div style="font-size:clamp(20px,1.9vw,24px); font-weight:800; letter-spacing:-0.01em; color:#fff; line-height:1.1;">Murales</div>
+          <div style="font-size:clamp(13px,1.1vw,15px); font-weight:500; color:rgba(255,255,255,0.72); margin-top:clamp(8px,1vw,10px); line-height:1.45;">Gran escala en muros y fachadas.</div>
+        </div>
+        <div style="text-align:center;">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="display:block; margin:0 auto clamp(14px,1.6vw,20px);"><rect x="9" y="3" width="6" height="4" rx="1"></rect><rect x="3" y="15" width="6" height="4" rx="1"></rect><rect x="15" y="15" width="6" height="4" rx="1"></rect><path d="M12 7v4M6 15v-2h12v2M12 11v2"></path></svg>
+          <div style="font-size:clamp(20px,1.9vw,24px); font-weight:800; letter-spacing:-0.01em; color:#fff; line-height:1.1;">Unipolares</div>
+          <div style="font-size:clamp(13px,1.1vw,15px); font-weight:500; color:rgba(255,255,255,0.72); margin-top:clamp(8px,1vw,10px); line-height:1.45;">Alto impacto en avenidas principales.</div>
+        </div>
+        <div style="text-align:center;">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="display:block; margin:0 auto clamp(14px,1.6vw,20px);"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          <div style="font-size:clamp(20px,1.9vw,24px); font-weight:800; letter-spacing:-0.01em; color:#fff; line-height:1.1;">Tótems</div>
+          <div style="font-size:clamp(13px,1.1vw,15px); font-weight:500; color:rgba(255,255,255,0.72); margin-top:clamp(8px,1vw,10px); line-height:1.45;">Presencia a la altura del peatón.</div>
+        </div>
+        <div style="text-align:center;">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="display:block; margin:0 auto clamp(14px,1.6vw,20px);"><rect x="3" y="9" width="7" height="11" rx="0.5"></rect><rect x="13" y="4" width="8" height="16" rx="0.5"></rect><path d="M16 8h2M16 12h2M16 16h2M6 13h1M6 16h1"></path></svg>
+          <div style="font-size:clamp(20px,1.9vw,24px); font-weight:800; letter-spacing:-0.01em; color:#fff; line-height:1.1;">Pantallas LED</div>
+          <div style="font-size:clamp(13px,1.1vw,15px); font-weight:500; color:rgba(255,255,255,0.72); margin-top:clamp(8px,1vw,10px); line-height:1.45;">Contenido dinámico · próximamente.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section style="background:transparent; padding:clamp(30px,4vw,56px) clamp(16px,3vw,28px) clamp(48px,6vw,80px);">
+    <div data-reveal style="position:relative; overflow:hidden; max-width:1400px; margin:0 auto; background:#0A1426; border-radius:28px; padding:clamp(34px,4.2vw,56px) clamp(24px,4vw,56px); text-align:center;">
+      <div style="position:absolute; top:-30%; left:50%; transform:translateX(-50%); width:520px; height:520px; max-width:90vw; border-radius:50%; background:radial-gradient(circle, rgba(28,111,232,0.32), transparent 64%); filter:blur(16px); pointer-events:none;"></div>
+      <div style="position:relative;">
+        <div style="display:inline-flex; align-items:center; gap:9px; margin-bottom:18px;"><span style="width:8px; height:8px; border-radius:50%; background:#56A2FF; box-shadow:0 0 10px #56A2FF;"></span><span style="font-size:13px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#9FC6FF;">Nuestros servicios</span></div>
+        <h2 style="font-size:clamp(30px,4.6vw,56px); font-weight:800; letter-spacing:-0.03em; line-height:1.04; color:#fff; margin:0 auto 18px; max-width:680px;">¿Listo para que tu marca <span style="color:#56A2FF;">domine</span> la ciudad?</h2>
+        <p style="font-size:clamp(17px,2vw,20px); line-height:1.5; color:#AEB8C8; margin:0 auto; max-width:520px;">Estos son algunos de los servicios con los que llevamos tu marca a la calle.</p>
+
+        <div class="v-home-sv">
+          <a href="servicios.html" class="v-hsv-card">
+            <div class="v-hsv-chip"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#56A2FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path><circle cx="12" cy="10.5" r="3"></circle><path d="M12 5v2M12 14v2M6 10.5h2M16 10.5h2"></path></svg></div>
+            <h3 style="font-size:clamp(19px,1.7vw,22px); font-weight:700; letter-spacing:-0.02em; color:#fff; margin:0 0 10px;">Estrategia de ubicación</h3>
+            <p style="font-size:14.5px; line-height:1.6; color:rgba(255,255,255,0.72); margin:0;">Analizamos tránsito y audiencia para ubicar tu marca en los puntos donde de verdad se ve.</p>
+          </a>
+          <a href="servicios.html" class="v-hsv-card">
+            <div class="v-hsv-chip"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#56A2FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c2.8 1.6 4.2 4.4 4.2 7.6 0 1.6-.4 3-1.2 4.4H9c-.8-1.4-1.2-2.8-1.2-4.4C7.8 7.4 9.2 4.6 12 3z"></path><circle cx="12" cy="9.5" r="1.6"></circle><path d="M9 15l-2.6 2 .6-3.1M15 15l2.6 2-.6-3.1M10.5 18.4l1.5 2.1 1.5-2.1"></path></svg></div>
+            <h3 style="font-size:clamp(19px,1.7vw,22px); font-weight:700; letter-spacing:-0.02em; color:#fff; margin:0 0 10px;">Proyectos especiales</h3>
+            <p style="font-size:14.5px; line-height:1.6; color:rgba(255,255,255,0.72); margin:0;">Ejecuciones disruptivas y “fuera de la caja”. Nuestro equipo experto te guía para que tu idea se haga realidad.</p>
+          </a>
+          <a href="servicios.html" class="v-hsv-card">
+            <div class="v-hsv-chip"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#56A2FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="12.5" height="9.5" rx="1.5"></rect><path d="M5.5 17h5M8 13.5V17"></path><rect x="16" y="10.5" width="6" height="10" rx="1.5"></rect><path d="M18.5 18h1"></path></svg></div>
+            <h3 style="font-size:clamp(19px,1.7vw,22px); font-weight:700; letter-spacing:-0.02em; color:#fff; margin:0 0 10px;">Servicio integral</h3>
+            <p style="font-size:14.5px; line-height:1.6; color:rgba(255,255,255,0.72); margin:0;">Diseño, permisos, producción, montaje y reportes bajo un mismo equipo, de la idea a la calle.</p>
+          </a>
+        </div>
+
+        <a href="servicios.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:11px; padding:16px 36px; border-radius:14px; background:#1C6FE8; color:#fff; font-size:16px; font-weight:600; box-shadow:0 18px 44px -14px rgba(28,111,232,0.7); transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Ir a servicios <span style="font-size:18px;">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONOCE NUESTROS PRODUCTOS ============ -->
+  <section style="background:transparent; padding:clamp(34px,4.5vw,60px) clamp(16px,4vw,40px) clamp(48px,6vw,80px);">
+    <div style="max-width:1400px; margin:0 auto;">
+      <div data-reveal style="text-align:center; max-width:680px; margin:0 auto clamp(34px,4vw,52px);">
+        <div style="display:inline-flex; align-items:center; gap:9px; margin-bottom:16px;"><span style="width:8px; height:8px; border-radius:50%; background:#1C6FE8;"></span><span style="font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#1C6FE8;">Nuestros formatos</span></div>
+        <h2 style="font-size:clamp(28px,4.2vw,54px); font-weight:800; letter-spacing:-0.03em; line-height:1.05; color:#0E1A2E; margin:0;">Conoce nuestros productos</h2>
+      </div>
+      <div data-reveal class="v-prod-grid">
+        <sc-for list="{{ products }}" as="pr" hint-placeholder-count="4">
+          <a href="soluciones.html" class="v-prod-card">
+            {{ pr.imgNode }}
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,16,28,0.15) 0%, rgba(8,16,28,0.05) 38%, rgba(8,16,28,0.82) 100%);"></div>
+            <div style="position:absolute; left:0; right:0; bottom:0; padding:clamp(22px,2.2vw,30px);">
+              <h3 style="font-size:clamp(21px,2vw,26px); font-weight:800; letter-spacing:-0.02em; line-height:1.1; color:#fff; margin:0 0 8px; text-shadow:0 8px 28px rgba(0,0,0,0.5);">{{ pr.title }}</h3>
+              <p style="font-size:14px; line-height:1.5; color:rgba(255,255,255,0.84); margin:0 0 16px;">{{ pr.desc }}</p>
+              <span class="v-prod-cta" style="display:inline-flex; align-items:center; gap:8px; color:#fff; font-size:14px; font-weight:700;">Ver producto <span style="font-size:16px;">&rarr;</span></span>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+    </div>
+  </div>
+
+
+  <dc-import name="SiteFooter" hint-size="100%,400px"></dc-import>
+  <dc-import name="SiteChat" hint-size="100%,0px"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  animateCounts() {
+    const root = this.rootEl;
+    if (!root) return;
+    const els = root.querySelectorAll('[data-count-to]');
+    els.forEach((el) => {
+      const to = parseFloat(el.getAttribute('data-count-to')) || 0;
+      const pre = el.getAttribute('data-count-prefix') || '';
+      const suf = el.getAttribute('data-count-suffix') || '';
+      const dur = 1500;
+      const start = performance.now();
+      const step = (now) => {
+        const p = Math.min(1, (now - start) / dur);
+        const e = 1 - Math.pow(1 - p, 3);
+        el.textContent = pre + Math.round(to * e) + suf;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+  }
+
+  loadHeroVideo() {
+    const root = this.rootEl;
+    if (!root) return;
+    const v = root.querySelector('#heroVideo');
+    if (!v || v.dataset.loaded) return;
+    const url = v.getAttribute('data-vsrc');
+    v.muted = true;
+    v.defaultMuted = true;
+    v.playsInline = true;
+    v.loop = true;
+    fetch(url).then((r) => r.blob()).then((blob) => {
+      v.dataset.loaded = '1';
+      v.src = URL.createObjectURL(blob);
+      v.load();
+      const tryPlay = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+      tryPlay();
+      v.addEventListener('canplay', tryPlay, { once: true });
+    }).catch(() => {});
+  }
+
+  componentDidMount() {
+    const root = this.rootEl;
+    if (!root) return;
+    this.loadHeroVideo();
+    const els = Array.from(root.querySelectorAll('[data-reveal]'));
+    els.forEach((el) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+      el.style.transition = 'opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1)';
+      const d = el.getAttribute('data-reveal-delay');
+      if (d) el.style.transitionDelay = d + 'ms';
+    });
+    if (!('IntersectionObserver' in window)) {
+      els.forEach((el) => { el.style.opacity = '1'; el.style.transform = 'none'; });
+      this.animateCounts();
+      return;
+    }
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'none';
+          if (e.target.hasAttribute('data-counts') && !this._counted) { this._counted = true; this.animateCounts(); }
+          this.io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    els.forEach((el) => this.io.observe(el));
+  }
+
+  startNetwork() {
+    const canvas = this.netEl;
+    const wrap = canvas && canvas.parentElement;
+    if (!canvas || !wrap) return;
+    const ctx = canvas.getContext('2d', { alpha: true });
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    let w = 0, h = 0, pts = [];
+    const resize = () => {
+      w = wrap.clientWidth; h = wrap.scrollHeight || wrap.clientHeight;
+      if (!w || !h) return;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const target = Math.min(64, Math.max(20, Math.round((w * h) / 46000)));
+      const cur = pts.length;
+      if (target > cur) {
+        for (let i = cur; i < target; i++) pts.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - 0.5) * 0.9, vy: (Math.random() - 0.5) * 0.9 });
+      } else if (target < cur) {
+        pts.length = target;
+      }
+    };
+    resize();
+    if ('ResizeObserver' in window) { this._netRO = new ResizeObserver(() => resize()); this._netRO.observe(wrap); }
+    window.addEventListener('load', resize);
+    const maxDist = 150;
+    let last = 0;
+    const tick = (now) => {
+      this._netRAF = requestAnimationFrame(tick);
+      if (now - last < 16) return;
+      last = now;
+      if (w && h) {
+        ctx.clearRect(0, 0, w, h);
+        for (const p of pts) {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > w) p.vx *= -1;
+          if (p.y < 0 || p.y > h) p.vy *= -1;
+        }
+        for (let i = 0; i < pts.length; i++) {
+          for (let j = i + 1; j < pts.length; j++) {
+            const a = pts[i], b = pts[j];
+            const dx = a.x - b.x, dy = a.y - b.y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            if (d < maxDist) {
+              ctx.strokeStyle = 'rgba(28,111,232,' + ((1 - d / maxDist) * 0.15).toFixed(3) + ')';
+              ctx.lineWidth = 1;
+              ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+            }
+          }
+        }
+        ctx.fillStyle = 'rgba(14,42,85,0.5)';
+        for (const p of pts) { ctx.beginPath(); ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2); ctx.fill(); }
+      }
+    };
+    this._netRAF = requestAnimationFrame(tick);
+  }
+
+  componentWillUnmount() {
+    if (this.io) this.io.disconnect();
+    if (this._netRAF) cancelAnimationFrame(this._netRAF);
+    if (this._netRO) this._netRO.disconnect();
+  }
+
+  renderVals() {
+    const fmt = [
+      { title: 'Unipolares', desc: 'Gran impacto a larga distancia en autopistas, avenidas y zonas de alto tráfico.', img: 'panels/unipolar.png' },
+      { title: 'Murales', desc: 'Formatos de gran escala que convierten muros y fachadas en piezas memorables.', img: 'panels/mural.jpg' },
+      { title: 'LED (Próximamente)', desc: 'Tecnología dinámica con contenido en movimiento y mayor interacción.', img: 'panels/led.png' }
+    ];
+    const formats = fmt.map((f) => ({
+      title: f.title, desc: f.desc,
+      imgNode: React.createElement('img', { src: f.img, alt: f.title, style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' } })
+    }));
+
+    const stroke = { fill: 'none', stroke: '#1C6FE8', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round' };
+    const icon = (children) => React.createElement('svg', Object.assign({ width: 26, height: 26, viewBox: '0 0 24 24' }, stroke), children);
+    const services = [
+      {
+        title: 'Planificación con data',
+        desc: 'Analizamos el flujo vehicular y peatonal para ubicar tu marca donde de verdad la van a ver.',
+        iconNode: icon([
+          React.createElement('circle', { key: 'a', cx: 12, cy: 12, r: 8.5 }),
+          React.createElement('circle', { key: 'b', cx: 12, cy: 12, r: 3.4 }),
+          React.createElement('path', { key: 'c', d: 'M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3' })
+        ])
+      },
+      {
+        title: 'Proyectos especiales',
+        desc: 'Ejecuciones disruptivas y a medida que hacen tu campaña imposible de ignorar.',
+        iconNode: icon([
+          React.createElement('path', { key: 'a', d: 'M12 2.5l2.4 5.6 6 .5-4.6 3.9 1.5 5.9L12 21l-5.3 2.9 1.5-5.9-4.6-3.9 6-.5z' })
+        ])
+      },
+      {
+        title: 'Monitoreo de impacto',
+        desc: 'Reportes con fotos de tu campaña en la calle, alcance estimado y recomendaciones.',
+        iconNode: icon([
+          React.createElement('path', { key: 'a', d: 'M4 19V5' }),
+          React.createElement('path', { key: 'b', d: 'M4 19h16' }),
+          React.createElement('path', { key: 'c', d: 'M7 15l3-3 3 2 4-5' })
+        ])
+      }
+    ];
+
+    const productData = [
+      { title: 'Murales', desc: 'Gran escala en muros y fachadas de alto tránsito.', img: 'panels/mural.jpg', objPos: 'center 45%' },
+      { title: 'Unipolares', desc: 'Impacto a larga distancia en avenidas principales.', img: 'panels/unipolar.png', objPos: 'center 38%' },
+      { title: 'Tótems', desc: 'Presencia peatonal, a la altura de la calle.', img: 'panels/totem.png', objPos: '30% center' },
+      { title: 'Pantallas LED', desc: 'Contenido dinámico en movimiento. Próximamente.', img: 'panels/led.png', objPos: 'center 42%' }
+    ];
+    const products = productData.map((p) => ({
+      title: p.title, desc: p.desc,
+      imgNode: React.createElement('img', { src: p.img, alt: p.title, style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: p.objPos || 'center', display: 'block' } })
+    }));
+
+    const baseLogos = [
+      { src: 'logos/pacific-blue.jpeg', label: 'Pacific Blue' },
+      { label: 'AURORA' }, { label: 'MERIDIAN' }, { label: 'VÉRTICE' }, { label: 'NOVALIS' }, { label: 'CUMBRE' }
+    ];
+    const logoNode = (lg, key) => lg.src
+      ? React.createElement('img', { key: key, src: lg.src, alt: lg.label, style: { maxWidth: '190px', maxHeight: '64px', objectFit: 'contain', display: 'block' } })
+      : React.createElement('span', { key: key, style: { fontSize: '23px', fontWeight: 800, letterSpacing: '-0.01em', color: '#B6B4C2', whiteSpace: 'nowrap' } }, lg.label);
+    const logos = [...baseLogos, ...baseLogos].map((lg, i) => ({ ...lg, node: logoNode(lg, i) }));
+
+    return {
+      setRoot: (el) => { this.rootEl = el; },
+      setNet: (el) => { this.netEl = el; if (el && !this._netStarted) { this._netStarted = true; this.startNetwork(); } },
+      news: products,
+      products: products,
+      formats: formats,
+      services: services,
+      logos: logos
+    };
+  }
+}
+</script>
+</body>
+</html>
