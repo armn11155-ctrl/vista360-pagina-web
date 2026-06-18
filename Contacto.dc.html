@@ -109,6 +109,9 @@
               <textarea id="v-notas" rows="3" placeholder="Cuéntanos más: zonas de interés, fecha de inicio, o cualquier detalle de tu campaña (opcional)" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; resize:vertical; transition:border-color .2s, box-shadow .2s; font-family:inherit;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);"></textarea>
             </div>
 
+            <!-- Campo trampa para bots: invisible para humanos -->
+            <input type="text" id="v-hp" name="website" autocomplete="off" tabindex="-1" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" />
+
             <p id="v-send-err" style="font-size:13px; color:#E0506A; margin:0 0 12px; display:none;">Ocurrió un error al enviar. Intenta de nuevo.</p>
 
             <button type="submit" id="v-submit-btn" style="width:100%; padding:16px; border-radius:14px; border:none; background:#1C6FE8; color:#fff; font-size:16px; font-weight:700; cursor:pointer; box-shadow:0 16px 36px -14px rgba(28,111,232,0.6); transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Enviar solicitud</button>
@@ -217,7 +220,7 @@ class Component extends DCLogic {
   async _sendToFirebase(data) {
     const PROJECT = 'base-de-datos-vista360';
     const API_KEY = 'AIzaSyCklWQStUPElsRfKH3icUZht-R321zgZY8';
-    const url = 'https://firestore.googleapis.com/v1/projects/' + PROJECT + '/databases/(default)/documents/clientes?key=' + API_KEY;
+    const url = 'https://firestore.googleapis.com/v1/projects/' + PROJECT + '/databases/(default)/documents/solicitudesWeb?key=' + API_KEY;
     const body = {
       fields: {
         contacto:     { stringValue: data.contacto },
@@ -228,7 +231,8 @@ class Component extends DCLogic {
         notas:        { stringValue: data.notas },
         tipo:         { stringValue: 'Prospecto' },
         estado:       { stringValue: 'En contacto' },
-        origen:       { stringValue: 'web' }
+        origen:       { stringValue: 'web' },
+        hp:           { stringValue: data.hp || '' }
       }
     };
     const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
@@ -277,6 +281,19 @@ class Component extends DCLogic {
         const panelErr = document.getElementById('v-panel-err');
         if (!this._panelSel) { panelErr.style.display = 'block'; return; }
         panelErr.style.display = 'none';
+
+        // Anti-spam: honeypot — si está lleno, es un bot. Fingimos éxito.
+        const hp = document.getElementById('v-hp').value.trim();
+        if (hp) { this.setState({ sent: true }); return; }
+
+        // Anti-spam: máximo 1 envío cada 60s por navegador (evita doble clic / scripts simples)
+        const lastSend = Number(localStorage.getItem('v360_last_send') || 0);
+        if (Date.now() - lastSend < 60000) {
+          document.getElementById('v-send-err').textContent = 'Ya enviaste una solicitud. Espera un momento antes de enviar otra.';
+          document.getElementById('v-send-err').style.display = 'block';
+          return;
+        }
+
         const btn = document.getElementById('v-submit-btn');
         btn.disabled = true; btn.textContent = 'Enviando…';
         document.getElementById('v-send-err').style.display = 'none';
@@ -287,11 +304,14 @@ class Component extends DCLogic {
             celular:     document.getElementById('v-celular').value.trim(),
             email:       document.getElementById('v-email').value.trim(),
             panelInteres: this._panelSel,
-            notas:       document.getElementById('v-notas').value.trim()
+            notas:       document.getElementById('v-notas').value.trim(),
+            hp
           });
+          localStorage.setItem('v360_last_send', String(Date.now()));
           this.setState({ sent: true });
         } catch(err) {
           btn.disabled = false; btn.textContent = 'Enviar solicitud';
+          document.getElementById('v-send-err').textContent = 'Ocurrió un error al enviar. Intenta de nuevo.';
           document.getElementById('v-send-err').style.display = 'block';
         }
       }
