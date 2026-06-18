@@ -23,13 +23,16 @@
   .v-proc-grid { display:grid; grid-template-columns:1fr; gap:clamp(18px,2vw,24px); }
   @media (min-width: 560px){ .v-proc-grid { grid-template-columns:1fr 1fr; } }
   @media (min-width: 1040px){ .v-proc-grid { grid-template-columns:repeat(4,1fr); } }
+  .v-panel-btn { padding:10px 18px; border-radius:999px; border:1.5px solid #DEDBE9; background:#fff; font-size:14px; font-weight:600; color:#6A6A78; cursor:pointer; transition:all .2s ease; font-family:inherit; }
+  .v-panel-btn.active { border-color:#1C6FE8; background:#1C6FE8; color:#fff; }
+  .v-panel-btn:hover:not(.active) { border-color:#1C6FE8; color:#1C6FE8; }
+  .v-err { font-size:13px; color:#E0506A; margin-top:6px; display:none; }
 </style>
 </helmet>
 
 <div ref="{{ setRoot }}" style="position:relative; width:100%; overflow-x:hidden; background:transparent;">
 
   <dc-import name="SiteNetwork" hint-size="100%,100%"></dc-import>
-
   <dc-import name="SiteNav" active="contacto" hint-size="100%,66px"></dc-import>
 
   <!-- PAGE HEADER -->
@@ -42,11 +45,11 @@
     </div>
   </section>
 
-  <!-- CONTACT (image + full form) -->
+  <!-- CONTACT -->
   <section style="background:#ffffff; padding:clamp(50px,7vw,90px) clamp(16px,3vw,28px) clamp(40px,5vw,70px);">
     <div class="v-contact-grid" style="max-width:1180px; margin:0 auto;">
 
-      <!-- Left: image + contact chips -->
+      <!-- Left -->
       <div data-reveal style="display:flex; flex-direction:column;">
         <div style="position:relative; flex:1; min-height:clamp(320px,42vw,520px); border-radius:24px; overflow:hidden; box-shadow:0 30px 60px -38px rgba(10,20,38,0.5);">
           <img src="panels/panel-street.jpg" alt="Paradero publicitario VISTA360" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
@@ -72,54 +75,50 @@
           </div>
         </sc-if>
         <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
-          <form onSubmit="{{ submit }}" style="background:#F4F3F8; border:1px solid #ECEAF3; border-radius:24px; padding:clamp(28px,4vw,40px);">
+          <form id="v-contact-form" onSubmit="{{ submit }}" style="background:#F4F3F8; border:1px solid #ECEAF3; border-radius:24px; padding:clamp(28px,4vw,40px);">
             <h2 style="font-size:clamp(24px,2.8vw,34px); font-weight:800; letter-spacing:-0.025em; line-height:1.06; color:#0E1A2E; margin:0 0 6px;">¿Cómo te ayudamos?</h2>
             <p style="font-size:14.5px; line-height:1.5; color:#6A6A78; margin:0 0 26px;">Completa tus datos y te enviamos una propuesta a la medida.</p>
 
+            <!-- Nombre + Empresa -->
             <div class="v-form-2" style="margin-bottom:14px;">
-              <input required type="text" placeholder="Nombre*" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);" />
-              <input required type="text" placeholder="Apellido*" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);" />
+              <input id="v-nombre" required type="text" placeholder="Nombre completo*" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);" />
+              <input id="v-empresa" required type="text" placeholder="Empresa / Marca*" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);" />
             </div>
-            <div class="v-form-2" style="margin-bottom:14px;">
-              <input required type="email" placeholder="Email*" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);" />
-              <input required type="text" placeholder="Empresa*" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);" />
+
+            <!-- WhatsApp + Email -->
+            <div class="v-form-2" style="margin-bottom:20px;">
+              <input id="v-celular" required type="tel" placeholder="WhatsApp*" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);" />
+              <input id="v-email" required type="email" placeholder="Email*" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);" />
             </div>
-            <div class="v-form-2" style="margin-bottom:14px;">
-              <input type="text" placeholder="Distritos de interés" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);" />
-              <input type="tel" placeholder="Teléfono" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);" />
-            </div>
-            <div style="margin-bottom:14px;">
-              <label style="display:block; font-size:13px; font-weight:600; color:#6A6A78; margin-bottom:8px;">¿Cómo te enteraste de esta página? <span style="color:#E0506A;">*</span></label>
-              <select required style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; appearance:none; cursor:pointer; background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2214%22 height=%2214%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%236A6A78%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M6 9l6 6 6-6%22/></svg>'); background-repeat:no-repeat; background-position:right 16px center; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);">
-                <option value="">Seleccione un campo</option>
-                <option>Google / Buscador</option>
-                <option>Redes sociales</option>
-                <option>Recomendación</option>
-                <option>Publicidad exterior</option>
-                <option>Otro</option>
-              </select>
-            </div>
+
+            <!-- Tipo de panel -->
             <div style="margin-bottom:20px;">
-              <textarea rows="4" placeholder="Mensaje" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; resize:vertical; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);"></textarea>
+              <label style="display:block; font-size:13px; font-weight:600; color:#6A6A78; margin-bottom:10px;">¿Qué tipo de publicidad te interesa? <span style="color:#E0506A;">*</span></label>
+              <div id="v-panel-btns" style="display:flex; flex-wrap:wrap; gap:8px;">
+                <button type="button" class="v-panel-btn" data-val="Panel digital LED">Panel digital LED</button>
+                <button type="button" class="v-panel-btn" data-val="Mural clásico">Mural clásico</button>
+                <button type="button" class="v-panel-btn" data-val="Unipolar / Tótem">Unipolar / Tótem</button>
+                <button type="button" class="v-panel-btn" data-val="No lo sé aún">No lo sé aún</button>
+              </div>
+              <input type="hidden" id="v-panel" />
+              <p id="v-panel-err" class="v-err">Selecciona una opción</p>
             </div>
-            <label style="display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; margin-bottom:20px; cursor:pointer;">
-              <span style="display:flex; align-items:center; gap:12px;">
-                <input required type="checkbox" style="width:22px; height:22px; accent-color:#1C6FE8; cursor:pointer;" />
-                <span style="font-size:14.5px; color:#0E1A2E; font-weight:500;">No soy un robot</span>
-              </span>
-              <span style="display:flex; flex-direction:column; align-items:center; gap:2px; opacity:0.7;">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"></path><path d="M21 4v4h-4"></path></svg>
-                <span style="font-size:8px; color:#9A98A8; letter-spacing:0.02em;">reCAPTCHA</span>
-              </span>
-            </label>
-            <button type="submit" style="width:100%; padding:16px; border-radius:14px; border:none; background:#1C6FE8; color:#fff; font-size:16px; font-weight:700; cursor:pointer; box-shadow:0 16px 36px -14px rgba(28,111,232,0.6); transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Enviar</button>
+
+            <!-- Cuéntanos más -->
+            <div style="margin-bottom:20px;">
+              <textarea id="v-notas" rows="3" placeholder="Cuéntanos más: zonas de interés, fecha de inicio, o cualquier detalle de tu campaña (opcional)" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; resize:vertical; transition:border-color .2s, box-shadow .2s; font-family:inherit;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);"></textarea>
+            </div>
+
+            <p id="v-send-err" style="font-size:13px; color:#E0506A; margin:0 0 12px; display:none;">Ocurrió un error al enviar. Intenta de nuevo.</p>
+
+            <button type="submit" id="v-submit-btn" style="width:100%; padding:16px; border-radius:14px; border:none; background:#1C6FE8; color:#fff; font-size:16px; font-weight:700; cursor:pointer; box-shadow:0 16px 36px -14px rgba(28,111,232,0.6); transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Enviar solicitud</button>
           </form>
         </sc-if>
       </div>
     </div>
   </section>
 
-  <!-- PROCESO DE COMPRA -->
+  <!-- PROCESO -->
   <section style="background:#F8F9FC; border-top:1px solid #EEF0F5; border-bottom:1px solid #EEF0F5; padding:clamp(56px,7vw,100px) clamp(16px,3vw,28px);">
     <div style="max-width:1240px; margin:0 auto;">
       <div data-reveal style="text-align:center; max-width:760px; margin:0 auto clamp(36px,4.5vw,56px);">
@@ -127,25 +126,21 @@
         <h2 style="font-size:clamp(26px,3.6vw,44px); font-weight:800; letter-spacing:-0.03em; line-height:1.08; color:#0E1A2E; margin:0;">¿Cómo es el proceso para anunciar con VISTA360?</h2>
       </div>
       <div class="v-proc-grid">
-
         <div data-reveal style="position:relative; background:#fff; border:1px solid #ECEAF3; border-radius:22px; padding:clamp(26px,2.6vw,34px) clamp(22px,2.2vw,28px); box-shadow:0 18px 44px -32px rgba(20,18,42,0.28);">
           <div style="width:42px; height:42px; border-radius:50%; background:#1C6FE8; color:#fff; font-size:19px; font-weight:800; display:flex; align-items:center; justify-content:center; margin-bottom:22px;">1</div>
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#1C6FE8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:18px;"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M9 3v3h6V3M9 11h6M9 15h4"></path></svg>
           <h3 style="font-size:17px; font-weight:700; letter-spacing:-0.015em; line-height:1.25; color:#0E1A2E; margin:0;">Registra tu solicitud de información</h3>
         </div>
-
         <div data-reveal data-reveal-delay="80" style="position:relative; background:#fff; border:1px solid #ECEAF3; border-radius:22px; padding:clamp(26px,2.6vw,34px) clamp(22px,2.2vw,28px); box-shadow:0 18px 44px -32px rgba(20,18,42,0.28);">
           <div style="width:42px; height:42px; border-radius:50%; background:#1C6FE8; color:#fff; font-size:19px; font-weight:800; display:flex; align-items:center; justify-content:center; margin-bottom:22px;">2</div>
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#1C6FE8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:18px;"><path d="M4 12a8 8 0 0 1 16 0"></path><rect x="3" y="12" width="4" height="7" rx="1.5"></rect><rect x="17" y="12" width="4" height="7" rx="1.5"></rect><path d="M20 19a3 3 0 0 1-3 3h-3"></path></svg>
           <h3 style="font-size:17px; font-weight:700; letter-spacing:-0.015em; line-height:1.25; color:#0E1A2E; margin:0;">Nuestro equipo se pondrá en contacto contigo</h3>
         </div>
-
         <div data-reveal data-reveal-delay="160" style="position:relative; background:#fff; border:1px solid #ECEAF3; border-radius:22px; padding:clamp(26px,2.6vw,34px) clamp(22px,2.2vw,28px); box-shadow:0 18px 44px -32px rgba(20,18,42,0.28);">
           <div style="width:42px; height:42px; border-radius:50%; background:#1C6FE8; color:#fff; font-size:19px; font-weight:800; display:flex; align-items:center; justify-content:center; margin-bottom:22px;">3</div>
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#1C6FE8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:18px;"><circle cx="8.5" cy="8" r="3"></circle><path d="M3 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"></path><circle cx="17" cy="9" r="2.4"></circle><path d="M15 19c0-2.4 1.4-4.2 3.4-4.2 1.7 0 3 1.3 3.4 3.2"></path></svg>
           <h3 style="font-size:17px; font-weight:700; letter-spacing:-0.015em; line-height:1.25; color:#0E1A2E; margin:0;">Te derivamos con uno de nuestros ejecutivos comerciales</h3>
         </div>
-
         <div data-reveal data-reveal-delay="240" style="position:relative; overflow:hidden; background:#fff; border:1.5px solid #1C6FE8; border-radius:22px; padding:clamp(26px,2.6vw,34px) clamp(22px,2.2vw,28px); box-shadow:0 26px 54px -30px rgba(28,111,232,0.4);">
           <span style="position:absolute; right:-6px; bottom:-30px; font-size:170px; font-weight:800; line-height:1; color:rgba(28,111,232,0.08); pointer-events:none;">4</span>
           <div style="position:relative;">
@@ -154,7 +149,6 @@
             <h3 style="font-size:17px; font-weight:700; letter-spacing:-0.015em; line-height:1.25; color:#0E1A2E; margin:0;">Recibirás el mejor plan de publicidad exterior para tu marca</h3>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -191,6 +185,7 @@
 class Component extends DCLogic {
   state = { sent: false };
   _openFaq = 0;
+  _panelSel = '';
 
   setFaq(i, open) {
     if (!this.rootEl) return;
@@ -205,13 +200,47 @@ class Component extends DCLogic {
     if (willOpen) { this.setFaq(i, true); this._openFaq = i; } else { this._openFaq = -1; }
   }
 
+  _initPanelBtns() {
+    const container = document.getElementById('v-panel-btns');
+    if (!container) return;
+    container.querySelectorAll('.v-panel-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        container.querySelectorAll('.v-panel-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        this._panelSel = btn.getAttribute('data-val');
+        document.getElementById('v-panel').value = this._panelSel;
+        document.getElementById('v-panel-err').style.display = 'none';
+      });
+    });
+  }
+
+  async _sendToFirebase(data) {
+    const PROJECT = 'base-de-datos-vista360';
+    const API_KEY = 'AIzaSyCklWQStUPElsRfKH3icUZht-R321zgZY8';
+    const url = 'https://firestore.googleapis.com/v1/projects/' + PROJECT + '/databases/(default)/documents/clientes?key=' + API_KEY;
+    const body = {
+      fields: {
+        contacto:     { stringValue: data.contacto },
+        empresa:      { stringValue: data.empresa },
+        celular:      { stringValue: data.celular },
+        email:        { stringValue: data.email },
+        panelInteres: { stringValue: data.panelInteres },
+        notas:        { stringValue: data.notas },
+        tipo:         { stringValue: 'Prospecto' },
+        estado:       { stringValue: 'En contacto' },
+        origen:       { stringValue: 'web' }
+      }
+    };
+    const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    if (!res.ok) throw new Error('Firebase error ' + res.status);
+  }
+
   componentDidMount() {
     const root = this.rootEl;
     if (root) {
       const els = Array.from(root.querySelectorAll('[data-reveal]'));
       els.forEach((el) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(28px)';
+        el.style.opacity = '0'; el.style.transform = 'translateY(28px)';
         el.style.transition = 'opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1)';
         const d = el.getAttribute('data-reveal-delay');
         if (d) el.style.transitionDelay = d + 'ms';
@@ -225,7 +254,7 @@ class Component extends DCLogic {
         els.forEach((el) => { el.style.opacity = '1'; el.style.transform = 'none'; });
       }
     }
-    setTimeout(() => this.setFaq(this._openFaq, true), 80);
+    setTimeout(() => { this.setFaq(this._openFaq, true); this._initPanelBtns(); }, 80);
   }
   componentWillUnmount() { if (this.io) this.io.disconnect(); }
 
@@ -240,10 +269,32 @@ class Component extends DCLogic {
     const faqs = faqData.map((f, i) => ({ q: f.q, a: f.a, onClick: () => this.toggleFaq(i) }));
     return {
       setRoot: (el) => { this.rootEl = el; },
-      faqs: faqs,
+      faqs,
       sent: this.state.sent,
       notSent: !this.state.sent,
-      submit: (e) => { e.preventDefault(); this.setState({ sent: true }); }
+      submit: async (e) => {
+        e.preventDefault();
+        const panelErr = document.getElementById('v-panel-err');
+        if (!this._panelSel) { panelErr.style.display = 'block'; return; }
+        panelErr.style.display = 'none';
+        const btn = document.getElementById('v-submit-btn');
+        btn.disabled = true; btn.textContent = 'Enviando…';
+        document.getElementById('v-send-err').style.display = 'none';
+        try {
+          await this._sendToFirebase({
+            contacto:    document.getElementById('v-nombre').value.trim(),
+            empresa:     document.getElementById('v-empresa').value.trim(),
+            celular:     document.getElementById('v-celular').value.trim(),
+            email:       document.getElementById('v-email').value.trim(),
+            panelInteres: this._panelSel,
+            notas:       document.getElementById('v-notas').value.trim()
+          });
+          this.setState({ sent: true });
+        } catch(err) {
+          btn.disabled = false; btn.textContent = 'Enviar solicitud';
+          document.getElementById('v-send-err').style.display = 'block';
+        }
+      }
     };
   }
 }
