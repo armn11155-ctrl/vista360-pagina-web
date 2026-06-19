@@ -314,7 +314,9 @@ class Component extends DCLogic {
         tipo:         { stringValue: 'Prospecto' },
         estado:       { stringValue: 'En contacto' },
         origen:       { stringValue: 'web' },
-        hp:           { stringValue: data.hp || '' }
+        hp:           { stringValue: data.hp || '' },
+        createdAt:    { timestampValue: new Date().toISOString() },
+        importado:    { booleanValue: false }
       }
     };
     const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
