@@ -339,14 +339,26 @@
         </div>
       </sc-if>
       <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
-        <form id="v-contact-form" data-reveal onSubmit="{{ submit }}" style="max-width:840px; margin:0 auto;">
+        <form id="v-contact-form" novalidate data-reveal onSubmit="{{ submit }}" style="max-width:840px; margin:0 auto;">
           <div class="v-cform-2" style="margin-bottom:clamp(14px,1.6vw,20px);">
-            <input id="v-nombre" required type="text" placeholder="Nombre completo*" class="v-cinput" />
-            <input id="v-empresa" required type="text" placeholder="Empresa / Marca*" class="v-cinput" />
+            <div>
+              <input id="v-nombre" type="text" placeholder="Nombre completo*" class="v-cinput" />
+              <p id="v-nombre-err" style="font-size:13px; color:#FF8B82; margin:6px 0 0; display:none;"></p>
+            </div>
+            <div>
+              <input id="v-empresa" type="text" placeholder="Empresa / Marca*" class="v-cinput" />
+              <p id="v-empresa-err" style="font-size:13px; color:#FF8B82; margin:6px 0 0; display:none;"></p>
+            </div>
           </div>
           <div class="v-cform-2" style="margin-bottom:clamp(26px,3vw,38px);">
-            <input id="v-celular" required type="tel" placeholder="WhatsApp*" class="v-cinput" />
-            <input id="v-email" required type="email" placeholder="Email*" class="v-cinput" />
+            <div>
+              <input id="v-celular" type="tel" placeholder="WhatsApp*" class="v-cinput" />
+              <p id="v-celular-err" style="font-size:13px; color:#FF8B82; margin:6px 0 0; display:none;"></p>
+            </div>
+            <div>
+              <input id="v-email" type="email" placeholder="Email*" class="v-cinput" />
+              <p id="v-email-err" style="font-size:13px; color:#FF8B82; margin:6px 0 0; display:none;"></p>
+            </div>
           </div>
           <div style="margin-bottom:clamp(22px,2.6vw,30px);">
             <label style="display:block; font-size:15px; font-weight:700; color:#fff; margin-bottom:12px;">¿Qué tipo de publicidad te interesa? <span style="color:#FF8B82;">*</span></label>
@@ -405,6 +417,70 @@ class Component extends DCLogic {
     });
   }
 
+  _setFieldError(inputId, errId, msg) {
+    const input = document.getElementById(inputId);
+    const err = document.getElementById(errId);
+    if (!input || !err) return;
+    input.style.boxShadow = '0 0 0 3px rgba(255,139,130,0.55), 0 14px 34px -22px rgba(0,0,0,0.5)';
+    err.textContent = msg;
+    err.style.display = 'block';
+  }
+
+  _clearFieldError(inputId, errId) {
+    const input = document.getElementById(inputId);
+    const err = document.getElementById(errId);
+    if (!input || !err) return;
+    input.style.boxShadow = '';
+    err.style.display = 'none';
+  }
+
+  _initFieldClearing() {
+    [['v-nombre','v-nombre-err'],['v-empresa','v-empresa-err'],['v-celular','v-celular-err'],['v-email','v-email-err']]
+      .forEach(([id, errId]) => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', () => this._clearFieldError(id, errId));
+      });
+  }
+
+  _validarFormulario() {
+    let valido = true;
+    let primero = null;
+    const marcar = (id, errId, msg) => {
+      this._setFieldError(id, errId, msg);
+      valido = false;
+      if (!primero) primero = document.getElementById(id);
+    };
+
+    this._clearFieldError('v-nombre','v-nombre-err');
+    this._clearFieldError('v-empresa','v-empresa-err');
+    this._clearFieldError('v-celular','v-celular-err');
+    this._clearFieldError('v-email','v-email-err');
+
+    const nombre = document.getElementById('v-nombre').value.trim();
+    const empresa = document.getElementById('v-empresa').value.trim();
+    const celular = document.getElementById('v-celular').value.trim();
+    const email = document.getElementById('v-email').value.trim();
+
+    if (!nombre) marcar('v-nombre','v-nombre-err','Falta tu nombre completo');
+    if (!empresa) marcar('v-empresa','v-empresa-err','Falta el nombre de tu empresa o marca');
+    if (!celular) marcar('v-celular','v-celular-err','Falta tu número de WhatsApp');
+    else if (celular.replace(/[^0-9]/g, '').length < 7) marcar('v-celular','v-celular-err','Ese número de WhatsApp está incompleto');
+    if (!email) marcar('v-email','v-email-err','Falta tu email');
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) marcar('v-email','v-email-err','Ese email no es válido');
+
+    const panelErr = document.getElementById('v-panel-err');
+    if (!this._panelSel) {
+      panelErr.style.display = 'block';
+      valido = false;
+      if (!primero) primero = document.getElementById('v-panel-btns');
+    } else {
+      panelErr.style.display = 'none';
+    }
+
+    if (!valido && primero) primero.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return valido;
+  }
+
   async _sendToFirebase(data) {
     const PROJECT = 'base-de-datos-vista360';
     const API_KEY = 'AIzaSyCklWQStUPElsRfKH3icUZht-R321zgZY8';
@@ -445,6 +521,7 @@ class Component extends DCLogic {
       els.forEach((el) => this.io.observe(el));
     }
     this._initPanelBtns();
+    this._initFieldClearing();
   }
   componentWillUnmount() { if (this.io) this.io.disconnect(); }
   renderVals() {
@@ -454,9 +531,7 @@ class Component extends DCLogic {
       notSent: !this.state.sent,
       submit: async (e) => {
         e.preventDefault();
-        const panelErr = document.getElementById('v-panel-err');
-        if (!this._panelSel) { panelErr.style.display = 'block'; return; }
-        panelErr.style.display = 'none';
+        if (!this._validarFormulario()) return;
 
         const hp = document.getElementById('v-hp').value.trim();
         if (hp) { this.setState({ sent: true }); return; }
@@ -487,7 +562,7 @@ class Component extends DCLogic {
         } catch (err) {
           btn.disabled = false; btn.textContent = 'Enviar solicitud';
           const errEl = document.getElementById('v-send-err');
-          errEl.textContent = 'Ocurrió un error al enviar. Intenta de nuevo.';
+          errEl.textContent = 'No se pudo conectar con el servidor. Revisa tu conexión e intenta de nuevo.';
           errEl.style.display = 'block';
         }
       }

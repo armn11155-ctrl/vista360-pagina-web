@@ -75,20 +75,32 @@
           </div>
         </sc-if>
         <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
-          <form id="v-contact-form" onSubmit="{{ submit }}" style="background:#F4F3F8; border:1px solid #ECEAF3; border-radius:24px; padding:clamp(28px,4vw,40px);">
+          <form id="v-contact-form" novalidate onSubmit="{{ submit }}" style="background:#F4F3F8; border:1px solid #ECEAF3; border-radius:24px; padding:clamp(28px,4vw,40px);">
             <h2 style="font-size:clamp(24px,2.8vw,34px); font-weight:800; letter-spacing:-0.025em; line-height:1.06; color:#0E1A2E; margin:0 0 6px;">¿Cómo te ayudamos?</h2>
             <p style="font-size:14.5px; line-height:1.5; color:#6A6A78; margin:0 0 26px;">Completa tus datos y te enviamos una propuesta a la medida.</p>
 
             <!-- Nombre + Empresa -->
             <div class="v-form-2" style="margin-bottom:14px;">
-              <input id="v-nombre" required type="text" placeholder="Nombre completo*" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);" />
-              <input id="v-empresa" required type="text" placeholder="Empresa / Marca*" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);" />
+              <div>
+                <input id="v-nombre" type="text" placeholder="Nombre completo*" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);" />
+                <p id="v-nombre-err" class="v-err"></p>
+              </div>
+              <div>
+                <input id="v-empresa" type="text" placeholder="Empresa / Marca*" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);" />
+                <p id="v-empresa-err" class="v-err"></p>
+              </div>
             </div>
 
             <!-- WhatsApp + Email -->
             <div class="v-form-2" style="margin-bottom:20px;">
-              <input id="v-celular" required type="tel" placeholder="WhatsApp*" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);" />
-              <input id="v-email" required type="email" placeholder="Email*" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);" />
+              <div>
+                <input id="v-celular" type="tel" placeholder="WhatsApp*" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);" />
+                <p id="v-celular-err" class="v-err"></p>
+              </div>
+              <div>
+                <input id="v-email" type="email" placeholder="Email*" style="width:100%; padding:14px 16px; border:1px solid #DEDBE9; border-radius:12px; background:#fff; font-size:15px; color:#0E1A2E; outline:none; transition:border-color .2s, box-shadow .2s;" style-focus="border-color:#1C6FE8; box-shadow:0 0 0 4px rgba(28,111,232,0.14);" />
+                <p id="v-email-err" class="v-err"></p>
+              </div>
             </div>
 
             <!-- Tipo de panel -->
@@ -217,6 +229,72 @@ class Component extends DCLogic {
     });
   }
 
+  _setFieldError(inputId, errId, msg) {
+    const input = document.getElementById(inputId);
+    const err = document.getElementById(errId);
+    if (!input || !err) return;
+    input.style.borderColor = '#E0506A';
+    input.style.boxShadow = '0 0 0 4px rgba(224,80,106,0.14)';
+    err.textContent = msg;
+    err.style.display = 'block';
+  }
+
+  _clearFieldError(inputId, errId) {
+    const input = document.getElementById(inputId);
+    const err = document.getElementById(errId);
+    if (!input || !err) return;
+    input.style.borderColor = '#DEDBE9';
+    input.style.boxShadow = 'none';
+    err.style.display = 'none';
+  }
+
+  _initFieldClearing() {
+    [['v-nombre','v-nombre-err'],['v-empresa','v-empresa-err'],['v-celular','v-celular-err'],['v-email','v-email-err']]
+      .forEach(([id, errId]) => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', () => this._clearFieldError(id, errId));
+      });
+  }
+
+  _validarFormulario() {
+    let valido = true;
+    let primero = null;
+    const marcar = (id, errId, msg) => {
+      this._setFieldError(id, errId, msg);
+      valido = false;
+      if (!primero) primero = document.getElementById(id);
+    };
+
+    this._clearFieldError('v-nombre','v-nombre-err');
+    this._clearFieldError('v-empresa','v-empresa-err');
+    this._clearFieldError('v-celular','v-celular-err');
+    this._clearFieldError('v-email','v-email-err');
+
+    const nombre = document.getElementById('v-nombre').value.trim();
+    const empresa = document.getElementById('v-empresa').value.trim();
+    const celular = document.getElementById('v-celular').value.trim();
+    const email = document.getElementById('v-email').value.trim();
+
+    if (!nombre) marcar('v-nombre','v-nombre-err','Falta tu nombre completo');
+    if (!empresa) marcar('v-empresa','v-empresa-err','Falta el nombre de tu empresa o marca');
+    if (!celular) marcar('v-celular','v-celular-err','Falta tu número de WhatsApp');
+    else if (celular.replace(/[^0-9]/g, '').length < 7) marcar('v-celular','v-celular-err','Ese número de WhatsApp está incompleto');
+    if (!email) marcar('v-email','v-email-err','Falta tu email');
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) marcar('v-email','v-email-err','Ese email no es válido');
+
+    const panelErr = document.getElementById('v-panel-err');
+    if (!this._panelSel) {
+      panelErr.style.display = 'block';
+      valido = false;
+      if (!primero) primero = document.getElementById('v-panel-btns');
+    } else {
+      panelErr.style.display = 'none';
+    }
+
+    if (!valido && primero) primero.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return valido;
+  }
+
   async _sendToFirebase(data) {
     const PROJECT = 'base-de-datos-vista360';
     const API_KEY = 'AIzaSyCklWQStUPElsRfKH3icUZht-R321zgZY8';
@@ -258,7 +336,7 @@ class Component extends DCLogic {
         els.forEach((el) => { el.style.opacity = '1'; el.style.transform = 'none'; });
       }
     }
-    setTimeout(() => { this.setFaq(this._openFaq, true); this._initPanelBtns(); }, 80);
+    setTimeout(() => { this.setFaq(this._openFaq, true); this._initPanelBtns(); this._initFieldClearing(); }, 80);
   }
   componentWillUnmount() { if (this.io) this.io.disconnect(); }
 
@@ -278,9 +356,7 @@ class Component extends DCLogic {
       notSent: !this.state.sent,
       submit: async (e) => {
         e.preventDefault();
-        const panelErr = document.getElementById('v-panel-err');
-        if (!this._panelSel) { panelErr.style.display = 'block'; return; }
-        panelErr.style.display = 'none';
+        if (!this._validarFormulario()) return;
 
         // Anti-spam: honeypot — si está lleno, es un bot. Fingimos éxito.
         const hp = document.getElementById('v-hp').value.trim();
@@ -311,7 +387,7 @@ class Component extends DCLogic {
           this.setState({ sent: true });
         } catch(err) {
           btn.disabled = false; btn.textContent = 'Enviar solicitud';
-          document.getElementById('v-send-err').textContent = 'Ocurrió un error al enviar. Intenta de nuevo.';
+          document.getElementById('v-send-err').textContent = 'No se pudo conectar con el servidor. Revisa tu conexión e intenta de nuevo.';
           document.getElementById('v-send-err').style.display = 'block';
         }
       }
