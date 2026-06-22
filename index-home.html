@@ -37,10 +37,10 @@
   @media (max-width: 760px) {
     #top {
       min-height: 100vh;
-      min-height: calc(100lvh + 2px) !important; /* +2px: margen de seguridad para que nunca se asome
-        un hilo de blanco del body entre el hero y la siguiente sección por redondeos del navegador. */
-      /* El hero "sube" detrás del status bar (notch/reloj) y luego se compensa con
-         padding para que el contenido (texto, botones) no se mueva de su lugar. */
+      /* Sube detrás del status bar (margin-top negativo) y por eso hay que
+         SUMARLE esa misma altura aquí, si no el video queda más corto por
+         abajo exactamente lo que se ganó por arriba (el bug de la vez pasada). */
+      min-height: calc(100lvh + env(safe-area-inset-top, 0px) + 2px) !important;
       margin-top: calc(-1 * env(safe-area-inset-top, 0px));
       padding-top: env(safe-area-inset-top, 0px);
     }
