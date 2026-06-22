@@ -14,13 +14,6 @@
 <style>
   .vn-links { display:flex; align-items:center; gap:clamp(20px,2.2vw,38px); }
   .vn-burger { display:none; }
-  .vn-dd { position:relative; }
-  .vn-dd-menu { opacity:0; visibility:hidden; pointer-events:none; transform:translateX(-50%) translateY(-8px); transition:opacity .25s ease, transform .25s ease, visibility .25s ease; }
-  .vn-dd:hover .vn-dd-menu, .vn-dd:focus-within .vn-dd-menu { opacity:1; visibility:visible; pointer-events:auto; transform:translateX(-50%) translateY(0); }
-  .vn-dd-chev { display:inline-block; font-size:11px; transition:transform .25s ease; }
-  .vn-dd:hover .vn-dd-chev { transform:rotate(180deg); }
-  .vn-dd-item:hover .vn-dd-arrow { transform:translateX(3px); color:#fff !important; }
-  .vn-dd-menu::before { content:''; position:absolute; top:-14px; left:0; right:0; height:16px; }
   @media (max-width: 940px){
     .vn-links { display:none !important; }
     .vn-cta { display:none !important; }
@@ -35,26 +28,7 @@
     </a>
     <div class="vn-links">
       <a href="index.html" style="{{ inicioStyle }}" style-hover="color:#fff;">Inicio</a>
-      <div class="vn-dd" style="padding:9px 0;">
-        <a href="vista360-classic.html" style="{{ solTriggerStyle }}" style-hover="color:#fff;">Soluciones <span class="vn-dd-chev">&#9662;</span></a>
-        <div class="vn-dd-menu" style="position:absolute; top:calc(100% + 6px); left:50%; min-width:300px; background:linear-gradient(160deg,#0E254C 0%,#0A1A37 100%); border:1px solid rgba(255,255,255,0.12); border-radius:18px; box-shadow:0 30px 60px rgba(4,10,24,0.6), inset 0 1px 0 rgba(255,255,255,0.06); padding:10px; display:flex; flex-direction:column; gap:4px; z-index:160;">
-          <a href="vista360-classic.html" class="vn-dd-item" style="{{ solItemStyle }}" style-hover="background:rgba(28,111,232,0.16); border-color:rgba(28,111,232,0.45);">
-            <span style="display:flex; flex-direction:column; gap:2px;">
-              <span style="font-size:15px; font-weight:700; color:#fff; letter-spacing:-0.01em;">VISTA360 Classic</span>
-              <span style="font-size:12.5px; font-weight:500; color:rgba(255,255,255,0.55);">Recorridos inmersivos</span>
-            </span>
-            <span class="vn-dd-arrow" style="margin-left:auto; color:rgba(255,255,255,0.4); font-size:16px; transition:transform .2s, color .2s;">&rsaquo;</span>
-          </a>
-          <div style="height:1px; margin:2px 14px; background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0.18) 50%,rgba(255,255,255,0) 100%);"></div>
-          <a href="vista360-digital.html" class="vn-dd-item" style="{{ solItemStyle }}" style-hover="background:rgba(28,111,232,0.16); border-color:rgba(28,111,232,0.45);">
-            <span style="display:flex; flex-direction:column; gap:2px;">
-              <span style="font-size:15px; font-weight:700; color:#fff; letter-spacing:-0.01em;">VISTA360 Digital</span>
-              <span style="font-size:12.5px; font-weight:500; color:rgba(255,255,255,0.55);">Experiencias interactivas</span>
-            </span>
-            <span class="vn-dd-arrow" style="margin-left:auto; color:rgba(255,255,255,0.4); font-size:16px; transition:transform .2s, color .2s;">&rsaquo;</span>
-          </a>
-        </div>
-      </div>
+      <a href="productos.html" style="{{ productosStyle }}" style-hover="color:#fff;">Productos</a>
       <a href="servicios.html" style="{{ serviciosStyle }}" style-hover="color:#fff;">Servicios</a>
       <a href="nosotros.html" style="{{ nosotrosStyle }}" style-hover="color:#fff;">Nosotros</a>
     </div>
@@ -72,7 +46,7 @@
   </sc-for>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:66},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;inicio&quot;,&quot;soluciones&quot;,&quot;servicios&quot;,&quot;ubicaciones&quot;,&quot;portafolio&quot;,&quot;contacto&quot;],&quot;default&quot;:&quot;inicio&quot;},&quot;transparent&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:66},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;inicio&quot;,&quot;productos&quot;,&quot;servicios&quot;,&quot;ubicaciones&quot;,&quot;portafolio&quot;,&quot;contacto&quot;],&quot;default&quot;:&quot;inicio&quot;},&quot;transparent&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false}}">
 class Component extends DCLogic {
   state = { scrolled: false, menuOpen: false };
 
@@ -107,22 +81,14 @@ class Component extends DCLogic {
       transition: 'color .2s'
     });
     const inicioStyle = baseLink('inicio');
-    const solTriggerStyle = { ...baseLink('soluciones'), display: 'inline-flex', alignItems: 'center', gap: '6px' };
+    const productosStyle = baseLink('productos');
     const serviciosStyle = baseLink('servicios');
     const ubicacionesStyle = baseLink('ubicaciones');
     const nosotrosStyle = baseLink('nosotros');
 
-    const solItemStyle = {
-      textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '13px',
-      padding: '11px 13px', borderRadius: '12px', whiteSpace: 'nowrap',
-      border: '1px solid transparent',
-      transition: 'background .2s, border-color .2s'
-    };
-
     const mlinks = [
       ['Inicio', 'index.html'],
-      ['VISTA360 Classic', 'vista360-classic.html'],
-      ['VISTA360 Digital', 'vista360-digital.html'],
+      ['Productos', 'productos.html'],
       ['Servicios', 'servicios.html'],
       ['Nosotros', 'nosotros.html'],
       ['Contacto', 'contacto.html']
@@ -137,8 +103,8 @@ class Component extends DCLogic {
     };
 
     return {
-      navStyle, inicioStyle, solTriggerStyle, serviciosStyle, ubicacionesStyle, nosotrosStyle,
-      solItemStyle, mlinks, menuStyle,
+      navStyle, inicioStyle, productosStyle, serviciosStyle, ubicacionesStyle, nosotrosStyle,
+      mlinks, menuStyle,
       toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
       closeMenu: () => this.setState({ menuOpen: false })
     };
