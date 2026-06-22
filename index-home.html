@@ -37,7 +37,8 @@
   @media (max-width: 760px) {
     #top {
       min-height: 100vh;
-      min-height: calc(100lvh + env(safe-area-inset-top, 0px) + 2px) !important;
+      min-height: calc(100lvh + env(safe-area-inset-top, 0px) + 64px) !important; /* +64px: crece
+        hacia abajo (no afecta la parte de arriba, que ya queda fija por el status bar). */
       margin-top: calc(-1 * env(safe-area-inset-top, 0px));
       padding-top: env(safe-area-inset-top, 0px);
     }
