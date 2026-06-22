@@ -298,6 +298,7 @@ class Component extends DCLogic {
     v.setAttribute('muted', '');
     v.setAttribute('playsinline', '');
     v.loop = true;
+    v.load();
 
     // Intentar reproducir, reintentando: Safari/iOS a veces rechaza el
     // primer play() y hay que volver a pedirlo cuando el video está listo
@@ -323,6 +324,11 @@ class Component extends DCLogic {
       if (!v.paused || intentos > 32) { clearInterval(poll); return; }
       tryPlay();
     }, 250);
+
+    // Capas extra: por si el framework de la página crea/reemplaza este
+    // elemento en un momento distinto al de componentDidMount.
+    window.addEventListener('load', tryPlay, { once: true });
+    requestAnimationFrame(() => requestAnimationFrame(tryPlay));
 
     // Si el navegador pausó el autoplay, reintentar al primer toque/scroll
     const kick = () => { tryPlay(); };
@@ -507,5 +513,6 @@ class Component extends DCLogic {
 }
 </script>
   <script src="hover.js"></script>
+  <script src="hero-video.js"></script>
 </body>
 </html>
