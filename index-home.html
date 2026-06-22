@@ -312,6 +312,18 @@ class Component extends DCLogic {
     v.addEventListener('canplay', tryPlay);
     v.addEventListener('canplaythrough', tryPlay, { once: true });
 
+    // Reintento por tiempo (no solo por evento): si el video ya estaba
+    // listo antes de que este script alcanzara a "escuchar" el evento
+    // correcto, esos listeners nunca se disparan otra vez. Este sondeo
+    // revisa cada 250ms durante 8s y reintenta mientras siga pausado —
+    // así no depende de ganarle la carrera a ningún evento.
+    let intentos = 0;
+    const poll = setInterval(() => {
+      intentos++;
+      if (!v.paused || intentos > 32) { clearInterval(poll); return; }
+      tryPlay();
+    }, 250);
+
     // Si el navegador pausó el autoplay, reintentar al primer toque/scroll
     const kick = () => { tryPlay(); };
     ['touchstart', 'click', 'scroll', 'keydown'].forEach((ev) =>
