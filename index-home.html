@@ -47,6 +47,10 @@
        solo suba el fondo oscuro de la sección, que sí combina con el tono
        de la barra de estado. El video arranca justo donde arrancaba antes. */
     #heroVideo { top: env(safe-area-inset-top, 0px) !important; }
+    /* El bloque de texto/botones queda muy centrado verticalmente ahora que
+       el hero es más alto, dejando mucho espacio arriba. Lo subimos un poco
+       para que se vea más armónico. */
+    #heroContent { transform: translateY(-44px); }
   }
   a { -webkit-tap-highlight-color:transparent; }
   /* El "placeholder" de carga del framework (.sc-placeholder) trae un
@@ -137,7 +141,7 @@
     <div style="position:absolute; top:16%; left:50%; transform:translateX(-50%); width:700px; max-width:92vw; height:430px; background:radial-gradient(circle, rgba(28,111,232,0.32), transparent 66%); filter:blur(20px); pointer-events:none;"></div>
 
     <div style="position:relative; z-index:3; flex:1; width:100%; display:flex; align-items:center; justify-content:center;">
-    <div style="width:100%; max-width:1000px; padding:104px clamp(20px,5vw,40px) clamp(36px,4vw,56px); text-align:center;">
+    <div id="heroContent" style="width:100%; max-width:1000px; padding:104px clamp(20px,5vw,40px) clamp(36px,4vw,56px); text-align:center;">
       <div style="display:inline-flex; align-items:center; gap:11px; margin-bottom:clamp(22px,3vw,32px); padding:8px 18px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); backdrop-filter:blur(8px); opacity:0; animation:vfadeup .9s cubic-bezier(.16,1,.3,1) .05s forwards;">
         <span style="width:7px; height:7px; border-radius:50%; background:#56A2FF; box-shadow:0 0 10px #56A2FF;"></span>
         <span style="font-size:clamp(11px,1.1vw,13px); font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#DCE8FB;">Especialistas en publicidad exterior · Huánuco</span>
