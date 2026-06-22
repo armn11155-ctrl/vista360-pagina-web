@@ -22,6 +22,14 @@
   ::selection { background:#1C6FE8; color:#fff; }
   input, textarea, button { font-family:inherit; }
   a { -webkit-tap-highlight-color:transparent; }
+  #heroVideo::-webkit-media-controls,
+  #heroVideo::-webkit-media-controls-start-playback-button,
+  #heroVideo::-webkit-media-controls-panel,
+  #heroVideo::-webkit-media-controls-play-button {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
   @keyframes vmarquee { from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
   @keyframes vkenburns { 0%{ transform:scale(1.05) translate(0,0); } 100%{ transform:scale(1.15) translate(-1.5%,-1.2%); } }
   @keyframes vbounce { 0%,100%{ transform:translateX(-50%) translateY(0); } 50%{ transform:translateX(-50%) translateY(8px); } }
