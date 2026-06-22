@@ -21,11 +21,12 @@
   body { margin:0; background:#ffffff; color:#0E1A2E; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
   ::selection { background:#1C6FE8; color:#fff; }
   input, textarea, button { font-family:inherit; }
-  /* En móvil, 100vh no reconoce la barra de direcciones dinámica de
-     Safari y deja corta la sección — 100dvh sí se ajusta al alto real
-     visible. Solo en móvil: el escritorio se queda exactamente igual. */
+  /* CORRECCIÓN: dvh se achica cuando la barra de direcciones está
+     visible (justo al entrar, antes de hacer scroll) — por eso se veía
+     más bajo, al revés de lo que se quería. lvh siempre usa el alto
+     MÁXIMO posible, sin achicarse nunca. Solo en móvil. */
   @media (max-width: 760px) {
-    #top { min-height: 100dvh !important; }
+    #top { min-height: 100vh; min-height: 100lvh !important; }
   }
   a { -webkit-tap-highlight-color:transparent; }
   /* El "placeholder" de carga del framework (.sc-placeholder) trae un
