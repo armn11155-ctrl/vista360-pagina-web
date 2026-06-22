@@ -21,7 +21,21 @@
   body { margin:0; background:#ffffff; color:#0E1A2E; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
   ::selection { background:#1C6FE8; color:#fff; }
   input, textarea, button { font-family:inherit; }
+  /* En móvil, 100vh no reconoce la barra de direcciones dinámica de
+     Safari y deja corta la sección — 100dvh sí se ajusta al alto real
+     visible. Solo en móvil: el escritorio se queda exactamente igual. */
+  @media (max-width: 760px) {
+    #top { min-height: 100dvh !important; }
+  }
   a { -webkit-tap-highlight-color:transparent; }
+  /* El "placeholder" de carga del framework (.sc-placeholder) trae un
+     fondo blanco semitransparente pensado para el editor — en la web
+     pública se ve como una franja blanca rara entre secciones oscuras.
+     Se deja transparente para que no choque con ningún fondo. */
+  .sc-placeholder {
+    background: transparent !important;
+    border-color: transparent !important;
+  }
   /* Quita el botón de play que Safari muestra automáticamente sobre un
      <video> pausado sin controles (ej. cuando el Modo de bajo consumo
      bloquea el autoplay) — así se queda como una foto limpia, sin ícono. */

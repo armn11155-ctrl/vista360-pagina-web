@@ -22,6 +22,9 @@
   ::selection { background:#1C6FE8; color:#fff; }
   input, textarea, button { font-family:inherit; }
   a { -webkit-tap-highlight-color:transparent; }
+  @media (max-width: 760px) {
+    #top { min-height: 100dvh !important; }
+  }
   #heroVideo::-webkit-media-controls,
   #heroVideo::-webkit-media-controls-start-playback-button,
   #heroVideo::-webkit-media-controls-panel,
@@ -84,6 +87,7 @@
     .v-acc-open { height:300px; }
     .v-acc-more { opacity:1; transform:none; }
   }
+  .sc-placeholder { background: transparent !important; border-color: transparent !important; }
 </style>
 </helmet>
 
