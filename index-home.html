@@ -37,13 +37,15 @@
   @media (max-width: 760px) {
     #top {
       min-height: 100vh;
-      /* Sube detrás del status bar (margin-top negativo) y por eso hay que
-         SUMARLE esa misma altura aquí, si no el video queda más corto por
-         abajo exactamente lo que se ganó por arriba (el bug de la vez pasada). */
       min-height: calc(100lvh + env(safe-area-inset-top, 0px) + 2px) !important;
       margin-top: calc(-1 * env(safe-area-inset-top, 0px));
       padding-top: env(safe-area-inset-top, 0px);
     }
+    /* El video NO debe subir detrás del status bar (ahí arriba el video
+       muestra otra parte de la escena, ramas/verde, que no combina). Que
+       solo suba el fondo oscuro de la sección, que sí combina con el tono
+       de la barra de estado. El video arranca justo donde arrancaba antes. */
+    #heroVideo { top: env(safe-area-inset-top, 0px) !important; }
   }
   a { -webkit-tap-highlight-color:transparent; }
   /* El "placeholder" de carga del framework (.sc-placeholder) trae un
