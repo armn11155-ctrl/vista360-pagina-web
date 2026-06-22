@@ -21,6 +21,13 @@
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; overscroll-behavior-y: none; }
   body { margin:0; background:transparent; color:#0E1A2E; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
+  /* FIX celular: el body es blanco y el footer oscuro; en iPhone, el rebote
+     de scroll (bounce) y la barra de direcciones que se oculta/aparece
+     dejan ver ese blanco justo debajo del footer. En iPad/laptop no pasa
+     porque no hay ese comportamiento. Solo afecta pantallas angostas. */
+  @media (max-width: 760px) {
+    html, body { background: #0A1426; }
+  }
   ::selection { background:#1C6FE8; color:#fff; }
   @keyframes nfade { 0%{ opacity:0; transform:translateY(20px); } 100%{ opacity:1; transform:translateY(0); } }
 
