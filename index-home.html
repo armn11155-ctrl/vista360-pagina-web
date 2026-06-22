@@ -85,7 +85,7 @@
 
   <!-- ============ HERO (cinematic full-bleed) ============ -->
   <section id="top" style="position:relative; min-height:100vh; display:flex; flex-direction:column; overflow:hidden; background:#05080F;">
-    <video id="heroVideo" data-vsrc="uploads/que_el_video_esta_bien_pero_no.mp4" autoPlay muted loop playsInline style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; filter:brightness(0.64) contrast(1.05) saturate(1.05);"></video>
+    <video id="heroVideo" src="uploads/que_el_video_esta_bien_pero_no.mp4" autoplay muted loop playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; filter:brightness(0.64) contrast(1.05) saturate(1.05); pointer-events:none;"></video>
     <div style="position:absolute; inset:0; background:rgba(7,11,20,0.46);"></div>
     <div style="position:absolute; top:16%; left:50%; transform:translateX(-50%); width:700px; max-width:92vw; height:430px; background:radial-gradient(circle, rgba(28,111,232,0.32), transparent 66%); filter:blur(20px); pointer-events:none;"></div>
 
@@ -101,7 +101,7 @@
       </h1>
       <p style="font-size:clamp(16px,1.5vw,20px); font-weight:400; line-height:1.55; color:rgba(255,255,255,0.82); max-width:560px; margin:clamp(22px,3vw,32px) auto clamp(30px,4vw,40px); opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .32s forwards;">Paneles y murales en los puntos de mayor tránsito de la ciudad. Le damos a tu marca la escala que merece.</p>
       <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:14px; opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .46s forwards;">
-        <a href="contacto.html" style="text-decoration:none; padding:15px 34px; border-radius:13px; background:#1C6FE8; color:#fff; font-size:16px; font-weight:600; box-shadow:0 4px 14px rgba(15,23,42,0.16); transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Cotizar campaña</a>
+        <a href="contacto.html" style="text-decoration:none; padding:15px 34px; border-radius:13px; background:#1C6FE8; color:#fff; font-size:16px; font-weight:600; transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Cotizar campaña</a>
         <a href="portafolio.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:11px; padding:15px 28px; border-radius:13px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.28); color:#fff; font-size:16px; font-weight:600; backdrop-filter:blur(8px); transition:background .2s ease, transform .2s ease;" style-hover="background:rgba(255,255,255,0.16); transform:translateY(-2px);">
           <span style="width:24px; height:24px; border-radius:50%; background:#1C6FE8; display:inline-flex; align-items:center; justify-content:center;"><svg width="8" height="10" viewBox="0 0 9 11" fill="#fff"><path d="M0 0L9 5.5L0 11Z"></path></svg></span>
           Ver portafolio
@@ -171,7 +171,7 @@
       <div>
         <h2 style="font-size:clamp(30px,4vw,54px); font-weight:800; letter-spacing:-0.03em; line-height:1.05; color:#fff; margin:0 0 clamp(22px,2.6vw,30px); max-width:560px;">En VISTA360 somos especialistas en publicidad exterior estática y digital</h2>
         <p style="font-size:clamp(16px,1.5vw,20px); font-weight:500; line-height:1.5; color:rgba(255,255,255,0.86); margin:0 0 clamp(28px,3.2vw,38px);">¡Elige un producto y manos a la obra!</p>
-        <a href="soluciones.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:11px; padding:15px 32px; border-radius:13px; background:#1C6FE8; color:#fff; font-size:16px; font-weight:600; box-shadow:0 4px 14px rgba(15,23,42,0.16); transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Ver producto <span style="font-size:18px;">&rarr;</span></a>
+        <a href="soluciones.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:11px; padding:15px 32px; border-radius:13px; background:#1C6FE8; color:#fff; font-size:16px; font-weight:600; transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Ver producto <span style="font-size:18px;">&rarr;</span></a>
       </div>
       <!-- Right: 2x2 stat grid -->
       <div class="v-intro-stats">
@@ -226,7 +226,7 @@
           </a>
         </div>
 
-        <a href="servicios.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:11px; padding:16px 36px; border-radius:14px; background:#1C6FE8; color:#fff; font-size:16px; font-weight:600; box-shadow:0 4px 14px rgba(15,23,42,0.16); transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Ir a servicios <span style="font-size:18px;">&rarr;</span></a>
+        <a href="servicios.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:11px; padding:16px 36px; border-radius:14px; background:#1C6FE8; color:#fff; font-size:16px; font-weight:600; transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Ir a servicios <span style="font-size:18px;">&rarr;</span></a>
       </div>
     </div>
   </section>
@@ -289,20 +289,44 @@ class Component extends DCLogic {
     const root = this.rootEl;
     if (!root) return;
     const v = root.querySelector('#heroVideo');
-    if (!v || v.dataset.loaded) return;
-    const url = v.getAttribute('data-vsrc');
+    if (!v) return;
+
+    // Garantizar las propiedades que iOS/Safari exigen para autoplay
     v.muted = true;
     v.defaultMuted = true;
     v.playsInline = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
     v.loop = true;
-    fetch(url).then((r) => r.blob()).then((blob) => {
-      v.dataset.loaded = '1';
-      v.src = URL.createObjectURL(blob);
-      v.load();
-      const tryPlay = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
-      tryPlay();
-      v.addEventListener('canplay', tryPlay, { once: true });
-    }).catch(() => {});
+
+    // Intentar reproducir, reintentando: Safari/iOS a veces rechaza el
+    // primer play() y hay que volver a pedirlo cuando el video está listo
+    // o cuando el usuario interactúa por primera vez con la página.
+    const tryPlay = () => {
+      const p = v.play();
+      if (p && p.catch) p.catch(() => {});
+    };
+
+    tryPlay();
+    v.addEventListener('loadeddata', tryPlay, { once: true });
+    v.addEventListener('canplay', tryPlay);
+    v.addEventListener('canplaythrough', tryPlay, { once: true });
+
+    // Si el navegador pausó el autoplay, reintentar al primer toque/scroll
+    const kick = () => { tryPlay(); };
+    ['touchstart', 'click', 'scroll', 'keydown'].forEach((ev) =>
+      window.addEventListener(ev, kick, { once: true, passive: true }),
+    );
+
+    // Reanudar si la pestaña vuelve a estar visible (iOS pausa al cambiar de app)
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) tryPlay();
+    });
+
+    // Si por cualquier motivo el video se pausa solo, reanudar
+    v.addEventListener('pause', () => {
+      if (!document.hidden && !v.ended) setTimeout(tryPlay, 120);
+    });
   }
 
   componentDidMount() {
@@ -470,5 +494,6 @@ class Component extends DCLogic {
   }
 }
 </script>
+  <script src="hover.js"></script>
 </body>
 </html>
