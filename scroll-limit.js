@@ -6,40 +6,50 @@
    abajo del borde inferior del <footer>. Si el usuario intenta pasar
    ese punto (momentum scroll, rebote, lo que sea), se corrige de
    vuelta al limite.
+
+   v2: el footer real puede convivir momentaneamente con una copia
+   oculta (display:none) del mismo componente mientras el framework
+   de la pagina termina de montar -- esa copia oculta tiene tamaño
+   cero y arruinaba el calculo. Ahora se descarta cualquier <footer>
+   sin tamaño real, y se recalcula en cada scroll (no solo por timer).
    ────────────────────────────────────────────────────────────────── */
 (function () {
   "use strict";
 
-  let maxScroll = null;
-
-  function recalc() {
-    const footer = document.querySelector("footer");
-    if (!footer) { maxScroll = null; return; }
-    const rect = footer.getBoundingClientRect();
-    const footerBottomAbs = rect.bottom + window.scrollY;
-    maxScroll = Math.max(0, Math.round(footerBottomAbs - window.innerHeight));
+  function getRealFooterBottom() {
+    const footers = document.querySelectorAll("footer");
+    let best = null;
+    footers.forEach((f) => {
+      const r = f.getBoundingClientRect();
+      if (r.height <= 0) return; // copia oculta / no renderizada todavia
+      const bottomAbs = r.bottom + window.scrollY;
+      if (best === null || bottomAbs > best) best = bottomAbs;
+    });
+    return best;
   }
 
   function clamp() {
-    if (maxScroll == null) return;
+    const footerBottomAbs = getRealFooterBottom();
+    if (footerBottomAbs == null) return; // footer no encontrado, no tocar nada
+    const maxScroll = Math.max(0, Math.round(footerBottomAbs - window.innerHeight));
     if (window.scrollY > maxScroll) {
       window.scrollTo(0, maxScroll);
     }
   }
 
   window.addEventListener("scroll", clamp, { passive: true });
-  window.addEventListener("resize", recalc);
-  window.addEventListener("orientationchange", recalc);
+  window.addEventListener("resize", clamp);
+  window.addEventListener("orientationchange", clamp);
 
-  // El footer carga async (streaming) -- recalcular varias veces
-  // mientras se termina de armar la pagina, no solo una vez.
-  recalc();
-  document.addEventListener("DOMContentLoaded", recalc);
-  window.addEventListener("load", recalc);
-  [300, 800, 1500, 2500, 4000].forEach((ms) => setTimeout(recalc, ms));
+  // El footer carga async (streaming) -- revisar varias veces mientras
+  // la pagina termina de armarse, no solo una vez.
+  clamp();
+  document.addEventListener("DOMContentLoaded", clamp);
+  window.addEventListener("load", clamp);
+  [200, 500, 1000, 1800, 2800, 4200].forEach((ms) => setTimeout(clamp, ms));
 
   if (window.MutationObserver) {
-    const obs = new MutationObserver(recalc);
+    const obs = new MutationObserver(clamp);
     obs.observe(document.documentElement, { childList: true, subtree: true });
     setTimeout(() => obs.disconnect(), 8000);
   }
