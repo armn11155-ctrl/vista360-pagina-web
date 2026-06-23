@@ -12,6 +12,32 @@
 <script src="./support.js"></script>
 </head>
 <body>
+<script>
+  // Congela env(safe-area-inset-top) en un valor fijo (--safe-top) en vez de
+  // dejar que #top/#heroVideo dependan del cálculo EN VIVO de env() durante
+  // el scroll. Motivo: bug de sistema en iOS 26 (webkit.org bug 297779) que
+  // recalcula mal los valores de viewport/safe-area justo cuando la barra de
+  // Safari se minimiza al hacer scroll, lo que puede "saltar" el contenido
+  // que depende de env() en ese instante. El notch no cambia de tamaño salvo
+  // por rotación, así que medirlo una vez (y de nuevo solo si rota la
+  // pantalla) es seguro y evita que el bug de scroll lo afecte.
+  (function () {
+    function measure() {
+      var probe = document.createElement('div');
+      probe.style.cssText =
+        'position:fixed;top:0;left:0;height:0;width:0;padding-top:env(safe-area-inset-top,0px);pointer-events:none;visibility:hidden;';
+      document.documentElement.appendChild(probe);
+      var val = getComputedStyle(probe).paddingTop || '0px';
+      document.documentElement.style.setProperty('--safe-top', val);
+      probe.remove();
+    }
+    measure();
+    window.addEventListener('orientationchange', function () {
+      setTimeout(measure, 250);
+    });
+  })();
+</script>
+
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,15 +67,15 @@
          de ONPE que mandaste): el color de fondo se funde con esa franja,
          dando la sensación de una sola pieza. Los íconos del sistema
          (reloj, wifi, batería) los sigue dibujando iOS por encima. */
-      min-height: calc(100lvh + env(safe-area-inset-top, 0px) + 64px) !important;
-      margin-top: calc(-1 * env(safe-area-inset-top, 0px));
-      padding-top: env(safe-area-inset-top, 0px);
+      min-height: calc(100lvh + var(--safe-top, env(safe-area-inset-top, 0px)) + 64px) !important;
+      margin-top: calc(-1 * var(--safe-top, env(safe-area-inset-top, 0px)));
+      padding-top: var(--safe-top, env(safe-area-inset-top, 0px));
     }
     /* El video NO sube detrás del status bar (ahí arriba el video muestra
        otra parte de la escena, ramas/verde, que no combina). Sí sube el
        fondo oscuro de la sección (#05080F, ya casi igual al theme-color),
        que es lo que se funde con la franja del sistema. */
-    #heroVideo { top: env(safe-area-inset-top, 0px) !important; }
+    #heroVideo { top: var(--safe-top, env(safe-area-inset-top, 0px)) !important; }
     /* El bloque de texto/botones queda muy centrado verticalmente ahora que
        el hero es más alto, dejando mucho espacio arriba. Lo subimos para
        que el botón y la flecha de scroll no queden tapados por la barra
