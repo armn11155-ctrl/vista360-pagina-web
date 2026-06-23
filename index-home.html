@@ -37,21 +37,22 @@
   @media (max-width: 760px) {
     #top {
       min-height: 100vh;
-      /* Antes subía el 100% de la altura del status bar; ahora solo la
-         mitad, para que ocupe menos ese espacio oscuro de arriba. */
-      min-height: calc(100lvh + (env(safe-area-inset-top, 0px) * 0.5) + 64px) !important;
-      margin-top: calc(-1 * env(safe-area-inset-top, 0px) * 0.5);
-      padding-top: calc(env(safe-area-inset-top, 0px) * 0.5);
+      /* Antes subía la mitad de la altura del status bar; ahora bastante
+         menos, para que ocupe poco espacio (no al límite, solo un poco). */
+      min-height: calc(100lvh + (env(safe-area-inset-top, 0px) * 0.22) + 64px) !important;
+      margin-top: calc(-1 * env(safe-area-inset-top, 0px) * 0.22);
+      padding-top: calc(env(safe-area-inset-top, 0px) * 0.22);
     }
     /* El video NO debe subir detrás del status bar (ahí arriba el video
        muestra otra parte de la escena, ramas/verde, que no combina). Que
        solo suba el fondo oscuro de la sección, que sí combina con el tono
        de la barra de estado. El video arranca justo donde arrancaba antes. */
-    #heroVideo { top: calc(env(safe-area-inset-top, 0px) * 0.5) !important; }
+    #heroVideo { top: calc(env(safe-area-inset-top, 0px) * 0.22) !important; }
     /* El bloque de texto/botones queda muy centrado verticalmente ahora que
-       el hero es más alto, dejando mucho espacio arriba. Lo subimos un poco
-       para que se vea más armónico. */
-    #heroContent { transform: translateY(-44px); }
+       el hero es más alto, dejando mucho espacio arriba. Lo subimos para
+       que el botón y la flecha de scroll no queden tapados por la barra
+       de Safari de abajo. */
+    #heroContent { transform: translateY(-78px); }
   }
   a { -webkit-tap-highlight-color:transparent; }
   /* El "placeholder" de carga del framework (.sc-placeholder) trae un
@@ -84,7 +85,7 @@
   @media (max-width: 760px) {
     /* Sube el indicador de scroll para que no quede tapado por la barra
        de Safari (la pestaña flotante de la URL) cuando aparece abajo. */
-    #scrollHint { bottom: calc(env(safe-area-inset-bottom, 0px) + 84px) !important; }
+    #scrollHint { bottom: calc(env(safe-area-inset-bottom, 0px) + 130px) !important; }
   }
   @keyframes vfadeup { 0%{ opacity:0; transform:translateY(22px); } 100%{ opacity:1; transform:translateY(0); } }
   .v-trust-track { display:flex; width:max-content; align-items:center; gap:clamp(28px,3.5vw,52px); animation:vmarquee 26s linear infinite; }
