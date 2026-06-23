@@ -80,8 +80,8 @@ class Component extends DCLogic {
     const meta = document.querySelector('meta[name="theme-color"]');
     if (!meta) return;
     const topColor = this.props.topColor || '#0A1426'; // color de marca por defecto; cada pagina puede pasar el tono de su propio hero
-    const solidColor = '#081428';  // mismo color con el que el navbar se vuelve solido al bajar
-    const menuColor = '#081021';   // mismo color del fondo del menu (rayas) abierto
+    const solidColor = '#081428';  // mismo color solido que usan el navbar y el menu
+    const menuColor = '#081428';   // unificado: el mismo tono exacto, sin diferencia
     const transparent = this.props.transparent ?? false;
     const scrolled = !!this.state.scrolled;
     const menuOpen = !!this.state.menuOpen;
@@ -133,10 +133,15 @@ class Component extends DCLogic {
 
     const navStyle = {
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 150,
-      background: solid ? 'linear-gradient(100deg, #081428 0%, #0C2143 100%)' : 'transparent',
+      // iOS 26 ya no usa theme-color: copia el background-color (no el
+      // "background" con degradado) del elemento fijo de arriba para la
+      // barra de estado. Por eso se separan en dos propiedades: una sólida
+      // y limpia para que Safari la copie, y el degradado visual aparte.
+      backgroundColor: solid ? '#081428' : 'transparent',
+      backgroundImage: solid ? 'linear-gradient(100deg, #081428 0%, #0C2143 100%)' : 'none',
       boxShadow: scrolled ? '0 8px 30px rgba(5,12,28,0.42)' : 'none',
       borderBottom: '1px solid ' + (solid ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0)'),
-      transition: 'background .4s ease, box-shadow .4s ease, border-color .4s ease'
+      transition: 'background-color .4s ease, box-shadow .4s ease, border-color .4s ease'
     };
 
     const baseLink = (key) => ({
@@ -174,7 +179,7 @@ class Component extends DCLogic {
 
     const menuOpen = !!this.state.menuOpen;
     const menuStyle = {
-      position: 'fixed', inset: 0, zIndex: 200, background: '#081021', backdropFilter: 'blur(20px)',
+      position: 'fixed', inset: 0, zIndex: 200, background: '#081428', backdropFilter: 'blur(20px)',
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '4px',
       opacity: menuOpen ? 1 : 0, visibility: menuOpen ? 'visible' : 'hidden', pointerEvents: menuOpen ? 'auto' : 'none',
       transition: 'opacity .35s ease, visibility .35s ease'
