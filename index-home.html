@@ -146,6 +146,8 @@
   .v-prod-arrow--left { left:0; }
   .v-prod-arrow--right { right:0; }
   .v-prod-dots { display:flex; justify-content:center; gap:7px; margin-top:16px; }
+  @keyframes vProdFade { from { opacity:0; transform:scale(1.04); } to { opacity:1; transform:scale(1); } }
+  .v-prod-fade { animation:vProdFade .5s cubic-bezier(.16,1,.3,1); }
   .v-home-sv { display:grid; grid-template-columns:1fr; gap:clamp(16px,1.8vw,22px); margin:clamp(26px,3.2vw,40px) 0 clamp(24px,2.8vw,34px); text-align:left; }
   @media (min-width:760px){ .v-home-sv { grid-template-columns:repeat(3,1fr); } }
   .v-hsv-card { position:relative; overflow:hidden; display:block; text-decoration:none; padding:clamp(24px,2.2vw,30px); border-radius:18px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); transition:transform .5s cubic-bezier(.16,1,.3,1), background .4s ease, border-color .4s ease; }
@@ -463,6 +465,9 @@ class Component extends DCLogic {
     const root = this.rootEl;
     if (!root) return;
     this.loadHeroVideo();
+    // Carrusel de productos (móvil): avanza solo cada 5s. 4 = cantidad de
+    // productos en productData (Murales/Unipolares/Tótems/LED).
+    this.startProductTimer(4);
     const els = Array.from(root.querySelectorAll('[data-reveal]'));
     els.forEach((el) => {
       el.style.opacity = '0';
@@ -545,10 +550,18 @@ class Component extends DCLogic {
     this._netRAF = requestAnimationFrame(tick);
   }
 
+  startProductTimer(count) {
+    if (this._carouselTimer) clearInterval(this._carouselTimer);
+    this._carouselTimer = setInterval(() => {
+      this.setState((s) => ({ productIndex: (s.productIndex + 1) % count }));
+    }, 5000);
+  }
+
   componentWillUnmount() {
     if (this.io) this.io.disconnect();
     if (this._netRAF) cancelAnimationFrame(this._netRAF);
     if (this._netRO) this._netRO.disconnect();
+    if (this._carouselTimer) clearInterval(this._carouselTimer);
   }
 
   renderVals() {
@@ -609,7 +622,9 @@ class Component extends DCLogic {
     const cp = productData[productIndex];
     const currentProduct = {
       title: cp.title, desc: cp.desc,
-      imgNode: React.createElement('img', { src: cp.img, alt: cp.title, style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: cp.objPos || 'center', display: 'block' } })
+      // key:productIndex fuerza a remontar la imagen en cada cambio, asi
+      // la animación CSS (v-prod-fade) se reproduce de nuevo cada vez.
+      imgNode: React.createElement('img', { key: productIndex, src: cp.img, alt: cp.title, className: 'v-prod-fade', style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: cp.objPos || 'center', display: 'block' } })
     };
     // Los puntos se construyen como UN solo nodo React (no via <sc-for> +
     // clase dinamica en la plantilla) para mantenerse dentro de patrones
@@ -628,8 +643,10 @@ class Component extends DCLogic {
         }
       }))
     );
-    const nextProduct = () => this.setState((s) => ({ productIndex: (s.productIndex + 1) % productCount }));
-    const prevProduct = () => this.setState((s) => ({ productIndex: (s.productIndex - 1 + productCount) % productCount }));
+    // Las flechas tambien reinician el timer de 5s, para no "pelear" con
+    // el usuario justo despues de que elige manualmente.
+    const nextProduct = () => { this.setState((s) => ({ productIndex: (s.productIndex + 1) % productCount })); this.startProductTimer(productCount); };
+    const prevProduct = () => { this.setState((s) => ({ productIndex: (s.productIndex - 1 + productCount) % productCount })); this.startProductTimer(productCount); };
 
     const baseLogos = [
       { src: 'logos/pacific-blue.jpeg', label: 'Pacific Blue' },
