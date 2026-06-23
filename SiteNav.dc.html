@@ -82,11 +82,35 @@ class Component extends DCLogic {
     if (open !== this.__lastMenuOpen) {
       this.__lastMenuOpen = open;
       if (typeof window.__setMenuTheme === 'function') window.__setMenuTheme(open);
+      // Bloquear el scroll de la página de fondo: si se puede mover detrás
+      // del menú, Safari pierde la referencia de dónde termina realmente
+      // la pantalla y deja ver un hueco con contenido de otra parte abajo.
+      var html = document.documentElement;
+      if (open) {
+        this.__scrollY = window.scrollY;
+        html.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.top = (-this.__scrollY) + 'px';
+        document.body.style.width = '100%';
+      } else {
+        html.style.overflow = '';
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, this.__scrollY || 0);
+      }
     }
   }
   componentWillUnmount() {
     window.removeEventListener('scroll', this.onScroll);
     if (typeof window.__setMenuTheme === 'function') window.__setMenuTheme(false);
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
   }
 
   renderVals() {
