@@ -75,7 +75,19 @@ class Component extends DCLogic {
     window.addEventListener('scroll', this.onScroll, { passive: true });
     this.onScroll();
   }
-  componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); }
+  componentDidUpdate() {
+    // El framework solo pasa prevProps, no prevState; guardamos el último
+    // valor en una propiedad propia para detectar el cambio de menuOpen.
+    var open = !!this.state.menuOpen;
+    if (open !== this.__lastMenuOpen) {
+      this.__lastMenuOpen = open;
+      if (typeof window.__setMenuTheme === 'function') window.__setMenuTheme(open);
+    }
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    if (typeof window.__setMenuTheme === 'function') window.__setMenuTheme(false);
+  }
 
   renderVals() {
     const active = this.props.active || 'inicio';
