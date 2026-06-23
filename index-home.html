@@ -127,6 +127,22 @@
   .v-prod-card:hover img { transform:scale(1.07); }
   .v-prod-card .v-prod-cta { transition:gap .3s cubic-bezier(.16,1,.3,1); }
   .v-prod-card:hover .v-prod-cta { gap:14px; }
+  /* ── Carrusel de productos (solo móvil) ──────────────────────────── */
+  .v-prod-carousel { display:none; position:relative; }
+  .v-prod-arrow {
+    position:absolute; top:50%; transform:translateY(-50%); z-index:2;
+    width:42px; height:42px; border-radius:50%; border:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(8,16,28,0.45); backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px); color:#fff; font-size:22px;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .v-prod-arrow:active { transform:translateY(-50%) scale(0.92); background:rgba(8,16,28,0.65); }
+  .v-prod-arrow--left { left:14px; }
+  .v-prod-arrow--right { right:14px; }
+  .v-prod-dots { display:flex; justify-content:center; gap:8px; margin-top:16px; }
+  .v-prod-dot { width:7px; height:7px; border-radius:50%; background:rgba(14,26,46,0.18); transition:background .25s ease, width .25s ease; }
+  .v-prod-dot--active { background:#1C6FE8; width:18px; border-radius:4px; }
   .v-home-sv { display:grid; grid-template-columns:1fr; gap:clamp(16px,1.8vw,22px); margin:clamp(26px,3.2vw,40px) 0 clamp(24px,2.8vw,34px); text-align:left; }
   @media (min-width:760px){ .v-home-sv { grid-template-columns:repeat(3,1fr); } }
   .v-hsv-card { position:relative; overflow:hidden; display:block; text-decoration:none; padding:clamp(24px,2.2vw,30px); border-radius:18px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); transition:transform .5s cubic-bezier(.16,1,.3,1), background .4s ease, border-color .4s ease; }
@@ -139,6 +155,8 @@
     .v-acc-panel:hover, .v-acc-open { flex-grow:0; }
     .v-acc-open { height:300px; }
     .v-acc-more { opacity:1; transform:none; }
+    .v-prod-grid { display:none; }
+    .v-prod-carousel { display:block; }
   }
   dc-import{display:block}
 </style>
@@ -319,6 +337,27 @@
           </a>
         </sc-for>
       </div>
+
+      <!-- Carrusel: solo visible en móvil (ver media query) — un producto a
+           la vez, con flechas para girar entre Murales / Unipolares / Tótems / LED -->
+      <div data-reveal class="v-prod-carousel">
+        <a href="soluciones.html" class="v-prod-card" style="display:block;">
+          {{ currentProduct.imgNode }}
+          <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,16,28,0.15) 0%, rgba(8,16,28,0.05) 38%, rgba(8,16,28,0.82) 100%);"></div>
+          <div style="position:absolute; left:0; right:0; bottom:0; padding:clamp(22px,2.2vw,30px);">
+            <h3 style="font-size:clamp(21px,2vw,26px); font-weight:800; letter-spacing:-0.02em; line-height:1.1; color:#fff; margin:0 0 8px; text-shadow:0 8px 28px rgba(0,0,0,0.5);">{{ currentProduct.title }}</h3>
+            <p style="font-size:14px; line-height:1.5; color:rgba(255,255,255,0.84); margin:0 0 16px;">{{ currentProduct.desc }}</p>
+            <span class="v-prod-cta" style="display:inline-flex; align-items:center; gap:8px; color:#fff; font-size:14px; font-weight:700;">Ver producto <span style="font-size:16px;">&rarr;</span></span>
+          </div>
+        </a>
+        <button type="button" class="v-prod-arrow v-prod-arrow--left" aria-label="Producto anterior" onClick="{{ prevProduct }}">&lsaquo;</button>
+        <button type="button" class="v-prod-arrow v-prod-arrow--right" aria-label="Producto siguiente" onClick="{{ nextProduct }}">&rsaquo;</button>
+        <div class="v-prod-dots">
+          <sc-for list="{{ productDots }}" as="dot" hint-placeholder-count="4">
+            <span class="{{ dot.cls }}"></span>
+          </sc-for>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -332,6 +371,9 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
+  // Indice del producto mostrado en el carrusel movil (flechas izq/der).
+  state = { productIndex: 0 };
+
   animateCounts() {
     const root = this.rootEl;
     if (!root) return;
@@ -558,6 +600,20 @@ class Component extends DCLogic {
       imgNode: React.createElement('img', { src: p.img, alt: p.title, style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: p.objPos || 'center', display: 'block' } })
     }));
 
+    // ── Carrusel de productos (solo móvil) ──────────────────────────
+    const productCount = productData.length;
+    const productIndex = ((this.state.productIndex % productCount) + productCount) % productCount;
+    const cp = productData[productIndex];
+    const currentProduct = {
+      title: cp.title, desc: cp.desc,
+      imgNode: React.createElement('img', { src: cp.img, alt: cp.title, style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: cp.objPos || 'center', display: 'block' } })
+    };
+    const productDots = productData.map((_, i) => ({
+      cls: 'v-prod-dot' + (i === productIndex ? ' v-prod-dot--active' : '')
+    }));
+    const nextProduct = () => this.setState((s) => ({ productIndex: (s.productIndex + 1) % productCount }));
+    const prevProduct = () => this.setState((s) => ({ productIndex: (s.productIndex - 1 + productCount) % productCount }));
+
     const baseLogos = [
       { src: 'logos/pacific-blue.jpeg', label: 'Pacific Blue' },
       { label: 'AURORA' }, { label: 'MERIDIAN' }, { label: 'VÉRTICE' }, { label: 'NOVALIS' }, { label: 'CUMBRE' }
@@ -572,6 +628,10 @@ class Component extends DCLogic {
       setNet: (el) => { this.netEl = el; if (el && !this._netStarted) { this._netStarted = true; this.startNetwork(); } },
       news: products,
       products: products,
+      currentProduct: currentProduct,
+      productDots: productDots,
+      nextProduct: nextProduct,
+      prevProduct: prevProduct,
       formats: formats,
       services: services,
       logos: logos
