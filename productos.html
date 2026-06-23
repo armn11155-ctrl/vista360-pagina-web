@@ -33,34 +33,45 @@
   .sc-placeholder { background: transparent !important; border-color: transparent !important; }
   dc-import{display:block}
 
-  .v-prod-cards { display:grid; grid-template-columns:1fr; gap:24px; position:relative; }
-  @media (min-width:820px){ .v-prod-cards { grid-template-columns:1fr 1fr; gap:28px; } }
-  .v-prod-big {
-    position:relative; display:block; overflow:hidden; text-decoration:none;
-    border-radius:26px; height:clamp(440px,54vw,580px);
-    box-shadow:0 30px 70px -40px rgba(14,26,46,0.55);
-    border:1px solid rgba(255,255,255,0.08);
-    transition:transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s ease, border-color .45s ease;
+  .vp-grid { display:grid; grid-template-columns:1fr; gap:22px; }
+  @media (min-width:820px){ .vp-grid { grid-template-columns:1fr 1fr; gap:26px; } }
+  .vp-card {
+    position:relative; background:#fff; border-radius:24px; padding:clamp(24px,2.6vw,32px);
+    border:1.5px solid #ECEFF4; box-shadow:0 20px 50px -34px rgba(14,26,46,0.35);
+    transition:transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s ease, border-color .4s ease;
+    display:flex; flex-direction:column;
   }
-  .v-prod-big:hover { transform:translateY(-8px); box-shadow:0 44px 90px -36px rgba(28,111,232,0.4); border-color:rgba(86,162,255,0.5); }
-  .v-prod-big img { transition:transform .9s cubic-bezier(.16,1,.3,1); will-change:transform; }
-  .v-prod-big:hover img { transform:scale(1.07); }
-  .v-prod-big .v-prod-cta { transition:gap .3s cubic-bezier(.16,1,.3,1); }
-  .v-prod-big:hover .v-prod-cta { gap:14px; }
-  .v-prod-tag { display:inline-flex; align-items:center; gap:9px; margin-bottom:16px; padding:7px 16px; border-radius:999px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.22); backdrop-filter:blur(8px); }
-  .v-prod-num { position:absolute; top:clamp(16px,2vw,26px); right:clamp(20px,2.4vw,30px); z-index:2; font-size:clamp(54px,6.4vw,76px); font-weight:800; line-height:1; letter-spacing:-0.04em; color:rgba(255,255,255,0.16); pointer-events:none; transition:color .4s ease; }
-  .v-prod-big:hover .v-prod-num { color:rgba(86,162,255,0.32); }
-  .v-prod-mini { display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
-  .v-prod-mini span { font-size:11px; font-weight:600; letter-spacing:0.01em; color:rgba(255,255,255,0.82); padding:6px 12px; border-radius:999px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15); }
-  .v-prod-vs { display:none; }
-  @media (min-width:820px){
-    .v-prod-vs {
-      display:flex; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:5;
-      width:56px; height:56px; border-radius:50%; align-items:center; justify-content:center;
-      background:linear-gradient(160deg,#0E254C 0%,#0A1A37 100%); border:1px solid rgba(255,255,255,0.16);
-      box-shadow:0 14px 30px rgba(5,10,20,0.4); font-size:12px; font-weight:800; letter-spacing:0.04em; color:#9FC6FF;
-    }
-  }
+  .vp-card:hover { transform:translateY(-7px); }
+  .vp-card.vp-blue:hover { border-color:rgba(28,111,232,0.45); box-shadow:0 36px 70px -30px rgba(28,111,232,0.3); }
+  .vp-card.vp-teal:hover { border-color:rgba(13,180,180,0.45); box-shadow:0 36px 70px -30px rgba(13,180,180,0.28); }
+  .vp-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+  .vp-icon { width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .vp-blue .vp-icon { background:linear-gradient(140deg,#1C6FE8,#56A2FF); }
+  .vp-teal .vp-icon { background:linear-gradient(140deg,#0D9CA8,#3FE0D6); }
+  .vp-pill { font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:6px 13px; border-radius:999px; }
+  .vp-blue .vp-pill { background:rgba(28,111,232,0.1); color:#1C6FE8; }
+  .vp-teal .vp-pill { background:rgba(13,180,180,0.1); color:#0D9CA8; }
+  .vp-photo { position:relative; border-radius:16px; overflow:hidden; height:clamp(170px,22vw,220px); margin-bottom:20px; }
+  .vp-photo img { width:100%; height:100%; object-fit:cover; transition:transform .7s cubic-bezier(.16,1,.3,1); }
+  .vp-card:hover .vp-photo img { transform:scale(1.06); }
+  .vp-card h3 { font-size:clamp(22px,2.2vw,27px); font-weight:800; letter-spacing:-0.02em; margin:0 0 8px; color:#0E1A2E; }
+  .vp-desc { font-size:14.5px; line-height:1.55; color:#5B6472; margin:0 0 18px; }
+  .vp-feats { list-style:none; margin:0 0 24px; padding:0; display:flex; flex-direction:column; gap:9px; }
+  .vp-feats li { display:flex; align-items:center; gap:9px; font-size:13.5px; font-weight:600; color:#33394A; }
+  .vp-feats svg { flex-shrink:0; }
+  .vp-blue .vp-feats svg { color:#1C6FE8; }
+  .vp-teal .vp-feats svg { color:#0D9CA8; }
+  .vp-btn { margin-top:auto; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:9px; padding:14px; border-radius:13px; font-size:15px; font-weight:700; color:#fff; transition:transform .2s ease; }
+  .vp-blue .vp-btn { background:#1C6FE8; }
+  .vp-teal .vp-btn { background:#0D9CA8; }
+  .vp-btn svg { transition:transform .25s cubic-bezier(.16,1,.3,1); }
+  .vp-card:hover .vp-btn svg { transform:translateX(4px); }
+  .vp-compare-toggle { display:flex; align-items:center; gap:8px; margin:clamp(36px,4.4vw,48px) auto 0; padding:13px 26px; border-radius:999px; border:1.5px solid #E2E6ED; background:#fff; color:#33394A; font-size:14.5px; font-weight:700; cursor:pointer; transition:border-color .25s ease, background .25s ease; font-family:inherit; }
+  .vp-compare-toggle:hover { border-color:#1C6FE8; background:#F5F9FF; }
+  .vp-compare-table table { width:100%; border-collapse:collapse; font-size:13.5px; }
+  .vp-compare-table th, .vp-compare-table td { padding:13px 14px; text-align:left; border-bottom:1px solid #EEF1F5; }
+  .vp-compare-table th { color:#8993A3; font-weight:700; text-transform:uppercase; font-size:11px; letter-spacing:0.06em; }
+  .vp-compare-table td:first-child { font-weight:700; color:#0E1A2E; white-space:nowrap; }
 </style>
 </helmet>
 
@@ -82,46 +93,59 @@
   </section>
 
   <!-- ============ TARJETAS DE PRODUCTO ============ -->
-  <section style="background:#ffffff; padding:clamp(48px,7vw,88px) clamp(16px,4vw,40px) clamp(72px,10vw,120px);">
-    <div style="max-width:1280px; margin:0 auto;">
-      <div class="v-prod-cards">
+  <section style="background:#F7F9FC; padding:clamp(48px,7vw,88px) clamp(16px,4vw,40px) clamp(56px,7vw,80px);">
+    <div style="max-width:1120px; margin:0 auto;">
+      <div class="vp-grid">
 
         <!-- VISTA360 Classic -->
-        <a href="vista360-classic.html" class="v-prod-big" data-reveal>
-          <span class="v-prod-num">01</span>
-          <img src="panels/billboard-vista360.png" alt="VISTA360 Classic" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 40%;" />
-          <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,16,28,0.1) 0%, rgba(8,16,28,0.1) 32%, rgba(8,16,28,0.92) 100%);"></div>
-          <div style="position:absolute; left:0; right:0; bottom:0; padding:clamp(28px,3.2vw,40px);">
-            <span class="v-prod-tag">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#56A2FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"></rect><path d="M8 20h8M12 16v4"></path></svg>
-              <span style="font-size:11.5px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#DCE8FB;">Publicidad exterior estática</span>
-            </span>
-            <h2 style="font-size:clamp(26px,2.8vw,36px); font-weight:800; letter-spacing:-0.025em; line-height:1.1; color:#fff; margin:0 0 10px; text-shadow:0 10px 30px rgba(0,0,0,0.5);">VISTA360 Classic</h2>
-            <p style="font-size:15px; line-height:1.55; color:rgba(255,255,255,0.86); margin:0 0 6px; max-width:420px;">Murales, unipolares y tótems. Soportes físicos que dominan la calle y se ven sin necesidad de una pantalla, encendidos día y noche.</p>
-            <div class="v-prod-mini"><span>Sin pantalla</span><span>Encendido 24/7</span><span>Gran formato</span></div>
-            <span class="v-prod-cta" style="display:inline-flex; align-items:center; gap:9px; color:#fff; font-size:15px; font-weight:700; margin-top:22px;">Clic para entrar a VISTA360 Classic <span style="font-size:17px;">&rarr;</span></span>
+        <div class="vp-card vp-blue" data-reveal>
+          <div class="vp-top">
+            <div class="vp-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"></rect><path d="M8 20h8M12 16v4"></path></svg></div>
+            <span class="vp-pill">Disponible ahora</span>
           </div>
-        </a>
-
-        <div class="v-prod-vs">VS</div>
+          <div class="vp-photo"><img src="panels/billboard-vista360.png" alt="VISTA360 Classic" /></div>
+          <h3>VISTA360 Classic</h3>
+          <p class="vp-desc">Murales, unipolares y tótems: soportes físicos que dominan la calle y se ven sin necesidad de una pantalla, encendidos día y noche.</p>
+          <ul class="vp-feats">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg> Sin pantalla, encendido 24/7</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg> Murales, unipolares y tótems</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg> Gran formato, alto impacto</li>
+          </ul>
+          <a href="vista360-classic.html" class="vp-btn">Entrar a VISTA360 Classic <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
 
         <!-- VISTA360 Digital -->
-        <a href="vista360-digital.html" class="v-prod-big" data-reveal data-reveal-delay="120">
-          <span class="v-prod-num">02</span>
-          <img src="panels/hero-nosotros.png" alt="VISTA360 Digital" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 38%;" />
-          <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,16,28,0.1) 0%, rgba(8,16,28,0.1) 32%, rgba(8,16,28,0.92) 100%);"></div>
-          <div style="position:absolute; left:0; right:0; bottom:0; padding:clamp(28px,3.2vw,40px);">
-            <span class="v-prod-tag">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#56A2FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-              <span style="font-size:11.5px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#DCE8FB;">Pantallas LED · próximamente</span>
-            </span>
-            <h2 style="font-size:clamp(26px,2.8vw,36px); font-weight:800; letter-spacing:-0.025em; line-height:1.1; color:#fff; margin:0 0 10px; text-shadow:0 10px 30px rgba(0,0,0,0.5);">VISTA360 Digital</h2>
-            <p style="font-size:15px; line-height:1.55; color:rgba(255,255,255,0.86); margin:0 0 6px; max-width:420px;">Pantallas LED con contenido en movimiento, programable y medible. Tecnología dinámica que invita a la audiencia a interactuar con tu marca.</p>
-            <div class="v-prod-mini"><span>Contenido animado</span><span>Programable</span><span>Medible</span></div>
-            <span class="v-prod-cta" style="display:inline-flex; align-items:center; gap:9px; color:#fff; font-size:15px; font-weight:700; margin-top:22px;">Clic para entrar a VISTA360 Digital <span style="font-size:17px;">&rarr;</span></span>
+        <div class="vp-card vp-teal" data-reveal data-reveal-delay="120">
+          <div class="vp-top">
+            <div class="vp-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"></path></svg></div>
+            <span class="vp-pill">Próximamente</span>
           </div>
-        </a>
+          <div class="vp-photo"><img src="panels/hero-nosotros.png" alt="VISTA360 Digital" /></div>
+          <h3>VISTA360 Digital</h3>
+          <p class="vp-desc">Pantallas LED con contenido en movimiento, programable y medible: tecnología dinámica que invita a la audiencia a interactuar con tu marca.</p>
+          <ul class="vp-feats">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg> Contenido animado y dinámico</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg> Programable desde un panel</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg> Resultados medibles</li>
+          </ul>
+          <a href="vista360-digital.html" class="vp-btn">Entrar a VISTA360 Digital <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
 
+      </div>
+
+      <!-- Comparador interactivo -->
+      <button type="button" class="vp-compare-toggle" onClick="{{ toggleCompare }}" style="display:flex;">
+        {{ compareLabel }}
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="{{ compareChevStyle }}"><path d="M6 9l6 6 6-6"></path></svg>
+      </button>
+      <div class="vp-compare-table" style="{{ compareStyle }}">
+        <table>
+          <tr><th>Característica</th><th>Classic</th><th>Digital</th></tr>
+          <tr><td>Disponibilidad</td><td>Ahora</td><td>Próximamente</td></tr>
+          <tr><td>Contenido</td><td>Estático</td><td>Animado</td></tr>
+          <tr><td>Encendido</td><td>24/7 con luces</td><td>24/7 LED</td></tr>
+          <tr><td>Ideal para</td><td>Presencia constante</td><td>Campañas dinámicas</td></tr>
+        </table>
       </div>
     </div>
   </section>
@@ -163,7 +187,22 @@ class Component extends DCLogic {
     els.forEach((el) => this.io.observe(el));
   }
   componentWillUnmount() { if (this.io) this.io.disconnect(); }
-  renderVals() { return { setRoot: (el) => { this.rootEl = el; } }; }
+  renderVals() {
+    const open = !!(this.state && this.state.compareOpen);
+    return {
+      setRoot: (el) => { this.rootEl = el; },
+      toggleCompare: () => this.setState((s) => ({ compareOpen: !s.compareOpen })),
+      compareLabel: open ? 'Ocultar comparación' : 'Comparar formatos',
+      compareChevStyle: { transform: open ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform .3s ease' },
+      compareStyle: {
+        maxHeight: open ? '420px' : '0px',
+        opacity: open ? 1 : 0,
+        overflow: 'hidden',
+        marginTop: open ? '20px' : '0px',
+        transition: 'max-height .45s cubic-bezier(.16,1,.3,1), opacity .35s ease, margin-top .45s ease'
+      }
+    };
+  }
 }
 </script>
   <script src="hover.js"></script>
