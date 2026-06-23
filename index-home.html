@@ -127,6 +127,25 @@
   .v-prod-card:hover img { transform:scale(1.07); }
   .v-prod-card .v-prod-cta { transition:gap .3s cubic-bezier(.16,1,.3,1); }
   .v-prod-card:hover .v-prod-cta { gap:14px; }
+  /* ── Carrusel de productos (solo móvil) ──────────────────────────── */
+  .v-prod-carousel { display:none; position:relative; }
+  @media (max-width:760px){
+    .v-prod-grid { display:none; }
+    .v-prod-carousel { display:block; margin-left:calc(-1 * clamp(16px,4vw,40px)); margin-right:calc(-1 * clamp(16px,4vw,40px)); }
+    .v-prod-carousel .v-prod-card { border-radius:0; }
+  }
+  .v-prod-arrow {
+    position:absolute; top:50%; transform:translateY(-50%); z-index:2;
+    border:none; background:none; padding:16px; margin:0; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; filter:drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+    transition:transform .18s cubic-bezier(.16,1,.3,1), opacity .18s ease;
+  }
+  .v-prod-arrow svg { width:26px; height:26px; display:block; }
+  .v-prod-arrow:active { transform:translateY(-50%) scale(0.82); opacity:0.65; }
+  .v-prod-arrow--left { left:0; }
+  .v-prod-arrow--right { right:0; }
+  .v-prod-dots { display:flex; justify-content:center; gap:7px; margin-top:16px; }
   .v-home-sv { display:grid; grid-template-columns:1fr; gap:clamp(16px,1.8vw,22px); margin:clamp(26px,3.2vw,40px) 0 clamp(24px,2.8vw,34px); text-align:left; }
   @media (min-width:760px){ .v-home-sv { grid-template-columns:repeat(3,1fr); } }
   .v-hsv-card { position:relative; overflow:hidden; display:block; text-decoration:none; padding:clamp(24px,2.2vw,30px); border-radius:18px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); transition:transform .5s cubic-bezier(.16,1,.3,1), background .4s ease, border-color .4s ease; }
@@ -319,6 +338,29 @@
           </a>
         </sc-for>
       </div>
+
+      <!-- Carrusel: solo visible en móvil (ver media query). Un producto a
+           la vez (Murales / Unipolares / Tótems / LED), con flechas para
+           girar. Los puntos se generan como un solo nodo en JS para no
+           depender de bindings nuevos en la plantilla. -->
+      <div data-reveal class="v-prod-carousel">
+        <a href="soluciones.html" class="v-prod-card" style="display:block;">
+          {{ currentProduct.imgNode }}
+          <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,16,28,0.15) 0%, rgba(8,16,28,0.05) 38%, rgba(8,16,28,0.82) 100%);"></div>
+          <div style="position:absolute; left:0; right:0; bottom:0; padding:clamp(22px,2.2vw,30px);">
+            <h3 style="font-size:clamp(21px,2vw,26px); font-weight:800; letter-spacing:-0.02em; line-height:1.1; color:#fff; margin:0 0 8px; text-shadow:0 8px 28px rgba(0,0,0,0.5);">{{ currentProduct.title }}</h3>
+            <p style="font-size:14px; line-height:1.5; color:rgba(255,255,255,0.84); margin:0 0 16px;">{{ currentProduct.desc }}</p>
+            <span class="v-prod-cta" style="display:inline-flex; align-items:center; gap:8px; color:#fff; font-size:14px; font-weight:700;">Ver producto <span style="font-size:16px;">&rarr;</span></span>
+          </div>
+        </a>
+        <button type="button" class="v-prod-arrow v-prod-arrow--left" aria-label="Producto anterior" onClick="{{ prevProduct }}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg>
+        </button>
+        <button type="button" class="v-prod-arrow v-prod-arrow--right" aria-label="Producto siguiente" onClick="{{ nextProduct }}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg>
+        </button>
+        {{ productDotsNode }}
+      </div>
     </div>
   </section>
 
@@ -332,6 +374,9 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
+  // Indice del producto mostrado en el carrusel movil (flechas izq/der).
+  state = { productIndex: 0 };
+
   animateCounts() {
     const root = this.rootEl;
     if (!root) return;
@@ -558,6 +603,34 @@ class Component extends DCLogic {
       imgNode: React.createElement('img', { src: p.img, alt: p.title, style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: p.objPos || 'center', display: 'block' } })
     }));
 
+    // ── Carrusel de productos (solo móvil) ──────────────────────────
+    const productCount = productData.length;
+    const productIndex = ((this.state.productIndex % productCount) + productCount) % productCount;
+    const cp = productData[productIndex];
+    const currentProduct = {
+      title: cp.title, desc: cp.desc,
+      imgNode: React.createElement('img', { src: cp.img, alt: cp.title, style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: cp.objPos || 'center', display: 'block' } })
+    };
+    // Los puntos se construyen como UN solo nodo React (no via <sc-for> +
+    // clase dinamica en la plantilla) para mantenerse dentro de patrones
+    // ya probados en este archivo.
+    const productDotsNode = React.createElement(
+      'div',
+      { className: 'v-prod-dots' },
+      productData.map((_, i) => React.createElement('span', {
+        key: i,
+        style: {
+          width: i === productIndex ? '18px' : '7px',
+          height: '7px',
+          borderRadius: i === productIndex ? '4px' : '50%',
+          background: i === productIndex ? '#1C6FE8' : 'rgba(14,26,46,0.18)',
+          transition: 'background .25s ease, width .25s ease'
+        }
+      }))
+    );
+    const nextProduct = () => this.setState((s) => ({ productIndex: (s.productIndex + 1) % productCount }));
+    const prevProduct = () => this.setState((s) => ({ productIndex: (s.productIndex - 1 + productCount) % productCount }));
+
     const baseLogos = [
       { src: 'logos/pacific-blue.jpeg', label: 'Pacific Blue' },
       { label: 'AURORA' }, { label: 'MERIDIAN' }, { label: 'VÉRTICE' }, { label: 'NOVALIS' }, { label: 'CUMBRE' }
@@ -572,6 +645,10 @@ class Component extends DCLogic {
       setNet: (el) => { this.netEl = el; if (el && !this._netStarted) { this._netStarted = true; this.startNetwork(); } },
       news: products,
       products: products,
+      currentProduct: currentProduct,
+      productDotsNode: productDotsNode,
+      nextProduct: nextProduct,
+      prevProduct: prevProduct,
       formats: formats,
       services: services,
       logos: logos
