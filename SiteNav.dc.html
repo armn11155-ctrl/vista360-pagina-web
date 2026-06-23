@@ -80,12 +80,13 @@ class Component extends DCLogic {
     const meta = document.querySelector('meta[name="theme-color"]');
     if (!meta) return;
     const topColor = this.props.topColor || '#0A1426'; // color de marca por defecto; cada pagina puede pasar el tono de su propio hero
-    const menuColor = '#081428';   // mismo azul que usa el nav/menu cuando esta abierto
+    const solidColor = '#081428';  // mismo color solido que usan el navbar y el menu
+    const menuColor = '#081428';   // unificado: el mismo tono exacto, sin diferencia
     const transparent = this.props.transparent ?? false;
+    const scrolled = !!this.state.scrolled;
     const menuOpen = !!this.state.menuOpen;
-    // Igual que el nav: ya no sigue el scroll, solo cambia con el menu.
-    const solid = !transparent || menuOpen;
-    meta.setAttribute('content', solid ? menuColor : topColor);
+    const solid = !transparent || scrolled;
+    meta.setAttribute('content', menuOpen ? menuColor : (solid ? solidColor : topColor));
   }
   componentDidUpdate() {
     this.applyThemeColor();
@@ -128,14 +129,10 @@ class Component extends DCLogic {
     const active = this.props.active || 'inicio';
     const transparent = this.props.transparent ?? false;
     const scrolled = !!this.state.scrolled;
-    const menuOpen = !!this.state.menuOpen;
-    // El nav se queda transparente siempre; solo se pone solido/azul
-    // cuando se abre el menu movil (para que combine con el fondo del
-    // propio menu). El scroll ya no decide el color.
-    const solid = !transparent || menuOpen;
+    const solid = !transparent || scrolled;
 
     const navStyle = {
-      position: 'relative', zIndex: 150,
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 150,
       // iOS 26 ya no usa theme-color: copia el background-color (no el
       // "background" con degradado) del elemento fijo de arriba para la
       // barra de estado. Por eso se separan en dos propiedades: una sólida
@@ -144,7 +141,8 @@ class Component extends DCLogic {
       backgroundImage: solid ? 'linear-gradient(100deg, #081428 0%, #0C2143 100%)' : 'none',
       boxShadow: scrolled ? '0 8px 30px rgba(5,12,28,0.42)' : 'none',
       borderBottom: '1px solid ' + (solid ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0)'),
-      transition: 'background-color .3s ease, background-image .3s ease, box-shadow .4s ease, border-color .4s ease'
+      transition: 'box-shadow .4s ease, border-color .4s ease' /* sin transición en el color de fondo:
+        animar el fondo de un elemento fijo mientras se hace scroll activo puede verse tembloroso/inestable en iOS */
     };
 
     const baseLink = (key) => ({
@@ -180,6 +178,7 @@ class Component extends DCLogic {
       transition: 'max-height .4s cubic-bezier(.16,1,.3,1), opacity .3s ease, margin .4s ease'
     };
 
+    const menuOpen = !!this.state.menuOpen;
     const menuStyle = {
       position: 'fixed', inset: 0, zIndex: 200, background: '#081428', backdropFilter: 'blur(20px)',
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '4px',
