@@ -18,6 +18,10 @@
     .vn-links { display:none !important; }
     .vn-cta { display:none !important; }
     .vn-burger { display:flex !important; }
+    /* inset:0 a veces no llega hasta el fondo real cuando la barra de
+       Safari cambia de tamaño, dejando un hueco abajo sin el fondo
+       oscuro del menú. Forzamos la altura al maximo posible (lvh). */
+    #vnMobileMenu { height: 100vh; height: 100lvh; }
   }
 </style>
 </helmet>
@@ -39,7 +43,7 @@
     </button>
   </div>
 </nav>
-<div style="{{ menuStyle }}">
+<div id="vnMobileMenu" style="{{ menuStyle }}">
   <button onClick="{{ closeMenu }}" aria-label="Cerrar" style="position:absolute; top:22px; right:24px; background:transparent; border:none; color:#fff; font-size:34px; cursor:pointer; line-height:1; font-family:'Plus Jakarta Sans',sans-serif;">&times;</button>
   <sc-for list="{{ mlinksTop }}" as="ml" hint-placeholder-count="1">
     <a href="{{ ml.href }}" onClick="{{ closeMenu }}" style="text-decoration:none; color:#fff; font-size:28px; font-weight:700; letter-spacing:-0.02em; padding:12px; font-family:'Plus Jakarta Sans',sans-serif;">{{ ml.label }}</a>
