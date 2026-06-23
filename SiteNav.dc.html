@@ -104,9 +104,9 @@ class Component extends DCLogic {
     }, 300);
   }
   applyThemeColor() {
-    const topColor = this.props.topColor || '#0A1426'; // color de marca por defecto; cada pagina puede pasar el tono de su propio hero
-    const solidColor = '#081428';  // mismo color solido que usan el navbar y el menu
-    const menuColor = '#081428';   // unificado: el mismo tono exacto, sin diferencia
+    const topColor = this.props.topColor || '#05080F'; // color de marca por defecto; cada pagina puede pasar el tono de su propio hero
+    const solidColor = '#05080F';  // mismo color real del hero — el que de verdad se ve en el status bar
+    const menuColor = '#05080F';   // unificado: el mismo tono exacto, sin diferencia
     const transparent = this.props.transparent ?? false;
     const scrolled = !!this.state.scrolled;
     const menuOpen = !!this.state.menuOpen;
@@ -197,8 +197,8 @@ class Component extends DCLogic {
       // "background" con degradado) del elemento fijo de arriba para la
       // barra de estado. Por eso se separan en dos propiedades: una sólida
       // y limpia para que Safari la copie, y el degradado visual aparte.
-      backgroundColor: solid ? '#081428' : 'transparent',
-      backgroundImage: solid ? 'linear-gradient(100deg, #081428 0%, #0C2143 100%)' : 'none',
+      backgroundColor: solid ? '#05080F' : 'transparent',
+      backgroundImage: solid ? 'linear-gradient(100deg, #05080F 0%, #0C1830 100%)' : 'none',
       boxShadow: scrolled ? '0 8px 30px rgba(5,12,28,0.42)' : 'none',
       borderBottom: '1px solid ' + (solid ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0)'),
       transition: 'box-shadow .4s ease, border-color .4s ease' /* sin transición en el color de fondo:
@@ -247,7 +247,7 @@ class Component extends DCLogic {
       // limpio puede interferir con esa lectura. Se quita por completo:
       // cero perdida visual, una variable menos que pueda confundir la
       // forma en que se pinta el status bar.
-      position: 'fixed', inset: 0, zIndex: 200, background: '#081428',
+      position: 'fixed', inset: 0, zIndex: 200, background: '#05080F',
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '4px',
       opacity: menuOpen ? 1 : 0, visibility: menuOpen ? 'visible' : 'hidden', pointerEvents: menuOpen ? 'auto' : 'none',
       transition: 'opacity .35s ease, visibility .35s ease'
