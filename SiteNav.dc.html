@@ -133,6 +133,7 @@ class Component extends DCLogic {
 
     const navStyle = {
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 150,
+      transform: 'translateZ(0)', willChange: 'transform',
       // iOS 26 ya no usa theme-color: copia el background-color (no el
       // "background" con degradado) del elemento fijo de arriba para la
       // barra de estado. Por eso se separan en dos propiedades: una sólida
@@ -199,4 +200,5 @@ class Component extends DCLogic {
 </script>
 </body>
 </html>
+
 
