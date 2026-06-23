@@ -25,7 +25,7 @@
   }
 </style>
 </helmet>
-<nav style="{{ navStyle }}">
+<nav id="vnNav" style="{{ navStyle }}">
   <div style="width:100%; max-width:1500px; margin:0 auto; padding:0 clamp(20px,5vw,72px); height:66px; display:flex; align-items:center; justify-content:space-between; gap:28px; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif;">
     <a href="index.html" style="display:flex; align-items:center; text-decoration:none;">
       <img src="vista360-logo.png" alt="VISTA360" style="height:30px; width:auto; display:block;" />
@@ -75,6 +75,22 @@ class Component extends DCLogic {
     window.addEventListener('scroll', this.onScroll, { passive: true });
     this.onScroll();
     this.applyThemeColor();
+
+    // El menu (nav) usa position:fixed para quedarse pegado arriba. En
+    // iOS 26 hay un bug de sistema (no de este sitio) que a veces lo
+    // desalinea cuando la barra de Safari se minimiza durante el scroll.
+    // Mitigacion: leer window.visualViewport.offsetTop (que SI refleja el
+    // desplazamiento real) y forzar el "top" del nav a ese valor.
+    if (window.visualViewport) {
+      this.onVV = () => {
+        const nav = document.getElementById('vnNav');
+        if (!nav) return;
+        nav.style.top = (window.visualViewport.offsetTop || 0) + 'px';
+      };
+      window.visualViewport.addEventListener('resize', this.onVV);
+      window.visualViewport.addEventListener('scroll', this.onVV);
+      this.onVV();
+    }
   }
   applyThemeColor() {
     const meta = document.querySelector('meta[name="theme-color"]');
@@ -118,6 +134,10 @@ class Component extends DCLogic {
   }
   componentWillUnmount() {
     window.removeEventListener('scroll', this.onScroll);
+    if (window.visualViewport && this.onVV) {
+      window.visualViewport.removeEventListener('resize', this.onVV);
+      window.visualViewport.removeEventListener('scroll', this.onVV);
+    }
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
     document.body.style.position = '';
