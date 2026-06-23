@@ -63,7 +63,7 @@
   </sc-for>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:66},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;inicio&quot;,&quot;productos&quot;,&quot;servicios&quot;,&quot;ubicaciones&quot;,&quot;portafolio&quot;,&quot;contacto&quot;],&quot;default&quot;:&quot;inicio&quot;},&quot;transparent&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:66},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;inicio&quot;,&quot;productos&quot;,&quot;servicios&quot;,&quot;ubicaciones&quot;,&quot;portafolio&quot;,&quot;contacto&quot;],&quot;default&quot;:&quot;inicio&quot;},&quot;transparent&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false},&quot;topColor&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#0A1426&quot;}}">
 class Component extends DCLogic {
   state = { scrolled: false, menuOpen: false, mobileProductsOpen: false };
 
@@ -74,14 +74,27 @@ class Component extends DCLogic {
     };
     window.addEventListener('scroll', this.onScroll, { passive: true });
     this.onScroll();
+    this.applyThemeColor();
+  }
+  applyThemeColor() {
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) return;
+    const topColor = this.props.topColor || '#0A1426'; // color de marca por defecto; cada pagina puede pasar el tono de su propio hero
+    const solidColor = '#081428';  // mismo color con el que el navbar se vuelve solido al bajar
+    const menuColor = '#081021';   // mismo color del fondo del menu (rayas) abierto
+    const transparent = this.props.transparent ?? false;
+    const scrolled = !!this.state.scrolled;
+    const menuOpen = !!this.state.menuOpen;
+    const solid = !transparent || scrolled;
+    meta.setAttribute('content', menuOpen ? menuColor : (solid ? solidColor : topColor));
   }
   componentDidUpdate() {
+    this.applyThemeColor();
     // El framework solo pasa prevProps, no prevState; guardamos el último
     // valor en una propiedad propia para detectar el cambio de menuOpen.
     var open = !!this.state.menuOpen;
     if (open !== this.__lastMenuOpen) {
       this.__lastMenuOpen = open;
-      if (typeof window.__setMenuTheme === 'function') window.__setMenuTheme(open);
       // Bloquear el scroll de la página de fondo: si se puede mover detrás
       // del menú, Safari pierde la referencia de dónde termina realmente
       // la pantalla y deja ver un hueco con contenido de otra parte abajo.
@@ -105,7 +118,6 @@ class Component extends DCLogic {
   }
   componentWillUnmount() {
     window.removeEventListener('scroll', this.onScroll);
-    if (typeof window.__setMenuTheme === 'function') window.__setMenuTheme(false);
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
     document.body.style.position = '';
@@ -162,7 +174,7 @@ class Component extends DCLogic {
 
     const menuOpen = !!this.state.menuOpen;
     const menuStyle = {
-      position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(8,16,33,0.98)', backdropFilter: 'blur(20px)',
+      position: 'fixed', inset: 0, zIndex: 200, background: '#081021', backdropFilter: 'blur(20px)',
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '4px',
       opacity: menuOpen ? 1 : 0, visibility: menuOpen ? 'visible' : 'hidden', pointerEvents: menuOpen ? 'auto' : 'none',
       transition: 'opacity .35s ease, visibility .35s ease'

@@ -146,7 +146,7 @@
 
 <div ref="{{ setRoot }}" style="position:relative; width:100%; overflow-x:hidden;">
 
-  <dc-import name="SiteNav" active="inicio" transparent="{{ true }}" hint-size="100%,66px"></dc-import>
+  <dc-import name="SiteNav" active="inicio" transparent="{{ true }}" top-color="#05080F" hint-size="100%,66px"></dc-import>
 
   <!-- ============ HERO (cinematic full-bleed) ============ -->
   <section id="top" style="position:relative; min-height:100vh; display:flex; flex-direction:column; overflow:hidden; background:#05080F;">
@@ -581,30 +581,5 @@ class Component extends DCLogic {
 </script>
   <script src="hover.js"></script>
   <script src="hero-video.js"></script>
-  <script>
-  // Sincroniza el color de la barra de estado (status bar) de iOS con el scroll,
-  // igual que el menú: transparente/oscuro-del-video arriba, azul sólido al bajar.
-  // Solo afecta celular (mismo punto de quiebre que el resto del sitio: 760px).
-  (function () {
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (!meta) return;
-    var TOP_COLOR = '#05080F';      // mismo color del fondo de la sección que sube detrás del status bar
-    var SCROLLED_COLOR = '#081428'; // azul sólido del navbar al bajar
-    var MENU_COLOR = '#081021';     // azul oscuro del menú (rayas) abierto
-    var DESKTOP_COLOR = '#0A1426';  // color de marca, sin cambios en pantallas grandes
-    function isMobile() { return window.matchMedia('(max-width: 760px)').matches; }
-    function update() {
-      // Si el menú móvil está abierto, mandar siempre azul del menú.
-      if (window.__vnMenuOpen) { meta.setAttribute('content', MENU_COLOR); return; }
-      if (!isMobile()) { meta.setAttribute('content', DESKTOP_COLOR); return; }
-      meta.setAttribute('content', window.scrollY > 40 ? SCROLLED_COLOR : TOP_COLOR);
-    }
-    // El componente del menú llama a esto al abrir/cerrar.
-    window.__setMenuTheme = function (open) { window.__vnMenuOpen = open; update(); };
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-  </script>
 </body>
 </html>
