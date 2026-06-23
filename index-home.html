@@ -37,16 +37,17 @@
   @media (max-width: 760px) {
     #top {
       min-height: 100vh;
-      min-height: calc(100lvh + env(safe-area-inset-top, 0px) + 64px) !important; /* +64px: crece
-        hacia abajo (no afecta la parte de arriba, que ya queda fija por el status bar). */
-      margin-top: calc(-1 * env(safe-area-inset-top, 0px));
-      padding-top: env(safe-area-inset-top, 0px);
+      /* Antes subía el 100% de la altura del status bar; ahora solo la
+         mitad, para que ocupe menos ese espacio oscuro de arriba. */
+      min-height: calc(100lvh + (env(safe-area-inset-top, 0px) * 0.5) + 64px) !important;
+      margin-top: calc(-1 * env(safe-area-inset-top, 0px) * 0.5);
+      padding-top: calc(env(safe-area-inset-top, 0px) * 0.5);
     }
     /* El video NO debe subir detrás del status bar (ahí arriba el video
        muestra otra parte de la escena, ramas/verde, que no combina). Que
        solo suba el fondo oscuro de la sección, que sí combina con el tono
        de la barra de estado. El video arranca justo donde arrancaba antes. */
-    #heroVideo { top: env(safe-area-inset-top, 0px) !important; }
+    #heroVideo { top: calc(env(safe-area-inset-top, 0px) * 0.5) !important; }
     /* El bloque de texto/botones queda muy centrado verticalmente ahora que
        el hero es más alto, dejando mucho espacio arriba. Lo subimos un poco
        para que se vea más armónico. */
@@ -75,15 +76,15 @@
   @keyframes vmarquee { from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
   @keyframes vkenburns { 0%{ transform:scale(1.05) translate(0,0); } 100%{ transform:scale(1.15) translate(-1.5%,-1.2%); } }
   @keyframes vbounce { 0%,100%{ transform:translateX(-50%) translateY(0); } 50%{ transform:translateX(-50%) translateY(8px); } }
-  @keyframes shGlow {
-    0%, 40%, 100% { opacity:.28; filter:none; }
-    20% { opacity:1; filter:drop-shadow(0 0 7px rgba(86,162,255,0.9)); color:#56A2FF; }
+  @keyframes shArrowMove {
+    0%, 100% { transform:translateY(0); opacity:.55; color:rgba(255,255,255,0.8); filter:none; }
+    50% { transform:translateY(11px); opacity:1; color:#56A2FF; filter:drop-shadow(0 0 9px rgba(86,162,255,0.95)); }
   }
-  .sh-chev { animation: shGlow 1.8s ease-in-out infinite; }
+  #shArrow { animation: shArrowMove 1.9s ease-in-out infinite; }
   @media (max-width: 760px) {
     /* Sube el indicador de scroll para que no quede tapado por la barra
        de Safari (la pestaña flotante de la URL) cuando aparece abajo. */
-    #scrollHint { bottom: calc(env(safe-area-inset-bottom, 0px) + 56px) !important; }
+    #scrollHint { bottom: calc(env(safe-area-inset-bottom, 0px) + 84px) !important; }
   }
   @keyframes vfadeup { 0%{ opacity:0; transform:translateY(22px); } 100%{ opacity:1; transform:translateY(0); } }
   .v-trust-track { display:flex; width:max-content; align-items:center; gap:clamp(28px,3.5vw,52px); animation:vmarquee 26s linear infinite; }
@@ -172,11 +173,9 @@
     </div>
 
     <!-- ===== SCROLL HINT ===== -->
-    <a href="#stats" aria-label="Desplazarse hacia abajo" id="scrollHint" style="position:absolute; bottom:clamp(22px,3vw,34px); left:50%; z-index:3; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:1px; text-decoration:none; color:#fff;">
-      <span style="font-size:10px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-bottom:8px;">Descubre más</span>
-      <svg class="sh-chev" style="animation-delay:0s;" width="20" height="11" viewBox="0 0 20 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l8 7 8-7"></path></svg>
-      <svg class="sh-chev" style="animation-delay:.22s; margin-top:-5px;" width="20" height="11" viewBox="0 0 20 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l8 7 8-7"></path></svg>
-      <svg class="sh-chev" style="animation-delay:.44s; margin-top:-5px;" width="20" height="11" viewBox="0 0 20 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l8 7 8-7"></path></svg>
+    <a href="#stats" aria-label="Desplazarse hacia abajo" id="scrollHint" style="position:absolute; bottom:clamp(22px,3vw,34px); left:50%; z-index:3; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:10px; text-decoration:none; color:#fff;">
+      <span style="font-size:10px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.55);">Descubre más</span>
+      <svg id="shArrow" width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4v18M7 14l8 8 8-8"></path></svg>
     </a>
   </section>
 
