@@ -137,7 +137,7 @@ class Component extends DCLogic {
       // "background" con degradado) del elemento fijo de arriba para la
       // barra de estado. Por eso se separan en dos propiedades: una sólida
       // y limpia para que Safari la copie, y el degradado visual aparte.
-      backgroundColor: solid ? '#081428' : 'transparent',
+      backgroundColor: solid ? '#081428' : (topColor || '#05080F'),
       backgroundImage: solid ? 'linear-gradient(100deg, #081428 0%, #0C2143 100%)' : 'none',
       boxShadow: scrolled ? '0 8px 30px rgba(5,12,28,0.42)' : 'none',
       borderBottom: '1px solid ' + (solid ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0)'),
@@ -199,3 +199,4 @@ class Component extends DCLogic {
 </script>
 </body>
 </html>
+
