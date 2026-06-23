@@ -90,6 +90,18 @@ class Component extends DCLogic {
     window.addEventListener('scroll', this.onScroll, { passive: true });
     this.onScroll();
     this.applyThemeColor();
+    // Intento 2: el micro-scroll dentro de la apertura del menu no alcanzo
+    // (mismo frame que el cambio de color — puede ser demasiado tarde o
+    // simultaneo). Ahora se dispara apenas monta la pagina, ANTES de que
+    // el usuario pueda tocar nada, dandole tiempo a Safari de "despertar"
+    // su repintado del status bar con anticipacion. Con un pequeno delay
+    // para no pelear con el layout inicial (splash, video del hero, etc).
+    setTimeout(() => {
+      if (window.scrollY === 0 && !this.state.menuOpen) {
+        window.scrollTo(0, 1);
+        window.scrollTo(0, 0);
+      }
+    }, 300);
   }
   applyThemeColor() {
     const topColor = this.props.topColor || '#0A1426'; // color de marca por defecto; cada pagina puede pasar el tono de su propio hero
