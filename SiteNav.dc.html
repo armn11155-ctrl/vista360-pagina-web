@@ -91,8 +91,6 @@ class Component extends DCLogic {
     this.applyThemeColor();
   }
   applyThemeColor() {
-    const meta = document.querySelector('meta[name="theme-color"]');
-    if (!meta) return;
     const topColor = this.props.topColor || '#0A1426'; // color de marca por defecto; cada pagina puede pasar el tono de su propio hero
     const solidColor = '#081428';  // mismo color solido que usan el navbar y el menu
     const menuColor = '#081428';   // unificado: el mismo tono exacto, sin diferencia
@@ -100,7 +98,21 @@ class Component extends DCLogic {
     const scrolled = !!this.state.scrolled;
     const menuOpen = !!this.state.menuOpen;
     const solid = !transparent || scrolled;
-    meta.setAttribute('content', menuOpen ? menuColor : (solid ? solidColor : topColor));
+    const color = menuOpen ? menuColor : (solid ? solidColor : topColor);
+    // BUG FIX: antes esto mutaba el atributo `content` de un <meta> ya
+    // existente. Chrome Android en la practica no siempre repinta el
+    // status bar nativo solo por esa mutacion — se queda con el color
+    // viejo hasta el primer scroll/gesto que fuerce un repintado. Por eso
+    // al abrir el menu apenas se entra (sin haber scrolleado nunca) el
+    // status bar se veia negro en vez de azul, pero funcionaba bien si
+    // ya se habia scrolleado antes. Quitar e insertar de nuevo el <meta>
+    // fuerza el repintado inmediato, sin depender de ningun scroll previo.
+    const old = document.querySelector('meta[name="theme-color"]');
+    if (old) old.remove();
+    const meta = document.createElement('meta');
+    meta.setAttribute('name', 'theme-color');
+    meta.setAttribute('content', color);
+    document.head.appendChild(meta);
   }
   componentDidUpdate() {
     this.applyThemeColor();
