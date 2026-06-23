@@ -41,14 +41,27 @@
 </nav>
 <div style="{{ menuStyle }}">
   <button onClick="{{ closeMenu }}" aria-label="Cerrar" style="position:absolute; top:22px; right:24px; background:transparent; border:none; color:#fff; font-size:34px; cursor:pointer; line-height:1; font-family:'Plus Jakarta Sans',sans-serif;">&times;</button>
-  <sc-for list="{{ mlinks }}" as="ml" hint-placeholder-count="6">
+  <sc-for list="{{ mlinksTop }}" as="ml" hint-placeholder-count="1">
+    <a href="{{ ml.href }}" onClick="{{ closeMenu }}" style="text-decoration:none; color:#fff; font-size:28px; font-weight:700; letter-spacing:-0.02em; padding:12px; font-family:'Plus Jakarta Sans',sans-serif;">{{ ml.label }}</a>
+  </sc-for>
+
+  <button type="button" onClick="{{ toggleMobileProducts }}" style="display:flex; align-items:center; gap:9px; background:transparent; border:none; cursor:pointer; color:#fff; font-size:28px; font-weight:700; letter-spacing:-0.02em; padding:12px; font-family:'Plus Jakarta Sans',sans-serif;">
+    Productos
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="{{ mobileProductsChevStyle }}"><path d="M6 9l6 6 6-6"></path></svg>
+  </button>
+  <div style="{{ mobileProductsPanelStyle }}">
+    <a href="vista360-classic.html" onClick="{{ closeMenu }}" style="text-decoration:none; color:rgba(255,255,255,0.85); font-size:19px; font-weight:600; padding:6px 12px; font-family:'Plus Jakarta Sans',sans-serif;">VISTA360 Classic</a>
+    <a href="vista360-digital.html" onClick="{{ closeMenu }}" style="text-decoration:none; color:rgba(255,255,255,0.85); font-size:19px; font-weight:600; padding:6px 12px; font-family:'Plus Jakarta Sans',sans-serif;">VISTA360 Digital</a>
+  </div>
+
+  <sc-for list="{{ mlinksBottom }}" as="ml" hint-placeholder-count="3">
     <a href="{{ ml.href }}" onClick="{{ closeMenu }}" style="text-decoration:none; color:#fff; font-size:28px; font-weight:700; letter-spacing:-0.02em; padding:12px; font-family:'Plus Jakarta Sans',sans-serif;">{{ ml.label }}</a>
   </sc-for>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:66},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;inicio&quot;,&quot;productos&quot;,&quot;servicios&quot;,&quot;ubicaciones&quot;,&quot;portafolio&quot;,&quot;contacto&quot;],&quot;default&quot;:&quot;inicio&quot;},&quot;transparent&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false}}">
 class Component extends DCLogic {
-  state = { scrolled: false, menuOpen: false };
+  state = { scrolled: false, menuOpen: false, mobileProductsOpen: false };
 
   componentDidMount() {
     this.onScroll = () => {
@@ -86,13 +99,26 @@ class Component extends DCLogic {
     const ubicacionesStyle = baseLink('ubicaciones');
     const nosotrosStyle = baseLink('nosotros');
 
-    const mlinks = [
-      ['Inicio', 'index.html'],
-      ['Productos', 'productos.html'],
+    const mlinksTop = [
+      ['Inicio', 'index.html']
+    ].map(([label, href]) => ({ label, href }));
+
+    const mlinksBottom = [
       ['Servicios', 'servicios.html'],
       ['Nosotros', 'nosotros.html'],
       ['Contacto', 'contacto.html']
     ].map(([label, href]) => ({ label, href }));
+
+    const mobileProductsOpen = !!this.state.mobileProductsOpen;
+    const mobileProductsChevStyle = { transform: mobileProductsOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform .3s ease' };
+    const mobileProductsPanelStyle = {
+      display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px',
+      maxHeight: mobileProductsOpen ? '160px' : '0px',
+      opacity: mobileProductsOpen ? 1 : 0,
+      overflow: 'hidden',
+      margin: mobileProductsOpen ? '4px 0 8px' : '0px',
+      transition: 'max-height .4s cubic-bezier(.16,1,.3,1), opacity .3s ease, margin .4s ease'
+    };
 
     const menuOpen = !!this.state.menuOpen;
     const menuStyle = {
@@ -104,9 +130,11 @@ class Component extends DCLogic {
 
     return {
       navStyle, inicioStyle, productosStyle, serviciosStyle, ubicacionesStyle, nosotrosStyle,
-      mlinks, menuStyle,
+      mlinksTop, mlinksBottom, menuStyle,
+      mobileProductsChevStyle, mobileProductsPanelStyle,
+      toggleMobileProducts: () => this.setState((s) => ({ mobileProductsOpen: !s.mobileProductsOpen })),
       toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
-      closeMenu: () => this.setState({ menuOpen: false })
+      closeMenu: () => this.setState({ menuOpen: false, mobileProductsOpen: false })
     };
   }
 }
