@@ -228,7 +228,14 @@ class Component extends DCLogic {
 
     const menuOpen = !!this.state.menuOpen;
     const menuStyle = {
-      position: 'fixed', inset: 0, zIndex: 200, background: '#081428', backdropFilter: 'blur(20px)',
+      // Se quita backdropFilter: con background 100% solido (#081428,
+      // sin transparencia) el blur no tiene nada detras que desenfocar
+      // -- no se ve, es un no-op visual. Pero un backdrop-filter en el
+      // MISMO elemento cuyo color de fondo el navegador necesita leer
+      // limpio puede interferir con esa lectura. Se quita por completo:
+      // cero perdida visual, una variable menos que pueda confundir la
+      // forma en que se pinta el status bar.
+      position: 'fixed', inset: 0, zIndex: 200, background: '#081428',
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '4px',
       opacity: menuOpen ? 1 : 0, visibility: menuOpen ? 'visible' : 'hidden', pointerEvents: menuOpen ? 'auto' : 'none',
       transition: 'opacity .35s ease, visibility .35s ease'
