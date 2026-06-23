@@ -133,6 +133,10 @@ class Component extends DCLogic {
 
     const navStyle = {
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 150,
+      // Truco clásico para iOS Safari: forzar que el elemento fijo tenga
+      // su propia capa de render estable, para que no parpadee / se vea
+      // inestable mientras se hace scroll activo.
+      transform: 'translateZ(0)', WebkitTransform: 'translateZ(0)', willChange: 'transform',
       // iOS 26 ya no usa theme-color: copia el background-color (no el
       // "background" con degradado) del elemento fijo de arriba para la
       // barra de estado. Por eso se separan en dos propiedades: una sólida
@@ -141,7 +145,8 @@ class Component extends DCLogic {
       backgroundImage: solid ? 'linear-gradient(100deg, #081428 0%, #0C2143 100%)' : 'none',
       boxShadow: scrolled ? '0 8px 30px rgba(5,12,28,0.42)' : 'none',
       borderBottom: '1px solid ' + (solid ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0)'),
-      transition: 'background-color .4s ease, box-shadow .4s ease, border-color .4s ease'
+      transition: 'box-shadow .4s ease, border-color .4s ease' /* sin transición en el color de fondo:
+        animar el fondo de un elemento fijo mientras se hace scroll activo puede verse tembloroso/inestable en iOS */
     };
 
     const baseLink = (key) => ({
