@@ -25,7 +25,7 @@
   }
 </style>
 </helmet>
-<nav style="{{ navStyle }}">
+<nav id="vnNav" style="{{ navStyle }}">
   <div style="width:100%; max-width:1500px; margin:0 auto; padding:0 clamp(20px,5vw,72px); height:66px; display:flex; align-items:center; justify-content:space-between; gap:28px; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif;">
     <a href="index.html" style="display:flex; align-items:center; text-decoration:none;">
       <img src="vista360-logo.png" alt="VISTA360" style="height:30px; width:auto; display:block;" />
@@ -75,6 +75,27 @@ class Component extends DCLogic {
     window.addEventListener('scroll', this.onScroll, { passive: true });
     this.onScroll();
     this.applyThemeColor();
+
+    // Bug conocido de iOS 26 (Safari/Chrome/WebKit, ver webkit.org bug 297779):
+    // al minimizarse la barra de direcciones durante el scroll, los elementos
+    // position:fixed pueden quedar mal calculados y "moverse"/desalinearse
+    // unos px del viewport visual real. Apple lo ha ido parchando a medias
+    // desde iOS 26.1 pero sigue sin estar resuelto del todo. La mitigación
+    // estándar (la usan sitios como Discourse) es releer
+    // window.visualViewport.offsetTop, que SÍ refleja el desplazamiento real
+    // de la barra de Safari, y forzar el "top" del nav fijo a ese valor en
+    // vez de confiar en que el navegador lo calcule solo.
+    if (window.visualViewport) {
+      this.onVV = () => {
+        const nav = document.getElementById('vnNav');
+        if (!nav) return;
+        const offset = window.visualViewport.offsetTop || 0;
+        nav.style.top = offset + 'px';
+      };
+      window.visualViewport.addEventListener('resize', this.onVV);
+      window.visualViewport.addEventListener('scroll', this.onVV);
+      this.onVV();
+    }
   }
   applyThemeColor() {
     const meta = document.querySelector('meta[name="theme-color"]');
@@ -118,6 +139,10 @@ class Component extends DCLogic {
   }
   componentWillUnmount() {
     window.removeEventListener('scroll', this.onScroll);
+    if (window.visualViewport && this.onVV) {
+      window.visualViewport.removeEventListener('resize', this.onVV);
+      window.visualViewport.removeEventListener('scroll', this.onVV);
+    }
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
     document.body.style.position = '';
