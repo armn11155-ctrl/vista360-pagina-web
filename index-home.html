@@ -552,7 +552,7 @@ class Component extends DCLogic {
     if (this._carouselTimer) clearInterval(this._carouselTimer);
     this._carouselTimer = setInterval(() => {
       this.setState((s) => ({ productIndex: (s.productIndex + 1) % count }));
-    }, 5000);
+    }, 4100);
   }
 
   componentWillUnmount() {
