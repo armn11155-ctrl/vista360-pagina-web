@@ -137,6 +137,17 @@ class Component extends DCLogic {
       var html = document.documentElement;
       if (open) {
         this.__scrollY = window.scrollY;
+        // BUG FIX REAL: Safari (iOS) solo re-pinta el color del status
+        // bar cuando detecta un gesto de scroll real — un tap en el
+        // boton del menu no cuenta. Si el usuario nunca scrolleo antes
+        // de abrir el menu, Safari se queda con el color por defecto
+        // (negro) aunque el CSS ya tenga el color correcto. Acabamos de
+        // confirmar esto: scrollear (aunque sea un poco) antes de abrir
+        // el menu lo arregla siempre. Asi que simulamos ese mismo
+        // "empujon" automaticamente: un scroll de 1px (imperceptible)
+        // que despierta el repintado antes de bloquear el scroll.
+        window.scrollTo(0, this.__scrollY + 1);
+        window.scrollTo(0, this.__scrollY);
         html.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
         document.body.style.position = 'fixed';
