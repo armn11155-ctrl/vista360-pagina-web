@@ -68,6 +68,20 @@ class Component extends DCLogic {
   state = { scrolled: false, menuOpen: false, mobileProductsOpen: false };
 
   componentDidMount() {
+    // BUG FIX: __lastMenuOpen nunca se inicializaba. componentDidUpdate()
+    // se ejecuta despues de CUALQUIER cambio de estado de este componente,
+    // no solo cuando se abre/cierra el menu — y el primer scroll del
+    // usuario cambia `scrolled` (scrollY > 40), lo cual TAMBIEN dispara
+    // componentDidUpdate(). En ese primer llamado, `this.__lastMenuOpen`
+    // era `undefined`, y como `false !== undefined`, el codigo pensaba
+    // erroneamente que el menu "se acababa de cerrar" y ejecutaba
+    // `window.scrollTo(0, this.__scrollY || 0)` — con __scrollY tambien
+    // sin definir, eso es literalmente `scrollTo(0, 0)`. Resultado: el
+    // primer scroll de cualquier pagina disparaba un salto de vuelta al
+    // tope, SIN que el usuario haya tocado el menu para nada. Inicializar
+    // esto aqui, antes de que pueda dispararse ningun otro cambio de
+    // estado, evita por completo esa falsa deteccion.
+    this.__lastMenuOpen = false;
     this.onScroll = () => {
       const s = window.scrollY > 40;
       if (s !== this.state.scrolled) this.setState({ scrolled: s });
