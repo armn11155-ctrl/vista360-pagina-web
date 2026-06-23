@@ -39,15 +39,15 @@
       min-height: 100vh;
       /* Antes subía la mitad de la altura del status bar; ahora bastante
          menos, para que ocupe poco espacio (no al límite, solo un poco). */
-      min-height: calc(100lvh + (env(safe-area-inset-top, 0px) * 0.22) + 64px) !important;
-      margin-top: calc(-1 * env(safe-area-inset-top, 0px) * 0.22);
-      padding-top: calc(env(safe-area-inset-top, 0px) * 0.22);
+      min-height: calc(100lvh + (env(safe-area-inset-top, 0px) * 0.08) + 64px) !important;
+      margin-top: calc(-1 * env(safe-area-inset-top, 0px) * 0.08);
+      padding-top: calc(env(safe-area-inset-top, 0px) * 0.08);
     }
     /* El video NO debe subir detrás del status bar (ahí arriba el video
        muestra otra parte de la escena, ramas/verde, que no combina). Que
        solo suba el fondo oscuro de la sección, que sí combina con el tono
        de la barra de estado. El video arranca justo donde arrancaba antes. */
-    #heroVideo { top: calc(env(safe-area-inset-top, 0px) * 0.22) !important; }
+    #heroVideo { top: calc(env(safe-area-inset-top, 0px) * 0.08) !important; }
     /* El bloque de texto/botones queda muy centrado verticalmente ahora que
        el hero es más alto, dejando mucho espacio arriba. Lo subimos para
        que el botón y la flecha de scroll no queden tapados por la barra
@@ -166,7 +166,7 @@
       <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:14px; opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .46s forwards;">
         <a href="contacto.html" style="text-decoration:none; padding:15px 34px; border-radius:13px; background:#1C6FE8; color:#fff; font-size:16px; font-weight:600; transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Cotizar campaña</a>
         <a href="productos.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:11px; padding:15px 28px; border-radius:13px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.28); color:#fff; font-size:16px; font-weight:600; backdrop-filter:blur(8px); transition:background .2s ease, transform .2s ease;" style-hover="background:rgba(255,255,255,0.16); transform:translateY(-2px);">
-          <span style="width:24px; height:24px; border-radius:50%; background:#1C6FE8; display:inline-flex; align-items:center; justify-content:center;"><svg width="8" height="10" viewBox="0 0 9 11" fill="#fff"><path d="M0 0L9 5.5L0 11Z"></path></svg></span>
+          <span style="width:24px; height:24px; border-radius:50%; background:#1C6FE8; display:inline-flex; align-items:center; justify-content:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.4"></rect><rect x="14" y="3" width="7" height="7" rx="1.4"></rect><rect x="3" y="14" width="7" height="7" rx="1.4"></rect><rect x="14" y="14" width="7" height="7" rx="1.4"></rect></svg></span>
           Ver soluciones
         </a>
       </div>
