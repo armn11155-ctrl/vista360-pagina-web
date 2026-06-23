@@ -99,14 +99,23 @@ class Component extends DCLogic {
     const menuOpen = !!this.state.menuOpen;
     const solid = !transparent || scrolled;
     const color = menuOpen ? menuColor : (solid ? solidColor : topColor);
-    // BUG FIX: antes esto mutaba el atributo `content` de un <meta> ya
-    // existente. Chrome Android en la practica no siempre repinta el
-    // status bar nativo solo por esa mutacion — se queda con el color
-    // viejo hasta el primer scroll/gesto que fuerce un repintado. Por eso
-    // al abrir el menu apenas se entra (sin haber scrolleado nunca) el
-    // status bar se veia negro en vez de azul, pero funcionaba bien si
-    // ya se habia scrolleado antes. Quitar e insertar de nuevo el <meta>
-    // fuerza el repintado inmediato, sin depender de ningun scroll previo.
+    // BUG FIX REAL: iOS 26 Safari (Liquid Glass) YA NO usa el meta
+    // theme-color en absoluto — colorea la barra de estado/toolbar
+    // muestreando el background-color del elemento fixed de mas arriba,
+    // y si ese es transparente (como nuestro <nav> antes de scrollear,
+    // a proposito, para que se vea el video del hero), cae al
+    // background-color de html/body. Antes de scrollear, ese fallback
+    // nunca se habia sincronizado con el color real de la pagina, asi
+    // que Safari mostraba un negro/oscuro por defecto — y abrir el menu
+    // (que SI tiene fondo solido #081428) no bastaba para que Safari
+    // re-muestree, porque el fallback de html/body seguia desactualizado.
+    // Por eso scrollear una vez "lo arreglaba": eso cambiaba el <nav> a
+    // solido y de paso disparaba el repintado. Ahora sincronizamos
+    // html/body con el color correcto en cada cambio, no solo el <nav>.
+    document.documentElement.style.backgroundColor = color;
+    document.body.style.backgroundColor = color;
+    // Se mantiene tambien el meta (no hace dano, y ayuda en Android/Chrome
+    // y versiones viejas de Safari que si lo siguen leyendo).
     const old = document.querySelector('meta[name="theme-color"]');
     if (old) old.remove();
     const meta = document.createElement('meta');
