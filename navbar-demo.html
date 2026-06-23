@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VISTA360 · Navbar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy:  #081428;
+    --navy2: #0C2143;
+    --blue:  #1C6FE8;
+    --blue2: #1559C4;
+    --border: rgba(255,255,255,0.08);
+    --nav-h: 66px;
+    --font: 'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+  }
+  html, body { min-height: 100vh; background: var(--navy); font-family: var(--font); }
+
+  /* ── NAV FIJA ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 150;
+    height: var(--nav-h);
+    background: linear-gradient(100deg, #081428 0%, #0C2143 100%);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 24px rgba(5,12,28,0.35);
+    display: flex;
+    align-items: center;
+  }
+  .nav-inner {
+    width: 100%; max-width: 1500px; margin: 0 auto;
+    padding: 0 clamp(20px,5vw,72px);
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .nav-logo { display: flex; align-items: center; text-decoration: none; }
+  .nav-logo img { height: 28px; width: auto; display: block; }
+  .nav-links { display: flex; align-items: center; gap: clamp(16px,2vw,32px); }
+  .nav-links a {
+    text-decoration: none; font-size: 15px; font-weight: 500;
+    color: rgba(255,255,255,0.75); transition: color .2s;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta {
+    text-decoration: none; padding: 9px 22px; border-radius: 999px;
+    background: var(--blue); color: #fff; font-size: 14px; font-weight: 600;
+    transition: background .25s, transform .2s; white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--blue2); transform: translateY(-1px); }
+
+  /* burger */
+  .nav-burger {
+    display: none; flex-direction: column; gap: 5px;
+    background: transparent; border: none; cursor: pointer; padding: 6px;
+  }
+  .nav-burger span { width: 24px; height: 2px; background: #fff; border-radius: 2px; display: block; }
+
+  @media (max-width: 700px) {
+    .nav-links, .nav-cta { display: none !important; }
+    .nav-burger { display: flex !important; }
+  }
+
+  /* ── MOBILE MENU ── */
+  #mobileMenu {
+    position: fixed; inset: 0; z-index: 200;
+    background: #081428;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity .35s ease, visibility .35s ease;
+    height: 100vh; height: 100lvh;
+  }
+  #mobileMenu.open { opacity: 1; visibility: visible; pointer-events: auto; }
+  #mobileMenu a {
+    text-decoration: none; color: #fff; font-size: 28px; font-weight: 700;
+    letter-spacing: -.02em; padding: 10px;
+  }
+  .menu-close {
+    position: absolute; top: 20px; right: 24px;
+    background: transparent; border: none; color: #fff; font-size: 36px; cursor: pointer; line-height: 1;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <img src="vista360-logo.png" alt="VISTA360">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="productos.html">Productos</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="nosotros.html">Nosotros</a>
+    </div>
+    <a class="nav-cta" href="contacto.html">Cotizar</a>
+    <button class="nav-burger" id="burgerBtn" aria-label="Menú">
+      <span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div id="mobileMenu">
+  <button class="menu-close" id="closeBtn">&times;</button>
+  <a href="index.html"    onclick="closeMenu()">Inicio</a>
+  <a href="productos.html" onclick="closeMenu()">Productos</a>
+  <a href="servicios.html" onclick="closeMenu()">Servicios</a>
+  <a href="nosotros.html"  onclick="closeMenu()">Nosotros</a>
+  <a href="contacto.html"  onclick="closeMenu()">Contacto</a>
+</div>
+
+<script>
+  const menu = document.getElementById('mobileMenu');
+  document.getElementById('burgerBtn').onclick = () => {
+    menu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  function closeMenu() {
+    menu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('closeBtn').onclick = closeMenu;
+</script>
+</body>
+</html>
