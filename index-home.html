@@ -131,16 +131,15 @@
   .v-prod-carousel { display:none; position:relative; }
   .v-prod-arrow {
     position:absolute; top:50%; transform:translateY(-50%); z-index:2;
-    width:48px; height:48px; border-radius:50%; border:2px solid rgba(255,255,255,0.85);
-    cursor:pointer; display:flex; align-items:center; justify-content:center;
-    background:rgba(8,16,28,0.55); color:#fff;
-    box-shadow:0 6px 18px rgba(0,0,0,0.35);
-    transition:background .2s ease, transform .2s ease, border-color .2s ease;
+    width:42px; height:42px; border-radius:50%; border:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(8,16,28,0.45); backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px); color:#fff; font-size:22px;
+    transition:background .2s ease, transform .2s ease;
   }
-  .v-prod-arrow svg { width:20px; height:20px; display:block; }
-  .v-prod-arrow:active { transform:translateY(-50%) scale(0.9); background:#1C6FE8; border-color:#1C6FE8; }
-  .v-prod-arrow--left { left:10px; }
-  .v-prod-arrow--right { right:10px; }
+  .v-prod-arrow:active { transform:translateY(-50%) scale(0.92); background:rgba(8,16,28,0.65); }
+  .v-prod-arrow--left { left:14px; }
+  .v-prod-arrow--right { right:14px; }
   .v-prod-dots { display:flex; justify-content:center; gap:8px; margin-top:16px; }
   .v-prod-dot { width:7px; height:7px; border-radius:50%; background:rgba(14,26,46,0.18); transition:background .25s ease, width .25s ease; }
   .v-prod-dot--active { background:#1C6FE8; width:18px; border-radius:4px; }
@@ -351,12 +350,8 @@
             <span class="v-prod-cta" style="display:inline-flex; align-items:center; gap:8px; color:#fff; font-size:14px; font-weight:700;">Ver producto <span style="font-size:16px;">&rarr;</span></span>
           </div>
         </a>
-        <button type="button" class="v-prod-arrow v-prod-arrow--left" aria-label="Producto anterior" onClick="{{ prevProduct }}">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg>
-        </button>
-        <button type="button" class="v-prod-arrow v-prod-arrow--right" aria-label="Producto siguiente" onClick="{{ nextProduct }}">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg>
-        </button>
+        <button type="button" class="v-prod-arrow v-prod-arrow--left" aria-label="Producto anterior" onClick="{{ prevProduct }}">&lsaquo;</button>
+        <button type="button" class="v-prod-arrow v-prod-arrow--right" aria-label="Producto siguiente" onClick="{{ nextProduct }}">&rsaquo;</button>
         <div class="v-prod-dots">
           <sc-for list="{{ productDots }}" as="dot" hint-placeholder-count="4">
             <span class="{{ dot.cls }}"></span>
