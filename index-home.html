@@ -37,17 +37,11 @@
   @media (max-width: 760px) {
     #top {
       min-height: 100vh;
-      /* Antes subía la mitad de la altura del status bar; ahora bastante
-         menos, para que ocupe poco espacio (no al límite, solo un poco). */
-      min-height: calc(100lvh + (env(safe-area-inset-top, 0px) * 0.08) + 64px) !important;
-      margin-top: calc(-1 * env(safe-area-inset-top, 0px) * 0.08);
-      padding-top: calc(env(safe-area-inset-top, 0px) * 0.08);
+      /* Se quita por completo el "subir detrás del status bar": ya no
+         hay relleno nuestro ahí, solo queda el tinte nativo de iOS
+         (theme-color), que es lo más chico posible. */
+      min-height: calc(100lvh + 64px) !important;
     }
-    /* El video NO debe subir detrás del status bar (ahí arriba el video
-       muestra otra parte de la escena, ramas/verde, que no combina). Que
-       solo suba el fondo oscuro de la sección, que sí combina con el tono
-       de la barra de estado. El video arranca justo donde arrancaba antes. */
-    #heroVideo { top: calc(env(safe-area-inset-top, 0px) * 0.08) !important; }
     /* El bloque de texto/botones queda muy centrado verticalmente ahora que
        el hero es más alto, dejando mucho espacio arriba. Lo subimos para
        que el botón y la flecha de scroll no queden tapados por la barra
