@@ -32,15 +32,8 @@
   input, textarea, button { font-family:inherit; }
   /* CORRECCIÓN: dvh se achica cuando la barra de direcciones está
      visible (justo al entrar, antes de hacer scroll) — por eso se veía
-     más bajo, al revés de lo que se quería. PERO lvh asume lo contrario
-     (barra YA oculta) — al cargar, con la barra todavía visible, el hero
-     queda MÁS ALTO que la pantalla real. Esos pixeles de más son
-     justo lo que el primer scroll tiene que "consumir" mientras la barra
-     colapsa, y ese tira-y-encoge entre la barra ocultándose y el alto fijo
-     en lvh es lo que se sentía como si la página volviera sola al inicio
-     en el primer swipe. svh usa el alto MÍNIMO (barra visible) — coincide
-     con lo que el usuario ve de verdad al entrar, sin pixeles fantasma
-     que haya que scrollear de más. Solo en móvil. */
+     más bajo, al revés de lo que se quería. lvh siempre usa el alto
+     MÁXIMO posible, sin achicarse nunca. Solo en móvil. */
   @media (max-width: 760px) {
     #top {
       min-height: 100vh;
@@ -48,7 +41,7 @@
          de ONPE que mandaste): el color de fondo se funde con esa franja,
          dando la sensación de una sola pieza. Los íconos del sistema
          (reloj, wifi, batería) los sigue dibujando iOS por encima. */
-      min-height: calc(100svh + env(safe-area-inset-top, 0px) + 64px) !important;
+      min-height: calc(100lvh + env(safe-area-inset-top, 0px) + 64px) !important;
       margin-top: calc(-1 * env(safe-area-inset-top, 0px));
       padding-top: env(safe-area-inset-top, 0px);
     }
