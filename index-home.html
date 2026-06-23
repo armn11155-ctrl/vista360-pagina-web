@@ -425,17 +425,16 @@ class Component extends DCLogic {
     v.addEventListener('canplay', tryPlay);
     v.addEventListener('canplaythrough', tryPlay, { once: true });
 
-    // Reintento por tiempo (no solo por evento): si el video ya estaba
-    // listo antes de que este script alcanzara a "escuchar" el evento
-    // correcto, esos listeners nunca se disparan otra vez. Este sondeo
-    // revisa cada 250ms durante 8s y reintenta mientras siga pausado —
-    // así no depende de ganarle la carrera a ningún evento.
-    let intentos = 0;
-    const poll = setInterval(() => {
-      intentos++;
-      if (!v.paused || intentos > 32) { clearInterval(poll); return; }
-      tryPlay();
-    }, 250);
+    // Vigilante PERMANENTE: en vez de adivinar cada posible causa de
+    // pausa (red, batería, cambio de pestaña, etc.) y manejarla una por
+    // una -- algo siempre se puede escapar -- este chequeo corre cada 2
+    // segundos por TODA la vida de la página: si está pausado y no debería
+    // estarlo, lo reanuda. No se apaga nunca, así que no importa cuál sea
+    // la causa exacta de por qué se pausó: en máximo 2 segundos se
+    // autocorrige solo.
+    this._heroVideoWatchdog = setInterval(() => {
+      if (v.paused && !document.hidden) tryPlay();
+    }, 2000);
 
     // Capas extra: por si el framework de la página crea/reemplaza este
     // elemento en un momento distinto al de componentDidMount.
@@ -453,27 +452,11 @@ class Component extends DCLogic {
       if (!document.hidden) tryPlay();
     });
 
-    // Si por cualquier motivo el video se pausa solo, reanudar
+    // Si por cualquier motivo el video se pausa solo, reanudar de inmediato
+    // (el vigilante de arriba es el respaldo final, pero este es más rápido)
     v.addEventListener('pause', () => {
       if (!document.hidden && !v.ended) setTimeout(tryPlay, 120);
     });
-
-    // BUG FIX: cuando el video sale de la pantalla (el usuario bajó y el
-    // hero quedó arriba, fuera de vista), algunos navegadores lo pausan
-    // solos para ahorrar batería/CPU -- y nada lo volvía a reproducir al
-    // subir otra vez, asi que se quedaba "trabado" en pausa para siempre.
-    // Con un IntersectionObserver: reanudar apenas vuelve a ser visible,
-    // y pausarlo deliberadamente (en vez de dejar que el navegador peleé
-    // con play()) cuando sale de pantalla, para que no sea un tira-y-jala.
-    if ('IntersectionObserver' in window) {
-      this._heroVideoIO = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) tryPlay();
-          else v.pause();
-        });
-      }, { threshold: 0.01 });
-      this._heroVideoIO.observe(v);
-    }
 
     // Recuperarse de cortes de red / buffering atascado.
     ['stalled', 'waiting', 'suspend', 'error'].forEach((ev) =>
@@ -588,7 +571,7 @@ class Component extends DCLogic {
 
   componentWillUnmount() {
     if (this.io) this.io.disconnect();
-    if (this._heroVideoIO) this._heroVideoIO.disconnect();
+    if (this._heroVideoWatchdog) clearInterval(this._heroVideoWatchdog);
     if (this._netRAF) cancelAnimationFrame(this._netRAF);
     if (this._netRO) this._netRO.disconnect();
     if (this._carouselTimer) clearInterval(this._carouselTimer);
