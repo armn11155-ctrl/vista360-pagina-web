@@ -457,6 +457,37 @@ class Component extends DCLogic {
     v.addEventListener('pause', () => {
       if (!document.hidden && !v.ended) setTimeout(tryPlay, 120);
     });
+
+    // BUG FIX: cuando el video sale de la pantalla (el usuario bajó y el
+    // hero quedó arriba, fuera de vista), algunos navegadores lo pausan
+    // solos para ahorrar batería/CPU -- y nada lo volvía a reproducir al
+    // subir otra vez, asi que se quedaba "trabado" en pausa para siempre.
+    // Con un IntersectionObserver: reanudar apenas vuelve a ser visible,
+    // y pausarlo deliberadamente (en vez de dejar que el navegador peleé
+    // con play()) cuando sale de pantalla, para que no sea un tira-y-jala.
+    if ('IntersectionObserver' in window) {
+      this._heroVideoIO = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) tryPlay();
+          else v.pause();
+        });
+      }, { threshold: 0.01 });
+      this._heroVideoIO.observe(v);
+    }
+
+    // Recuperarse de cortes de red / buffering atascado.
+    ['stalled', 'waiting', 'suspend', 'error'].forEach((ev) =>
+      v.addEventListener(ev, () => setTimeout(tryPlay, 300)),
+    );
+
+    // Respaldo manual del loop: en algunas versiones de Safari/WebKit el
+    // atributo `loop` no siempre reinicia el video de forma confiable
+    // (sobre todo si hubo una pausa/interrupción de por medio). Forzamos
+    // el reinicio manual por si el loop nativo no se disparó.
+    v.addEventListener('ended', () => {
+      try { v.currentTime = 0; } catch (e) {}
+      tryPlay();
+    });
   }
 
   componentDidMount() {
@@ -557,6 +588,7 @@ class Component extends DCLogic {
 
   componentWillUnmount() {
     if (this.io) this.io.disconnect();
+    if (this._heroVideoIO) this._heroVideoIO.disconnect();
     if (this._netRAF) cancelAnimationFrame(this._netRAF);
     if (this._netRO) this._netRO.disconnect();
     if (this._carouselTimer) clearInterval(this._carouselTimer);
