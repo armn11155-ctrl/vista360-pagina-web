@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0B1A33">
+<meta name="theme-color" content="#05080F">
 <meta name="color-scheme" content="dark">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -37,11 +37,19 @@
   @media (max-width: 760px) {
     #top {
       min-height: 100vh;
-      /* Se quita por completo el "subir detrás del status bar": ya no
-         hay relleno nuestro ahí, solo queda el tinte nativo de iOS
-         (theme-color), que es lo más chico posible. */
-      min-height: calc(100lvh + 64px) !important;
+      /* El fondo del hero sube detrás del reloj/batería (como en la página
+         de ONPE que mandaste): el color de fondo se funde con esa franja,
+         dando la sensación de una sola pieza. Los íconos del sistema
+         (reloj, wifi, batería) los sigue dibujando iOS por encima. */
+      min-height: calc(100lvh + env(safe-area-inset-top, 0px) + 64px) !important;
+      margin-top: calc(-1 * env(safe-area-inset-top, 0px));
+      padding-top: env(safe-area-inset-top, 0px);
     }
+    /* El video NO sube detrás del status bar (ahí arriba el video muestra
+       otra parte de la escena, ramas/verde, que no combina). Sí sube el
+       fondo oscuro de la sección (#05080F, ya casi igual al theme-color),
+       que es lo que se funde con la franja del sistema. */
+    #heroVideo { top: env(safe-area-inset-top, 0px) !important; }
     /* El bloque de texto/botones queda muy centrado verticalmente ahora que
        el hero es más alto, dejando mucho espacio arriba. Lo subimos para
        que el botón y la flecha de scroll no queden tapados por la barra
@@ -580,7 +588,7 @@ class Component extends DCLogic {
   (function () {
     var meta = document.querySelector('meta[name="theme-color"]');
     if (!meta) return;
-    var TOP_COLOR = '#0B1A33';      // tono que se funde con el video del hero arriba
+    var TOP_COLOR = '#05080F';      // mismo color del fondo de la sección que sube detrás del status bar
     var SCROLLED_COLOR = '#081428'; // azul sólido del navbar al bajar
     var MENU_COLOR = '#081021';     // azul oscuro del menú (rayas) abierto
     var DESKTOP_COLOR = '#0A1426';  // color de marca, sin cambios en pantallas grandes
