@@ -23,6 +23,15 @@
        oscuro del menú. Forzamos la altura al maximo posible (lvh). */
     #vnMobileMenu { height: 100vh; height: 100lvh; }
   }
+  /* ── Cursor personalizado (solo en dispositivos con mouse real) ──── */
+  @media (hover: hover) and (pointer: fine) {
+    body { cursor: none; }
+    a, button, [role="button"] { cursor: none; }
+    #vCursorDot, #vCursorRing { position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none; border-radius: 50%; transform: translate(-50%, -50%); }
+    #vCursorDot { width: 6px; height: 6px; background: #1C6FE8; transition: opacity .2s ease; }
+    #vCursorRing { width: 34px; height: 34px; border: 1.5px solid rgba(28,111,232,0.55); transition: width .28s cubic-bezier(.16,1,.3,1), height .28s cubic-bezier(.16,1,.3,1), border-color .28s ease, opacity .2s ease; }
+    #vCursorRing.v-cursor-hover { width: 56px; height: 56px; border-color: rgba(28,111,232,0.9); background: rgba(28,111,232,0.08); }
+  }
 </style>
 </helmet>
 <nav style="{{ navStyle }}">
@@ -63,6 +72,9 @@
     <a href="{{ ml.href }}" onClick="{{ closeMenu }}" style="text-decoration:none; color:#fff; font-size:28px; font-weight:700; letter-spacing:-0.02em; padding:12px; font-family:'Plus Jakarta Sans',sans-serif;">{{ ml.label }}</a>
   </sc-for>
 </div>
+
+<div id="vCursorRing"></div>
+<div id="vCursorDot"></div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:66},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;inicio&quot;,&quot;productos&quot;,&quot;servicios&quot;,&quot;ubicaciones&quot;,&quot;portafolio&quot;,&quot;contacto&quot;],&quot;default&quot;:&quot;inicio&quot;},&quot;transparent&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false},&quot;topColor&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#0A1426&quot;}}">
 class Component extends DCLogic {
@@ -102,6 +114,47 @@ class Component extends DCLogic {
         window.scrollTo(0, 0);
       }
     }, 300);
+    this.initCustomCursor();
+  }
+
+  initCustomCursor() {
+    // Solo en dispositivos con mouse real (no celular/tablet táctil).
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    const dot = document.getElementById('vCursorDot');
+    const ring = document.getElementById('vCursorRing');
+    if (!dot || !ring) return;
+    let mx = window.innerWidth / 2, my = window.innerHeight / 2; // posición real del mouse
+    let rx = mx, ry = my; // posición del anillo (con "arrastre"/lag suave)
+    const onMove = (e) => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px';
+      dot.style.top = my + 'px';
+      dot.style.opacity = '1';
+      ring.style.opacity = '1';
+    };
+    document.addEventListener('mousemove', onMove, { passive: true });
+    // Esconder el cursor mientras está fuera de la ventana (p. ej. al
+    // pasar al menú del navegador), y mostrarlo de nuevo al volver.
+    document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
+    document.addEventListener('mouseenter', () => { dot.style.opacity = '1'; ring.style.opacity = '1'; });
+    // El anillo persigue al punto real con una pequeña inercia (lerp) —
+    // ese desfase suave es lo que da la sensación "premium".
+    const ease = () => {
+      rx += (mx - rx) * 0.18;
+      ry += (my - ry) * 0.18;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      this._cursorRAF = requestAnimationFrame(ease);
+    };
+    this._cursorRAF = requestAnimationFrame(ease);
+    // Crece sutilmente sobre cualquier elemento clicable.
+    const isInteractive = (el) => !!(el && el.closest && el.closest('a, button, [role="button"], input, textarea, select, [onclick], .v-prod-arrow'));
+    document.addEventListener('mouseover', (e) => {
+      if (isInteractive(e.target)) ring.classList.add('v-cursor-hover');
+    }, { passive: true });
+    document.addEventListener('mouseout', (e) => {
+      if (isInteractive(e.target)) ring.classList.remove('v-cursor-hover');
+    }, { passive: true });
   }
   applyThemeColor() {
     const topColor = this.props.topColor || '#05080F'; // color de marca por defecto; cada pagina puede pasar el tono de su propio hero
@@ -176,6 +229,7 @@ class Component extends DCLogic {
     }
   }
   componentWillUnmount() {
+    if (this._cursorRAF) cancelAnimationFrame(this._cursorRAF);
     window.removeEventListener('scroll', this.onScroll);
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
