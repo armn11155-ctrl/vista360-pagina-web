@@ -268,7 +268,7 @@
 
   <!-- ============ INTRO + STATS (headline left / stat grid right over photo) ============ -->
   <section style="position:relative; overflow:hidden; background:#05080F; margin-top:clamp(20px,3vw,40px);">
-    <img id="vParallaxImg" src="panels/unipolar.jpg" alt="Panel publicitario VISTA360 iluminado en Huánuco" style="position:absolute; left:0; right:0; top:-13%; height:126%; width:100%; object-fit:cover; filter:brightness(0.66) contrast(1.04) saturate(1.04); will-change:transform;" />
+    <img id="vParallaxImg" src="panels/unipolar.jpg" alt="Panel publicitario VISTA360 iluminado en Huánuco" style="position:absolute; left:0; right:0; top:-20%; height:140%; width:100%; object-fit:cover; filter:brightness(0.66) contrast(1.04) saturate(1.04); will-change:transform;" />
     <div style="position:absolute; inset:0; background:linear-gradient(105deg, rgba(5,8,15,0.6) 0%, rgba(5,8,15,0.34) 48%, rgba(5,8,15,0.5) 100%);"></div>
     <div style="position:absolute; top:-22%; right:-6%; width:480px; height:480px; max-width:70vw; border-radius:50%; background:radial-gradient(circle, rgba(28,111,232,0.3), transparent 64%); filter:blur(16px); pointer-events:none;"></div>
 
@@ -619,10 +619,18 @@ class Component extends DCLogic {
       if (img && section) {
         const rect = section.getBoundingClientRect();
         const vh = window.innerHeight || 1;
-        const span = vh / 2 + rect.height / 2;
-        let progress = (rect.top + rect.height / 2 - vh / 2) / (span || 1);
-        progress = Math.max(-1, Math.min(1, progress));
-        img.style.transform = 'translateY(' + (progress * 60) + 'px)';
+        // Estilo "motion effects" de Elementor: el desplazamiento crece de
+        // forma continua segun cuanto se ha scrolleado DENTRO de la
+        // seccion (no un rango fijo chico) -- se siente mas real/marcado,
+        // igual al de Global. distancia recorrida = desde que la seccion
+        // entra por abajo (rect.top = vh) hasta que sale por arriba
+        // (rect.top = -rect.height); el punto medio (rect.top centrado)
+        // es donde el desplazamiento es 0.
+        const traveled = vh - rect.top - rect.height / 2;
+        let offset = traveled * 0.18;
+        const maxOffset = rect.height * 0.18; // limite = el margen extra real de la imagen
+        offset = Math.max(-maxOffset, Math.min(maxOffset, offset));
+        img.style.transform = 'translateY(' + offset + 'px)';
       }
       requestAnimationFrame(loop);
     };
