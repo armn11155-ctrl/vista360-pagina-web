@@ -599,33 +599,34 @@ class Component extends DCLogic {
 
   initParallax() {
     // Efecto sutil: la foto de fondo se desplaza un poco mas lento que el
-    // resto de la pagina al hacer scroll (igual a lo que pidio el usuario).
-    // BUG FIX: el carrusel de productos vuelve a renderizar este componente
-    // cada ~4s (avance automatico) -- si guardamos la referencia a la
-    // imagen UNA sola vez, esa referencia puede quedar obsoleta despues de
-    // un re-render (apuntando a un nodo que ya no esta en pantalla), y el
-    // efecto deja de tener cualquier efecto visible. Por eso buscamos el
-    // elemento de nuevo en CADA scroll, en vez de guardarlo una sola vez.
-    let ticking = false;
-    const update = () => {
-      ticking = false;
+    // resto de la pagina al hacer scroll.
+    //
+    // CAMBIO DE ENFOQUE: la version anterior dependia de que el evento
+    // 'scroll' se disparara DESPUES de que el elemento ya existiera en la
+    // pagina real. Probe la formula en un DOM simulado y funciona sin
+    // errores -- asi que el problema esta en el momento/forma en que se
+    // conecta, no en el calculo. En vez de seguir adivinando esa parte,
+    // se cambia a un bucle de requestAnimationFrame que corre todo el
+    // tiempo: busca el elemento en CADA frame (no una sola vez), y en
+    // cuanto exista, empieza a aplicar el efecto -- sin depender de que
+    // ningun evento se dispare en un momento exacto.
+    let stopped = false;
+    this._parallaxCleanup = () => { stopped = true; };
+    const loop = () => {
+      if (stopped) return;
       const img = document.getElementById('vParallaxImg');
-      if (!img) return;
-      const section = img.closest('section');
-      if (!section) return;
-      const rect = section.getBoundingClientRect();
-      const vh = window.innerHeight || 1;
-      const span = vh / 2 + rect.height / 2;
-      let progress = (rect.top + rect.height / 2 - vh / 2) / (span || 1);
-      progress = Math.max(-1, Math.min(1, progress));
-      img.style.transform = 'translateY(' + (progress * 60) + 'px)';
+      const section = img && img.closest('section');
+      if (img && section) {
+        const rect = section.getBoundingClientRect();
+        const vh = window.innerHeight || 1;
+        const span = vh / 2 + rect.height / 2;
+        let progress = (rect.top + rect.height / 2 - vh / 2) / (span || 1);
+        progress = Math.max(-1, Math.min(1, progress));
+        img.style.transform = 'translateY(' + (progress * 60) + 'px)';
+      }
+      requestAnimationFrame(loop);
     };
-    const onScroll = () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    update();
-    this._parallaxCleanup = () => window.removeEventListener('scroll', onScroll);
+    requestAnimationFrame(loop);
   }
 
   componentWillUnmount() {
