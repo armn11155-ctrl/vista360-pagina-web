@@ -21,7 +21,7 @@
 <style>
   * { box-sizing: border-box; }
   html {  overscroll-behavior-y: contain; }
-  body { margin:0; background:transparent; color:#0E1A2E; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
+  body { margin:0; background:#ffffff; color:#0E1A2E; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
   /* FIX celular: el body es blanco y el footer oscuro; en iPhone, el rebote
      de scroll (bounce) y la barra de direcciones que se oculta/aparece
      dejan ver ese blanco justo debajo del footer. En iPad/laptop no pasa
@@ -93,7 +93,7 @@
 </style>
 </helmet>
 
-<div ref="{{ setRoot }}" style="position:relative; width:100%; overflow-x:hidden; background:transparent;">
+<div ref="{{ setRoot }}" style="position:relative; width:100%; overflow-x:hidden;">
 
   <dc-import name="SiteNav" active="servicios" transparent="{{ true }}" top-color="#05080F" hint-size="100%,66px"></dc-import>
 
