@@ -179,6 +179,12 @@
     .v-acc-more { opacity:1; transform:none; }
   }
   dc-import{display:block}
+  /* El "fondo fijo" (efecto de profundidad al scrollear) tiembla en
+     celular -- el navegador no lo repinta suave durante el scroll
+     tactil. Se activa solo en computadora (donde si se ve bien). */
+  @media (hover:hover) and (pointer:fine) {
+    .v-parallax-section { background-attachment:fixed; }
+  }
 </style>
 </helmet>
 
@@ -267,7 +273,7 @@
   </section>
 
   <!-- ============ INTRO + STATS (headline left / stat grid right over photo) ============ -->
-  <section style="position:relative; overflow:hidden; background-color:#05080F; background-image:url('panels/unipolar.jpg'); background-size:cover; background-position:center; background-attachment:fixed; margin-top:clamp(20px,3vw,40px);">
+  <section class="v-parallax-section" style="position:relative; overflow:hidden; background-color:#05080F; background-image:url('panels/unipolar.jpg'); background-size:cover; background-position:center; margin-top:clamp(20px,3vw,40px);">
     <div style="position:absolute; inset:0; background:linear-gradient(105deg, rgba(5,8,15,0.68) 0%, rgba(5,8,15,0.42) 48%, rgba(5,8,15,0.58) 100%);"></div>
     <div style="position:absolute; top:-22%; right:-6%; width:480px; height:480px; max-width:70vw; border-radius:50%; background:radial-gradient(circle, rgba(28,111,232,0.3), transparent 64%); filter:blur(16px); pointer-events:none;"></div>
 
