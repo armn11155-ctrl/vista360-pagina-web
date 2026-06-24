@@ -267,8 +267,8 @@
   </section>
 
   <!-- ============ INTRO + STATS (headline left / stat grid right over photo) ============ -->
-  <section style="position:relative; overflow:hidden; background:#05080F; margin-top:clamp(20px,3vw,40px);">
-    <div id="vParallaxImg" role="img" aria-label="Panel publicitario VISTA360 iluminado en Huánuco" style="position:absolute; left:0; right:0; top:-20%; height:140%; width:100%; background-image:url('panels/unipolar.jpg'); background-size:cover; background-position:center; filter:brightness(0.66) contrast(1.04) saturate(1.04); will-change:transform;"></div>
+  <section style="position:relative; overflow:hidden; contain:paint; background:#05080F; margin-top:clamp(20px,3vw,40px);">
+    <div id="vParallaxImg" role="img" aria-label="Panel publicitario VISTA360 iluminado en Huánuco" style="position:fixed; inset:0; z-index:0; background-image:url('panels/unipolar.jpg'); background-size:cover; background-position:center; filter:brightness(0.66) contrast(1.04) saturate(1.04);"></div>
     <div style="position:absolute; inset:0; background:linear-gradient(105deg, rgba(5,8,15,0.6) 0%, rgba(5,8,15,0.34) 48%, rgba(5,8,15,0.5) 100%);"></div>
     <div style="position:absolute; top:-22%; right:-6%; width:480px; height:480px; max-width:70vw; border-radius:50%; background:radial-gradient(circle, rgba(28,111,232,0.22), transparent 50%); pointer-events:none;"></div>
 
@@ -507,7 +507,6 @@ class Component extends DCLogic {
     // Carrusel de productos (móvil): avanza solo cada 5s. 4 = cantidad de
     // productos en productData (Murales/Unipolares/Tótems/LED).
     this.startProductTimer(4);
-    this.initParallax();
     const els = Array.from(root.querySelectorAll('[data-reveal]'));
     els.forEach((el) => {
       el.style.opacity = '0';
@@ -597,40 +596,12 @@ class Component extends DCLogic {
     }, 4100);
   }
 
-  initParallax() {
-    // transform:translate3d() via JS+RAF -- el navegador SOLO recompone
-    // una capa de GPU, nunca repinta nada. A diferencia de
-    // background-attachment:fixed (que SIEMPRE tiene que repintar la
-    // imagen de fondo en cada cuadro de scroll, sin excepcion, en
-    // cualquier navegador), esto no puede temblar -- es la unica forma
-    // de garantizar cero judder.
-    let stopped = false;
-    this._parallaxCleanup = () => { stopped = true; };
-    const loop = () => {
-      if (stopped) return;
-      const img = document.getElementById('vParallaxImg');
-      const section = img && img.closest('section');
-      if (img && section) {
-        const rect = section.getBoundingClientRect();
-        const vh = window.innerHeight || 1;
-        const traveled = vh - rect.top - rect.height / 2;
-        let offset = traveled * 0.18;
-        const maxOffset = rect.height * 0.18;
-        offset = Math.max(-maxOffset, Math.min(maxOffset, offset));
-        img.style.transform = 'translate3d(0,' + offset + 'px,0)';
-      }
-      requestAnimationFrame(loop);
-    };
-    requestAnimationFrame(loop);
-  }
-
   componentWillUnmount() {
     if (this.io) this.io.disconnect();
     if (this._heroVideoWatchdog) clearInterval(this._heroVideoWatchdog);
     if (this._netRAF) cancelAnimationFrame(this._netRAF);
     if (this._netRO) this._netRO.disconnect();
     if (this._carouselTimer) clearInterval(this._carouselTimer);
-    if (this._parallaxCleanup) this._parallaxCleanup();
   }
 
   renderVals() {
