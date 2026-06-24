@@ -10,6 +10,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
 <script src="./support.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 <x-dc>
@@ -138,6 +139,8 @@
 
             <!-- Campo trampa para bots: invisible para humanos -->
             <input type="text" id="v-hp" name="website" autocomplete="off" tabindex="-1" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" />
+
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAADqIxnZryQOUjZzt" data-action="turnstile-spin-v1" style="margin-bottom:16px;"></div>
 
             <p id="v-send-err" style="font-size:13px; color:#E0506A; margin:0 0 12px; display:none;">Ocurrió un error al enviar. Intenta de nuevo.</p>
 
@@ -311,28 +314,14 @@ class Component extends DCLogic {
     return valido;
   }
 
-  async _sendToFirebase(data) {
-    const PROJECT = 'base-de-datos-vista360';
-    const API_KEY = 'AIzaSyCklWQStUPElsRfKH3icUZht-R321zgZY8';
-    const url = 'https://firestore.googleapis.com/v1/projects/' + PROJECT + '/databases/(default)/documents/solicitudesWeb?key=' + API_KEY;
-    const body = {
-      fields: {
-        contacto:     { stringValue: data.contacto },
-        empresa:      { stringValue: data.empresa },
-        celular:      { stringValue: data.celular },
-        email:        { stringValue: data.email },
-        panelInteres: { stringValue: data.panelInteres },
-        notas:        { stringValue: data.notas },
-        tipo:         { stringValue: 'Prospecto' },
-        estado:       { stringValue: 'En contacto' },
-        origen:       { stringValue: 'web' },
-        hp:           { stringValue: data.hp || '' },
-        createdAt:    { timestampValue: new Date().toISOString() },
-        importado:    { booleanValue: false }
-      }
-    };
-    const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-    if (!res.ok) throw new Error('Firebase error ' + res.status);
+  async _sendToServer(data) {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || !json.success) throw new Error(json.error || ('server error ' + res.status));
   }
 
   componentDidMount() {
@@ -388,18 +377,27 @@ class Component extends DCLogic {
           return;
         }
 
+        const tokenInput = document.querySelector('input[name="cf-turnstile-response"]');
+        const token = tokenInput ? tokenInput.value : '';
+        if (!hp && !token) {
+          document.getElementById('v-send-err').textContent = 'Completa la verificación de seguridad antes de enviar.';
+          document.getElementById('v-send-err').style.display = 'block';
+          return;
+        }
+
         const btn = document.getElementById('v-submit-btn');
         btn.disabled = true; btn.textContent = 'Enviando…';
         document.getElementById('v-send-err').style.display = 'none';
         try {
-          await this._sendToFirebase({
+          await this._sendToServer({
             contacto:    document.getElementById('v-nombre').value.trim(),
             empresa:     document.getElementById('v-empresa').value.trim(),
             celular:     document.getElementById('v-celular').value.trim(),
             email:       document.getElementById('v-email').value.trim(),
             panelInteres: this._panelSel,
             notas:       document.getElementById('v-notas').value.trim(),
-            hp
+            hp,
+            token
           });
           localStorage.setItem('v360_last_send', String(Date.now()));
           this.setState({ sent: true });
@@ -407,6 +405,9 @@ class Component extends DCLogic {
           btn.disabled = false; btn.textContent = 'Enviar solicitud';
           document.getElementById('v-send-err').textContent = 'No se pudo conectar con el servidor. Revisa tu conexión e intenta de nuevo.';
           document.getElementById('v-send-err').style.display = 'block';
+          // Un token de Turnstile solo sirve una vez -- reiniciar el widget
+          // para que el usuario pueda reintentar con uno nuevo.
+          if (window.turnstile) window.turnstile.reset();
         }
       }
     };
