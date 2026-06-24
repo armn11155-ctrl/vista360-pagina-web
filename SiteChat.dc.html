@@ -7,7 +7,12 @@
   .v-wa-btn { transition: transform .25s ease; }
   .v-wa-btn:hover { transform: scale(1.08); }
   .v-shield-badge { transition: width .35s cubic-bezier(.16,1,.3,1); }
-  .v-shield-badge:hover, .v-shield-badge.v-shield-open { width: 264px; }
+  .v-shield-badge:hover { width: 264px; }
+  /* Solo computadora: en celular no existe el "cursor" que activa el hover,
+     y el usuario pidió que esto sea exclusivo de la version web. */
+  @media (max-width: 760px) {
+    .v-shield-badge { display: none; }
+  }
 </style>
 <script src="./support.js"></script>
 </head>
@@ -17,11 +22,11 @@
   <svg width="32" height="32" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-2.9.76.78-2.83-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-5.7c-.25-.13-1.46-.72-1.69-.8-.22-.09-.39-.13-.55.12-.16.25-.63.8-.77.96-.14.16-.28.18-.52.06-.72-.3-1.42-.73-2-1.42-.46-.51-.77-1.05-1.06-1.74-.13-.25 0-.4.11-.52l.4-.42c.12-.13.16-.22.24-.37.08-.16.04-.3-.02-.42-.06-.13-.55-1.32-.75-1.8-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.31-.22.25-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.46-.6 1.66-1.18.2-.58.2-1.07.14-1.18-.06-.1-.22-.16-.46-.28z"></path></svg>
 </a>
 
-<!-- Sello fijo "Protegido por Cloudflare" -- esquina INFERIOR izquierda,
-     pegado al borde de la pantalla (sin margen), igual a la referencia.
-     Funciona con mouse (CSS :hover) Y con toque en celular (JS, ya que
-     :hover no aplica de forma confiable en pantallas tactiles). -->
-<div id="vShieldBadge" aria-label="Protegido por Cloudflare" class="v-shield-badge" style="position:fixed; left:0; bottom:0; z-index:300; display:flex; align-items:center; height:54px; padding:0; border-radius:0 10px 0 0; background:#1C6FE8; box-shadow:0 8px 24px -6px rgba(28,111,232,0.55); overflow:hidden; width:54px; box-sizing:border-box; cursor:pointer;">
+<!-- Sello fijo "Protegido por Cloudflare" -- SOLO en computadora (oculto en
+     celular por CSS, ver media query arriba). Esquina inferior izquierda,
+     pegado al borde lateral, un poco mas arriba que el piso de la pantalla.
+     Se expande con el mouse (CSS :hover). -->
+<div id="vShieldBadge" aria-label="Protegido por Cloudflare" class="v-shield-badge" style="position:fixed; left:0; bottom:30px; z-index:300; display:flex; align-items:center; height:54px; padding:0; border-radius:0 10px 10px 0; background:#1C6FE8; box-shadow:0 8px 24px -6px rgba(28,111,232,0.55); overflow:hidden; width:54px; box-sizing:border-box; cursor:default;">
   <span style="width:54px; height:54px; min-width:54px; background:#fff; display:flex; align-items:center; justify-content:center;">
     <svg width="34" height="22" viewBox="0 -70 256 256" xmlns="http://www.w3.org/2000/svg">
       <path d="M202.3569,50.394 L197.0459,48.27 C172.0849,104.434 72.7859,70.289 66.8109,86.997 C65.8149,98.283 121.0379,89.143 160.5169,91.056 C172.5559,91.639 178.5929,100.727 173.4809,115.54 L183.5499,115.571 C195.1649,79.362 232.2329,97.841 233.7819,85.891 C231.2369,78.034 191.1809,85.891 202.3569,50.394 Z" fill="#FFFFFF"></path>
@@ -34,19 +39,6 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:100,&quot;height&quot;:100},&quot;phone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;51999000000&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;message&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Hola VISTA360, me gustaría recibir información.&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
-  componentDidMount() {
-    // En celular no existe el "hover" del mouse -- hay que tocar. Cada
-    // toque abre o cierra el sello (afuera tambien lo cierra).
-    const badge = document.getElementById('vShieldBadge');
-    if (!badge) return;
-    badge.addEventListener('click', (e) => {
-      e.stopPropagation();
-      badge.classList.toggle('v-shield-open');
-    });
-    document.addEventListener('click', (e) => {
-      if (!badge.contains(e.target)) badge.classList.remove('v-shield-open');
-    });
-  }
   renderVals() {
     const phone = this.props.phone ?? '51999000000';
     const text = this.props.message ?? 'Hola VISTA360, me gustaría recibir información.';
