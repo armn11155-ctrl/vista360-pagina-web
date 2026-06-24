@@ -600,22 +600,26 @@ class Component extends DCLogic {
   initParallax() {
     // Efecto sutil: la foto de fondo se desplaza un poco mas lento que el
     // resto de la pagina al hacer scroll (igual a lo que pidio el usuario).
-    // Con requestAnimationFrame + listener pasivo, no debería pesar nada;
-    // ademas, con prefers-reduced-motion respetamos esa preferencia.
-    const img = document.getElementById('vParallaxImg');
-    if (!img) return;
+    // BUG FIX: el carrusel de productos vuelve a renderizar este componente
+    // cada ~4s (avance automatico) -- si guardamos la referencia a la
+    // imagen UNA sola vez, esa referencia puede quedar obsoleta despues de
+    // un re-render (apuntando a un nodo que ya no esta en pantalla), y el
+    // efecto deja de tener cualquier efecto visible. Por eso buscamos el
+    // elemento de nuevo en CADA scroll, en vez de guardarlo una sola vez.
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const section = img.closest('section');
-    if (!section) return;
     let ticking = false;
     const update = () => {
+      ticking = false;
+      const img = document.getElementById('vParallaxImg');
+      if (!img) return;
+      const section = img.closest('section');
+      if (!section) return;
       const rect = section.getBoundingClientRect();
       const vh = window.innerHeight || 1;
       const span = vh / 2 + rect.height / 2;
       let progress = (rect.top + rect.height / 2 - vh / 2) / (span || 1);
       progress = Math.max(-1, Math.min(1, progress));
       img.style.transform = 'translateY(' + (progress * 38) + 'px)';
-      ticking = false;
     };
     const onScroll = () => {
       if (!ticking) { ticking = true; requestAnimationFrame(update); }
