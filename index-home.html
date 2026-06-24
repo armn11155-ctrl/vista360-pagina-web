@@ -179,12 +179,6 @@
     .v-acc-more { opacity:1; transform:none; }
   }
   dc-import{display:block}
-  /* El "fondo fijo" (efecto de profundidad al scrollear) tiembla en
-     celular -- el navegador no lo repinta suave durante el scroll
-     tactil. Se activa solo en computadora (donde si se ve bien). */
-  @media (hover:hover) and (pointer:fine) {
-    .v-parallax-section { background-attachment:fixed; }
-  }
 </style>
 </helmet>
 
@@ -273,8 +267,9 @@
   </section>
 
   <!-- ============ INTRO + STATS (headline left / stat grid right over photo) ============ -->
-  <section class="v-parallax-section" style="position:relative; overflow:hidden; background-color:#05080F; background-image:url('panels/unipolar.jpg'); background-size:cover; background-position:center; margin-top:clamp(20px,3vw,40px);">
-    <div style="position:absolute; inset:0; background:linear-gradient(105deg, rgba(5,8,15,0.68) 0%, rgba(5,8,15,0.42) 48%, rgba(5,8,15,0.58) 100%);"></div>
+  <section style="position:relative; overflow:hidden; background:#05080F; margin-top:clamp(20px,3vw,40px);">
+    <img id="vParallaxImg" src="panels/unipolar.jpg" alt="Panel publicitario VISTA360 iluminado en Huánuco" style="position:absolute; left:0; right:0; top:-20%; height:140%; width:100%; object-fit:cover; filter:brightness(0.66) contrast(1.04) saturate(1.04); will-change:transform; transform:translateZ(0);" />
+    <div style="position:absolute; inset:0; background:linear-gradient(105deg, rgba(5,8,15,0.6) 0%, rgba(5,8,15,0.34) 48%, rgba(5,8,15,0.5) 100%);"></div>
     <div style="position:absolute; top:-22%; right:-6%; width:480px; height:480px; max-width:70vw; border-radius:50%; background:radial-gradient(circle, rgba(28,111,232,0.3), transparent 64%); filter:blur(16px); pointer-events:none;"></div>
 
     <div class="v-intro" data-reveal style="position:relative; z-index:2; max-width:1280px; margin:0 auto; padding:clamp(56px,7vw,104px) clamp(20px,5vw,40px);">
@@ -512,6 +507,7 @@ class Component extends DCLogic {
     // Carrusel de productos (móvil): avanza solo cada 5s. 4 = cantidad de
     // productos en productData (Murales/Unipolares/Tótems/LED).
     this.startProductTimer(4);
+    this.initParallax();
     const els = Array.from(root.querySelectorAll('[data-reveal]'));
     els.forEach((el) => {
       el.style.opacity = '0';
@@ -601,12 +597,42 @@ class Component extends DCLogic {
     }, 4100);
   }
 
+  initParallax() {
+    // transform:translateY() via JS+RAF -- el navegador solo recompone
+    // (capa de GPU), no repinta en cada cuadro como background-attachment:
+    // fixed (esa tecnica es la que causaba el tembleque, incluso en
+    // computadora). Bucle continuo: busca el elemento en cada cuadro, sin
+    // depender de ningun evento puntual.
+    let stopped = false;
+    this._parallaxCleanup = () => { stopped = true; };
+    const loop = () => {
+      if (stopped) return;
+      const img = document.getElementById('vParallaxImg');
+      const section = img && img.closest('section');
+      if (img && section) {
+        const rect = section.getBoundingClientRect();
+        const vh = window.innerHeight || 1;
+        // Estilo "motion effects" de Elementor: el desplazamiento crece de
+        // forma continua segun cuanto se ha scrolleado dentro de la
+        // seccion (no un rango fijo chico) -- se siente mas marcado.
+        const traveled = vh - rect.top - rect.height / 2;
+        let offset = traveled * 0.18;
+        const maxOffset = rect.height * 0.18; // limite = el margen extra real de la imagen
+        offset = Math.max(-maxOffset, Math.min(maxOffset, offset));
+        img.style.transform = 'translate3d(0,' + offset + 'px,0)';
+      }
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+  }
+
   componentWillUnmount() {
     if (this.io) this.io.disconnect();
     if (this._heroVideoWatchdog) clearInterval(this._heroVideoWatchdog);
     if (this._netRAF) cancelAnimationFrame(this._netRAF);
     if (this._netRO) this._netRO.disconnect();
     if (this._carouselTimer) clearInterval(this._carouselTimer);
+    if (this._parallaxCleanup) this._parallaxCleanup();
   }
 
   renderVals() {
