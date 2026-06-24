@@ -121,25 +121,38 @@
   .v-acc-panel:hover .v-acc-more, .v-acc-open .v-acc-more { opacity:1; transform:none; }
   .v-prod-grid { display:none; }
   /* Proporción fija (en vez de una altura calculada con vw): así el
-     recorte de la foto es razonable sea cual sea el ancho de pantalla,
-     en vez de quedar una tira angosta cuando el carrusel es muy ancho. */
+     recorte de la foto es razonable sea cual sea el ancho de pantalla. */
   .v-prod-card { position:relative; display:block; overflow:hidden; border-radius:22px; text-decoration:none; aspect-ratio:4/3; height:auto; box-shadow:0 22px 50px -34px rgba(14,26,46,0.5); }
+  .v-prod-card img { display:block; transition:transform .7s cubic-bezier(.16,1,.3,1); will-change:transform; }
+  .v-prod-card:hover img { transform:scale(1.07); }
   .v-prod-carousel { display:block; position:relative; }
+  .v-prod-stage { display:flex; align-items:center; justify-content:center; gap:0; position:relative; }
+  .v-prod-center { flex:1 1 auto; min-width:0; }
+  .v-prod-peek { display:none; } /* oculto en móvil, solo en computadora (ver abajo) */
+  .v-prod-info { padding-top:22px; }
   @media (max-width:760px){
-    /* Solo en móvil: de borde a borde de la pantalla, sin esquinas. */
-    .v-prod-carousel { margin-left:calc(-1 * clamp(16px,4vw,40px)); margin-right:calc(-1 * clamp(16px,4vw,40px)); }
-    .v-prod-carousel .v-prod-card { border-radius:0; aspect-ratio:1/1; }
+    /* Solo en móvil: la foto de borde a borde de la pantalla, sin esquinas. */
+    .v-prod-stage { margin-left:calc(-1 * clamp(16px,4vw,40px)); margin-right:calc(-1 * clamp(16px,4vw,40px)); }
+    .v-prod-stage .v-prod-card { border-radius:0; aspect-ratio:1/1; }
   }
   @media (min-width:761px){
-    /* En computadora: no de borde a borde -- un ancho razonable y centrado,
-       para que la proporción no quede demasiado panorámica/recortada. */
-    .v-prod-carousel { max-width:920px; margin-left:auto; margin-right:auto; }
+    /* En computadora: efecto "rueda" -- se ve un pedacito de la foto
+       anterior/siguiente a los costados (clicable), la actual al centro.
+       Las flechas se ocultan porque los peeks ya cumplen esa función. */
+    .v-prod-carousel { max-width:1100px; margin-left:auto; margin-right:auto; }
+    .v-prod-stage { gap:18px; }
+    .v-prod-center { max-width:680px; }
+    .v-prod-peek {
+      display:block; flex:0 0 15%; aspect-ratio:4/3; border-radius:16px; overflow:hidden;
+      border:none; padding:0; background:none; cursor:pointer;
+      opacity:.45; transform:scale(.9);
+      transition:opacity .3s ease, transform .3s ease;
+    }
+    .v-prod-peek:hover { opacity:.8; transform:scale(.96); }
+    .v-prod-arrow { display:none; }
   }
-  .v-prod-card img { transition:transform .7s cubic-bezier(.16,1,.3,1); will-change:transform; }
-  .v-prod-card:hover img { transform:scale(1.07); }
-  .v-prod-card .v-prod-cta { transition:gap .3s cubic-bezier(.16,1,.3,1); }
-  .v-prod-card:hover .v-prod-cta { gap:14px; }
-  /* ── Carrusel de productos (todas las pantallas) ─────────────────── */
+  .v-prod-peek img { width:100%; height:100%; object-fit:cover; display:block; }
+  /* ── Flechas (solo móvil; en computadora los peeks reemplazan esta función) ── */
   .v-prod-arrow {
     position:absolute; top:50%; transform:translateY(-50%); z-index:2;
     border:none; background:none; padding:16px; margin:0; cursor:pointer;
@@ -345,26 +358,34 @@
         </sc-for>
       </div>
 
-      <!-- Carrusel: solo visible en móvil (ver media query). Un producto a
-           la vez (Murales / Unipolares / Tótems / LED), con flechas para
-           girar. Los puntos se generan como un solo nodo en JS para no
-           depender de bindings nuevos en la plantilla. -->
+      <!-- Carrusel "rueda": el producto actual al centro, sin sombra/
+           degradado encima -- se ve la foto en su color real. A los
+           costados, un pedacito de la foto anterior/siguiente (clicable)
+           para sugerir que esto gira como una rueda. El texto ya no va
+           encima de la foto: vive debajo, en su propio espacio. -->
       <div data-reveal class="v-prod-carousel">
-        <a href="soluciones.html" class="v-prod-card" style="display:block;">
-          {{ currentProduct.imgNode }}
-          <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,16,28,0.15) 0%, rgba(8,16,28,0.05) 38%, rgba(8,16,28,0.82) 100%);"></div>
-          <div style="position:absolute; left:0; right:0; bottom:0; padding:clamp(22px,2.2vw,30px);">
-            <h3 style="font-size:clamp(21px,2vw,26px); font-weight:800; letter-spacing:-0.02em; line-height:1.1; color:#fff; margin:0 0 8px; text-shadow:0 8px 28px rgba(0,0,0,0.5);">{{ currentProduct.title }}</h3>
-            <p style="font-size:14px; line-height:1.5; color:rgba(255,255,255,0.84); margin:0 0 16px;">{{ currentProduct.desc }}</p>
-            <span class="v-prod-cta" style="display:inline-flex; align-items:center; gap:8px; color:#fff; font-size:14px; font-weight:700;">Ver producto <span style="font-size:16px;">&rarr;</span></span>
-          </div>
-        </a>
-        <button type="button" class="v-prod-arrow v-prod-arrow--left" aria-label="Producto anterior" onClick="{{ prevProduct }}">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg>
-        </button>
-        <button type="button" class="v-prod-arrow v-prod-arrow--right" aria-label="Producto siguiente" onClick="{{ nextProduct }}">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg>
-        </button>
+        <div class="v-prod-stage">
+          <button type="button" class="v-prod-peek" aria-label="Producto anterior" onClick="{{ prevProduct }}">
+            {{ prevPeekImg }}
+          </button>
+          <a href="soluciones.html" class="v-prod-card v-prod-center">
+            {{ currentProduct.imgNode }}
+          </a>
+          <button type="button" class="v-prod-peek" aria-label="Producto siguiente" onClick="{{ nextProduct }}">
+            {{ nextPeekImg }}
+          </button>
+          <button type="button" class="v-prod-arrow v-prod-arrow--left" aria-label="Producto anterior" onClick="{{ prevProduct }}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg>
+          </button>
+          <button type="button" class="v-prod-arrow v-prod-arrow--right" aria-label="Producto siguiente" onClick="{{ nextProduct }}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg>
+          </button>
+        </div>
+        <div class="v-prod-info">
+          <h3 style="font-size:clamp(21px,2vw,26px); font-weight:800; letter-spacing:-0.02em; line-height:1.1; color:#0E1A2E; margin:0 0 8px;">{{ currentProduct.title }}</h3>
+          <p style="font-size:14px; line-height:1.5; color:#5B6678; margin:0 0 14px; max-width:520px;">{{ currentProduct.desc }}</p>
+          <a href="soluciones.html" style="display:inline-flex; align-items:center; gap:8px; color:#1C6FE8; font-size:14px; font-weight:700; text-decoration:none;">Ver producto <span style="font-size:16px;">&rarr;</span></a>
+        </div>
         {{ productDotsNode }}
       </div>
     </div>
@@ -663,6 +684,11 @@ class Component extends DCLogic {
       }))
     );
     const currentProduct = { title: cp.title, desc: cp.desc, imgNode: productStackNode };
+    // Imágenes "peek" a los costados (anterior/siguiente) -- efecto rueda.
+    const prevIdx = (productIndex - 1 + productCount) % productCount;
+    const nextIdx = (productIndex + 1) % productCount;
+    const prevPeekImg = React.createElement('img', { src: productData[prevIdx].img, alt: productData[prevIdx].title, style: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: productData[prevIdx].objPos || 'center', display: 'block' } });
+    const nextPeekImg = React.createElement('img', { src: productData[nextIdx].img, alt: productData[nextIdx].title, style: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: productData[nextIdx].objPos || 'center', display: 'block' } });
     // Los puntos se construyen como UN solo nodo React (no via <sc-for> +
     // clase dinamica en la plantilla) para mantenerse dentro de patrones
     // ya probados en este archivo.
@@ -700,6 +726,8 @@ class Component extends DCLogic {
       news: products,
       products: products,
       currentProduct: currentProduct,
+      prevPeekImg: prevPeekImg,
+      nextPeekImg: nextPeekImg,
       productDotsNode: productDotsNode,
       nextProduct: nextProduct,
       prevProduct: prevProduct,
