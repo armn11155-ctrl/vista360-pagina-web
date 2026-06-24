@@ -10,7 +10,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
 <script src="./support.js"></script>
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 </head>
 <body>
 <x-dc>
@@ -344,6 +344,24 @@ class Component extends DCLogic {
       }
     }
     setTimeout(() => { this.setFaq(this._openFaq, true); this._initPanelBtns(); this._initFieldClearing(); }, 80);
+    this._renderTurnstile();
+  }
+
+  _renderTurnstile() {
+    // BUG FIX: el formulario (y el div .cf-turnstile dentro de el) se
+    // renderiza dinamicamente con JS. El escaneo automatico del script de
+    // Turnstile puede correr ANTES de que ese div exista todavia en el DOM,
+    // asi que nunca lo encuentra y el widget nunca aparece. Lo dibujamos a
+    // mano aqui, reintentando hasta que la libreria de Turnstile (cargada
+    // con async/defer) este lista.
+    const el = document.querySelector('.cf-turnstile');
+    if (!el) { setTimeout(() => this._renderTurnstile(), 200); return; }
+    if (!window.turnstile) { setTimeout(() => this._renderTurnstile(), 200); return; }
+    if (el.childElementCount > 0) return; // ya esta dibujado
+    this._turnstileWidgetId = window.turnstile.render(el, {
+      sitekey: '0x4AAAAAADqIxnZryQOUjZzt',
+      action: 'turnstile-spin-v1'
+    });
   }
   componentWillUnmount() { if (this.io) this.io.disconnect(); }
 
@@ -407,7 +425,7 @@ class Component extends DCLogic {
           document.getElementById('v-send-err').style.display = 'block';
           // Un token de Turnstile solo sirve una vez -- reiniciar el widget
           // para que el usuario pueda reintentar con uno nuevo.
-          if (window.turnstile) window.turnstile.reset();
+          if (window.turnstile) window.turnstile.reset(this._turnstileWidgetId);
         }
       }
     };
