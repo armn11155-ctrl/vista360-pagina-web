@@ -58,49 +58,48 @@
   .v-sgrid { display:grid; grid-template-columns:1fr; gap:clamp(14px,1.4vw,20px); }
   @media (min-width:640px){ .v-sgrid { grid-template-columns:1fr 1fr; } }
   @media (min-width:1040px){ .v-sgrid { grid-template-columns:repeat(3,1fr); } }
-  .v-uscard { position:relative; overflow:hidden; display:flex; flex-direction:column; text-align:left; text-decoration:none; min-height:clamp(260px,24vw,300px); padding:clamp(30px,2.8vw,40px) clamp(28px,2.6vw,38px) clamp(26px,2.4vw,34px); background:#ffffff; border:1px solid #EAEEF5; border-radius:20px; transition:transform .55s cubic-bezier(.16,1,.3,1), box-shadow .55s ease, border-color .5s ease, background .5s ease; }
-  .v-uscard::after { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:linear-gradient(180deg,#1C6FE8,#56A2FF); transform:scaleY(0); transform-origin:top; transition:transform .55s cubic-bezier(.16,1,.3,1); border-radius:3px; }
-  .v-uscard:hover { transform:translateY(-6px); box-shadow:0 38px 70px -44px rgba(14,26,46,0.5); border-color:#D4E2FA; }
+  .v-uscard { position:relative; overflow:hidden; display:flex; flex-direction:column; text-align:left; text-decoration:none; min-height:clamp(260px,24vw,300px); padding:clamp(30px,2.8vw,40px) clamp(28px,2.6vw,38px) clamp(26px,2.4vw,34px); background:linear-gradient(160deg,#102A52 0%,#0B1E3C 100%); border:1px solid rgba(255,255,255,0.08); border-radius:20px; box-shadow:0 24px 50px -38px rgba(7,16,32,0.7); transition:transform .55s cubic-bezier(.16,1,.3,1), box-shadow .55s ease, border-color .5s ease; }
+  .v-uscard::after { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:linear-gradient(180deg,#56A2FF,#7FB0FF); transform:scaleY(0); transform-origin:top; transition:transform .55s cubic-bezier(.16,1,.3,1); border-radius:3px; }
+  .v-uscard:hover { transform:translateY(-6px); box-shadow:0 44px 80px -40px rgba(7,16,32,0.85); border-color:rgba(127,176,255,0.4); }
   .v-uscard:hover::after { transform:scaleY(1); }
   .v-us-top { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:clamp(22px,2.2vw,30px); }
-  .v-us-chip { position:relative; z-index:1; width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:#F4F8FE; border:1px solid #E2ECFB; transition:transform .5s cubic-bezier(.16,1,.3,1), background .45s ease, border-color .45s ease; }
-  .v-uscard:hover .v-us-chip { transform:translateY(-2px); background:#1C6FE8; border-color:#1C6FE8; }
-  .v-us-chip svg { stroke:#1C6FE8; transition:stroke .45s ease; }
-  .v-uscard:hover .v-us-chip svg { stroke:#ffffff; }
-  .v-us-idx { font-size:13px; font-weight:700; letter-spacing:0.04em; color:#C2CBDA; font-variant-numeric:tabular-nums; transition:color .45s ease; }
-  .v-uscard:hover .v-us-idx { color:#1C6FE8; }
+  .v-us-chip { position:relative; z-index:1; width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:rgba(127,176,255,0.12); border:1px solid rgba(127,176,255,0.22); transition:transform .5s cubic-bezier(.16,1,.3,1), background .45s ease, border-color .45s ease; }
+  .v-uscard:hover .v-us-chip { transform:translateY(-2px); background:#56A2FF; border-color:#56A2FF; }
+  .v-us-chip svg { stroke:#9FC4FF; transition:stroke .45s ease; }
+  .v-uscard:hover .v-us-chip svg { stroke:#0B1E3C; }
+  .v-us-idx { font-size:13px; font-weight:700; letter-spacing:0.04em; color:#F5F0E4; opacity:0.85; font-variant-numeric:tabular-nums; transition:opacity .45s ease; }
+  .v-uscard:hover .v-us-idx { opacity:1; }
+  .v-uscard h3 { color:#FFFFFF !important; }
+  .v-uscard p { color:rgba(226,235,250,0.74) !important; }
   .v-uscard h3, .v-uscard p { position:relative; z-index:1; }
-  .v-us-spot { position:absolute; inset:0; z-index:0; opacity:0; pointer-events:none; transition:opacity .45s ease; background:radial-gradient(300px circle at var(--mx,50%) var(--my,0%), rgba(28,111,232,0.07), transparent 60%); }
+  .v-us-spot { position:absolute; inset:0; z-index:0; opacity:0; pointer-events:none; transition:opacity .45s ease; background:radial-gradient(320px circle at var(--mx,50%) var(--my,0%), rgba(127,176,255,0.16), transparent 60%); }
   .v-uscard:hover .v-us-spot { opacity:1; }
-  .v-us-cta { position:relative; z-index:1; margin-top:auto; padding-top:clamp(18px,1.8vw,24px); display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#1C6FE8; transition:gap .35s ease; }
+  .v-us-cta { position:relative; z-index:1; margin-top:auto; padding-top:clamp(18px,1.8vw,24px); display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#7FB0FF; transition:gap .35s ease; }
   .v-uscard:hover .v-us-cta { gap:12px; }
-  .v-us-soon { position:absolute; top:20px; right:20px; z-index:2; padding:5px 11px; border-radius:999px; background:#EAF1FE; color:#1C6FE8; font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; }
+  .v-us-soon { position:absolute; top:20px; right:20px; z-index:2; padding:5px 11px; border-radius:999px; background:rgba(127,176,255,0.16); color:#9FC4FF; font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; }
   @media (min-width:1040px){ .v-soon-center { grid-column:2; } }
 
-  /* ---------- PROCESO MÉTODO (rail + card + imagen) ---------- */
-  .v-proc { position:relative; }
-  .v-proc-row { display:grid; grid-template-columns:1fr; gap:clamp(16px,3vw,24px); align-items:start; padding-bottom:clamp(44px,5.5vw,72px); }
-  .v-proc-row:last-child { padding-bottom:0; }
-  @media (min-width:920px){
-    .v-proc-row { grid-template-columns:74px minmax(0,0.95fr) minmax(0,1.08fr); gap:clamp(24px,2.6vw,44px); align-items:stretch; padding-bottom:0; }
-    .v-proc-card, .v-proc-imgwrap { padding-bottom:clamp(40px,5vw,72px); }
-    .v-proc-row:last-child .v-proc-card, .v-proc-row:last-child .v-proc-imgwrap { padding-bottom:0; }
+  /* ---------- MÉTODO (timeline horizontal, fondo oscuro) ---------- */
+  .v-method { display:grid; grid-template-columns:1fr; gap:clamp(16px,1.6vw,22px); counter-reset:step; }
+  @media (min-width:680px){ .v-method { grid-template-columns:1fr 1fr; } }
+  @media (min-width:1040px){ .v-method { grid-template-columns:repeat(4,1fr); } }
+  .v-mstep { position:relative; display:flex; flex-direction:column; padding:clamp(28px,2.4vw,34px) clamp(24px,2vw,28px) clamp(28px,2.4vw,32px); background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.09); border-radius:18px; transition:transform .5s cubic-bezier(.16,1,.3,1), background .45s ease, border-color .45s ease; }
+  .v-mstep:hover { transform:translateY(-6px); background:rgba(86,162,255,0.07); border-color:rgba(127,176,255,0.32); }
+  .v-mstep__num { font-size:13px; font-weight:700; letter-spacing:0.12em; color:#7FB0FF; font-variant-numeric:tabular-nums; margin-bottom:clamp(20px,2vw,26px); }
+  .v-mstep__ico { width:50px; height:50px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:rgba(127,176,255,0.12); border:1px solid rgba(127,176,255,0.22); margin-bottom:clamp(18px,1.8vw,22px); transition:background .45s ease, border-color .45s ease; }
+  .v-mstep:hover .v-mstep__ico { background:#56A2FF; border-color:#56A2FF; }
+  .v-mstep__ico svg { stroke:#9FC4FF; transition:stroke .45s ease; }
+  .v-mstep:hover .v-mstep__ico svg { stroke:#0B1E3C; }
+  .v-mstep__title { font-size:clamp(18px,1.5vw,21px); font-weight:800; letter-spacing:-0.02em; color:#fff; margin:0 0 10px; }
+  .v-mstep__desc { font-size:14.5px; line-height:1.6; color:rgba(226,235,250,0.66); margin:0 0 20px; }
+  .v-mstep__list { display:flex; flex-direction:column; gap:10px; margin-top:auto; }
+  .v-mstep__li { display:flex; align-items:flex-start; gap:9px; font-size:13.5px; line-height:1.4; font-weight:500; color:rgba(226,235,250,0.82); }
+  .v-mstep__dot { flex-shrink:0; width:18px; height:18px; border-radius:50%; background:rgba(127,176,255,0.16); display:flex; align-items:center; justify-content:center; margin-top:1px; }
+  .v-mstep__dot svg { stroke:#7FB0FF; }
+  /* conector entre pasos en desktop */
+  @media (min-width:1040px){
+    .v-mstep:not(:last-child)::after { content:""; position:absolute; top:clamp(46px,4vw,52px); right:-12px; width:12px; height:1px; background:linear-gradient(90deg,rgba(127,176,255,0.5),transparent); z-index:1; }
   }
-  .v-proc-rail { position:relative; }
-  .v-proc-node { width:56px; height:56px; border-radius:50%; background:#0E2A55; color:#fff; display:flex; align-items:center; justify-content:center; font-size:19px; font-weight:800; letter-spacing:-0.01em; border:5px solid #fff; box-shadow:0 16px 30px -16px rgba(14,42,85,0.55); position:relative; z-index:2; transition:transform .4s cubic-bezier(.16,1,.3,1), background .35s ease; }
-  .v-proc-line { display:none; }
-  @media (min-width:920px){
-    .v-proc-rail { align-self:stretch; }
-    .v-proc-node { position:absolute; left:50%; top:0; transform:translateX(-50%); }
-    .v-proc-row:hover .v-proc-node { transform:translateX(-50%) scale(1.06); background:#1C6FE8; }
-    .v-proc-line { display:block; position:absolute; left:50%; transform:translateX(-50%); top:30px; bottom:0; width:1.5px; background:linear-gradient(180deg,#1C6FE8 0%, rgba(28,111,232,0.18) 100%); }
-  }
-  .v-proc-card { display:flex; flex-direction:column; }
-  .v-proc-chip { width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:#F4F8FE; border:1px solid #E2ECFB; margin-bottom:20px; }
-  .v-proc-imgwrap { display:flex; }
-  .v-proc-img { width:100%; height:100%; min-height:clamp(230px,25vw,320px); object-fit:cover; border-radius:20px; box-shadow:0 30px 64px -38px rgba(14,26,46,0.45); display:block; }
-  .v-proc-check { display:flex; align-items:center; gap:11px; font-size:15px; font-weight:500; color:#41495A; }
-  .v-proc-checkdot { flex-shrink:0; width:20px; height:20px; border-radius:50%; background:#1C6FE8; display:flex; align-items:center; justify-content:center; }
 
   /* ---------- CONTACT FORM (sobre imagen) ---------- */
   .v-cform-2 { display:grid; grid-template-columns:1fr; gap:clamp(14px,1.6vw,20px); }
@@ -272,79 +271,68 @@
     </div>
   </section>
 
-  <!-- ============ PROCESO (método: rail + card + imagen) ============ -->
-  <section style="background:#ffffff; padding:clamp(30px,4vw,50px) clamp(16px,4vw,40px) clamp(56px,7.5vw,104px);">
-    <div style="max-width:1280px; margin:0 auto;">
-      <div data-reveal style="max-width:700px; margin:0 0 clamp(44px,5vw,72px);">
-        <div style="display:inline-flex; align-items:center; gap:12px; margin-bottom:20px;"><span style="width:26px; height:2px; background:#1C6FE8; border-radius:2px;"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#1C6FE8;">Nuestro método</span></div>
-        <h2 style="font-size:clamp(28px,3.5vw,46px); font-weight:800; letter-spacing:-0.035em; line-height:1.02; color:#0E1A2E; margin:0 0 20px;">De la estrategia a la <span style="color:#1C6FE8;">presencia</span> en calle<span style="color:#1C6FE8;">.</span></h2>
-        <p style="font-size:clamp(15px,1.3vw,18px); line-height:1.6; color:#6E6E7A; margin:0; max-width:470px;">Un método claro para llevar tu marca a los puntos donde realmente importa.</p>
+  <!-- ============ MÉTODO (timeline de 4 pasos, fondo oscuro) ============ -->
+  <section style="position:relative; overflow:hidden; background:linear-gradient(180deg,#0A1428 0%,#0B1E3C 100%); padding:clamp(64px,8vw,116px) clamp(16px,4vw,40px) clamp(72px,9vw,120px);">
+    <div style="position:absolute; top:-15%; right:-6%; width:560px; height:560px; max-width:80vw; border-radius:50%; background:radial-gradient(circle, rgba(28,111,232,0.18), transparent 65%); filter:blur(20px); pointer-events:none;"></div>
+    <div style="position:relative; z-index:1; max-width:1280px; margin:0 auto;">
+      <div data-reveal style="max-width:720px; margin:0 0 clamp(44px,5vw,64px);">
+        <div style="display:inline-flex; align-items:center; gap:12px; margin-bottom:20px;"><span style="width:28px; height:2px; background:#56A2FF; border-radius:2px;"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#7FB0FF;">Nuestro método</span></div>
+        <h2 style="font-size:clamp(30px,3.8vw,50px); font-weight:800; letter-spacing:-0.038em; line-height:1.02; color:#fff; margin:0 0 20px;">De la estrategia a la <span style="color:#56A2FF;">presencia</span> en calle.</h2>
+        <p style="font-size:clamp(15px,1.3vw,18px); line-height:1.62; color:rgba(226,235,250,0.7); margin:0; max-width:500px;">Cuatro pasos claros para llevar tu marca a los puntos donde realmente importa.</p>
       </div>
 
-      <div class="v-proc">
+      <div class="v-method">
 
         <!-- 01 -->
-        <div class="v-proc-row" data-reveal>
-          <div class="v-proc-rail"><span class="v-proc-line"></span><div class="v-proc-node">01</div></div>
-          <div class="v-proc-card">
-            <div class="v-proc-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1C6FE8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle><path d="M12 1v3M12 20v3M1 12h3M20 12h3"></path></svg></div>
-            <h3 style="font-size:clamp(22px,2.2vw,27px); font-weight:800; letter-spacing:-0.02em; color:#0E1A2E; margin:0 0 12px;">Estrategia de ubicación</h3>
-            <p style="font-size:15.5px; line-height:1.62; color:#6A6A78; margin:0 0 22px; max-width:430px;">Analizamos zonas, tránsito y comportamiento del público para encontrar espacios donde tu marca tenga mayor exposición.</p>
-            <div style="display:flex; flex-direction:column; gap:13px;">
-              <div class="v-proc-check"><span class="v-proc-checkdot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Análisis de tránsito y audiencia</div>
-              <div class="v-proc-check"><span class="v-proc-checkdot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Evaluación de puntos estratégicos</div>
-              <div class="v-proc-check"><span class="v-proc-checkdot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Recomendación de ubicaciones</div>
-            </div>
+        <div class="v-mstep" data-reveal>
+          <span class="v-mstep__num">01</span>
+          <div class="v-mstep__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle><path d="M12 1v3M12 20v3M1 12h3M20 12h3"></path></svg></div>
+          <h3 class="v-mstep__title">Estrategia de ubicación</h3>
+          <p class="v-mstep__desc">Analizamos zonas, tránsito y comportamiento del público para encontrar dónde tu marca tendrá mayor exposición.</p>
+          <div class="v-mstep__list">
+            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Análisis de tránsito y audiencia</div>
+            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Evaluación de puntos estratégicos</div>
+            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Recomendación de ubicaciones</div>
           </div>
-          <div class="v-proc-imgwrap"><img class="v-proc-img" src="panels/panel-street.jpg" alt="Panel publicitario en avenida de alto tránsito" /></div>
         </div>
 
         <!-- 02 -->
-        <div class="v-proc-row" data-reveal>
-          <div class="v-proc-rail"><span class="v-proc-line"></span><div class="v-proc-node">02</div></div>
-          <div class="v-proc-card">
-            <div class="v-proc-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1C6FE8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"></rect><path d="M7 8h10M7 11.5h6"></path><path d="M12 16v4M8.5 20h7"></path></svg></div>
-            <h3 style="font-size:clamp(22px,2.2vw,27px); font-weight:800; letter-spacing:-0.02em; color:#0E1A2E; margin:0 0 12px;">Selección del formato</h3>
-            <p style="font-size:15.5px; line-height:1.62; color:#6A6A78; margin:0 0 22px; max-width:430px;">Elegimos el soporte ideal para tu campaña: murales de gran escala, paneles unipolares o tótems peatonales.</p>
-            <div style="display:flex; flex-direction:column; gap:13px;">
-              <div class="v-proc-check"><span class="v-proc-checkdot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Definición de formato ideal</div>
-              <div class="v-proc-check"><span class="v-proc-checkdot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Comparativa de formatos</div>
-              <div class="v-proc-check"><span class="v-proc-checkdot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Optimización de inversión</div>
-            </div>
+        <div class="v-mstep" data-reveal>
+          <span class="v-mstep__num">02</span>
+          <div class="v-mstep__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"></rect><path d="M7 8h10M7 11.5h6"></path><path d="M12 16v4M8.5 20h7"></path></svg></div>
+          <h3 class="v-mstep__title">Selección del formato</h3>
+          <p class="v-mstep__desc">Elegimos el soporte ideal para tu campaña: murales de gran escala, paneles unipolares o tótems peatonales.</p>
+          <div class="v-mstep__list">
+            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Definición de formato ideal</div>
+            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Comparativa de formatos</div>
+            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Optimización de inversión</div>
           </div>
-          <div class="v-proc-imgwrap"><img class="v-proc-img" src="panels/mural.jpg" alt="Mural publicitario de gran formato" /></div>
         </div>
 
         <!-- 03 -->
-        <div class="v-proc-row" data-reveal>
-          <div class="v-proc-rail"><span class="v-proc-line"></span><div class="v-proc-node">03</div></div>
-          <div class="v-proc-card">
-            <div class="v-proc-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1C6FE8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a3.6 3.6 0 0 0-4.8 4.6l-5.6 5.6a1.6 1.6 0 0 0 2.2 2.2l5.6-5.6a3.6 3.6 0 0 0 4.6-4.8l-2.3 2.3-1.8-1.8z"></path></svg></div>
-            <h3 style="font-size:clamp(22px,2.2vw,27px); font-weight:800; letter-spacing:-0.02em; color:#0E1A2E; margin:0 0 12px;">Activación de campaña</h3>
-            <p style="font-size:15.5px; line-height:1.62; color:#6A6A78; margin:0 0 22px; max-width:430px;">Gestionamos instalación, permisos y ejecución para que tu marca llegue a la calle con una presencia impecable.</p>
-            <div style="display:flex; flex-direction:column; gap:13px;">
-              <div class="v-proc-check"><span class="v-proc-checkdot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Gestión de permisos</div>
-              <div class="v-proc-check"><span class="v-proc-checkdot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Producción y montaje</div>
-              <div class="v-proc-check"><span class="v-proc-checkdot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Supervisión y control de calidad</div>
-            </div>
+        <div class="v-mstep" data-reveal>
+          <span class="v-mstep__num">03</span>
+          <div class="v-mstep__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a3.6 3.6 0 0 0-4.8 4.6l-5.6 5.6a1.6 1.6 0 0 0 2.2 2.2l5.6-5.6a3.6 3.6 0 0 0 4.6-4.8l-2.3 2.3-1.8-1.8z"></path></svg></div>
+          <h3 class="v-mstep__title">Activación de campaña</h3>
+          <p class="v-mstep__desc">Gestionamos instalación, permisos y ejecución para que tu marca llegue a la calle con una presencia impecable.</p>
+          <div class="v-mstep__list">
+            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Gestión de permisos</div>
+            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Producción y montaje</div>
+            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Supervisión y control de calidad</div>
           </div>
-          <div class="v-proc-imgwrap"><img class="v-proc-img" src="panels/billboard-vista360.jpg" alt="Valla publicitaria VISTA360 instalada" /></div>
         </div>
 
         <!-- 04 -->
-        <div class="v-proc-row" data-reveal>
-          <div class="v-proc-rail"><div class="v-proc-node" style="background:#1C6FE8; border-color:#fff;">04</div></div>
-          <div class="v-proc-card">
-            <div class="v-proc-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1C6FE8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"></rect><path d="M8 6l1.5-2.5h5L16 6"></path><circle cx="12" cy="12.5" r="3.2"></circle></svg></div>
-            <h3 style="font-size:clamp(22px,2.2vw,27px); font-weight:800; letter-spacing:-0.02em; color:#0E1A2E; margin:0 0 12px;">Seguimiento y reportes</h3>
-            <p style="font-size:15.5px; line-height:1.62; color:#6A6A78; margin:0 0 22px; max-width:430px;">Acompañamos tu campaña en la calle y te entregamos evidencia de su exhibición durante todo el periodo contratado.</p>
-            <div style="display:flex; flex-direction:column; gap:13px;">
-              <div class="v-proc-check"><span class="v-proc-checkdot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Reporte fotográfico</div>
-              <div class="v-proc-check"><span class="v-proc-checkdot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Evidencia de la exhibición</div>
-              <div class="v-proc-check"><span class="v-proc-checkdot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Acompañamiento cercano</div>
-            </div>
+        <div class="v-mstep" data-reveal>
+          <span class="v-mstep__num">04</span>
+          <div class="v-mstep__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"></rect><path d="M8 6l1.5-2.5h5L16 6"></path><circle cx="12" cy="12.5" r="3.2"></circle></svg></div>
+          <h3 class="v-mstep__title">Seguimiento y reportes</h3>
+          <p class="v-mstep__desc">Acompañamos tu campaña en la calle y te entregamos evidencia de su exhibición durante todo el periodo contratado.</p>
+          <div class="v-mstep__list">
+            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Reporte fotográfico</div>
+            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Evidencia de la exhibición</div>
+            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Acompañamiento cercano</div>
           </div>
-          <div class="v-proc-imgwrap"><img class="v-proc-img" src="panels/panel-night.jpg" alt="Campaña VISTA360 instalada en la vía pública" /></div>
         </div>
 
       </div>
