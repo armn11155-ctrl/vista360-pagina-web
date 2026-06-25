@@ -34,24 +34,20 @@
   ::selection { background:#1C6FE8; color:#fff; }
 
   /* ---------- HERO: foto del totem ----------
-     En celular la foto cubre todo el fondo (como siempre). De tablet/laptop
-     hacia arriba, se confina a una franja a la derecha para que el panel
-     nunca quede debajo del titular, sin importar el ancho de pantalla. */
-  .svc-hero-imgwrap{ position:absolute; inset:0; overflow:hidden; }
+     La foto cubre todo el fondo en cualquier pantalla (se ve la calle
+     completa, no solo el panel). Un velo en degradado la oscurece mas
+     del lado del titular y la deja mas clara del lado del panel, asi
+     nunca compiten visualmente. svc-hero-cap limita el ancho maximo de
+     la foto para que en monitores muy anchos no se estire mas alla de
+     su resolucion real (eso se veia con zoom/de menos calidad). */
+  .svc-hero-cap{ position:absolute; inset:0; max-width:1900px; margin:0 auto; overflow:hidden; }
   .svc-hero-img{ width:100%; height:100%; object-fit:cover; object-position:90% 30%; filter:brightness(0.78) contrast(1.05) saturate(1.1); display:block; }
-  .svc-hero-feather{ display:none; }
-  .svc-hero-veil{ position:absolute; inset:0; background:rgba(5,8,15,0.62); }
+  .svc-hero-veil{ position:absolute; inset:0; max-width:1900px; margin:0 auto; background:linear-gradient(90deg, rgba(5,8,15,0.82) 0%, rgba(5,8,15,0.7) 32%, rgba(5,8,15,0.48) 54%, rgba(5,8,15,0.2) 72%, rgba(5,8,15,0.12) 100%); }
   @media (min-width:640px){
-    .svc-hero-imgwrap{ left:34%; }
-    .svc-hero-img{ object-position:80% 20%; }
-    .svc-hero-feather{ display:block; position:absolute; inset:0; background:linear-gradient(90deg, #05080F 0%, rgba(5,8,15,0) 46%); }
-    .svc-hero-veil{ background:rgba(5,8,15,0.32); }
+    .svc-hero-img{ object-position:82% 20%; }
   }
   @media (min-width:1180px){
-    .svc-hero-imgwrap{ left:38%; }
-    .svc-hero-img{ object-position:66% 20%; }
-    .svc-hero-feather{ background:linear-gradient(90deg, #05080F 0%, rgba(5,8,15,0) 20%); }
-    .svc-hero-veil{ background:rgba(5,8,15,0.15); }
+    .svc-hero-img{ object-position:70% 20%; }
   }
   @keyframes svfade { 0%{ opacity:0; transform:translateY(22px); } 100%{ opacity:1; transform:translateY(0); } }
 
@@ -121,9 +117,8 @@
 
   <!-- ============ HERO (foto + titular en el medio, sobrio, sin píldoras -- estructura de referencia) ============ -->
   <section style="position:relative; overflow:hidden; background:#05080F; min-height:clamp(460px,60vh,580px); display:flex; align-items:center;">
-    <div class="svc-hero-imgwrap">
+    <div class="svc-hero-cap">
       <img src="panels/totem-hero-wide.jpg" alt="Tótem publicitario VISTA360" class="svc-hero-img" />
-      <div class="svc-hero-feather"></div>
     </div>
     <div class="svc-hero-veil"></div>
 
