@@ -32,7 +32,27 @@
     html, body { background: #05080F; }
   }
   ::selection { background:#1C6FE8; color:#fff; }
-  
+
+  /* ---------- HERO: foto del totem ----------
+     En celular la foto cubre todo el fondo (como siempre). De tablet/laptop
+     hacia arriba, se confina a una franja a la derecha para que el panel
+     nunca quede debajo del titular, sin importar el ancho de pantalla. */
+  .svc-hero-imgwrap{ position:absolute; inset:0; overflow:hidden; }
+  .svc-hero-img{ width:100%; height:100%; object-fit:cover; object-position:90% 30%; filter:brightness(0.78) contrast(1.05) saturate(1.1); display:block; }
+  .svc-hero-feather{ display:none; }
+  .svc-hero-veil{ position:absolute; inset:0; background:rgba(5,8,15,0.62); }
+  @media (min-width:640px){
+    .svc-hero-imgwrap{ left:34%; }
+    .svc-hero-img{ object-position:80% 20%; }
+    .svc-hero-feather{ display:block; position:absolute; inset:0; background:linear-gradient(90deg, #05080F 0%, rgba(5,8,15,0) 46%); }
+    .svc-hero-veil{ background:rgba(5,8,15,0.32); }
+  }
+  @media (min-width:1180px){
+    .svc-hero-imgwrap{ left:38%; }
+    .svc-hero-img{ object-position:66% 20%; }
+    .svc-hero-feather{ background:linear-gradient(90deg, #05080F 0%, rgba(5,8,15,0) 20%); }
+    .svc-hero-veil{ background:rgba(5,8,15,0.15); }
+  }
   @keyframes svfade { 0%{ opacity:0; transform:translateY(22px); } 100%{ opacity:1; transform:translateY(0); } }
 
   /* ---------- SERVICE HEAD DIVIDER ---------- */
@@ -101,8 +121,11 @@
 
   <!-- ============ HERO (foto + titular en el medio, sobrio, sin píldoras -- estructura de referencia) ============ -->
   <section style="position:relative; overflow:hidden; background:#05080F; min-height:clamp(460px,60vh,580px); display:flex; align-items:center;">
-    <img src="panels/totem.jpg" alt="Tótem publicitario VISTA360" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:60% 18%; filter:brightness(0.78) contrast(1.05) saturate(1.1);" />
-    <div style="position:absolute; inset:0; background:rgba(5,8,15,0.4);"></div>
+    <div class="svc-hero-imgwrap">
+      <img src="panels/totem-hero-wide.jpg" alt="Tótem publicitario VISTA360" class="svc-hero-img" />
+      <div class="svc-hero-feather"></div>
+    </div>
+    <div class="svc-hero-veil"></div>
 
     <div style="position:relative; z-index:3; width:100%; max-width:1280px; margin:0 auto; padding:clamp(72px,10vh,96px) clamp(20px,5vw,40px) clamp(36px,5vw,52px);">
       <h1 style="font-size:clamp(30px,3.2vw,44px); font-weight:800; letter-spacing:-0.03em; line-height:1.1; color:#fff; margin:0 0 clamp(16px,1.8vw,22px); max-width:620px; opacity:0; animation:svfade .9s cubic-bezier(.16,1,.3,1) .05s forwards;">Combinamos publicidad exterior y digital para llevar tu marca más lejos.</h1>
