@@ -58,12 +58,8 @@
   
 
   /* ============ MARQUEE divider ============ */
-  .vn-marq{ position:relative; border-top:1px solid var(--hair); border-bottom:1px solid var(--hair); background:var(--paper); overflow:hidden; }
-  .vn-marq__track{ display:flex; gap:0; white-space:nowrap; width:max-content; animation:vn-scroll 38s linear infinite; }
-  .vn-marq:hover .vn-marq__track{ animation-play-state:paused; }
-  .vn-marq__item{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:13px; letter-spacing:0.04em; color:var(--mist-2); padding:16px clamp(20px,3vw,40px); display:inline-flex; align-items:center; gap:clamp(20px,3vw,40px); }
-  .vn-marq__item::after{ content:"360°"; color:var(--accent); font-size:10px; }
-  @keyframes vn-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  
+  
 
   /* ============ SECTION shells ============ */
   .vn-sec{ position:relative; max-width:1320px; margin:0 auto; padding:clamp(72px,10vw,150px) clamp(20px,5vw,76px); }
@@ -135,7 +131,6 @@
   :focus-visible{ outline:2px solid var(--blue-2); outline-offset:3px; border-radius:4px; }
 
   @media (prefers-reduced-motion: reduce){
-    .vn-marq__track{ animation:none; }
     .vn-hero__bg{ animation:none; }
     .vn-eyebrow, .vn-hero h1, .vn-hero__lede, .vn-chips{ animation:none; opacity:1; transform:none; }
     *{ scroll-behavior:auto !important; }
@@ -169,12 +164,7 @@
   </section>
 
   <!-- ============ MARQUEE ============ -->
-  <div class="vn-marq" aria-hidden="true">
-    <div class="vn-marq__track">
-      <span class="vn-marq__item">Av. Universitaria</span><span class="vn-marq__item">Jr. Dos de Mayo</span><span class="vn-marq__item">Malecón Leoncio Prado</span><span class="vn-marq__item">Av. Alameda de la República</span><span class="vn-marq__item">Paseo de los Héroes</span><span class="vn-marq__item">Carretera Central</span>
-      <span class="vn-marq__item">Av. Universitaria</span><span class="vn-marq__item">Jr. Dos de Mayo</span><span class="vn-marq__item">Malecón Leoncio Prado</span><span class="vn-marq__item">Av. Alameda de la República</span><span class="vn-marq__item">Paseo de los Héroes</span><span class="vn-marq__item">Carretera Central</span>
-    </div>
-  </div>
+  
 
   <!-- ============ MANIFIESTO ============ -->
   <section class="vn-sec">
