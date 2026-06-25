@@ -41,11 +41,10 @@
 
   /* ============ HERO ============ */
   .vn-hero{ --mx:62%; --my:42%; position:relative; min-height:100svh; min-height:100vh; display:flex; align-items:flex-end; overflow:hidden; background:var(--ink); padding:clamp(120px,16vh,180px) clamp(20px,5vw,76px) clamp(56px,8vw,96px); }
-  .vn-hero__bg, .vn-hero__lit{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 62%; }
-  .vn-hero__bg{ filter:brightness(0.34) saturate(0.78) contrast(1.05); }
-  .vn-hero__lit{ filter:brightness(0.92) saturate(1.25) contrast(1.05);
-    -webkit-mask-image:radial-gradient(circle 30vw at var(--mx) var(--my), #000 0%, rgba(0,0,0,0.55) 38%, transparent 66%);
-    mask-image:radial-gradient(circle 30vw at var(--mx) var(--my), #000 0%, rgba(0,0,0,0.55) 38%, transparent 66%); }
+  .vn-hero__bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 62%; filter:saturate(1.12) contrast(1.05); }
+  .vn-hero__shade{ position:absolute; inset:0; pointer-events:none; background:rgba(5,8,15,0.86);
+    -webkit-mask-image:radial-gradient(circle 30vw at var(--mx) var(--my), transparent 0%, rgba(0,0,0,0.55) 38%, #000 66%);
+    mask-image:radial-gradient(circle 30vw at var(--mx) var(--my), transparent 0%, rgba(0,0,0,0.55) 38%, #000 66%); }
   .vn-hero__glow{ position:absolute; inset:0; pointer-events:none; mix-blend-mode:screen;
     background:radial-gradient(circle 26vw at var(--mx) var(--my), rgba(190,214,255,0.30), rgba(110,150,255,0.12) 40%, transparent 64%); }
   .vn-hero__veil{ position:absolute; inset:0; pointer-events:none;
@@ -92,12 +91,12 @@
   .vn-prin__num{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:12px; color:var(--mist-2); transition:color .3s ease; }
   .vn-prin__lab{ font-size:clamp(17px,1.7vw,21px); font-weight:600; letter-spacing:-0.01em; color:var(--mist); transition:color .3s ease; flex:1; }
   .vn-prin__dot{ width:7px; height:7px; border-radius:50%; background:transparent; transition:background .3s ease, box-shadow .3s ease; }
-  .vn-prin__stage{ position:relative; min-height:clamp(340px,34vw,420px); background:var(--ink-2); border:1px solid var(--line); border-radius:24px; padding:clamp(30px,3.4vw,52px); overflow:hidden; }
+  .vn-prin__stage{ position:relative; min-height:clamp(340px,34vw,420px); background:#FFFFFF; border:1px solid #E7ECF4; border-radius:24px; padding:clamp(30px,3.4vw,52px); overflow:hidden; box-shadow:0 40px 80px -42px rgba(5,8,15,0.5); }
   .vn-prin__panel{ position:absolute; inset:0; padding:clamp(30px,3.4vw,52px); display:flex; flex-direction:column; justify-content:center; transition:opacity .6s ease, transform .8s cubic-bezier(.16,1,.3,1); }
-  .vn-prin__tag{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:11.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--blue-2); margin-bottom:18px; }
-  .vn-prin__title{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(30px,3.6vw,52px); line-height:1.0; letter-spacing:-0.02em; color:var(--snow); margin:0 0 18px; }
-  .vn-prin__txt{ font-size:clamp(15px,1.3vw,17.5px); line-height:1.7; color:var(--mist); margin:0; max-width:46ch; }
-  .vn-prin__ix{ position:absolute; right:clamp(24px,3vw,44px); top:clamp(24px,3vw,40px); font-family:'Plus Jakarta Sans',sans-serif; font-size:clamp(60px,8vw,120px); line-height:1; color:rgba(255,255,255,0.04); font-weight:800; pointer-events:none; }
+  .vn-prin__tag{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:11.5px; letter-spacing:0.16em; text-transform:uppercase; color:#1C6FE8; margin-bottom:18px; }
+  .vn-prin__title{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(30px,3.6vw,52px); line-height:1.0; letter-spacing:-0.02em; color:#0E1A2E; margin:0 0 18px; }
+  .vn-prin__txt{ font-size:clamp(15px,1.3vw,17.5px); line-height:1.7; color:#5A6072; margin:0; max-width:46ch; }
+  .vn-prin__ix{ position:absolute; right:clamp(24px,3vw,44px); top:clamp(24px,3vw,40px); font-family:'Plus Jakarta Sans',sans-serif; font-size:clamp(60px,8vw,120px); line-height:1; color:rgba(28,111,232,0.07); font-weight:800; pointer-events:none; }
 
   /* ============ RECORRIDO stepper ============ */
   .vn-rec{ position:relative; }
@@ -156,8 +155,8 @@
 
   <!-- ============ HERO (reflector) ============ -->
   <section class="vn-hero">
-    <img class="vn-hero__bg" src="panels/hero-nosotros.png" alt="" aria-hidden="true" />
-    <img class="vn-hero__lit" src="panels/hero-nosotros.png" alt="Valla publicitaria VISTA360 al anochecer en la ciudad" />
+    <img class="vn-hero__bg" src="panels/hero-nosotros.png" alt="Valla publicitaria VISTA360 al anochecer en la ciudad" />
+    <div class="vn-hero__shade"></div>
     <div class="vn-hero__glow"></div>
     <div class="vn-hero__veil"></div>
     <div class="vn-hero__edge"></div>
@@ -315,20 +314,24 @@ class Component extends DCLogic {
       els.forEach((el) => this.io.observe(el));
     }
 
-    // ---- hero reflector ----
+    // ---- hero reflector (optimized: runs only while hero is on screen) ----
     const hero = root.querySelector('.vn-hero');
     if (hero) {
       const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const cur = { x: 0.62, y: 0.44 };
       const tgt = { x: 0.62, y: 0.44 };
-      let usingPointer = false, t = 0;
+      let usingPointer = false, t = 0, last = { x: -1, y: -1 };
       const apply = () => {
-        hero.style.setProperty('--mx', (cur.x * 100).toFixed(2) + '%');
-        hero.style.setProperty('--my', (cur.y * 100).toFixed(2) + '%');
+        const fx = +cur.x.toFixed(4), fy = +cur.y.toFixed(4);
+        if (Math.abs(fx - last.x) < 0.0008 && Math.abs(fy - last.y) < 0.0008) return;
+        last.x = fx; last.y = fy;
+        hero.style.setProperty('--mx', (fx * 100).toFixed(2) + '%');
+        hero.style.setProperty('--my', (fy * 100).toFixed(2) + '%');
       };
       apply();
       if (!reduce) {
-        const loop = () => {
+        let visible = false;
+        const tick = () => {
           if (!usingPointer) {
             t += 0.0045;
             tgt.x = 0.5 + 0.27 * Math.cos(t);
@@ -337,9 +340,19 @@ class Component extends DCLogic {
           cur.x += (tgt.x - cur.x) * 0.07;
           cur.y += (tgt.y - cur.y) * 0.07;
           apply();
-          this._heroRaf = requestAnimationFrame(loop);
         };
-        loop();
+        const loop = () => { tick(); this._heroRaf = requestAnimationFrame(loop); };
+        const start = () => { if (!this._heroRaf) loop(); };
+        const stop = () => { if (this._heroRaf) { cancelAnimationFrame(this._heroRaf); this._heroRaf = null; } };
+        // Only animate while the hero is actually in the viewport.
+        this._heroIo = new IntersectionObserver((entries) => {
+          visible = entries[0].isIntersecting;
+          if (visible && !document.hidden) start(); else stop();
+        }, { threshold: 0.05 });
+        this._heroIo.observe(hero);
+        // Pause when the tab is backgrounded, resume when it comes back.
+        this._heroVis = () => { if (document.hidden) stop(); else if (visible) start(); };
+        document.addEventListener('visibilitychange', this._heroVis);
         hero.addEventListener('pointermove', (e) => {
           if (e.pointerType === 'touch') return;
           usingPointer = true;
@@ -354,6 +367,8 @@ class Component extends DCLogic {
 
   componentWillUnmount() {
     if (this.io) this.io.disconnect();
+    if (this._heroIo) this._heroIo.disconnect();
+    if (this._heroVis) document.removeEventListener('visibilitychange', this._heroVis);
     if (this._heroRaf) cancelAnimationFrame(this._heroRaf);
   }
 
