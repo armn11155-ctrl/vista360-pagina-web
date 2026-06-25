@@ -5,7 +5,7 @@
 <title>Nosotros | VISTA360</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#070B14">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="light dark">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
@@ -20,17 +20,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   * { box-sizing:border-box; }
-  html { overscroll-behavior-y:contain; background:#070B14; }
-  body { margin:0; background:#070B14; color:#F3F6FC; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
+  html { overscroll-behavior-y:contain; background:#FFFFFF; }
+  body { margin:0; background:#FFFFFF; color:#0E1A2E; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
   ::selection { background:#2E7CF6; color:#fff; }
 
   /* ---- design tokens ---- */
   .vn-wrap{
     --ink:#070B14; --ink-2:#0B1326; --ink-3:#111C35;
     --line:rgba(255,255,255,0.10); --line-2:rgba(255,255,255,0.16);
-    --mist:#9AA6BC; --mist-2:#6E7A92; --snow:#F3F6FC;
+    --mist:#5A6072; --mist-2:#6E7A92; --snow:#F3F6FC;
     --blue:#2E7CF6; --blue-2:#7FB0FF; --blue-3:#56A2FF;
-    position:relative; width:100%; overflow-x:hidden; background:var(--ink); color:var(--snow);
+    --paper:#FFFFFF; --hair:#ECEAF3; --accent:#1C6FE8; --ink-on-paper:#0E1A2E;
+    position:relative; width:100%; overflow-x:hidden; background:var(--paper); color:var(--ink-on-paper);
   }
 
   .vn-mono{ font-family:'Plus Jakarta Sans',sans-serif; }
@@ -49,7 +50,7 @@
     background:radial-gradient(circle 26vw at var(--mx) var(--my), rgba(190,214,255,0.30), rgba(110,150,255,0.12) 40%, transparent 64%); }
   .vn-hero__veil{ position:absolute; inset:0; pointer-events:none;
     background:linear-gradient(180deg, rgba(7,11,20,0.55) 0%, rgba(7,11,20,0.28) 34%, rgba(7,11,20,0.82) 100%); }
-  .vn-hero__edge{ position:absolute; left:0; right:0; bottom:0; height:34%; pointer-events:none; background:linear-gradient(180deg,transparent,var(--ink)); }
+  .vn-hero__edge{ position:absolute; left:0; right:0; bottom:0; height:18%; pointer-events:none; background:linear-gradient(180deg, transparent 0%, transparent 55%, var(--paper) 100%); }
   .vn-hero__inner{ position:relative; z-index:3; width:100%; max-width:1320px; margin:0 auto; }
   .vn-hero h1{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(42px,7vw,104px); line-height:1.0; letter-spacing:-0.04em; color:var(--snow); margin:18px 0 0; max-width:16ch; text-shadow:0 10px 60px rgba(7,11,20,0.6); }
   .vn-hero h1 em{ font-style:normal; font-weight:800; color:var(--blue-2); }
@@ -62,36 +63,36 @@
   @media (max-width:760px){ .vn-hint{ display:none; } .vn-hero{ align-items:flex-end; } }
 
   /* ============ MARQUEE divider ============ */
-  .vn-marq{ position:relative; border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--ink); overflow:hidden; }
+  .vn-marq{ position:relative; border-top:1px solid var(--hair); border-bottom:1px solid var(--hair); background:var(--paper); overflow:hidden; }
   .vn-marq__track{ display:flex; gap:0; white-space:nowrap; width:max-content; animation:vn-scroll 38s linear infinite; }
   .vn-marq:hover .vn-marq__track{ animation-play-state:paused; }
   .vn-marq__item{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:13px; letter-spacing:0.04em; color:var(--mist-2); padding:16px clamp(20px,3vw,40px); display:inline-flex; align-items:center; gap:clamp(20px,3vw,40px); }
-  .vn-marq__item::after{ content:"360°"; color:var(--blue-3); font-size:10px; }
+  .vn-marq__item::after{ content:"360°"; color:var(--accent); font-size:10px; }
   @keyframes vn-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 
   /* ============ SECTION shells ============ */
   .vn-sec{ position:relative; max-width:1320px; margin:0 auto; padding:clamp(72px,10vw,150px) clamp(20px,5vw,76px); }
-  .vn-kick{ display:flex; align-items:baseline; gap:14px; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--blue-2); margin-bottom:clamp(22px,3vw,30px); }
+  .vn-kick{ display:flex; align-items:baseline; gap:14px; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:clamp(22px,3vw,30px); }
   .vn-kick i{ font-style:normal; color:var(--mist-2); }
 
   /* ============ MANIFIESTO ============ */
   .vn-manif{ display:grid; grid-template-columns:1fr; gap:clamp(34px,5vw,72px); }
   @media (min-width:920px){ .vn-manif{ grid-template-columns:0.85fr 1.15fr; align-items:start; } }
-  .vn-manif__lead{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(28px,3.4vw,46px); line-height:1.12; letter-spacing:-0.02em; color:var(--snow); margin:0; }
-  .vn-manif__lead em{ font-style:normal; color:var(--blue-2); }
+  .vn-manif__lead{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(28px,3.4vw,46px); line-height:1.12; letter-spacing:-0.02em; color:var(--ink-on-paper); margin:0; }
+  .vn-manif__lead em{ font-style:normal; color:var(--accent); }
   .vn-manif__body p{ font-size:clamp(15.5px,1.25vw,18px); line-height:1.74; color:var(--mist); margin:0 0 22px; max-width:60ch; }
   .vn-manif__body p:last-child{ margin-bottom:0; }
-  .vn-rule{ height:1px; background:linear-gradient(90deg,var(--blue-2),transparent); margin:0 0 26px; max-width:120px; }
+  .vn-rule{ height:1px; background:linear-gradient(90deg,var(--accent),transparent); margin:0 0 26px; max-width:120px; }
 
   /* ============ PRINCIPIOS explorer ============ */
   .vn-prin{ display:grid; grid-template-columns:1fr; gap:clamp(28px,3vw,48px); }
   @media (min-width:920px){ .vn-prin{ grid-template-columns:0.78fr 1.22fr; align-items:stretch; } }
-  .vn-prin__rail{ display:flex; flex-direction:column; gap:2px; border-top:1px solid var(--line); }
-  .vn-prin__item{ width:100%; text-align:left; cursor:pointer; background:transparent; border:none; border-bottom:1px solid var(--line); padding:clamp(15px,1.6vw,20px) 6px; display:flex; align-items:center; gap:16px; font-family:inherit; transition:padding .4s cubic-bezier(.16,1,.3,1), color .3s ease; }
+  .vn-prin__rail{ display:flex; flex-direction:column; gap:2px; border-top:1px solid var(--hair); }
+  .vn-prin__item{ width:100%; text-align:left; cursor:pointer; background:transparent; border:none; border-bottom:1px solid var(--hair); padding:clamp(15px,1.6vw,20px) 6px; display:flex; align-items:center; gap:16px; font-family:inherit; transition:padding .4s cubic-bezier(.16,1,.3,1), color .3s ease; }
   .vn-prin__num{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:12px; color:var(--mist-2); transition:color .3s ease; }
   .vn-prin__lab{ font-size:clamp(17px,1.7vw,21px); font-weight:600; letter-spacing:-0.01em; color:var(--mist); transition:color .3s ease; flex:1; }
   .vn-prin__dot{ width:7px; height:7px; border-radius:50%; background:transparent; transition:background .3s ease, box-shadow .3s ease; }
-  .vn-prin__stage{ position:relative; min-height:clamp(340px,34vw,420px); background:#FFFFFF; border:1px solid #E7ECF4; border-radius:24px; padding:clamp(30px,3.4vw,52px); overflow:hidden; box-shadow:0 40px 80px -42px rgba(5,8,15,0.5); }
+  .vn-prin__stage{ position:relative; min-height:clamp(340px,34vw,420px); background:#FFFFFF; border:1px solid #E7ECF4; border-radius:24px; padding:clamp(30px,3.4vw,52px); overflow:hidden; box-shadow:0 30px 60px -36px rgba(14,26,46,0.35); }
   .vn-prin__panel{ position:absolute; inset:0; padding:clamp(30px,3.4vw,52px); display:flex; flex-direction:column; justify-content:center; transition:opacity .6s ease, transform .8s cubic-bezier(.16,1,.3,1); }
   .vn-prin__tag{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:11.5px; letter-spacing:0.16em; text-transform:uppercase; color:#1C6FE8; margin-bottom:18px; }
   .vn-prin__title{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(30px,3.6vw,52px); line-height:1.0; letter-spacing:-0.02em; color:#0E1A2E; margin:0 0 18px; }
@@ -102,13 +103,13 @@
   .vn-rec{ position:relative; }
   .vn-rec__head{ display:grid; grid-template-columns:1fr 1fr; gap:2px; }
   @media (min-width:760px){ .vn-rec__head{ grid-template-columns:repeat(4,1fr); } }
-  .vn-rec__step{ position:relative; text-align:left; cursor:pointer; background:transparent; border:none; padding:18px 4px 22px; font-family:inherit; border-top:1px solid var(--line); transition:color .3s ease; }
+  .vn-rec__step{ position:relative; text-align:left; cursor:pointer; background:transparent; border:none; padding:18px 4px 22px; font-family:inherit; border-top:1px solid var(--hair); transition:color .3s ease; }
   .vn-rec__sn{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:12px; color:var(--mist-2); transition:color .3s ease; }
   .vn-rec__sl{ display:block; margin-top:8px; font-size:clamp(14px,1.3vw,16px); font-weight:600; color:var(--mist); transition:color .3s ease; }
-  .vn-rec__bar{ position:absolute; left:0; top:-1px; height:2px; background:linear-gradient(90deg,var(--blue-2),var(--blue)); transition:width .6s cubic-bezier(.16,1,.3,1); box-shadow:0 0 14px rgba(46,124,246,0.55); }
+  .vn-rec__bar{ position:absolute; left:0; top:-1px; height:2px; background:linear-gradient(90deg,var(--accent),var(--blue)); transition:width .6s cubic-bezier(.16,1,.3,1); box-shadow:0 0 14px rgba(46,124,246,0.55); }
   .vn-rec__stage{ position:relative; min-height:clamp(170px,16vw,210px); margin-top:clamp(28px,3vw,40px); }
   .vn-rec__panel{ position:absolute; inset:0; transition:opacity .55s ease, transform .7s cubic-bezier(.16,1,.3,1); }
-  .vn-rec__pt{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(26px,3vw,40px); line-height:1.05; letter-spacing:-0.02em; color:var(--snow); margin:0 0 16px; max-width:20ch; }
+  .vn-rec__pt{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(26px,3vw,40px); line-height:1.05; letter-spacing:-0.02em; color:var(--ink-on-paper); margin:0 0 16px; max-width:20ch; }
   .vn-rec__pb{ font-size:clamp(15px,1.3vw,17.5px); line-height:1.7; color:var(--mist); margin:0; max-width:52ch; }
 
   /* ============ FORMATOS gallery ============ */
@@ -121,8 +122,8 @@
   .vn-fmt__captag{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--blue-2); }
   .vn-fmt__capttl{ font-family:'Plus Jakarta Sans',sans-serif; font-size:clamp(24px,2.6vw,34px); font-weight:800; color:#fff; margin:8px 0 6px; letter-spacing:-0.01em; }
   .vn-fmt__capdesc{ font-size:14px; line-height:1.5; color:rgba(243,246,252,0.82); margin:0; max-width:44ch; }
-  .vn-fmt__list{ display:flex; flex-direction:column; gap:2px; border-top:1px solid var(--line); }
-  .vn-fmt__row{ width:100%; text-align:left; cursor:pointer; background:transparent; border:none; border-bottom:1px solid var(--line); padding:clamp(16px,1.7vw,22px) 6px; display:flex; align-items:center; gap:16px; font-family:inherit; transition:padding .4s cubic-bezier(.16,1,.3,1); }
+  .vn-fmt__list{ display:flex; flex-direction:column; gap:2px; border-top:1px solid var(--hair); }
+  .vn-fmt__row{ width:100%; text-align:left; cursor:pointer; background:transparent; border:none; border-bottom:1px solid var(--hair); padding:clamp(16px,1.7vw,22px) 6px; display:flex; align-items:center; gap:16px; font-family:inherit; transition:padding .4s cubic-bezier(.16,1,.3,1); }
   .vn-fmt__rn{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:12px; color:var(--mist-2); }
   .vn-fmt__rl{ font-size:clamp(17px,1.7vw,22px); font-weight:600; color:var(--mist); flex:1; transition:color .3s ease; }
   .vn-fmt__arrow{ color:var(--mist-2); transition:transform .4s cubic-bezier(.16,1,.3,1), color .3s ease; }
@@ -225,7 +226,7 @@
   <!-- ============ RECORRIDO ============ -->
   <section class="vn-sec" style="padding-top:0;">
     <div data-reveal class="vn-kick"><span>Proceso</span><i>/ 03</i></div>
-    <h2 data-reveal class="vn-serif" style="font-weight:800; font-size:clamp(28px,4vw,54px); line-height:1.02; letter-spacing:-0.025em; color:var(--snow); margin:0 0 clamp(34px,4.4vw,56px); max-width:18ch;">De la idea a la calle, <em style="font-style:normal; color:var(--blue-2);">sin intermediarios.</em></h2>
+    <h2 data-reveal class="vn-serif" style="font-weight:800; font-size:clamp(28px,4vw,54px); line-height:1.02; letter-spacing:-0.025em; color:var(--ink-on-paper); margin:0 0 clamp(34px,4.4vw,56px); max-width:18ch;">De la idea a la calle, <em style="font-style:normal; color:var(--accent);">sin intermediarios.</em></h2>
     <div data-reveal class="vn-rec">
       <div class="vn-rec__head">
         <sc-for list="{{ pasos }}" as="s" hint-placeholder-count="4">
@@ -390,9 +391,9 @@ class Component extends DCLogic {
         num: num, label: p.label, tag: p.tag, body: p.body,
         onClick: () => this.setState({ principio: i }),
         railStyle: { paddingLeft: active ? '18px' : '6px' },
-        numStyle: { color: active ? '#7FB0FF' : '' },
-        labStyle: { color: active ? '#F3F6FC' : '' },
-        dotStyle: { background: active ? '#7FB0FF' : 'transparent', boxShadow: active ? '0 0 12px #7FB0FF' : 'none' },
+        numStyle: { color: active ? '#1C6FE8' : '' },
+        labStyle: { color: active ? '#0E1A2E' : '' },
+        dotStyle: { background: active ? '#1C6FE8' : 'transparent', boxShadow: active ? '0 0 10px rgba(28,111,232,0.45)' : 'none' },
         panelStyle: { opacity: active ? 1 : 0, transform: active ? 'translateY(0)' : 'translateY(14px)', pointerEvents: active ? 'auto' : 'none' }
       };
     });
@@ -413,8 +414,8 @@ class Component extends DCLogic {
         num: ('0' + (i + 1)).slice(-2), label: s.label, title: s.title, body: s.body,
         onClick: () => this.setState({ paso: i }),
         barStyle: { width: done ? '100%' : '0%' },
-        snStyle: { color: active ? '#7FB0FF' : (done ? '#7FB0FF' : '') },
-        slStyle: { color: active ? '#F3F6FC' : '' },
+        snStyle: { color: active ? '#1C6FE8' : (done ? '#1C6FE8' : '') },
+        slStyle: { color: active ? '#0E1A2E' : '' },
         panelStyle: { opacity: active ? 1 : 0, transform: active ? 'translateY(0)' : 'translateY(12px)', pointerEvents: active ? 'auto' : 'none' }
       };
     });
@@ -434,8 +435,8 @@ class Component extends DCLogic {
         onClick: () => this.setState({ formato: i }),
         imgStyle: { objectPosition: f.pos, opacity: active ? 1 : 0, transform: active ? 'scale(1)' : 'scale(1.06)', transition: 'opacity .7s ease, transform 1.5s cubic-bezier(.16,1,.3,1)' },
         rowStyle: { paddingLeft: active ? '18px' : '6px' },
-        rlStyle: { color: active ? '#F3F6FC' : '' },
-        arrowStyle: { color: active ? '#7FB0FF' : '', transform: active ? 'translateX(4px)' : 'none' }
+        rlStyle: { color: active ? '#0E1A2E' : '' },
+        arrowStyle: { color: active ? '#1C6FE8' : '', transform: active ? 'translateX(4px)' : 'none' }
       };
     });
 
