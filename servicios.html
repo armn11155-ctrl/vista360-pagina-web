@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Servicios | VISTA360</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#05080F">
+<meta name="theme-color" content="#0A1426">
 <meta name="color-scheme" content="dark">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
@@ -21,16 +21,16 @@
 <style>
   * { box-sizing: border-box; }
   html {  overscroll-behavior-y: contain; }
-  body { margin:0; background:#ffffff; color:#0E1A2E; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
+  body { margin:0; background:transparent; color:#0E1A2E; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
   /* FIX celular: el body es blanco y el footer oscuro; en iPhone, el rebote
      de scroll (bounce) y la barra de direcciones que se oculta/aparece
      dejan ver ese blanco justo debajo del footer. En iPad/laptop no pasa
      porque no hay ese comportamiento. Solo afecta pantallas angostas. */
   @media (max-width: 760px) {
-    html, body { background: #05080F; }
+    html, body { background: #0A1426; }
   }
   ::selection { background:#1C6FE8; color:#fff; }
-  @keyframes svkb { 0%{ transform:scale(1.06) translate(0,0); } 100%{ transform:scale(1.16) translate(-1.4%,-1.4%); } }
+  @keyframes svkb { 0%{ transform:scale(1.0) translate(0,0); } 100%{ transform:scale(1.04) translate(-0.5%,-0.5%); } }
   @keyframes svfade { 0%{ opacity:0; transform:translateY(22px); } 100%{ opacity:1; transform:translateY(0); } }
 
   /* ---------- SERVICE HEAD DIVIDER ---------- */
@@ -93,13 +93,13 @@
 </style>
 </helmet>
 
-<div ref="{{ setRoot }}" style="position:relative; width:100%; overflow-x:hidden;">
+<div ref="{{ setRoot }}" style="position:relative; width:100%; overflow-x:hidden; background:transparent;">
 
   <dc-import name="SiteNav" active="servicios" transparent="{{ true }}" top-color="#05080F" hint-size="100%,66px"></dc-import>
 
   <!-- ============ HERO (foto + titular en el medio, sobrio, sin píldoras -- estructura de referencia) ============ -->
   <section style="position:relative; overflow:hidden; background:#05080F; min-height:clamp(460px,60vh,580px); display:flex; align-items:center;">
-    <img src="panels/totem-hero-servicios.jpg" alt="Tótem publicitario VISTA360" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:75% 18%; filter:brightness(0.78) contrast(1.05) saturate(1.1); animation:svkb 26s ease-in-out infinite alternate; will-change:transform;" />
+    <img src="panels/panel-night.jpg" alt="Publicidad exterior digital VISTA360 de noche" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; filter:brightness(0.65) contrast(1.05) saturate(0.88); image-rendering:crisp-edges; animation:svkb 32s ease-in-out infinite alternate; will-change:transform;" />
     <div style="position:absolute; inset:0; background:rgba(5,8,15,0.4);"></div>
 
     <div style="position:relative; z-index:3; width:100%; max-width:1280px; margin:0 auto; padding:clamp(72px,10vh,96px) clamp(20px,5vw,40px) clamp(36px,5vw,52px);">
@@ -109,17 +109,17 @@
   </section>
 
   <!-- ============ FRASE PUENTE (centrada, banda clara) ============ -->
-  <section data-reveal style="background:#05080F; padding:clamp(40px,5.5vw,64px) clamp(20px,5vw,40px);">
+  <section data-reveal style="background:#0A1426; padding:clamp(40px,5.5vw,64px) clamp(20px,5vw,40px);">
     <p style="max-width:880px; margin:0 auto; text-align:center; font-size:clamp(17px,1.7vw,22px); line-height:1.55; font-weight:500; color:rgba(255,255,255,0.75);">La publicidad exterior es un medio que se adapta a todas las tendencias y ofrece infinidad de soluciones creativas e innovadoras.</p>
   </section>
 
   <!-- ============ SERVICIOS ============ -->
-  <section style="background:#ffffff; padding:clamp(56px,7.5vw,104px) clamp(16px,4vw,40px) clamp(40px,5vw,60px);">
+  <section style="background:#0A1426; padding:clamp(56px,7.5vw,104px) clamp(16px,4vw,40px) clamp(40px,5vw,60px);">
     <div style="max-width:1280px; margin:0 auto;">
       <div data-reveal style="text-align:center; max-width:760px; margin:0 auto clamp(40px,4.6vw,64px);">
         <div style="display:inline-flex; align-items:center; gap:10px; margin-bottom:20px;"><span style="width:24px; height:2px; background:#E2231A; border-radius:2px;"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#E2231A;">Servicios</span><span style="width:24px; height:2px; background:#E2231A; border-radius:2px;"></span></div>
-        <h2 style="font-size:clamp(28px,3.5vw,46px); font-weight:800; letter-spacing:-0.035em; line-height:1.0; color:#0E1A2E; margin:0 0 18px;">Conoce nuestros servicios</h2>
-        <p style="font-size:clamp(15px,1.3vw,17px); line-height:1.6; color:#6E6E7A; margin:0 auto; max-width:500px;">Un servicio integral para la vía pública —y la suite digital que llegará con nuestra red de pantallas LED.</p>
+        <h2 style="font-size:clamp(28px,3.5vw,46px); font-weight:800; letter-spacing:-0.035em; line-height:1.0; color:#fff; margin:0 0 18px;">Conoce nuestros servicios</h2>
+        <p style="font-size:clamp(15px,1.3vw,17px); line-height:1.6; color:rgba(255,255,255,0.65); margin:0 auto; max-width:500px;">Un servicio integral para la vía pública —y la suite digital que llegará con nuestra red de pantallas LED.</p>
       </div>
 
       <div data-reveal class="v-sgrid">
@@ -219,7 +219,7 @@
   </section>
 
   <!-- ============ PROCESO (método: rail + card + imagen) ============ -->
-  <section style="background:#ffffff; padding:clamp(30px,4vw,50px) clamp(16px,4vw,40px) clamp(56px,7.5vw,104px);">
+  <section style="background:transparent; padding:clamp(30px,4vw,50px) clamp(16px,4vw,40px) clamp(56px,7.5vw,104px);">
     <div style="max-width:1280px; margin:0 auto;">
       <div data-reveal style="max-width:700px; margin:0 0 clamp(44px,5vw,72px);">
         <div style="display:inline-flex; align-items:center; gap:12px; margin-bottom:20px;"><span style="width:26px; height:2px; background:#1C6FE8; border-radius:2px;"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#1C6FE8;">Nuestro método</span></div>
@@ -297,6 +297,20 @@
     </div>
   </section>
 
+  <!-- ============ CTA ============ -->
+  <section style="background:transparent; padding:0 clamp(16px,3vw,28px) clamp(70px,10vw,120px);">
+    <div data-reveal style="position:relative; overflow:hidden; max-width:1280px; margin:0 auto; background:#0A1426; border-radius:30px; padding:clamp(48px,7vw,88px) clamp(24px,4vw,56px); text-align:center;">
+      <div style="position:absolute; top:-30%; left:50%; transform:translateX(-50%); width:520px; height:520px; max-width:90vw; border-radius:50%; background:radial-gradient(circle, rgba(28,111,232,0.32), transparent 64%); filter:blur(16px); pointer-events:none;"></div>
+      <div style="position:relative;">
+        <h2 style="font-size:clamp(26px,3.2vw,42px); font-weight:800; letter-spacing:-0.03em; line-height:1.05; color:#fff; margin:0 auto 16px; max-width:560px;">Empecemos tu próxima <span style="color:#56A2FF;">campaña</span>.</h2>
+        <p style="font-size:clamp(16px,1.4vw,19px); line-height:1.55; color:#AEB8C8; margin:0 auto 32px; max-width:480px;">Te armamos una propuesta a medida con las mejores ubicaciones disponibles.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:center;">
+          <a href="Contacto.dc.html" style="text-decoration:none; padding:15px 32px; border-radius:14px; background:#1C6FE8; color:#fff; font-size:16px; font-weight:600; transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Solicitar cotización</a>
+          <a href="Soluciones.dc.html" style="text-decoration:none; color:#56A2FF; font-size:16px; font-weight:600; display:inline-flex; align-items:center; gap:7px;" style-hover="text-decoration:underline;">Ver soluciones <span style="font-size:18px;">&rsaquo;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ============ FORMULARIO (pegado al footer) ============ -->
   <section style="position:relative; overflow:hidden; background:#05080F;">
@@ -359,7 +373,7 @@
 
   <dc-import name="SiteFooter" hint-size="100%,400px"></dc-import>
   <dc-import name="SiteChat" hint-size="100%,0px"></dc-import>
-  <div style="background:#05080F; min-height:20px;"></div>
+  <div style="background:#0A1426; min-height:20px;"></div>
 
 </div>
 </x-dc>
