@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +8,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
 <script src="./support.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 </head>
 <body>
 <x-dc>
@@ -290,7 +291,7 @@
               <div class="v-proc-check"><span class="v-proc-checkdot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Supervisión y control de calidad</div>
             </div>
           </div>
-          <div class="v-proc-imgwrap"><img class="v-proc-img" src="panels/billboard-vista360.png" alt="Valla publicitaria VISTA360 instalada" /></div>
+          <div class="v-proc-imgwrap"><img class="v-proc-img" src="panels/billboard-vista360.jpg" alt="Valla publicitaria VISTA360 instalada" /></div>
         </div>
 
         <!-- 04 -->
@@ -378,6 +379,7 @@
             <textarea id="v-notas" rows="4" placeholder="Cuéntanos más: zonas de interés, fecha de inicio, o cualquier detalle de tu campaña (opcional)" class="v-cinput"></textarea>
           </div>
           <input type="text" id="v-hp" name="website" autocomplete="off" tabindex="-1" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" />
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADqIxnZryQOUjZzt" data-action="turnstile-spin-v1" style="display:flex; justify-content:center; margin-bottom:16px;"></div>
           <p id="v-send-err" style="font-size:13px; color:#FF8B82; margin:0 0 16px; text-align:center; display:none;">Ocurrió un error al enviar. Intenta de nuevo.</p>
           <div style="display:flex; justify-content:center;">
             <button type="submit" id="v-submit-btn" style="padding:17px 56px; border-radius:999px; border:none; background:#1C6FE8; color:#fff; font-size:16px; font-weight:700; cursor:pointer; transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Enviar solicitud</button>
@@ -485,28 +487,25 @@ class Component extends DCLogic {
     return valido;
   }
 
-  async _sendToFirebase(data) {
-    const PROJECT = 'base-de-datos-vista360';
-    const API_KEY = 'AIzaSyCklWQStUPElsRfKH3icUZht-R321zgZY8';
-    const url = 'https://firestore.googleapis.com/v1/projects/' + PROJECT + '/databases/(default)/documents/solicitudesWeb?key=' + API_KEY;
-    const body = {
-      fields: {
-        contacto:     { stringValue: data.contacto },
-        empresa:      { stringValue: data.empresa },
-        celular:      { stringValue: data.celular },
-        email:        { stringValue: data.email },
-        panelInteres: { stringValue: data.panelInteres },
-        notas:        { stringValue: data.notas },
-        tipo:         { stringValue: 'Prospecto' },
-        estado:       { stringValue: 'En contacto' },
-        origen:       { stringValue: 'web' },
-        hp:           { stringValue: data.hp || '' },
-        createdAt:    { timestampValue: new Date().toISOString() },
-        importado:    { booleanValue: false }
-      }
-    };
-    const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-    if (!res.ok) throw new Error('Firebase error ' + res.status);
+  async _sendToServer(data) {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || !json.success) throw new Error(json.error || ('server error ' + res.status));
+  }
+
+  _renderTurnstile() {
+    const el = document.querySelector('.cf-turnstile');
+    if (!el) { setTimeout(() => this._renderTurnstile(), 200); return; }
+    if (!window.turnstile) { setTimeout(() => this._renderTurnstile(), 200); return; }
+    if (el.childElementCount > 0) return;
+    this._turnstileWidgetId = window.turnstile.render(el, {
+      sitekey: '0x4AAAAAADqIxnZryQOUjZzt',
+      action: 'turnstile-spin-v1'
+    });
   }
 
   componentDidMount() {
@@ -528,6 +527,7 @@ class Component extends DCLogic {
     }
     this._initPanelBtns();
     this._initFieldClearing();
+    this._renderTurnstile();
   }
   componentWillUnmount() { if (this.io) this.io.disconnect(); }
   renderVals() {
@@ -550,18 +550,28 @@ class Component extends DCLogic {
           return;
         }
 
+        const tokenInput = document.querySelector('input[name="cf-turnstile-response"]');
+        const token = tokenInput ? tokenInput.value : '';
+        if (!hp && !token) {
+          const errEl = document.getElementById('v-send-err');
+          errEl.textContent = 'Completa la verificación de seguridad antes de enviar.';
+          errEl.style.display = 'block';
+          return;
+        }
+
         const btn = document.getElementById('v-submit-btn');
         btn.disabled = true; btn.textContent = 'Enviando…';
         document.getElementById('v-send-err').style.display = 'none';
         try {
-          await this._sendToFirebase({
+          await this._sendToServer({
             contacto:    document.getElementById('v-nombre').value.trim(),
             empresa:     document.getElementById('v-empresa').value.trim(),
             celular:     document.getElementById('v-celular').value.trim(),
             email:       document.getElementById('v-email').value.trim(),
             panelInteres: this._panelSel,
             notas:       document.getElementById('v-notas').value.trim(),
-            hp
+            hp,
+            token
           });
           localStorage.setItem('v360_last_send', String(Date.now()));
           this.setState({ sent: true });
@@ -570,6 +580,7 @@ class Component extends DCLogic {
           const errEl = document.getElementById('v-send-err');
           errEl.textContent = 'No se pudo conectar con el servidor. Revisa tu conexión e intenta de nuevo.';
           errEl.style.display = 'block';
+          if (window.turnstile) window.turnstile.reset(this._turnstileWidgetId);
         }
       }
     };
