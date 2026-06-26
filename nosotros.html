@@ -120,12 +120,12 @@
   .vn-fmt__arrow{ color:var(--mist-2); transition:transform .4s cubic-bezier(.16,1,.3,1), color .3s ease; }
 
   /* ============ CTA ============ */
-  .vn-cta{ position:relative; overflow:hidden; min-height:clamp(420px,52vw,560px); display:flex; align-items:center; justify-content:center; text-align:center; padding:clamp(80px,11vw,140px) clamp(20px,5vw,40px); }
-  .vn-cta__img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  .vn-cta__veil{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(7,11,20,0.62),rgba(7,11,20,0.5) 45%,rgba(7,11,20,0.7)); }
-  .vn-cta__inner{ position:relative; z-index:2; max-width:900px; }
-  .vn-cta__ttl{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(32px,5vw,68px); line-height:1.04; letter-spacing:-0.025em; color:#fff; margin:0 0 clamp(28px,4vw,42px); text-shadow:0 10px 50px rgba(7,11,20,0.6); }
-  .vn-cta__ttl em{ font-style:normal; color:var(--blue-2); }
+  .vn-finalcta{ position:relative; overflow:hidden; min-height:clamp(420px,52vw,560px); display:flex; align-items:center; justify-content:center; text-align:center; padding:clamp(80px,11vw,140px) clamp(20px,5vw,40px); }
+  .vn-finalcta__img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .vn-finalcta__veil{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(7,11,20,0.62),rgba(7,11,20,0.5) 45%,rgba(7,11,20,0.7)); }
+  .vn-finalcta__inner{ position:relative; z-index:2; max-width:900px; }
+  .vn-finalcta__ttl{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(32px,5vw,68px); line-height:1.04; letter-spacing:-0.025em; color:#fff; margin:0 0 clamp(28px,4vw,42px); text-shadow:0 10px 50px rgba(7,11,20,0.6); }
+  .vn-finalcta__ttl em{ font-style:normal; color:var(--blue-2); }
   .vn-btn{ text-decoration:none; display:inline-flex; align-items:center; gap:11px; padding:17px 38px; border-radius:14px; background:var(--blue); color:#fff; font-size:16.5px; font-weight:700; transition:background .25s ease, transform .2s ease, box-shadow .3s ease; box-shadow:0 18px 40px -20px rgba(46,124,246,0.7); }
 
   :focus-visible{ outline:2px solid var(--blue-2); outline-offset:3px; border-radius:4px; }
@@ -264,11 +264,11 @@
   </section>
 
   <!-- ============ CTA ============ -->
-  <section class="vn-cta">
-    <img class="vn-cta__img" src="panels/billboard-vista360.jpg" alt="Publicidad exterior VISTA360" />
-    <div class="vn-cta__veil"></div>
-    <div data-reveal class="vn-cta__inner">
-      <h2 class="vn-cta__ttl">Démosle a tu marca la <em>escala de toda la ciudad.</em></h2>
+  <section class="vn-finalcta">
+    <img class="vn-finalcta__img" src="panels/billboard-vista360.jpg" alt="Publicidad exterior VISTA360" />
+    <div class="vn-finalcta__veil"></div>
+    <div data-reveal class="vn-finalcta__inner">
+      <h2 class="vn-finalcta__ttl">Démosle a tu marca la <em>escala de toda la ciudad.</em></h2>
       <a href="contacto.html" class="vn-btn" style-hover="background:#3B86F5; transform:translateY(-2px);">Conversemos <span style="font-size:18px;">&rarr;</span></a>
     </div>
   </section>
