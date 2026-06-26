@@ -50,13 +50,11 @@
     background:linear-gradient(180deg, rgba(7,11,20,0.5) 0%, rgba(7,11,20,0.32) 40%, rgba(7,11,20,0.62) 100%); }
   .vn-hero__inner{ position:relative; z-index:3; width:100%; max-width:1320px; margin:0 auto; text-align:center; display:flex; flex-direction:column; align-items:center; }
   .vn-hero__stage{ position:relative; width:100%; min-height:clamp(110px,17vw,250px); }
-  .vn-hero__slide{ position:absolute; left:0; top:0; right:0; opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .8s cubic-bezier(.16,1,.3,1); pointer-events:none; display:flex; flex-direction:column; align-items:center; }
+  .vn-hero__slide{ position:absolute; left:0; top:0; right:0; opacity:0; transition:opacity .9s ease; pointer-events:none; display:flex; flex-direction:column; align-items:center; }
   .vn-hero h1{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(46px,9.2vw,150px); line-height:1.0; letter-spacing:-0.04em; color:var(--snow); margin:0 auto; max-width:18ch; text-align:center; text-shadow:0 10px 60px rgba(7,11,20,0.6); }
   .vn-hero h1 em{ font-style:normal; font-weight:800; color:var(--blue-2); }
   .vn-hero__logo-mark{ display:block; height:clamp(46px,7vw,86px); margin:0 auto 18px; filter:drop-shadow(0 10px 40px rgba(0,0,0,0.55)); }
   .vn-hero__logo-tag{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(243,246,252,0.78); margin:0; text-align:center; }
-  .vn-hero__dots{ display:flex; justify-content:center; gap:10px; margin-top:clamp(30px,3.6vw,42px); width:100%; }
-  .vn-hero__dot{ width:32px; height:3px; border-radius:3px; background:rgba(255,255,255,0.25); border:none; cursor:pointer; padding:0; transition:background .35s ease, box-shadow .35s ease; }
   
 
   /* ============ MARQUEE divider ============ */
@@ -134,7 +132,7 @@
 
   @media (prefers-reduced-motion: reduce){
     .vn-hero__bg{ animation:none; }
-    .vn-hero__stage, .vn-hero__dots{ animation:none; opacity:1; transform:none; }
+    .vn-hero__stage{ animation:none; opacity:1; }
     .vn-hero__slide{ transition:none; }
     *{ scroll-behavior:auto !important; }
   }
@@ -153,7 +151,7 @@
   <section class="vn-hero">
     <img class="vn-hero__bg" style="{{ heroBg0 }}" src="panels/hero-nosotros.jpg" alt="Valla VISTA360 al anochecer con la ciudad de fondo" />
     <img class="vn-hero__bg" style="{{ heroBg1 }}" src="panels/unipolar-billboard-night.jpg" alt="Valla VISTA360 de noche junto a una avenida con tránsito" />
-    <img class="vn-hero__bg" style="{{ heroBg2 }}" src="panels/panel-night.jpg" alt="Panel VISTA360 de noche en una calle de Huánuco" />
+    <img class="vn-hero__bg" style="{{ heroBg2 }}" src="panels/led.jpg" alt="Vista aérea de la ciudad de noche con panel VISTA360" />
     <div class="vn-hero__veil"></div>
     <div class="vn-hero__inner">
 
@@ -166,11 +164,6 @@
         </div>
       </div>
 
-      <div class="vn-hero__dots" style="opacity:0; animation:vn-fadeup 1s cubic-bezier(.16,1,.3,1) .3s forwards;">
-        <button type="button" class="vn-hero__dot" style="{{ heroDotStyle0 }}" onClick="{{ heroGo0 }}" aria-label="Diapositiva 1"></button>
-        <button type="button" class="vn-hero__dot" style="{{ heroDotStyle1 }}" onClick="{{ heroGo1 }}" aria-label="Diapositiva 2"></button>
-        <button type="button" class="vn-hero__dot" style="{{ heroDotStyle2 }}" onClick="{{ heroGo2 }}" aria-label="Diapositiva 3"></button>
-      </div>
     </div>
   </section>
 
@@ -328,10 +321,8 @@ class Component extends DCLogic {
   renderVals() {
     // ----- HERO (carrusel) -----
     const hs = this.state.heroSlide;
-    const heroIsActive = (i) => (hs === i ? { opacity: 1, transform: 'translateY(0)', pointerEvents: 'auto', zIndex: 1 } : { opacity: 0, transform: 'translateY(18px)', pointerEvents: 'none', zIndex: 0 });
+    const heroIsActive = (i) => (hs === i ? { opacity: 1, pointerEvents: 'auto', zIndex: 1 } : { opacity: 0, pointerEvents: 'none', zIndex: 0 });
     const heroBgStyle = (i) => (hs === i ? { opacity: 1 } : { opacity: 0 });
-    const heroGoTo = (i) => () => { this.setState({ heroSlide: i }); this._restartHeroTimer(); };
-    const heroDotStyle = (i) => (hs === i ? { background: '#56A2FF', boxShadow: '0 0 10px #56A2FF' } : {});
 
     // ----- PRINCIPIOS -----
     const prinData = [
@@ -407,12 +398,6 @@ class Component extends DCLogic {
       heroSlideStyle0: heroIsActive(0),
       heroSlideStyle1: heroIsActive(1),
       heroSlideStyle2: heroIsActive(2),
-      heroDotStyle0: heroDotStyle(0),
-      heroDotStyle1: heroDotStyle(1),
-      heroDotStyle2: heroDotStyle(2),
-      heroGo0: heroGoTo(0),
-      heroGo1: heroGoTo(1),
-      heroGo2: heroGoTo(2),
       principios: principios,
       pasos: pasos,
       formatos: formatos,
