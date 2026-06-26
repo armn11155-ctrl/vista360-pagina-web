@@ -101,6 +101,32 @@
     .v-mstep:not(:last-child)::after { content:""; position:absolute; top:clamp(46px,4vw,52px); right:-12px; width:12px; height:1px; background:linear-gradient(90deg,rgba(127,176,255,0.5),transparent); z-index:1; }
   }
 
+  /* ---------- SERVICE TABS ---------- */
+  .v-stabs { display:flex; flex-wrap:wrap; gap:clamp(2px,1vw,6px) clamp(22px,2.6vw,34px); border-bottom:1px solid rgba(14,26,46,0.1); margin-bottom:clamp(30px,3.2vw,42px); }
+  .v-stab { position:relative; flex:0 0 auto; background:transparent; border:none; cursor:pointer; font-family:inherit; padding:0 0 16px; font-size:clamp(14px,1.15vw,15.5px); font-weight:700; letter-spacing:-0.01em; color:#9A9AAB; transition:color .35s ease; }
+  .v-stab:hover { color:#3D3D52; }
+  .v-stab__count { display:inline-block; margin-left:8px; padding:2px 7px; border-radius:999px; background:rgba(14,26,46,0.06); font-size:11px; font-weight:700; color:#6E6E7A; transition:background .35s ease, color .35s ease; }
+  @keyframes svfadeUp { 0%{ opacity:0; transform:translateY(16px); } 100%{ opacity:1; transform:translateY(0); } }
+
+  /* ---------- MÉTODO STEPPER (un paso a la vez) ---------- */
+  .v-mwrap { max-width:760px; }
+  .v-mtrack { display:flex; align-items:flex-start; gap:0; margin-bottom:clamp(34px,3.6vw,48px); }
+  .v-mtrack__line { position:relative; flex:1; height:2px; background:rgba(255,255,255,0.12); margin:14px 6px 0; border-radius:2px; overflow:hidden; }
+  .v-mtrack__fill { position:absolute; left:0; top:0; bottom:0; background:linear-gradient(90deg,#1C6FE8,#56A2FF); border-radius:2px; transition:width .5s cubic-bezier(.16,1,.3,1); }
+  .v-mdot { flex:0 0 auto; display:flex; flex-direction:column; align-items:center; gap:8px; background:transparent; border:none; cursor:pointer; font-family:inherit; padding:0; transition:opacity .35s ease; }
+  .v-mdot__circ { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; font-variant-numeric:tabular-nums; transition:background .4s ease, color .4s ease, box-shadow .4s ease; }
+  .v-mdot__label { font-size:11.5px; font-weight:600; letter-spacing:0.02em; white-space:nowrap; transition:color .35s ease; }
+  .v-mstage { position:relative; min-height:clamp(300px,28vw,340px); }
+  .v-mstage .v-mstep { min-height:0; padding:clamp(30px,2.8vw,40px) clamp(28px,2.8vw,40px) clamp(28px,2.6vw,34px); animation:svfadeUp .5s cubic-bezier(.16,1,.3,1) both; }
+  .v-mnav { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:clamp(22px,2.4vw,30px); }
+  .v-mnav__btn { font-family:inherit; font-size:14px; font-weight:700; letter-spacing:-0.01em; border-radius:999px; cursor:pointer; transition:background .3s ease, color .3s ease, opacity .3s ease, transform .2s ease; }
+  .v-mnav__prev { background:transparent; border:1.5px solid rgba(255,255,255,0.18); color:rgba(255,255,255,0.75); padding:13px 24px; }
+  .v-mnav__prev:hover:not(:disabled) { border-color:rgba(127,176,255,0.5); color:#fff; }
+  .v-mnav__prev:disabled { opacity:0.35; cursor:not-allowed; }
+  .v-mnav__next { background:#1C6FE8; border:none; color:#fff; padding:13px 30px; }
+  .v-mnav__next:hover { background:#3B86F5; transform:translateY(-1px); }
+  .v-mnav__count { font-size:13px; font-weight:700; letter-spacing:0.06em; color:rgba(226,235,250,0.5); font-variant-numeric:tabular-nums; }
+
   /* ---------- CONTACT FORM (sobre imagen) ---------- */
   .v-cform-2 { display:grid; grid-template-columns:1fr; gap:clamp(14px,1.6vw,20px); }
   @media (min-width:600px){ .v-cform-2 { grid-template-columns:1fr 1fr; } }
@@ -145,127 +171,151 @@
         <p style="font-size:clamp(15px,1.3vw,18px); line-height:1.62; color:#6E6E7A; margin:0; max-width:520px;">Un servicio integral para la vía pública, y la suite digital que llegará con nuestra red de pantallas LED.</p>
       </div>
 
-      <div data-reveal class="v-sgrid">
+      <div data-reveal>
 
-        <!-- 1. Direct by Global -->
-        <a href="contacto.html" class="v-uscard">
-          <div class="v-us-spot"></div>
-          <div class="v-us-top">
-            <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><circle cx="12" cy="12" r="3.2"></circle><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"></path></svg></div>
-            <span class="v-us-idx">01</span>
-          </div>
-          <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">Direct by Global</h3>
-          <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Planifica y optimiza tu campaña en pantallas digitales con un modelo CPM, pagando solo por los impactos generados en tu segmento.</p>
-          <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-        </a>
+        <div class="v-stabs">
+          <button type="button" class="v-stab" style="{{ tabPantallas.style }}" onClick="{{ tabPantallas.onClick }}">Pantallas digitales<span class="v-stab__count" style="{{ tabPantallas.countStyle }}">04</span></button>
+          <button type="button" class="v-stab" style="{{ tabFormatos.style }}" onClick="{{ tabFormatos.onClick }}">Formatos creativos<span class="v-stab__count" style="{{ tabFormatos.countStyle }}">03</span></button>
+          <button type="button" class="v-stab" style="{{ tabConexion.style }}" onClick="{{ tabConexion.onClick }}">Conexión y asesoría<span class="v-stab__count" style="{{ tabConexion.countStyle }}">03</span></button>
+        </div>
 
-        <!-- 2. Proyectos especiales -->
-        <a href="contacto.html" class="v-uscard">
-          <div class="v-us-spot"></div>
-          <div class="v-us-top">
-            <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
-            <span class="v-us-idx">02</span>
-          </div>
-          <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">Proyectos especiales</h3>
-          <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Alcanza a tus audiencias con ejecuciones disruptivas y fuera de la caja. Nuestro equipo experto hace realidad tu idea.</p>
-          <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-        </a>
+        <sc-if value="{{ catPantallas }}" hint-placeholder-val="{{ true }}">
+        <div class="v-sgrid">
 
-        <!-- 3. Retargeting -->
-        <a href="contacto.html" class="v-uscard">
-          <div class="v-us-spot"></div>
-          <div class="v-us-top">
-            <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
-            <span class="v-us-idx">03</span>
-          </div>
-          <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">Retargeting</h3>
-          <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Integra el mundo off y online identificando a la audiencia que pasa por tus elementos y sírveles publicidad en sus dispositivos móviles.</p>
-          <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-        </a>
+          <!-- Direct by Global -->
+          <a href="contacto.html" class="v-uscard">
+            <div class="v-us-spot"></div>
+            <div class="v-us-top">
+              <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><circle cx="12" cy="12" r="3.2"></circle><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"></path></svg></div>
+              <span class="v-us-idx">01</span>
+            </div>
+            <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">Direct by Global</h3>
+            <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Planifica y optimiza tu campaña en pantallas digitales con un modelo CPM, pagando solo por los impactos generados en tu segmento.</p>
+            <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+          </a>
 
-        <!-- 4. Transmisiones en vivo -->
-        <a href="contacto.html" class="v-uscard">
-          <div class="v-us-spot"></div>
-          <div class="v-us-top">
-            <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"></circle><path d="M16.24 7.76a6 6 0 0 1 0 8.49M7.76 16.24a6 6 0 0 1 0-8.49M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"></path></svg></div>
-            <span class="v-us-idx">04</span>
-          </div>
-          <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">Transmisiones en vivo</h3>
-          <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Transmite en tiempo real eventos y lanzamientos usando nuestras pantallas digitales. Te brindamos el servicio completo.</p>
-          <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-        </a>
+          <!-- Sincronización de pantallas -->
+          <a href="contacto.html" class="v-uscard">
+            <div class="v-us-spot"></div>
+            <div class="v-us-top">
+              <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="9" height="7" rx="1.2"></rect><rect x="13" y="3" width="9" height="7" rx="1.2"></rect><rect x="2" y="14" width="9" height="7" rx="1.2"></rect><rect x="13" y="14" width="9" height="7" rx="1.2"></rect></svg></div>
+              <span class="v-us-idx">02</span>
+            </div>
+            <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">Sincronización de pantallas</h3>
+            <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Tu anuncio en al menos 5 pantallas simultáneamente durante el mismo rango de minutos u horas, maximizando el alcance y la recordación.</p>
+            <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+          </a>
 
-        <!-- 5. Branding Day -->
-        <a href="contacto.html" class="v-uscard">
-          <div class="v-us-spot"></div>
-          <div class="v-us-top">
-            <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4.5" width="8.5" height="6.5" rx="1.2"></rect><rect x="13.5" y="4.5" width="8.5" height="6.5" rx="1.2"></rect><rect x="2" y="14" width="8.5" height="5.5" rx="1.2"></rect><rect x="13.5" y="14" width="8.5" height="5.5" rx="1.2"></rect></svg></div>
-            <span class="v-us-idx">05</span>
-          </div>
-          <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">Branding Day</h3>
-          <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Maximiza el alcance de tu campaña en un solo día. Tu marca presente en un mínimo de 20 pantallas simultáneamente.</p>
-          <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-        </a>
+          <!-- Total Domination -->
+          <a href="contacto.html" class="v-uscard">
+            <div class="v-us-spot"></div>
+            <div class="v-us-top">
+              <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg></div>
+              <span class="v-us-idx">03</span>
+            </div>
+            <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">Total Domination</h3>
+            <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Conviértete en el dueño exclusivo de la pantalla y toma el control total para exhibir tus artes sin restricciones de tiempo.</p>
+            <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+          </a>
 
-        <!-- 6. Integración con Redes Sociales -->
-        <a href="contacto.html" class="v-uscard">
-          <div class="v-us-spot"></div>
-          <div class="v-us-top">
-            <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></div>
-            <span class="v-us-idx">06</span>
-          </div>
-          <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">Integración con redes sociales</h3>
-          <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Conecta lo digital con lo real, llevando tus campañas de redes a la publicidad exterior y potencia la interacción en fechas clave.</p>
-          <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-        </a>
+          <!-- Branding Day -->
+          <a href="contacto.html" class="v-uscard v-soon-center">
+            <div class="v-us-spot"></div>
+            <div class="v-us-top">
+              <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4.5" width="8.5" height="6.5" rx="1.2"></rect><rect x="13.5" y="4.5" width="8.5" height="6.5" rx="1.2"></rect><rect x="2" y="14" width="8.5" height="5.5" rx="1.2"></rect><rect x="13.5" y="14" width="8.5" height="5.5" rx="1.2"></rect></svg></div>
+              <span class="v-us-idx">04</span>
+            </div>
+            <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">Branding Day</h3>
+            <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Maximiza el alcance de tu campaña en un solo día. Tu marca presente en un mínimo de 20 pantallas simultáneamente.</p>
+            <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+          </a>
 
-        <!-- 7. Sincronización de pantallas -->
-        <a href="contacto.html" class="v-uscard">
-          <div class="v-us-spot"></div>
-          <div class="v-us-top">
-            <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="9" height="7" rx="1.2"></rect><rect x="13" y="3" width="9" height="7" rx="1.2"></rect><rect x="2" y="14" width="9" height="7" rx="1.2"></rect><rect x="13" y="14" width="9" height="7" rx="1.2"></rect></svg></div>
-            <span class="v-us-idx">07</span>
-          </div>
-          <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">Sincronización de pantallas</h3>
-          <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Tu anuncio en al menos 5 pantallas simultáneamente durante el mismo rango de minutos u horas, maximizando el alcance y la recordación.</p>
-          <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-        </a>
+        </div>
+        </sc-if>
 
-        <!-- 8. Total Domination -->
-        <a href="contacto.html" class="v-uscard">
-          <div class="v-us-spot"></div>
-          <div class="v-us-top">
-            <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg></div>
-            <span class="v-us-idx">08</span>
-          </div>
-          <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">Total Domination</h3>
-          <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Conviértete en el dueño exclusivo de la pantalla y toma el control total para exhibir tus artes sin restricciones de tiempo.</p>
-          <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-        </a>
+        <sc-if value="{{ catFormatos }}" hint-placeholder-val="{{ false }}">
+        <div class="v-sgrid">
 
-        <!-- 9. 3D Play -->
-        <a href="contacto.html" class="v-uscard">
-          <div class="v-us-spot"></div>
-          <div class="v-us-top">
-            <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8 4.5v9l-8 4.5-8-4.5v-9z"></path><path d="M12 11.5l8-4.5M12 11.5v9M12 11.5L4 7"></path></svg></div>
-            <span class="v-us-idx">09</span>
-          </div>
-          <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">3D Play</h3>
-          <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Rompe la barrera de lo convencional y sorprende con diseños anamórficos en 3D que parecen escapar de la pantalla.</p>
-          <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-        </a>
+          <!-- Transmisiones en vivo -->
+          <a href="contacto.html" class="v-uscard">
+            <div class="v-us-spot"></div>
+            <div class="v-us-top">
+              <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"></circle><path d="M16.24 7.76a6 6 0 0 1 0 8.49M7.76 16.24a6 6 0 0 1 0-8.49M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"></path></svg></div>
+              <span class="v-us-idx">01</span>
+            </div>
+            <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">Transmisiones en vivo</h3>
+            <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Transmite en tiempo real eventos y lanzamientos usando nuestras pantallas digitales. Te brindamos el servicio completo.</p>
+            <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+          </a>
 
-        <!-- 10. Desarrollo creativo y asesoría integral -->
-        <a href="contacto.html" class="v-uscard v-soon-center">
-          <div class="v-us-spot"></div>
-          <div class="v-us-top">
-            <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5a6.5 6.5 0 0 0-4 11.6c.8.7 1 1.4 1 2.4h6c0-1 .2-1.7 1-2.4A6.5 6.5 0 0 0 12 2.5z"></path><path d="M9.5 18.5h5M10.5 21.5h3"></path></svg></div>
-            <span class="v-us-idx">10</span>
-          </div>
-          <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">Desarrollo creativo y asesoría integral</h3>
-          <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Nuestro equipo Create tiene todo el conocimiento para lograr que tu exposición en la vía pública sea memorable e impactante.</p>
-          <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-        </a>
+          <!-- 3D Play -->
+          <a href="contacto.html" class="v-uscard">
+            <div class="v-us-spot"></div>
+            <div class="v-us-top">
+              <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8 4.5v9l-8 4.5-8-4.5v-9z"></path><path d="M12 11.5l8-4.5M12 11.5v9M12 11.5L4 7"></path></svg></div>
+              <span class="v-us-idx">02</span>
+            </div>
+            <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">3D Play</h3>
+            <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Rompe la barrera de lo convencional y sorprende con diseños anamórficos en 3D que parecen escapar de la pantalla.</p>
+            <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+          </a>
+
+          <!-- Proyectos especiales -->
+          <a href="contacto.html" class="v-uscard">
+            <div class="v-us-spot"></div>
+            <div class="v-us-top">
+              <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+              <span class="v-us-idx">03</span>
+            </div>
+            <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">Proyectos especiales</h3>
+            <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Alcanza a tus audiencias con ejecuciones disruptivas y fuera de la caja. Nuestro equipo experto hace realidad tu idea.</p>
+            <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+          </a>
+
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ catConexion }}" hint-placeholder-val="{{ false }}">
+        <div class="v-sgrid">
+
+          <!-- Retargeting -->
+          <a href="contacto.html" class="v-uscard">
+            <div class="v-us-spot"></div>
+            <div class="v-us-top">
+              <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+              <span class="v-us-idx">01</span>
+            </div>
+            <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">Retargeting</h3>
+            <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Integra el mundo off y online identificando a la audiencia que pasa por tus elementos y sírveles publicidad en sus dispositivos móviles.</p>
+            <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+          </a>
+
+          <!-- Integración con Redes Sociales -->
+          <a href="contacto.html" class="v-uscard">
+            <div class="v-us-spot"></div>
+            <div class="v-us-top">
+              <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></div>
+              <span class="v-us-idx">02</span>
+            </div>
+            <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">Integración con redes sociales</h3>
+            <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Conecta lo digital con lo real, llevando tus campañas de redes a la publicidad exterior y potencia la interacción en fechas clave.</p>
+            <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+          </a>
+
+          <!-- Desarrollo creativo y asesoría integral -->
+          <a href="contacto.html" class="v-uscard v-soon-center">
+            <div class="v-us-spot"></div>
+            <div class="v-us-top">
+              <div class="v-us-chip"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5a6.5 6.5 0 0 0-4 11.6c.8.7 1 1.4 1 2.4h6c0-1 .2-1.7 1-2.4A6.5 6.5 0 0 0 12 2.5z"></path><path d="M9.5 18.5h5M10.5 21.5h3"></path></svg></div>
+              <span class="v-us-idx">03</span>
+            </div>
+            <h3 style="font-size:clamp(18px,1.5vw,20px); font-weight:700; letter-spacing:-0.02em; color:#0E2A55; margin:0 0 12px;">Desarrollo creativo y asesoría integral</h3>
+            <p style="font-size:14.5px; line-height:1.62; color:#6E6E7A; margin:0;">Nuestro equipo Create tiene todo el conocimiento para lograr que tu exposición en la vía pública sea memorable e impactante.</p>
+            <span class="v-us-cta">Cotizar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+          </a>
+
+        </div>
+        </sc-if>
 
       </div>
     </div>
@@ -281,58 +331,94 @@
         <p style="font-size:clamp(15px,1.3vw,18px); line-height:1.62; color:rgba(226,235,250,0.7); margin:0; max-width:500px;">Cuatro pasos claros para llevar tu marca a los puntos donde realmente importa.</p>
       </div>
 
-      <div class="v-method">
+      <div class="v-mwrap" data-reveal>
 
-        <!-- 01 -->
-        <div class="v-mstep" data-reveal>
-          <span class="v-mstep__num">01</span>
-          <div class="v-mstep__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle><path d="M12 1v3M12 20v3M1 12h3M20 12h3"></path></svg></div>
-          <h3 class="v-mstep__title">Estrategia de ubicación</h3>
-          <p class="v-mstep__desc">Analizamos zonas, tránsito y comportamiento del público para encontrar dónde tu marca tendrá mayor exposición.</p>
-          <div class="v-mstep__list">
-            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Análisis de tránsito y audiencia</div>
-            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Evaluación de puntos estratégicos</div>
-            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Recomendación de ubicaciones</div>
-          </div>
+        <div class="v-mtrack">
+          <button type="button" class="v-mdot" onClick="{{ stepGo0 }}">
+            <span class="v-mdot__circ" style="{{ stepDot0.circStyle }}">01</span>
+            <span class="v-mdot__label" style="{{ stepDot0.labelStyle }}">Estrategia</span>
+          </button>
+          <div class="v-mtrack__line"><div class="v-mtrack__fill" style="{{ trackFillStyle1 }}"></div></div>
+          <button type="button" class="v-mdot" onClick="{{ stepGo1 }}">
+            <span class="v-mdot__circ" style="{{ stepDot1.circStyle }}">02</span>
+            <span class="v-mdot__label" style="{{ stepDot1.labelStyle }}">Formato</span>
+          </button>
+          <div class="v-mtrack__line"><div class="v-mtrack__fill" style="{{ trackFillStyle2 }}"></div></div>
+          <button type="button" class="v-mdot" onClick="{{ stepGo2 }}">
+            <span class="v-mdot__circ" style="{{ stepDot2.circStyle }}">03</span>
+            <span class="v-mdot__label" style="{{ stepDot2.labelStyle }}">Activación</span>
+          </button>
+          <div class="v-mtrack__line"><div class="v-mtrack__fill" style="{{ trackFillStyle3 }}"></div></div>
+          <button type="button" class="v-mdot" onClick="{{ stepGo3 }}">
+            <span class="v-mdot__circ" style="{{ stepDot3.circStyle }}">04</span>
+            <span class="v-mdot__label" style="{{ stepDot3.labelStyle }}">Seguimiento</span>
+          </button>
         </div>
 
-        <!-- 02 -->
-        <div class="v-mstep" data-reveal>
-          <span class="v-mstep__num">02</span>
-          <div class="v-mstep__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"></rect><path d="M7 8h10M7 11.5h6"></path><path d="M12 16v4M8.5 20h7"></path></svg></div>
-          <h3 class="v-mstep__title">Selección del formato</h3>
-          <p class="v-mstep__desc">Elegimos el soporte ideal para tu campaña: murales de gran escala, paneles unipolares o tótems peatonales.</p>
-          <div class="v-mstep__list">
-            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Definición de formato ideal</div>
-            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Comparativa de formatos</div>
-            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Optimización de inversión</div>
+        <div class="v-mstage">
+
+          <sc-if value="{{ pasoIs0 }}" hint-placeholder-val="{{ true }}">
+          <div class="v-mstep">
+            <span class="v-mstep__num">01</span>
+            <div class="v-mstep__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle><path d="M12 1v3M12 20v3M1 12h3M20 12h3"></path></svg></div>
+            <h3 class="v-mstep__title">Estrategia de ubicación</h3>
+            <p class="v-mstep__desc">Analizamos zonas, tránsito y comportamiento del público para encontrar dónde tu marca tendrá mayor exposición.</p>
+            <div class="v-mstep__list">
+              <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Análisis de tránsito y audiencia</div>
+              <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Evaluación de puntos estratégicos</div>
+              <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Recomendación de ubicaciones</div>
+            </div>
           </div>
+          </sc-if>
+
+          <sc-if value="{{ pasoIs1 }}" hint-placeholder-val="{{ false }}">
+          <div class="v-mstep">
+            <span class="v-mstep__num">02</span>
+            <div class="v-mstep__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"></rect><path d="M7 8h10M7 11.5h6"></path><path d="M12 16v4M8.5 20h7"></path></svg></div>
+            <h3 class="v-mstep__title">Selección del formato</h3>
+            <p class="v-mstep__desc">Elegimos el soporte ideal para tu campaña: murales de gran escala, paneles unipolares o tótems peatonales.</p>
+            <div class="v-mstep__list">
+              <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Definición de formato ideal</div>
+              <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Comparativa de formatos</div>
+              <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Optimización de inversión</div>
+            </div>
+          </div>
+          </sc-if>
+
+          <sc-if value="{{ pasoIs2 }}" hint-placeholder-val="{{ false }}">
+          <div class="v-mstep">
+            <span class="v-mstep__num">03</span>
+            <div class="v-mstep__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a3.6 3.6 0 0 0-4.8 4.6l-5.6 5.6a1.6 1.6 0 0 0 2.2 2.2l5.6-5.6a3.6 3.6 0 0 0 4.6-4.8l-2.3 2.3-1.8-1.8z"></path></svg></div>
+            <h3 class="v-mstep__title">Activación de campaña</h3>
+            <p class="v-mstep__desc">Gestionamos instalación, permisos y ejecución para que tu marca llegue a la calle con una presencia impecable.</p>
+            <div class="v-mstep__list">
+              <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Gestión de permisos</div>
+              <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Producción y montaje</div>
+              <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Supervisión y control de calidad</div>
+            </div>
+          </div>
+          </sc-if>
+
+          <sc-if value="{{ pasoIs3 }}" hint-placeholder-val="{{ false }}">
+          <div class="v-mstep">
+            <span class="v-mstep__num">04</span>
+            <div class="v-mstep__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"></rect><path d="M8 6l1.5-2.5h5L16 6"></path><circle cx="12" cy="12.5" r="3.2"></circle></svg></div>
+            <h3 class="v-mstep__title">Seguimiento y reportes</h3>
+            <p class="v-mstep__desc">Acompañamos tu campaña en la calle y te entregamos evidencia de su exhibición durante todo el periodo contratado.</p>
+            <div class="v-mstep__list">
+              <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Reporte fotográfico</div>
+              <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Evidencia de la exhibición</div>
+              <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Acompañamiento cercano</div>
+            </div>
+          </div>
+          </sc-if>
+
         </div>
 
-        <!-- 03 -->
-        <div class="v-mstep" data-reveal>
-          <span class="v-mstep__num">03</span>
-          <div class="v-mstep__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a3.6 3.6 0 0 0-4.8 4.6l-5.6 5.6a1.6 1.6 0 0 0 2.2 2.2l5.6-5.6a3.6 3.6 0 0 0 4.6-4.8l-2.3 2.3-1.8-1.8z"></path></svg></div>
-          <h3 class="v-mstep__title">Activación de campaña</h3>
-          <p class="v-mstep__desc">Gestionamos instalación, permisos y ejecución para que tu marca llegue a la calle con una presencia impecable.</p>
-          <div class="v-mstep__list">
-            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Gestión de permisos</div>
-            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Producción y montaje</div>
-            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Supervisión y control de calidad</div>
-          </div>
-        </div>
-
-        <!-- 04 -->
-        <div class="v-mstep" data-reveal>
-          <span class="v-mstep__num">04</span>
-          <div class="v-mstep__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"></rect><path d="M8 6l1.5-2.5h5L16 6"></path><circle cx="12" cy="12.5" r="3.2"></circle></svg></div>
-          <h3 class="v-mstep__title">Seguimiento y reportes</h3>
-          <p class="v-mstep__desc">Acompañamos tu campaña en la calle y te entregamos evidencia de su exhibición durante todo el periodo contratado.</p>
-          <div class="v-mstep__list">
-            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Reporte fotográfico</div>
-            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Evidencia de la exhibición</div>
-            <div class="v-mstep__li"><span class="v-mstep__dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></span>Acompañamiento cercano</div>
-          </div>
+        <div class="v-mnav">
+          <button type="button" class="v-mnav__btn v-mnav__prev" onClick="{{ stepPrev }}" disabled="{{ stepIsFirst }}">&larr; Anterior</button>
+          <span class="v-mnav__count">{{ stepCountLabel }}</span>
+          <button type="button" class="v-mnav__btn v-mnav__next" onClick="{{ stepNext }}">{{ stepNextLabel }}</button>
         </div>
 
       </div>
@@ -408,12 +494,14 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { sent: false };
+  state = { sent: false, cat: 'pantallas', paso: 0 };
   _panelSel = '';
 
   setupSpotlight() {
     const root = this.rootEl; if (!root) return;
     root.querySelectorAll('.v-uscard').forEach((card) => {
+      if (card.dataset.spotlightBound) return;
+      card.dataset.spotlightBound = '1';
       card.addEventListener('mousemove', (e) => {
         const r = card.getBoundingClientRect();
         card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
@@ -545,11 +633,77 @@ class Component extends DCLogic {
     this._renderTurnstile();
   }
   componentWillUnmount() { if (this.io) this.io.disconnect(); }
+  componentDidUpdate() { this.setupSpotlight(); }
   renderVals() {
+    // ----- SERVICIOS: pestañas por categoría -----
+    const cat = this.state.cat;
+    const makeTab = (key, count) => ({
+      style: { color: cat === key ? '#0E1A2E' : '', boxShadow: cat === key ? 'inset 0 -3px 0 0 #1C6FE8' : 'none' },
+      countStyle: { background: cat === key ? '#1C6FE8' : '', color: cat === key ? '#fff' : '' },
+      onClick: () => this.setState({ cat: key })
+    });
+    const tabPantallas = makeTab('pantallas');
+    const tabFormatos = makeTab('formatos');
+    const tabConexion = makeTab('conexion');
+
+    // ----- MÉTODO: stepper con Anterior/Siguiente -----
+    const pasoLabels = ['Estrategia', 'Formato', 'Activación', 'Seguimiento'];
+    const totalPasos = pasoLabels.length;
+    const si = this.state.paso;
+    const makeDot = (i) => {
+      const active = i === si;
+      const done = i < si;
+      return {
+        circStyle: {
+          background: active ? '#56A2FF' : (done ? 'rgba(127,176,255,0.35)' : 'rgba(255,255,255,0.08)'),
+          color: active ? '#0B1326' : (done ? '#0B1326' : 'rgba(226,235,250,0.55)'),
+          boxShadow: active ? '0 0 0 4px rgba(86,162,255,0.18)' : 'none'
+        },
+        labelStyle: { color: active ? '#fff' : 'rgba(226,235,250,0.55)' }
+      };
+    };
+    const stepDot0 = makeDot(0);
+    const stepDot1 = makeDot(1);
+    const stepDot2 = makeDot(2);
+    const stepDot3 = makeDot(3);
+    const fillStyle = (lineIdx) => ({ width: si > lineIdx ? '100%' : '0%' });
+    const goToStep = (i) => () => this.setState({ paso: i });
+    const stepIsFirst = si === 0;
+    const stepIsLast = si === totalPasos - 1;
+
     return {
       setRoot: (el) => { this.rootEl = el; },
       sent: this.state.sent,
       notSent: !this.state.sent,
+      tabPantallas: tabPantallas,
+      tabFormatos: tabFormatos,
+      tabConexion: tabConexion,
+      catPantallas: cat === 'pantallas',
+      catFormatos: cat === 'formatos',
+      catConexion: cat === 'conexion',
+      stepDot0: stepDot0,
+      stepDot1: stepDot1,
+      stepDot2: stepDot2,
+      stepDot3: stepDot3,
+      stepGo0: goToStep(0),
+      stepGo1: goToStep(1),
+      stepGo2: goToStep(2),
+      stepGo3: goToStep(3),
+      trackFillStyle1: fillStyle(0),
+      trackFillStyle2: fillStyle(1),
+      trackFillStyle3: fillStyle(2),
+      pasoIs0: si === 0,
+      pasoIs1: si === 1,
+      pasoIs2: si === 2,
+      pasoIs3: si === 3,
+      stepIsFirst: stepIsFirst,
+      stepCountLabel: ('0' + (si + 1)).slice(-2) + ' / 0' + totalPasos,
+      stepNextLabel: stepIsLast ? 'Empezar mi campaña →' : 'Siguiente →',
+      stepPrev: () => this.setState({ paso: Math.max(0, si - 1) }),
+      stepNext: () => {
+        if (stepIsLast) { window.location.href = 'contacto.html'; return; }
+        this.setState({ paso: Math.min(totalPasos - 1, si + 1) });
+      },
       submit: async (e) => {
         e.preventDefault();
         if (!this._validarFormulario()) return;
