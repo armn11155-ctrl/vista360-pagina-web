@@ -120,11 +120,11 @@
   .v-mstep__dot svg { stroke:#7FB0FF; }
 
   /* ---------- SERVICE TABS (selector de canal) ---------- */
-  .v-stabs { display:flex; flex-wrap:wrap; gap:clamp(4px,1vw,8px) clamp(20px,2.4vw,30px); border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:clamp(30px,3.2vw,42px); }
-  .v-stab { position:relative; flex:0 0 auto; display:inline-flex; align-items:center; gap:9px; background:transparent; border:none; cursor:pointer; font-family:inherit; padding:0 0 16px; font-size:clamp(14px,1.15vw,15.5px); font-weight:700; letter-spacing:-0.01em; color:rgba(226,235,250,0.45); transition:color .35s ease; }
-  .v-stab:hover { color:rgba(226,235,250,0.8); }
-  .v-stab__led { width:7px; height:7px; border-radius:50%; flex-shrink:0; background:rgba(255,255,255,0.18); transition:background .35s ease, box-shadow .35s ease; }
-  .v-stab__count { display:inline-block; margin-left:2px; padding:2px 7px; border-radius:999px; background:rgba(255,255,255,0.06); font-size:11px; font-weight:700; color:rgba(226,235,250,0.45); transition:background .35s ease, color .35s ease; }
+  .v-stabs { display:flex; flex-wrap:wrap; justify-content:center; gap:clamp(4px,1vw,8px) clamp(20px,2.4vw,30px); border-bottom:1px solid rgba(14,26,46,0.1); margin-bottom:clamp(30px,3.2vw,42px); }
+  .v-stab { position:relative; flex:0 0 auto; display:inline-flex; align-items:center; gap:9px; background:transparent; border:none; cursor:pointer; font-family:inherit; padding:0 0 16px; font-size:clamp(14px,1.15vw,15.5px); font-weight:700; letter-spacing:-0.01em; color:#9A9AAB; transition:color .35s ease; }
+  .v-stab:hover { color:#3D3D52; }
+  .v-stab__led { width:7px; height:7px; border-radius:50%; flex-shrink:0; background:rgba(14,26,46,0.18); transition:background .35s ease, box-shadow .35s ease; }
+  .v-stab__count { display:inline-block; margin-left:2px; padding:2px 7px; border-radius:999px; background:rgba(14,26,46,0.06); font-size:11px; font-weight:700; color:#6E6E7A; transition:background .35s ease, color .35s ease; }
 
   /* ---------- MÉTODO STEPPER (un paso a la vez) ---------- */
   .v-mwrap { max-width:760px; }
@@ -180,14 +180,13 @@
     <p style="max-width:880px; margin:0 auto; text-align:center; font-size:clamp(17px,1.7vw,22px); line-height:1.55; font-weight:500; color:rgba(255,255,255,0.75);">La publicidad exterior es un medio que se adapta a todas las tendencias y ofrece infinidad de soluciones creativas e innovadoras.</p>
   </section>
 
-  <!-- ============ SERVICIOS (muro de pantallas LED) ============ -->
-  <section style="position:relative; overflow:hidden; background:#070A12; padding:clamp(64px,8vw,116px) clamp(16px,4vw,40px) clamp(44px,5vw,64px);">
-    <div style="position:absolute; top:-12%; left:-8%; width:520px; height:520px; max-width:70vw; border-radius:50%; background:radial-gradient(circle, rgba(28,111,232,0.16), transparent 65%); filter:blur(20px); pointer-events:none;"></div>
-    <div style="position:relative; z-index:1; max-width:1280px; margin:0 auto;">
+  <!-- ============ SERVICIOS (muro de pantallas, fondo blanco) ============ -->
+  <section style="background:#ffffff; padding:clamp(64px,8vw,116px) clamp(16px,4vw,40px) clamp(44px,5vw,64px);">
+    <div style="max-width:1280px; margin:0 auto;">
       <div data-reveal style="max-width:680px; margin:0 0 clamp(44px,5vw,68px);">
-        <div style="display:inline-flex; align-items:center; gap:12px; margin-bottom:22px;"><span style="width:28px; height:2px; background:#56A2FF; border-radius:2px;"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#7FB0FF;">Servicios</span></div>
-        <h2 style="font-size:clamp(30px,3.8vw,50px); font-weight:800; letter-spacing:-0.038em; line-height:1.02; color:#fff; margin:0 0 20px;">Todo lo que tu marca necesita en la calle.</h2>
-        <p style="font-size:clamp(15px,1.3vw,18px); line-height:1.62; color:rgba(226,235,250,0.7); margin:0; max-width:520px;">Un servicio integral para la vía pública, y la suite digital que llegará con nuestra red de pantallas LED.</p>
+        <div style="display:inline-flex; align-items:center; gap:12px; margin-bottom:22px;"><span style="width:28px; height:2px; background:#1C6FE8; border-radius:2px;"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#1C6FE8;">Servicios</span></div>
+        <h2 style="font-size:clamp(30px,3.8vw,50px); font-weight:800; letter-spacing:-0.038em; line-height:1.02; color:#0E1A2E; margin:0 0 20px;">Todo lo que tu marca necesita en la calle.</h2>
+        <p style="font-size:clamp(15px,1.3vw,18px); line-height:1.62; color:#6E6E7A; margin:0; max-width:520px;">Un servicio integral para la vía pública, y la suite digital que llegará con nuestra red de pantallas LED.</p>
       </div>
 
       <div data-reveal>
@@ -657,8 +656,8 @@ class Component extends DCLogic {
     // ----- SERVICIOS: pestañas por categoría -----
     const cat = this.state.cat;
     const makeTab = (key, count) => ({
-      style: { color: cat === key ? '#fff' : '' },
-      ledStyle: { background: cat === key ? '#56A2FF' : '', boxShadow: cat === key ? '0 0 8px 2px rgba(86,162,255,0.8)' : 'none' },
+      style: { color: cat === key ? '#0E1A2E' : '' },
+      ledStyle: { background: cat === key ? '#1C6FE8' : '', boxShadow: cat === key ? '0 0 6px 1px rgba(28,111,232,0.5)' : 'none' },
       countStyle: { background: cat === key ? '#1C6FE8' : '', color: cat === key ? '#fff' : '' },
       onClick: () => this.setState({ cat: key })
     });
