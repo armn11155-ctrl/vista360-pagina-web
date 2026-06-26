@@ -45,16 +45,22 @@
   @keyframes vn-kb{ 0%{ transform:scale(1.05) translate(0,0); } 100%{ transform:scale(1.15) translate(-1.3%,-1.3%); } }
   @keyframes vn-fadeup{ 0%{ opacity:0; transform:translateY(22px); } 100%{ opacity:1; transform:translateY(0); } }
   .vn-hero{ position:relative; min-height:100svh; min-height:100vh; display:flex; align-items:flex-end; overflow:hidden; background:var(--ink); padding:clamp(120px,16vh,180px) clamp(20px,5vw,76px) clamp(56px,8vw,96px); }
-  .vn-hero__bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 62%; filter:saturate(1.12) contrast(1.05) brightness(0.88); animation:vn-kb 28s ease-in-out infinite alternate; will-change:transform; }
-  .vn-hero__veil{ position:absolute; inset:0; pointer-events:none;
+  .vn-hero__bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 62%; filter:saturate(1.12) contrast(1.05) brightness(0.88); animation:vn-kb 22s ease-in-out infinite alternate; will-change:transform,opacity; opacity:0; transition:opacity 1.2s ease; }
+  .vn-hero__veil{ position:absolute; inset:0; pointer-events:none; z-index:1;
     background:linear-gradient(180deg, rgba(7,11,20,0.55) 0%, rgba(7,11,20,0.28) 34%, rgba(7,11,20,0.82) 100%); }
   .vn-hero__inner{ position:relative; z-index:3; width:100%; max-width:1320px; margin:0 auto; }
+  .vn-hero__stage{ position:relative; min-height:clamp(96px,15vw,228px); }
+  .vn-hero__slide{ position:absolute; left:0; top:0; right:0; opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .8s cubic-bezier(.16,1,.3,1); pointer-events:none; }
   .vn-hero h1{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(42px,7vw,104px); line-height:1.0; letter-spacing:-0.04em; color:var(--snow); margin:18px 0 0; max-width:16ch; text-shadow:0 10px 60px rgba(7,11,20,0.6); }
   .vn-hero h1 em{ font-style:normal; font-weight:800; color:var(--blue-2); }
+  .vn-hero__logo-mark{ display:block; height:clamp(40px,5.2vw,64px); margin:24px 0 18px; filter:drop-shadow(0 10px 40px rgba(0,0,0,0.55)); }
+  .vn-hero__logo-tag{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(243,246,252,0.78); margin:0; }
   .vn-hero__lede{ font-size:clamp(16px,1.5vw,20px); line-height:1.62; color:rgba(243,246,252,0.82); max-width:54ch; margin:clamp(22px,3vw,32px) 0 0; }
   .vn-chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:clamp(26px,3vw,36px); }
   .vn-chip{ display:inline-flex; align-items:center; gap:9px; padding:9px 16px; border-radius:999px; background:rgba(255,255,255,0.05); border:1px solid var(--line-2); font-size:13px; font-weight:600; color:rgba(243,246,252,0.9); backdrop-filter:blur(8px); }
   .vn-chip span{ width:6px; height:6px; border-radius:50%; background:var(--blue-2); box-shadow:0 0 10px var(--blue-2); }
+  .vn-hero__dots{ display:flex; gap:10px; margin-top:clamp(28px,3.2vw,38px); }
+  .vn-hero__dot{ width:32px; height:3px; border-radius:3px; background:rgba(255,255,255,0.25); border:none; cursor:pointer; padding:0; transition:background .35s ease, box-shadow .35s ease; }
   
 
   /* ============ MARQUEE divider ============ */
@@ -146,18 +152,34 @@
   <dc-import name="SiteNetwork" hint-size="100%,100%"></dc-import>
   <dc-import name="SiteNav" active="nosotros" transparent="{{ true }}" top-color="#070B14" hint-size="100%,66px"></dc-import>
 
-  <!-- ============ HERO (reflector) ============ -->
+  <!-- ============ HERO (carrusel cinematico) ============ -->
   <section class="vn-hero">
-    <img class="vn-hero__bg" src="panels/hero-nosotros.jpg" alt="Valla publicitaria VISTA360 al anochecer en la ciudad" />
+    <img class="vn-hero__bg" style="{{ heroBg0 }}" src="panels/hero-nosotros.jpg" alt="Valla VISTA360 al anochecer con la ciudad de fondo" />
+    <img class="vn-hero__bg" style="{{ heroBg1 }}" src="panels/unipolar-billboard-night.jpg" alt="Valla VISTA360 de noche junto a una avenida con tránsito" />
+    <img class="vn-hero__bg" style="{{ heroBg2 }}" src="panels/panel-night.jpg" alt="Panel VISTA360 de noche en una calle de Huánuco" />
     <div class="vn-hero__veil"></div>
     <div class="vn-hero__inner">
       <span class="vn-eyebrow" style="opacity:0; animation:vn-fadeup .9s cubic-bezier(.16,1,.3,1) .05s forwards;">VISTA360 — Publicidad exterior · Huánuco, Perú</span>
-      <h1 style="opacity:0; animation:vn-fadeup 1s cubic-bezier(.16,1,.3,1) .14s forwards;">Nacimos para<br>que <em>te vean.</em></h1>
+
+      <div class="vn-hero__stage" style="opacity:0; animation:vn-fadeup 1s cubic-bezier(.16,1,.3,1) .14s forwards;">
+        <div class="vn-hero__slide" style="{{ heroSlideStyle0 }}"><h1>Nacimos para<br>que <em>te vean.</em></h1></div>
+        <div class="vn-hero__slide" style="{{ heroSlideStyle1 }}"><h1>La calle es<br>nuestro <em>lienzo.</em></h1></div>
+        <div class="vn-hero__slide" style="{{ heroSlideStyle2 }}">
+          <img class="vn-hero__logo-mark" src="vista360-logo.png" alt="VISTA360" />
+          <p class="vn-hero__logo-tag">Publicidad exterior · Huánuco, Perú</p>
+        </div>
+      </div>
+
       <p class="vn-hero__lede" style="opacity:0; animation:vn-fadeup 1s cubic-bezier(.16,1,.3,1) .26s forwards;">Una compañía de publicidad exterior nacida en Huánuco. Ubicamos tu marca en las avenidas, plazas y cruces de mayor tránsito —y la cuidamos de la idea a la calle.</p>
       <div class="vn-chips" style="opacity:0; animation:vn-fadeup 1s cubic-bezier(.16,1,.3,1) .38s forwards;">
         <span class="vn-chip"><span></span>Equipo 100% local</span>
         <span class="vn-chip"><span></span>Creatividad in-house</span>
         <span class="vn-chip"><span></span>Servicio de punta a punta</span>
+      </div>
+      <div class="vn-hero__dots" style="opacity:0; animation:vn-fadeup 1s cubic-bezier(.16,1,.3,1) .46s forwards;">
+        <button type="button" class="vn-hero__dot" style="{{ heroDotStyle0 }}" onClick="{{ heroGo0 }}" aria-label="Diapositiva 1"></button>
+        <button type="button" class="vn-hero__dot" style="{{ heroDotStyle1 }}" onClick="{{ heroGo1 }}" aria-label="Diapositiva 2"></button>
+        <button type="button" class="vn-hero__dot" style="{{ heroDotStyle2 }}" onClick="{{ heroGo2 }}" aria-label="Diapositiva 3"></button>
       </div>
     </div>
   </section>
@@ -276,7 +298,14 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { principio: 0, paso: 0, formato: 0 };
+  state = { principio: 0, paso: 0, formato: 0, heroSlide: 0 };
+
+  _restartHeroTimer() {
+    if (this._heroTimer) clearInterval(this._heroTimer);
+    this._heroTimer = setInterval(() => {
+      this.setState({ heroSlide: (this.state.heroSlide + 1) % 3 });
+    }, 5000);
+  }
 
   componentDidMount() {
     const root = this.rootEl;
@@ -298,13 +327,22 @@ class Component extends DCLogic {
       els.forEach((el) => this.io.observe(el));
     }
 
+    this._restartHeroTimer();
   }
 
   componentWillUnmount() {
     if (this.io) this.io.disconnect();
+    if (this._heroTimer) clearInterval(this._heroTimer);
   }
 
   renderVals() {
+    // ----- HERO (carrusel) -----
+    const hs = this.state.heroSlide;
+    const heroIsActive = (i) => (hs === i ? { opacity: 1, transform: 'translateY(0)', pointerEvents: 'auto', zIndex: 1 } : { opacity: 0, transform: 'translateY(18px)', pointerEvents: 'none', zIndex: 0 });
+    const heroBgStyle = (i) => (hs === i ? { opacity: 1 } : { opacity: 0 });
+    const heroGoTo = (i) => () => { this.setState({ heroSlide: i }); this._restartHeroTimer(); };
+    const heroDotStyle = (i) => (hs === i ? { background: '#56A2FF', boxShadow: '0 0 10px #56A2FF' } : {});
+
     // ----- PRINCIPIOS -----
     const prinData = [
       { tag: 'Propósito', label: 'Misión', body: 'Darle a cada marca de la región un lugar imposible de ignorar en la ciudad, con soportes bien ubicados, creatividad propia y un servicio que cuida cada detalle de la campaña.' },
@@ -373,6 +411,18 @@ class Component extends DCLogic {
 
     return {
       setRoot: (el) => { this.rootEl = el; },
+      heroBg0: heroBgStyle(0),
+      heroBg1: heroBgStyle(1),
+      heroBg2: heroBgStyle(2),
+      heroSlideStyle0: heroIsActive(0),
+      heroSlideStyle1: heroIsActive(1),
+      heroSlideStyle2: heroIsActive(2),
+      heroDotStyle0: heroDotStyle(0),
+      heroDotStyle1: heroDotStyle(1),
+      heroDotStyle2: heroDotStyle(2),
+      heroGo0: heroGoTo(0),
+      heroGo1: heroGoTo(1),
+      heroGo2: heroGoTo(2),
       principios: principios,
       pasos: pasos,
       formatos: formatos,
