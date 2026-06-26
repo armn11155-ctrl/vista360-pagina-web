@@ -172,9 +172,9 @@
   @media (min-width:900px){ .v360p-grid { grid-template-columns:minmax(260px,400px) 1fr; } }
   .v360p-phonewrap { display:flex; align-items:center; justify-content:center; gap:clamp(10px,2vw,28px); }
   .v360p-chevron { flex-shrink:0; color:#1C6FE8; opacity:0.5; }
-  .v360p-frame { position:relative; width:clamp(220px,28vw,260px); aspect-ratio:9/19.5; background:#0B0F1A; border-radius:34px; padding:9px; box-shadow:0 36px 64px -28px rgba(14,26,46,0.32), 0 0 0 1px rgba(14,26,46,0.06); }
-  .v360p-frame::before { content:""; position:absolute; left:50%; top:9px; transform:translateX(-50%); width:46px; height:5px; border-radius:4px; background:rgba(255,255,255,0.16); z-index:2; }
-  .v360p-screen { position:relative; width:100%; height:100%; border-radius:26px; overflow:hidden; background:#070B14; }
+  .v360p-frame { position:relative; width:clamp(220px,28vw,260px); aspect-ratio:540/1093; }
+  .v360p-frame__img { position:absolute; inset:0; z-index:3; width:100%; height:100%; pointer-events:none; display:block; }
+  .v360p-screen { position:absolute; top:2.6%; right:5.99%; bottom:2.5%; left:5.99%; z-index:1; border-radius:clamp(16px,9%,28px); overflow:hidden; background:#070B14; }
   .v360p-screen__bg { position:absolute; inset:0; background-image:linear-gradient(180deg, rgba(6,10,20,0.5) 0%, rgba(6,10,20,0.3) 38%, rgba(6,10,20,0.94) 100%), url('panels/skyline-night.jpg'); background-size:cover; background-position:center 60%; }
   .v360p-statusbar { position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; padding:16px 18px 0; font-size:12px; font-weight:600; color:rgba(255,255,255,0.85); }
   .v360p-statusicons { display:flex; align-items:center; gap:4px; color:rgba(255,255,255,0.85); }
@@ -192,11 +192,10 @@
   .v360p-features li { display:flex; align-items:flex-start; gap:13px; font-size:15.5px; line-height:1.5; color:#2B2B38; font-weight:500; }
   .v360p-fic { flex-shrink:0; width:22px; height:22px; border-radius:50%; border:1.5px solid #1C6FE8; display:flex; align-items:center; justify-content:center; margin-top:1px; }
   .v360p-fic span { width:8px; height:8px; border-radius:50%; background:#1C6FE8; }
-  .v360p-stores { display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-top:clamp(10px,1.6vw,18px); }
-  .v360p-store { display:flex; align-items:center; gap:10px; padding:11px 18px; border-radius:14px; background:#0E1A2E; color:#fff; opacity:0.55; cursor:default; }
-  .v360p-store svg { flex-shrink:0; }
-  .v360p-store small { display:block; font-size:10px; color:rgba(255,255,255,0.6); line-height:1; }
-  .v360p-store strong { display:block; font-size:14px; font-weight:700; line-height:1.3; margin-top:2px; }
+  .v360p-stores { display:flex; flex-direction:column; align-items:flex-start; margin-top:clamp(10px,1.6vw,18px); }
+  .v360p-store-note { font-size:12px; font-weight:600; color:#9A9AAB; margin:0 0 10px; }
+  .v360p-store-row { display:flex; flex-wrap:wrap; align-items:center; gap:14px; }
+  .v360p-store-badge { height:42px; width:auto; display:block; }
   @media (max-width:760px){
     .v-acc { flex-direction:column; height:auto; }
     .v-acc-panel { flex:none; height:190px; }
@@ -355,6 +354,7 @@
               </div>
               <div class="v360p-dots"><span></span><span></span><span></span><span></span></div>
             </div>
+            <img class="v360p-frame__img" src="vista360player-phone-frame.png" alt="" aria-hidden="true">
           </div>
           <svg class="v360p-chevron" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
         </div>
@@ -373,8 +373,11 @@
           </ul>
 
           <div class="v360p-stores">
-            <div class="v360p-store"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2.5"></rect><path d="M9 18h6"></path></svg><span><small>Próximamente en</small><strong>App Store</strong></span></div>
-            <div class="v360p-store"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2.5"></rect><path d="M9 18h6"></path></svg><span><small>Próximamente en</small><strong>Google Play</strong></span></div>
+            <p class="v360p-store-note">Próximamente disponible en:</p>
+            <div class="v360p-store-row">
+              <img class="v360p-store-badge" src="app-store-badge.svg" alt="Descárgalo próximamente en App Store">
+              <img class="v360p-store-badge" src="google-play-badge.svg" alt="Descárgalo próximamente en Google Play">
+            </div>
           </div>
         </div>
 
