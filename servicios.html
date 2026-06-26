@@ -130,8 +130,8 @@
   .v-mwrap { max-width:760px; margin:0 auto; }
   @media (min-width:1180px){ .v-mwrap { max-width:1040px; } }
   .v-mtrack { display:flex; align-items:flex-start; gap:0; margin-bottom:clamp(34px,3.6vw,48px); }
-  .v-mtrack__line { position:relative; flex:1; height:2px; background:rgba(255,255,255,0.1); margin:14px 6px 0; border-radius:2px; overflow:hidden; box-shadow:inset 0 0 4px rgba(0,0,0,0.4); }
-  .v-mtrack__fill { position:absolute; left:0; top:0; bottom:0; background:linear-gradient(90deg,#1C6FE8,#56A2FF); border-radius:2px; box-shadow:0 0 10px 1px rgba(86,162,255,0.7); transition:width .5s cubic-bezier(.16,1,.3,1); }
+  .v-mtrack__line { position:relative; flex:1; height:2px; background:rgba(14,26,46,0.1); margin:14px 6px 0; border-radius:2px; overflow:hidden; }
+  .v-mtrack__fill { position:absolute; left:0; top:0; bottom:0; background:#1C6FE8; border-radius:2px; transition:width .5s cubic-bezier(.16,1,.3,1); }
   .v-mdot { flex:0 0 auto; display:flex; flex-direction:column; align-items:center; gap:8px; background:transparent; border:none; cursor:pointer; font-family:inherit; padding:0; transition:opacity .35s ease; }
   .v-mdot__circ { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; font-variant-numeric:tabular-nums; transition:background .4s ease, color .4s ease, box-shadow .4s ease; }
   .v-mdot__label { font-size:11.5px; font-weight:600; letter-spacing:0.02em; white-space:nowrap; transition:color .35s ease; }
@@ -139,12 +139,12 @@
   .v-mstage .v-mstep { min-height:0; padding:clamp(30px,2.8vw,40px) clamp(28px,2.8vw,40px) clamp(28px,2.6vw,34px); animation:screenOn .7s ease both; }
   .v-mnav { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:clamp(22px,2.4vw,30px); }
   .v-mnav__btn { font-family:inherit; font-size:14px; font-weight:700; letter-spacing:-0.01em; border-radius:999px; cursor:pointer; transition:background .3s ease, color .3s ease, opacity .3s ease, transform .2s ease; }
-  .v-mnav__prev { background:transparent; border:1.5px solid rgba(255,255,255,0.18); color:rgba(255,255,255,0.75); padding:13px 24px; }
-  .v-mnav__prev:hover:not(:disabled) { border-color:rgba(127,176,255,0.5); color:#fff; }
+  .v-mnav__prev { background:transparent; border:1.5px solid rgba(14,26,46,0.18); color:rgba(14,26,46,0.7); padding:13px 24px; }
+  .v-mnav__prev:hover:not(:disabled) { border-color:#1C6FE8; color:#0E1A2E; }
   .v-mnav__prev:disabled { opacity:0.35; cursor:not-allowed; }
-  .v-mnav__next { background:#1C6FE8; border:none; color:#fff; padding:13px 30px; box-shadow:0 0 20px rgba(28,111,232,0.45); }
-  .v-mnav__next:hover { background:#3B86F5; transform:translateY(-1px); box-shadow:0 0 28px rgba(59,134,245,0.6); }
-  .v-mnav__count { font-size:13px; font-weight:700; letter-spacing:0.06em; color:rgba(226,235,250,0.5); font-variant-numeric:tabular-nums; }
+  .v-mnav__next { background:#1C6FE8; border:none; color:#fff; padding:13px 30px; }
+  .v-mnav__next:hover { background:#3B86F5; transform:translateY(-1px); }
+  .v-mnav__count { font-size:13px; font-weight:700; letter-spacing:0.06em; color:#9A9AAB; font-variant-numeric:tabular-nums; }
 
   /* ---------- CONTACT FORM (sobre imagen) ---------- */
   .v-cform-2 { display:grid; grid-template-columns:1fr; gap:clamp(14px,1.6vw,20px); }
@@ -340,14 +340,13 @@
     </div>
   </section>
 
-  <!-- ============ MÉTODO (timeline de 4 pasos, fondo oscuro) ============ -->
-  <section style="position:relative; overflow:hidden; background:linear-gradient(180deg,#0D182E 0%,#0B1326 100%); padding:clamp(64px,8vw,116px) clamp(16px,4vw,40px) clamp(72px,9vw,120px);">
-    <div style="position:absolute; top:-15%; right:-6%; width:560px; height:560px; max-width:80vw; border-radius:50%; background:radial-gradient(circle, rgba(28,111,232,0.18), transparent 65%); filter:blur(20px); pointer-events:none;"></div>
+  <!-- ============ MÉTODO (timeline de 4 pasos, fondo blanco como Servicios) ============ -->
+  <section style="position:relative; overflow:hidden; background:#ffffff; padding:clamp(64px,8vw,116px) clamp(16px,4vw,40px) clamp(72px,9vw,120px);">
     <div style="position:relative; z-index:1; max-width:1280px; margin:0 auto;">
       <div data-reveal style="max-width:720px; margin:0 0 clamp(44px,5vw,64px);">
-        <div style="display:inline-flex; align-items:center; gap:12px; margin-bottom:20px;"><span style="width:28px; height:2px; background:#56A2FF; border-radius:2px;"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#7FB0FF;">Nuestro método</span></div>
-        <h2 style="font-size:clamp(30px,3.8vw,50px); font-weight:800; letter-spacing:-0.038em; line-height:1.02; color:#fff; margin:0 0 20px;">De la estrategia a la <span style="color:#56A2FF;">presencia</span> en calle.</h2>
-        <p style="font-size:clamp(15px,1.3vw,18px); line-height:1.62; color:rgba(226,235,250,0.7); margin:0; max-width:500px;">Cuatro pasos claros para llevar tu marca a los puntos donde realmente importa.</p>
+        <div style="display:inline-flex; align-items:center; gap:12px; margin-bottom:20px;"><span style="width:28px; height:2px; background:#1C6FE8; border-radius:2px;"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#1C6FE8;">Nuestro método</span></div>
+        <h2 style="font-size:clamp(30px,3.8vw,50px); font-weight:800; letter-spacing:-0.038em; line-height:1.02; color:#0E1A2E; margin:0 0 20px;">De la estrategia a la <span style="color:#1C6FE8;">presencia</span> en calle.</h2>
+        <p style="font-size:clamp(15px,1.3vw,18px); line-height:1.62; color:#6E6E7A; margin:0; max-width:500px;">Cuatro pasos claros para llevar tu marca a los puntos donde realmente importa.</p>
       </div>
 
       <div class="v-mwrap" data-reveal>
@@ -675,11 +674,11 @@ class Component extends DCLogic {
       const done = i < si;
       return {
         circStyle: {
-          background: active ? '#56A2FF' : (done ? 'rgba(127,176,255,0.35)' : 'rgba(255,255,255,0.08)'),
-          color: active ? '#0B1326' : (done ? '#0B1326' : 'rgba(226,235,250,0.55)'),
-          boxShadow: active ? '0 0 18px 3px rgba(86,162,255,0.7), 0 0 0 4px rgba(86,162,255,0.15)' : 'none'
+          background: active ? '#1C6FE8' : (done ? 'rgba(28,111,232,0.14)' : 'rgba(14,26,46,0.06)'),
+          color: active ? '#fff' : (done ? '#1C6FE8' : '#9A9AAB'),
+          boxShadow: active ? '0 0 0 4px rgba(28,111,232,0.14)' : 'none'
         },
-        labelStyle: { color: active ? '#fff' : 'rgba(226,235,250,0.55)' }
+        labelStyle: { color: active ? '#0E1A2E' : '#9A9AAB' }
       };
     };
     const stepDot0 = makeDot(0);
