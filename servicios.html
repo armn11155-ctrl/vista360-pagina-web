@@ -58,7 +58,7 @@
   .v-sgrid { display:grid; grid-template-columns:1fr; gap:clamp(14px,1.4vw,20px); }
   @media (min-width:640px){ .v-sgrid { grid-template-columns:1fr 1fr; } }
   @media (min-width:1040px){ .v-sgrid { grid-template-columns:repeat(3,1fr); } }
-  .v-uscard { position:relative; overflow:hidden; display:flex; flex-direction:column; text-align:left; text-decoration:none; min-height:clamp(260px,24vw,300px); padding:clamp(30px,2.8vw,40px) clamp(28px,2.6vw,38px) clamp(26px,2.4vw,34px); background:linear-gradient(160deg,#102A52 0%,#0B1E3C 100%); border:1px solid rgba(255,255,255,0.08); border-radius:20px; box-shadow:0 24px 50px -38px rgba(7,16,32,0.7); transition:transform .55s cubic-bezier(.16,1,.3,1), box-shadow .55s ease, border-color .5s ease; }
+  .v-uscard { position:relative; overflow:hidden; display:flex; flex-direction:column; text-align:left; text-decoration:none; min-height:clamp(260px,24vw,300px); padding:clamp(30px,2.8vw,40px) clamp(28px,2.6vw,38px) clamp(26px,2.4vw,34px); background:linear-gradient(160deg,#111C35 0%,#0B1326 100%); border:1px solid rgba(255,255,255,0.08); border-radius:20px; box-shadow:0 24px 50px -38px rgba(5,8,15,0.7); transition:transform .55s cubic-bezier(.16,1,.3,1), box-shadow .55s ease, border-color .5s ease; }
   .v-uscard::after { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:linear-gradient(180deg,#56A2FF,#7FB0FF); transform:scaleY(0); transform-origin:top; transition:transform .55s cubic-bezier(.16,1,.3,1); border-radius:3px; }
   .v-uscard:hover { transform:translateY(-6px); box-shadow:0 44px 80px -40px rgba(7,16,32,0.85); border-color:rgba(127,176,255,0.4); }
   .v-uscard:hover::after { transform:scaleY(1); }
@@ -66,7 +66,7 @@
   .v-us-chip { position:relative; z-index:1; width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:rgba(127,176,255,0.12); border:1px solid rgba(127,176,255,0.22); transition:transform .5s cubic-bezier(.16,1,.3,1), background .45s ease, border-color .45s ease; }
   .v-uscard:hover .v-us-chip { transform:translateY(-2px); background:#56A2FF; border-color:#56A2FF; }
   .v-us-chip svg { stroke:#9FC4FF; transition:stroke .45s ease; }
-  .v-uscard:hover .v-us-chip svg { stroke:#0B1E3C; }
+  .v-uscard:hover .v-us-chip svg { stroke:#0B1326; }
   .v-us-idx { font-size:13px; font-weight:700; letter-spacing:0.04em; color:#F5F0E4; opacity:0.85; font-variant-numeric:tabular-nums; transition:opacity .45s ease; }
   .v-uscard:hover .v-us-idx { opacity:1; }
   .v-uscard h3 { color:#FFFFFF !important; }
@@ -89,7 +89,7 @@
   .v-mstep__ico { width:50px; height:50px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:rgba(127,176,255,0.12); border:1px solid rgba(127,176,255,0.22); margin-bottom:clamp(18px,1.8vw,22px); transition:background .45s ease, border-color .45s ease; }
   .v-mstep:hover .v-mstep__ico { background:#56A2FF; border-color:#56A2FF; }
   .v-mstep__ico svg { stroke:#9FC4FF; transition:stroke .45s ease; }
-  .v-mstep:hover .v-mstep__ico svg { stroke:#0B1E3C; }
+  .v-mstep:hover .v-mstep__ico svg { stroke:#0B1326; }
   .v-mstep__title { font-size:clamp(18px,1.5vw,21px); font-weight:800; letter-spacing:-0.02em; color:#fff; margin:0 0 10px; }
   .v-mstep__desc { font-size:14.5px; line-height:1.6; color:rgba(226,235,250,0.66); margin:0 0 20px; }
   .v-mstep__list { display:flex; flex-direction:column; gap:10px; margin-top:auto; }
@@ -272,7 +272,7 @@
   </section>
 
   <!-- ============ MÉTODO (timeline de 4 pasos, fondo oscuro) ============ -->
-  <section style="position:relative; overflow:hidden; background:linear-gradient(180deg,#0A1428 0%,#0B1E3C 100%); padding:clamp(64px,8vw,116px) clamp(16px,4vw,40px) clamp(72px,9vw,120px);">
+  <section style="position:relative; overflow:hidden; background:linear-gradient(180deg,#0D182E 0%,#0B1326 100%); padding:clamp(64px,8vw,116px) clamp(16px,4vw,40px) clamp(72px,9vw,120px);">
     <div style="position:absolute; top:-15%; right:-6%; width:560px; height:560px; max-width:80vw; border-radius:50%; background:radial-gradient(circle, rgba(28,111,232,0.18), transparent 65%); filter:blur(20px); pointer-events:none;"></div>
     <div style="position:relative; z-index:1; max-width:1280px; margin:0 auto;">
       <div data-reveal style="max-width:720px; margin:0 0 clamp(44px,5vw,64px);">
