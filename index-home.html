@@ -19,6 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="panels/vista360-player-phones.png">
 <style>
   * { box-sizing: border-box; }
   html {  overscroll-behavior-y: contain; }
@@ -2349,6 +2350,80 @@
   .v-player-app-icon {
     box-shadow:0 32px 90px -58px rgba(255,255,255,.34);
   }
+  .v-player-phone-stage {
+    position:relative;
+    display:grid;
+    min-height:inherit;
+    place-items:center;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:clamp(36px,4vw,64px);
+    background:
+      radial-gradient(circle at 50% 34%, rgba(255,255,255,.18), transparent 25%),
+      radial-gradient(circle at 72% 28%, rgba(54,130,255,.26), transparent 30%),
+      radial-gradient(circle at 18% 82%, rgba(255,122,26,.15), transparent 28%),
+      linear-gradient(135deg,#10141F 0%,#05070D 52%,#071A2E 100%);
+    box-shadow:
+      0 60px 140px -70px rgba(28,111,232,.92),
+      inset 0 1px 0 rgba(255,255,255,.18);
+  }
+  .v-player-phone-stage::before {
+    content:"";
+    position:absolute;
+    inset:-28%;
+    background:
+      radial-gradient(circle at 50% 46%, rgba(120,160,220,.42), transparent 28%),
+      radial-gradient(circle at 72% 60%, rgba(28,111,232,.22), transparent 26%);
+    filter:blur(20px);
+  }
+  .v-player-phone-img {
+    position:relative;
+    z-index:1;
+    display:block;
+    width:min(1040px,92%);
+    height:auto;
+    filter:drop-shadow(0 44px 80px rgba(0,0,0,.56));
+  }
+  .v-player-floating-copy {
+    position:absolute;
+    z-index:2;
+    display:grid;
+    gap:10px;
+    width:min(320px,34%);
+    padding:clamp(17px,2vw,24px);
+    border:1px solid rgba(255,255,255,.13);
+    border-radius:24px;
+    background:rgba(5,8,15,.46);
+    color:#FFFFFF;
+    backdrop-filter:blur(20px);
+  }
+  .v-player-floating-copy--left {
+    left:clamp(18px,4vw,58px);
+    bottom:clamp(24px,5vw,70px);
+  }
+  .v-player-floating-copy--right {
+    right:clamp(18px,4vw,58px);
+    top:clamp(24px,5vw,70px);
+  }
+  .v-player-floating-copy span {
+    color:#FF7A1A;
+    font-size:11px;
+    font-weight:850;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+  }
+  .v-player-floating-copy b {
+    font-size:clamp(20px,2.1vw,31px);
+    letter-spacing:-.045em;
+    line-height:1.02;
+  }
+  .v-player-floating-copy p {
+    margin:0;
+    color:rgba(239,245,255,.7);
+    font-size:13.5px;
+    font-weight:650;
+    line-height:1.48;
+  }
   .v-process-section {
     position:relative;
     overflow:hidden;
@@ -2515,6 +2590,29 @@
     }
     .v-player-map {
       min-height:360px;
+    }
+    .v-player-phone-stage {
+      min-height:680px;
+      border-radius:0;
+      border-left:0;
+      border-right:0;
+    }
+    .v-player-phone-img {
+      width:118%;
+      max-width:none;
+      margin-top:-40px;
+    }
+    .v-player-floating-copy {
+      width:auto;
+      left:18px;
+      right:18px;
+    }
+    .v-player-floating-copy--left {
+      bottom:22px;
+    }
+    .v-player-floating-copy--right {
+      top:auto;
+      bottom:178px;
     }
     .v-player-dashboard-card {
       border-left:0;
@@ -2817,7 +2915,7 @@
       </div>
 
       <div class="v-player-story">
-        <div class="v-player-hero" data-reveal>
+        <div class="v-player-hero">
           <div class="v-player-kicker">Vista360 Player</div>
           <h2>Tu campaña, clara de principio a fin.</h2>
           <p>Una experiencia pensada para que sepas dónde está tu publicidad, qué estado tiene y cómo avanza cada soporte sin depender de mensajes sueltos.</p>
@@ -2830,47 +2928,41 @@
 
         <div class="v-player-visual" data-player-landscape aria-label="Vista conceptual de Vista360 Player">
           <div class="v-player-glow" aria-hidden="true"></div>
-          <div class="v-player-dashboard-card">
-            <div class="v-player-dashboard">
-              <div class="v-player-map" aria-hidden="true"></div>
-              <div class="v-player-data">
-                <div>
-                  <div class="v-player-kicker">Panel Universitaria</div>
-                  <h3>Todo el panorama. Sin perder detalle.</h3>
-                  <p>Vista de ubicación, estado y actividad en una interfaz limpia para acompañar cada campaña.</p>
-                </div>
-                <div class="v-player-live-row">
-                  <div class="v-player-live-card"><span>Estado</span><b>Operativo</b></div>
-                  <div class="v-player-live-card"><span>Contenido</span><b>Listo</b></div>
-                </div>
-                <div class="v-player-timeline" aria-hidden="true">
-                  <i style="--bar:86%;"></i><i style="--bar:62%;"></i><i style="--bar:74%;"></i>
-                </div>
-              </div>
+          <div class="v-player-phone-stage">
+            <img class="v-player-phone-img" src="panels/vista360-player-phones.png" width="1024" height="1024" loading="eager" decoding="async" fetchpriority="high" alt="Tres celulares mostrando la experiencia visual de Vista360 Player">
+            <div class="v-player-floating-copy v-player-floating-copy--right">
+              <span>En la palma</span>
+              <b>Tu campaña se siente ordenada desde el primer día.</b>
+              <p>Una vista clara para consultar estado, ubicación y próximos pasos sin fricción.</p>
+            </div>
+            <div class="v-player-floating-copy v-player-floating-copy--left">
+              <span>Próximamente</span>
+              <b>Vista360 Player acompaña cada soporte.</b>
+              <p>Diseñado para que tu publicidad exterior no se sienta lejana, sino controlada.</p>
             </div>
           </div>
         </div>
       </div>
 
       <div id="player-features" class="v-player-feature-grid">
-        <article class="v-player-feature" data-reveal>
+        <article class="v-player-feature">
           <div class="v-player-feature__icon">◎</div>
           <h3>Monitoreo claro.</h3>
           <p>Consulta el estado de tus soportes y accede a la información esencial de cada ubicación.</p>
         </article>
-        <article class="v-player-feature" data-reveal data-reveal-delay="100">
+        <article class="v-player-feature">
           <div class="v-player-feature__icon">↗</div>
           <h3>Información útil.</h3>
           <p>Visualiza actividad y métricas disponibles sin perderte entre reportes complicados.</p>
         </article>
-        <article class="v-player-feature" data-reveal data-reveal-delay="200">
+        <article class="v-player-feature">
           <div class="v-player-feature__icon">●</div>
           <h3>Soporte cercano.</h3>
           <p>Comunícate directamente con Vista360 desde una experiencia rápida y sencilla.</p>
         </article>
       </div>
 
-      <div class="v-player-app-icons" aria-label="Funciones de Vista360 Player" data-reveal>
+      <div class="v-player-app-icons" aria-label="Funciones de Vista360 Player">
         <div class="v-player-app-icon" style="--icon-a:#1769E0; --icon-b:#081426;">◎</div>
         <div class="v-player-app-icon" style="--icon-a:#17B26A; --icon-b:#071A11;">✓</div>
         <div class="v-player-app-icon" style="--icon-a:#FF7A1A; --icon-b:#241006;">↗</div>
@@ -2958,7 +3050,7 @@
 
   <section class="v-process-section" aria-labelledby="v-process-title">
     <div class="v-process-shell">
-      <div class="v-process-head" data-reveal>
+      <div class="v-process-head">
         <div>
           <div style="font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#FF7A1A; margin-bottom:15px;">Una campaña bien acompañada</div>
           <h2 id="v-process-title" style="font-size:clamp(30px,4.4vw,58px); font-weight:800; letter-spacing:-.04em; line-height:1.03; color:#0E1A2E; margin:0;">Del primer mensaje<br>al primer impacto.</h2>
@@ -2966,7 +3058,7 @@
         <p class="v-process-intro">No se trata de llenar un espacio. Se trata de elegir el punto correcto, preparar una propuesta clara y hacer que tu marca aparezca en la ciudad con presencia.</p>
       </div>
 
-      <div class="v-process-grid" data-reveal>
+      <div class="v-process-grid">
         <article class="v-process-step">
           <span class="v-process-number">01</span>
           <h3>Primero entendemos qué quieres provocar.</h3>
@@ -2989,7 +3081,7 @@
         </article>
       </div>
 
-      <div class="v-process-note" data-reveal>
+      <div class="v-process-note">
         <div>
           <strong style="display:block; color:#0E1A2E; font-size:15px; margin-bottom:4px;">Atención directa, sin procesos complicados.</strong>
           <span style="color:#718096; font-size:13.5px; line-height:1.5;">Una propuesta pensada para tu marca y para las calles de Huánuco.</span>
@@ -3184,7 +3276,7 @@ class Component extends DCLogic {
     const craft = root.querySelector('[data-craft-scroll]');
     const player = root.querySelector('[data-player-scroll]');
     const playerDevices = player ? Array.from(player.querySelectorAll('.v-player-device')) : [];
-    const playerLandscape = player ? player.querySelector('.v-player-dashboard-card, .v-landscape-phone') : null;
+    const playerLandscape = player ? player.querySelector('.v-player-phone-stage, .v-player-dashboard-card, .v-landscape-phone') : null;
     const scenes = story ? Array.from(story.querySelectorAll('.v-story-scene')) : [];
     const progressBars = story ? Array.from(story.querySelectorAll('.v-story-progress span')) : [];
     const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
