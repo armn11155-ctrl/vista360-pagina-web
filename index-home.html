@@ -22,7 +22,7 @@
 <style>
   * { box-sizing: border-box; }
   html {  overscroll-behavior-y: contain; }
-  body { margin:0; background:#ffffff; color:#0E1A2E; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; overscroll-behavior-y: contain; }
+  body { margin:0; background:#ffffff; color:#0E1A2E; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:clip; overscroll-behavior-y: contain; }
   /* FIX celular: el body es blanco y el footer oscuro; en iPhone, el rebote
      de scroll (bounce) y la barra de direcciones que se oculta/aparece
      dejan ver ese blanco justo debajo del footer. En iPad/laptop no pasa
@@ -170,9 +170,18 @@
   /* ---------- VISTA360 PLAYER (app showcase) ---------- */
   .v360p-grid { display:grid; grid-template-columns:1fr; gap:clamp(40px,6vw,72px); align-items:center; }
   @media (min-width:900px){ .v360p-grid { grid-template-columns:minmax(260px,400px) 1fr; } }
-  .v360p-phonewrap { display:flex; align-items:center; justify-content:center; gap:clamp(10px,2vw,28px); }
+  .v360p-phonewrap { display:flex; align-items:center; justify-content:center; gap:clamp(10px,2vw,28px); perspective:1200px; }
   .v360p-chevron { flex-shrink:0; color:#1C6FE8; opacity:0.5; }
-  .v360p-frame { position:relative; width:clamp(220px,28vw,260px); aspect-ratio:540/1096; }
+  .v360p-frame {
+    position:relative;
+    width:clamp(220px,28vw,260px);
+    aspect-ratio:540/1096;
+    transform:rotateY(var(--player-rotate,-11deg)) rotateX(var(--player-tilt,2deg)) translateY(var(--player-lift,24px)) scale(var(--player-scale,.95));
+    transform-style:preserve-3d;
+    transform-origin:center center;
+    will-change:transform;
+    transition:transform .12s linear;
+  }
   .v360p-frame__img { position:absolute; inset:0; z-index:3; width:100%; height:100%; pointer-events:none; display:block; }
   .v360p-screen { position:absolute; top:1.9%; right:4.9%; bottom:1.8%; left:4.7%; z-index:1; border-radius:clamp(16px,9%,28px); overflow:hidden; background:#070B14; }
   .v360p-screen__bg { position:absolute; inset:0; background-image:linear-gradient(180deg, rgba(6,10,20,0.5) 0%, rgba(6,10,20,0.3) 38%, rgba(6,10,20,0.94) 100%), url('panels/skyline-night.jpg'); background-size:cover; background-position:center 60%; }
@@ -1045,8 +1054,32 @@
   @media (max-width:760px) {
     .v-highlights__head { align-items:flex-start; flex-direction:column; }
     .v-highlight-card { flex-basis:86vw; min-height:66vh; }
-    .v-scroll-story { height:450vh; }
-    .v-scroll-story__sticky { min-height:560px; }
+    .v-scroll-story { height:auto; }
+    .v-scroll-story__sticky {
+      position:relative;
+      top:auto;
+      height:auto;
+      min-height:0;
+      overflow:visible;
+    }
+    .v-story-scene,
+    .v-story-scene.is-active {
+      position:relative;
+      min-height:clamp(620px,92svh,920px);
+      opacity:1;
+      visibility:visible;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .v-story-scene > img,
+    .v-story-scene.is-active > img {
+      position:absolute !important;
+      inset:0 !important;
+      width:100% !important;
+      height:100% !important;
+      object-fit:cover !important;
+      transform:scale(1.035);
+      filter:brightness(.76) saturate(.98);
+    }
     .v-story-scene::after {
       background:linear-gradient(0deg, rgba(2,6,13,.94) 0%, rgba(2,6,13,.2) 78%);
     }
@@ -1054,14 +1087,26 @@
       left:24px;
       right:48px;
       bottom:66px;
+      opacity:1;
+      transform:none;
     }
     .v-story-scene h2 { font-size:clamp(46px,15vw,74px); }
-    .v-story-progress { right:16px; }
-    .v-story-progress span { height:20px; }
-    .v-story-progress span.is-active { height:42px; }
+    .v-story-progress { display:none; }
     .v-craft-visual { min-height:68vh; }
     .v-craft-pills { align-items:flex-start; flex-direction:column; }
     .v-craft-pill { padding:11px 15px; font-size:13px; }
+    @supports (animation-timeline:view()) {
+      .v-story-scene > img,
+      .v-story-scene.is-active > img {
+        animation:vMobileStoryImage linear both;
+        animation-timeline:view();
+        animation-range:entry 0% exit 100%;
+      }
+      @keyframes vMobileStoryImage {
+        from { transform:scale(1.09) translateY(-2%); }
+        to { transform:scale(1.02) translateY(2%); }
+      }
+    }
   }
   @media (prefers-reduced-motion:reduce) {
     .v-highlight-card > img,
@@ -1071,6 +1116,10 @@
     .v-craft-visual > img {
       transition:none;
       animation:none;
+    }
+    .v360p-frame {
+      transform:none !important;
+      transition:none;
     }
   }
   /* ---------- UNIFIED PREMIUM DESIGN SYSTEM ---------- */
@@ -1218,7 +1267,7 @@
 </style>
 </helmet>
 
-<div ref="{{ setRoot }}" style="position:relative; width:100%; overflow-x:hidden;">
+<div ref="{{ setRoot }}" style="position:relative; width:100%; max-width:100%; overflow-x:clip;">
 
   <dc-import name="SiteNav" active="inicio" transparent="{{ true }}" top-color="#05080F" hint-size="100%,66px"></dc-import>
 
@@ -1449,7 +1498,7 @@
   </section>
 
   <!-- ============ VISTA360 PLAYER (app showcase) ============ -->
-  <section class="v-premium-player" style="background:#ffffff; padding:clamp(64px,8vw,116px) clamp(16px,4vw,40px);">
+  <section class="v-premium-player" data-player-scroll style="background:#ffffff; padding:clamp(64px,8vw,116px) clamp(16px,4vw,40px);">
     <div class="v-premium-player-shell" style="max-width:1280px; margin:0 auto;">
       <div class="v360p-grid" data-reveal>
 
@@ -1791,6 +1840,8 @@ class Component extends DCLogic {
     if (!root) return;
     const story = root.querySelector('[data-scroll-story]');
     const craft = root.querySelector('[data-craft-scroll]');
+    const player = root.querySelector('[data-player-scroll]');
+    const playerFrame = player ? player.querySelector('.v360p-frame') : null;
     const scenes = story ? Array.from(story.querySelectorAll('.v-story-scene')) : [];
     const progressBars = story ? Array.from(story.querySelectorAll('.v-story-progress span')) : [];
     const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1814,6 +1865,20 @@ class Component extends DCLogic {
         const rect = craft.getBoundingClientRect();
         const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
         craft.style.setProperty('--craft-progress', progress.toFixed(4));
+      }
+
+      if (player && playerFrame && !reducedMotion) {
+        const rect = player.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh * .95)));
+        const mobile = window.innerWidth <= 760;
+        const startAngle = mobile ? -8 : -12;
+        const rotate = startAngle * (1 - progress);
+        const lift = (mobile ? 18 : 30) * (1 - progress);
+        const scale = (mobile ? .97 : .94) + ((mobile ? .03 : .06) * progress);
+        playerFrame.style.setProperty('--player-rotate', rotate.toFixed(2) + 'deg');
+        playerFrame.style.setProperty('--player-tilt', (2 * (1 - progress)).toFixed(2) + 'deg');
+        playerFrame.style.setProperty('--player-lift', lift.toFixed(2) + 'px');
+        playerFrame.style.setProperty('--player-scale', scale.toFixed(4));
       }
     };
 
