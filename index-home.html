@@ -382,7 +382,7 @@
   }
   .v-premium-products .v-prod-peek:hover { opacity:.58; }
   .v-apple-statement {
-    padding:clamp(90px,12vw,170px) clamp(20px,6vw,72px);
+    padding:clamp(110px,14vw,210px) clamp(20px,6vw,72px);
     background:#FFFFFF;
   }
   .v-apple-statement__inner {
@@ -654,6 +654,19 @@
   .v-home-surface {
     background:var(--v-page) !important;
   }
+  .v-home-surface > div {
+    display:flex;
+    flex-direction:column;
+  }
+  .v-premium-stats,
+  .v-premium-showcase {
+    display:none;
+  }
+  .v-apple-statement { order:1; }
+  .v-premium-products { order:2; }
+  .v-process-section { order:3; }
+  .v-premium-player { order:4; }
+  .v-closing-wrap { order:5; }
   .v-home-surface h2,
   .v-home-surface h3 {
     text-wrap:balance;
