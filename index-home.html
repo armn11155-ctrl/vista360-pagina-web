@@ -2237,7 +2237,7 @@
     text-align:center;
   }
   .v-player-kicker {
-    color:#FF7A1A;
+    color:#1C6FE8;
     font-size:clamp(18px,1.7vw,24px);
   }
   .v-player-hero h2 {
@@ -2268,7 +2268,7 @@
     height:72%;
     background:
       radial-gradient(circle at 65% 35%, rgba(28,111,232,.36), transparent 36%),
-      radial-gradient(circle at 28% 70%, rgba(255,122,26,.18), transparent 34%);
+      radial-gradient(circle at 28% 70%, rgba(28,111,232,.18), transparent 34%);
     filter:blur(34px);
   }
   .v-player-dashboard-card {
@@ -2361,7 +2361,7 @@
     background:
       radial-gradient(circle at 50% 34%, rgba(255,255,255,.18), transparent 25%),
       radial-gradient(circle at 72% 28%, rgba(54,130,255,.26), transparent 30%),
-      radial-gradient(circle at 18% 82%, rgba(255,122,26,.15), transparent 28%),
+      radial-gradient(circle at 18% 82%, rgba(28,111,232,.15), transparent 28%),
       linear-gradient(135deg,#10141F 0%,#05070D 52%,#071A2E 100%);
     box-shadow:
       0 60px 140px -70px rgba(28,111,232,.92),
@@ -2406,7 +2406,7 @@
     top:clamp(24px,5vw,70px);
   }
   .v-player-floating-copy span {
-    color:#FF7A1A;
+    color:#1C6FE8;
     font-size:11px;
     font-weight:850;
     letter-spacing:.15em;
@@ -2437,7 +2437,7 @@
     inset:-12%;
     background:
       linear-gradient(90deg, rgba(5,8,15,.72), rgba(5,8,15,.48), rgba(5,8,15,.86)),
-      radial-gradient(circle at 16% 16%, rgba(255,122,26,.22), transparent 28%),
+      radial-gradient(circle at 16% 16%, rgba(28,111,232,.22), transparent 28%),
       radial-gradient(circle at 72% 40%, rgba(28,111,232,.28), transparent 33%),
       url('panels/editorial-mural-night.jpg') center/cover;
     filter:blur(20px) saturate(1.06) brightness(.7);
@@ -2505,7 +2505,7 @@
     margin-bottom:clamp(26px,4vw,58px);
     border:0;
     border-radius:0;
-    color:#FF7A1A;
+    color:#1C6FE8;
     background:transparent;
     font-size:13px;
     font-weight:850;
@@ -2672,7 +2672,7 @@
     inset:0;
     background:
       radial-gradient(circle at 72% 18%, rgba(28,111,232,.28), transparent 28%),
-      radial-gradient(circle at 12% 86%, rgba(255,122,26,.18), transparent 32%);
+      radial-gradient(circle at 12% 86%, rgba(28,111,232,.18), transparent 32%);
   }
   .v-apple-statement__inner {
     position:relative;
@@ -2725,7 +2725,7 @@
     box-shadow:0 44px 120px -74px rgba(28,111,232,.72);
   }
   .v-highlight-card__eyebrow {
-    color:#FF7A1A;
+    color:#1C6FE8;
   }
   .v-scroll-story {
     background:#05080F;
@@ -2863,6 +2863,234 @@
     .v-highlight-card {
       flex-basis:88vw;
       min-height:72vh;
+    }
+  }
+
+  /* ---------- VISTA360 HOME · APPLE-LIKE POLISH PASS ---------- */
+  .v-apple-statement {
+    align-items:flex-start !important;
+    justify-content:center;
+    text-align:center;
+    min-height:clamp(820px,104vh,1120px) !important;
+    padding:clamp(92px,10vw,150px) clamp(22px,6vw,76px) clamp(430px,47vw,660px) !important;
+    background:
+      linear-gradient(180deg,#FFFFFF 0%,#FBFCFF 48%,#F3F6FB 100%) !important;
+    color:#1D1D1F !important;
+  }
+  .v-apple-statement::before {
+    content:"";
+    position:absolute;
+    left:50%;
+    right:auto;
+    top:auto;
+    bottom:0;
+    width:min(1120px,92vw);
+    height:clamp(360px,45vw,590px);
+    border-radius:clamp(28px,3vw,52px) clamp(28px,3vw,52px) 0 0;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.68) 100%),
+      url('panels/product-unipolar-studio.jpg') center/cover;
+    filter:none !important;
+    transform:translateX(-50%) !important;
+    opacity:1 !important;
+    box-shadow:0 58px 120px -78px rgba(18,35,60,.62);
+  }
+  .v-apple-statement::after {
+    content:"";
+    position:absolute;
+    inset:auto 0 0;
+    height:clamp(420px,48vw,680px);
+    background:
+      radial-gradient(circle at 50% 24%, rgba(28,111,232,.18), transparent 34%),
+      linear-gradient(180deg, transparent 0%, rgba(255,255,255,.88) 100%);
+    pointer-events:none;
+  }
+  .v-apple-statement__inner {
+    max-width:1180px !important;
+    margin:0 auto !important;
+  }
+  .v-apple-statement h2 {
+    width:calc(100vw - 96px);
+    max-width:980px;
+    margin:0 auto;
+    color:#1D1D1F !important;
+    font-size:clamp(50px,6.3vw,96px) !important;
+    letter-spacing:-.044em !important;
+    line-height:.98 !important;
+    text-shadow:none !important;
+  }
+  .v-apple-statement h2 span {
+    color:#6E6E73 !important;
+    background:none !important;
+    -webkit-background-clip:initial !important;
+    background-clip:initial !important;
+    -webkit-text-fill-color:currentColor !important;
+  }
+
+  .v-highlights::before {
+    height:clamp(280px,34vw,520px) !important;
+    background:
+      linear-gradient(180deg, rgba(5,8,15,.05), #05080F 88%),
+      url('panels/premium-atmosphere-bg.jpg') center/cover !important;
+    filter:blur(18px) saturate(1.04) brightness(.68) !important;
+    transform:scale(1.08);
+    opacity:.88;
+  }
+  .v-highlights::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 72% 8%, rgba(83,158,255,.18), transparent 28%),
+      radial-gradient(circle at 18% 30%, rgba(255,255,255,.06), transparent 24%);
+    pointer-events:none;
+  }
+  .v-highlights__head,
+  .v-highlights-track {
+    position:relative;
+    z-index:1;
+  }
+
+  .v-premium-player {
+    background:
+      radial-gradient(circle at 50% 16%, rgba(92,154,255,.2), transparent 28%),
+      url('panels/premium-atmosphere-bg.jpg') center top/cover,
+      linear-gradient(180deg,#05080F 0%,#02040A 100%) !important;
+  }
+  .v-premium-player::before {
+    background:
+      linear-gradient(180deg, rgba(5,8,15,.2), rgba(5,8,15,.96)),
+      url('panels/vista360-player-phones.png') center top / min(860px,84vw) no-repeat !important;
+    filter:blur(36px) saturate(.92) brightness(.72) !important;
+    transform:scale(1.06);
+    opacity:.32 !important;
+  }
+  .v-player-phone-stage {
+    background:
+      radial-gradient(circle at 50% 18%, rgba(255,255,255,.12), transparent 34%),
+      linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.015)) !important;
+  }
+  .v-player-hero h2 {
+    width:calc(100vw - 92px) !important;
+    max-width:980px !important;
+    font-size:clamp(52px,6.8vw,104px) !important;
+    letter-spacing:-.052em !important;
+    line-height:.94 !important;
+  }
+  .v-player-app-icons {
+    display:none !important;
+  }
+
+  .v-craft-section {
+    position:relative;
+    overflow:hidden;
+    background:#F5F5F7 !important;
+  }
+  .v-craft-section::before {
+    content:"";
+    position:absolute;
+    left:-8%;
+    right:-8%;
+    top:-10%;
+    height:58%;
+    background:
+      linear-gradient(180deg, rgba(245,245,247,.12), #F5F5F7 92%),
+      url('panels/detail-unipolar.jpg') center/cover;
+    filter:blur(24px) saturate(1.04) brightness(1.04);
+    transform:scale(1.08);
+    opacity:.36;
+  }
+  .v-craft-shell {
+    position:relative;
+    z-index:1;
+  }
+  .v-craft-visual {
+    overflow:hidden;
+  }
+  .v-craft-visual::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0) 45%, rgba(255,255,255,.2) 100%);
+    pointer-events:none;
+  }
+
+  .v-precision-section {
+    position:relative;
+    overflow:hidden;
+    background:#FFFFFF !important;
+  }
+  .v-precision-section::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.92), rgba(246,248,252,.88)),
+      url('panels/editorial-mural-night.jpg') center/cover;
+    filter:blur(20px) saturate(.86) brightness(1.16);
+    transform:scale(1.08);
+    opacity:.3;
+  }
+  .v-precision-shell {
+    position:relative;
+    z-index:1;
+  }
+
+  .v-premium-products {
+    position:relative;
+    overflow:hidden;
+    background:#02040A !important;
+  }
+  .v-premium-products::before {
+    content:"";
+    position:absolute;
+    left:-10%;
+    right:-10%;
+    top:-8%;
+    height:48%;
+    background:
+      linear-gradient(180deg, rgba(2,4,10,.22), #02040A 96%),
+      url('panels/premium-atmosphere-bg.jpg') center/cover;
+    filter:blur(18px) saturate(.98) brightness(.66);
+    transform:scale(1.08);
+    opacity:.72;
+  }
+  .v-products-head,
+  .v-format-stage {
+    position:relative;
+    z-index:1;
+  }
+
+  .v-highlight-card__eyebrow,
+  .v-player-kicker,
+  .v-process-number,
+  [style*="#1C6FE8"] {
+    color:#1C6FE8 !important;
+  }
+
+  @media (max-width:760px) {
+    .v-apple-statement {
+      min-height:clamp(720px,100vh,880px) !important;
+      padding-top:86px !important;
+      padding-bottom:clamp(360px,92vw,520px) !important;
+    }
+    .v-apple-statement::before {
+      width:100vw;
+      height:clamp(330px,86vw,460px);
+      border-radius:28px 28px 0 0;
+      background-position:center;
+    }
+    .v-apple-statement::after {
+      height:clamp(360px,96vw,520px);
+    }
+    .v-apple-statement h2,
+    .v-player-hero h2 {
+      width:calc(100vw - 44px) !important;
+      max-width:calc(100vw - 44px) !important;
+      font-size:clamp(48px,13.6vw,76px) !important;
+      letter-spacing:-.05em !important;
+      line-height:.94 !important;
     }
   }
   dc-import{display:block}
@@ -3187,13 +3415,6 @@
         </article>
       </div>
 
-      <div class="v-player-app-icons" aria-label="Funciones de Vista360 Player">
-        <div class="v-player-app-icon" style="--icon-a:#1769E0; --icon-b:#081426;">◎</div>
-        <div class="v-player-app-icon" style="--icon-a:#17B26A; --icon-b:#071A11;">✓</div>
-        <div class="v-player-app-icon" style="--icon-a:#FF7A1A; --icon-b:#241006;">↗</div>
-        <div class="v-player-app-icon" style="--icon-a:#7A5CFF; --icon-b:#0D0828;">●</div>
-      </div>
-
       <div class="v-player-stores" aria-label="Próximamente disponible">
         <img src="app-store-badge.svg" loading="lazy" decoding="async" alt="Próximamente en App Store">
         <img src="google-play-badge.svg" loading="lazy" decoding="async" alt="Próximamente en Google Play">
@@ -3277,7 +3498,7 @@
     <div class="v-process-shell">
       <div class="v-process-head">
         <div>
-          <div style="font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#FF7A1A; margin-bottom:15px;">Una campaña bien acompañada</div>
+          <div style="font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#1C6FE8; margin-bottom:15px;">Una campaña bien acompañada</div>
           <h2 id="v-process-title" style="font-size:clamp(30px,4.4vw,58px); font-weight:800; letter-spacing:-.04em; line-height:1.03; color:#0E1A2E; margin:0;">Del primer mensaje<br>al primer impacto.</h2>
         </div>
         <p class="v-process-intro">No se trata de llenar un espacio. Se trata de elegir el punto correcto, preparar una propuesta clara y hacer que tu marca aparezca en la ciudad con presencia.</p>
