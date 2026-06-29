@@ -862,12 +862,13 @@
     position:absolute;
     inset:0;
     opacity:0;
-    visibility:hidden;
-    transition:opacity 1s cubic-bezier(.16,1,.3,1), visibility 1s;
+    visibility:visible;
+    pointer-events:none;
+    transition:opacity .58s cubic-bezier(.16,1,.3,1);
   }
   .v-story-scene.is-active {
     opacity:1;
-    visibility:visible;
+    z-index:2;
   }
   .v-story-scene > img {
     position:absolute;
@@ -876,7 +877,7 @@
     height:100%;
     object-fit:cover;
     transform:scale(1.12);
-    transition:transform 1.8s cubic-bezier(.16,1,.3,1), filter 1.2s ease;
+    transition:transform 1.05s cubic-bezier(.16,1,.3,1), filter .85s ease;
     filter:brightness(.72) saturate(.92);
   }
   .v-story-scene.is-active > img {
@@ -900,7 +901,7 @@
     color:#FFFFFF;
     opacity:0;
     transform:translateY(36px);
-    transition:opacity .9s .22s cubic-bezier(.16,1,.3,1), transform .9s .22s cubic-bezier(.16,1,.3,1);
+    transition:opacity .62s .1s cubic-bezier(.16,1,.3,1), transform .62s .1s cubic-bezier(.16,1,.3,1);
   }
   .v-story-scene.is-active .v-story-scene__copy {
     opacity:1;
@@ -1149,9 +1150,10 @@
   .v-scroll-story { order:3; }
   .v-premium-products { order:4; }
   .v-craft-section { order:5; }
-  .v-process-section { order:6; }
-  .v-premium-player { order:7; }
-  .v-closing-wrap { order:8; }
+  .v-precision-section { order:6; }
+  .v-process-section { order:7; }
+  .v-premium-player { order:8; }
+  .v-closing-wrap { order:9; }
   .v-home-surface h2,
   .v-home-surface h3 {
     text-wrap:balance;
@@ -1263,6 +1265,206 @@
     .v-closing-cta { border-radius:0; }
     .v-premium-player-shell { border-radius:24px; }
   }
+  /* ---------- APPLE-STYLE PRECISION SECTION ---------- */
+  .v-precision-section {
+    position:relative;
+    overflow:hidden;
+    padding:clamp(98px,12vw,178px) clamp(18px,4vw,44px);
+    background:#FFFFFF;
+    color:#101827;
+  }
+  .v-precision-shell {
+    width:100%;
+    max-width:1320px;
+    margin:0 auto;
+  }
+  .v-precision-head {
+    max-width:980px;
+    margin:0 auto clamp(52px,7vw,96px);
+    text-align:center;
+  }
+  .v-precision-kicker {
+    margin-bottom:20px;
+    color:#101827;
+    font-size:clamp(16px,1.45vw,22px);
+    font-weight:800;
+    letter-spacing:-.02em;
+  }
+  .v-gradient-title {
+    margin:0;
+    font-size:clamp(50px,8.4vw,118px);
+    font-weight:750;
+    letter-spacing:-.065em;
+    line-height:.95;
+    background:linear-gradient(105deg,#8D6AD9 6%,#567DE2 44%,#4B9666 88%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .v-precision-head p {
+    max-width:780px;
+    margin:28px auto 0;
+    color:#6B7280;
+    font-size:clamp(17px,1.55vw,22px);
+    font-weight:650;
+    line-height:1.5;
+  }
+  .v-precision-visual {
+    position:relative;
+    min-height:clamp(620px,78vw,920px);
+    overflow:hidden;
+    border-radius:clamp(28px,4vw,54px);
+    background:
+      radial-gradient(circle at 50% 20%, rgba(120,146,225,.22), transparent 34%),
+      linear-gradient(180deg,#FBFCFF 0%,#EEF3FA 100%);
+  }
+  .v-precision-visual::before {
+    content:"";
+    position:absolute;
+    left:50%;
+    top:52%;
+    width:min(940px,92%);
+    height:min(940px,92%);
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(28,111,232,.12), transparent 62%);
+    transform:translate(-50%,-50%);
+  }
+  .v-precision-stage {
+    position:absolute;
+    inset:clamp(28px,4vw,70px);
+    perspective:1200px;
+  }
+  .v-precision-card {
+    position:absolute;
+    overflow:hidden;
+    margin:0;
+    border:1px solid rgba(16,24,39,.08);
+    border-radius:clamp(24px,3vw,42px);
+    background:#FFFFFF;
+    box-shadow:0 34px 90px -58px rgba(16,24,39,.45);
+    transform:translate3d(0,0,0);
+    transition:transform .8s cubic-bezier(.16,1,.3,1), box-shadow .8s cubic-bezier(.16,1,.3,1);
+  }
+  .v-precision-card:hover {
+    transform:translateY(-8px) scale(1.012);
+    box-shadow:0 44px 108px -58px rgba(16,24,39,.55);
+  }
+  .v-precision-card img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transform:scale(1.02);
+    transition:transform 1.2s cubic-bezier(.16,1,.3,1);
+  }
+  .v-precision-card:hover img { transform:scale(1.07); }
+  .v-precision-card--main {
+    left:50%;
+    bottom:0;
+    width:min(760px,64%);
+    height:58%;
+    transform:translateX(-50%);
+    z-index:3;
+  }
+  .v-precision-card--left {
+    left:0;
+    top:8%;
+    width:min(460px,36%);
+    height:42%;
+    z-index:2;
+  }
+  .v-precision-card--right {
+    right:0;
+    top:16%;
+    width:min(500px,38%);
+    height:46%;
+    z-index:2;
+  }
+  .v-precision-note {
+    position:absolute;
+    z-index:4;
+    left:clamp(28px,5vw,76px);
+    bottom:clamp(28px,5vw,76px);
+    max-width:360px;
+    padding:22px 24px;
+    border:1px solid rgba(16,24,39,.09);
+    border-radius:24px;
+    background:rgba(255,255,255,.78);
+    color:#101827;
+    backdrop-filter:blur(18px);
+    box-shadow:0 20px 55px -42px rgba(16,24,39,.45);
+  }
+  .v-precision-note b {
+    display:block;
+    margin-bottom:8px;
+    font-size:clamp(22px,2.2vw,30px);
+    letter-spacing:-.04em;
+    line-height:1;
+  }
+  .v-precision-note span {
+    display:block;
+    color:#667085;
+    font-size:14px;
+    font-weight:650;
+    line-height:1.55;
+  }
+  .v-precision-chip {
+    position:absolute;
+    z-index:4;
+    right:clamp(28px,5vw,76px);
+    bottom:clamp(28px,5vw,76px);
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:14px 18px;
+    border-radius:999px;
+    background:#F1F3F7;
+    color:#101827;
+    font-size:14px;
+    font-weight:800;
+  }
+  .v-precision-chip i {
+    width:13px;
+    height:13px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#8D6AD9,#4B9666);
+    font-style:normal;
+  }
+  @media (max-width:760px) {
+    .v-precision-section { padding-left:0; padding-right:0; }
+    .v-precision-head { padding:0 22px; text-align:left; }
+    .v-precision-head p { margin-left:0; margin-right:0; }
+    .v-precision-visual { border-radius:0; min-height:820px; }
+    .v-precision-stage { inset:22px; }
+    .v-precision-card--main {
+      width:92%;
+      height:42%;
+      bottom:198px;
+    }
+    .v-precision-card--left {
+      width:56%;
+      height:28%;
+      top:4%;
+      left:0;
+    }
+    .v-precision-card--right {
+      width:58%;
+      height:30%;
+      top:18%;
+      right:-5%;
+    }
+    .v-precision-note {
+      left:22px;
+      right:22px;
+      bottom:96px;
+      max-width:none;
+    }
+    .v-precision-chip {
+      left:22px;
+      right:auto;
+      bottom:26px;
+    }
+  }
   /* ---------- VISTA360 PLAYER · PRODUCT LAUNCH ---------- */
   .v-premium-player {
     position:relative;
@@ -1367,10 +1569,10 @@
     perspective:1500px;
   }
   .v-player-device {
-    --device-y:90px;
+    --device-y:0px;
     --device-rotate:0deg;
-    --device-scale:.88;
-    --device-opacity:.1;
+    --device-scale:.94;
+    --device-opacity:1;
     position:relative;
     flex:0 0 clamp(190px,25vw,310px);
     opacity:var(--device-opacity);
@@ -1378,6 +1580,7 @@
     transform-origin:center bottom;
     transform-style:preserve-3d;
     will-change:transform,opacity;
+    transition:opacity .18s linear;
   }
   .v-player-device--center { z-index:3; }
   .v-player-device--side { z-index:2; flex-basis:clamp(170px,22vw,275px); }
@@ -1852,7 +2055,7 @@
   <section class="v-scroll-story" data-scroll-story aria-label="Una nueva escala para tu marca">
     <div class="v-scroll-story__sticky">
       <article class="v-story-scene is-active">
-        <img src="panels/premium-unipolar.jpg" loading="lazy" decoding="async" alt="Unipolar Vista360 iluminado al anochecer">
+        <img src="panels/premium-unipolar.jpg" loading="eager" decoding="async" fetchpriority="low" alt="Unipolar Vista360 iluminado al anochecer">
         <div class="v-story-scene__copy">
           <div class="v-story-scene__number">01 · Presencia</div>
           <h2>Diseñada para dominar el entorno.</h2>
@@ -1860,7 +2063,7 @@
         </div>
       </article>
       <article class="v-story-scene">
-        <img src="panels/editorial-mural-night.jpg" loading="lazy" decoding="async" alt="Mural arquitectónico Vista360 iluminado de noche">
+        <img src="panels/editorial-mural-night.jpg" loading="eager" decoding="async" fetchpriority="low" alt="Mural arquitectónico Vista360 iluminado de noche">
         <div class="v-story-scene__copy">
           <div class="v-story-scene__number">02 · Integración</div>
           <h2>La arquitectura también puede comunicar.</h2>
@@ -1913,6 +2116,35 @@
           <div class="v-craft-pill"><span>+</span>Iluminación estratégica</div>
           <div class="v-craft-pill"><span>+</span>Visibilidad urbana</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRECISIÓN VISUAL TIPO PRODUCTO ============ -->
+  <section class="v-precision-section" aria-labelledby="v-precision-title">
+    <div class="v-precision-shell">
+      <div class="v-precision-head" data-reveal>
+        <div class="v-precision-kicker">Calidad visual.</div>
+        <h2 id="v-precision-title" class="v-gradient-title">Más grande. Más claro. Más memorable.</h2>
+        <p>La diferencia premium está en cómo se presenta cada soporte: escala, detalle, iluminación y una lectura clara incluso cuando la ciudad está en movimiento.</p>
+      </div>
+      <div class="v-precision-visual" data-reveal>
+        <div class="v-precision-stage">
+          <figure class="v-precision-card v-precision-card--left">
+            <img src="panels/detail-mural.jpg" loading="lazy" decoding="async" alt="Detalle premium de mural publicitario Vista360">
+          </figure>
+          <figure class="v-precision-card v-precision-card--right">
+            <img src="panels/tech-led-modules.jpg" loading="lazy" decoding="async" alt="Detalle tecnológico de pantalla LED Vista360">
+          </figure>
+          <figure class="v-precision-card v-precision-card--main">
+            <img src="panels/detail-unipolar.jpg" loading="lazy" decoding="async" alt="Detalle de estructura unipolar Vista360">
+          </figure>
+        </div>
+        <div class="v-precision-note">
+          <b>Presencia que se siente profesional.</b>
+          <span>Cada punto visual debe verse limpio, sólido y bien pensado antes de pedirle atención a la gente.</span>
+        </div>
+        <div class="v-precision-chip"><i aria-hidden="true"></i> Vista premium del soporte</div>
       </div>
     </div>
   </section>
@@ -2330,6 +2562,10 @@ class Component extends DCLogic {
     this.initAppleScroll();
     const els = Array.from(root.querySelectorAll('[data-reveal]'));
     const formatChapters = Array.from(root.querySelectorAll('.v-format-chapter'));
+    const revealNow = (el) => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    };
     els.forEach((el) => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(28px)';
@@ -2338,7 +2574,7 @@ class Component extends DCLogic {
       if (d) el.style.transitionDelay = d + 'ms';
     });
     if (!('IntersectionObserver' in window)) {
-      els.forEach((el) => { el.style.opacity = '1'; el.style.transform = 'none'; });
+      els.forEach(revealNow);
       formatChapters.forEach((el) => el.classList.add('is-visible'));
       this.animateCounts();
       return;
@@ -2346,19 +2582,25 @@ class Component extends DCLogic {
     this.io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'none';
+          revealNow(e.target);
           if (e.target.hasAttribute('data-counts') && !this._counted) { this._counted = true; this.animateCounts(); }
           this.io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    }, { threshold: 0.01, rootMargin: '22% 0px 18% 0px' });
     els.forEach((el) => this.io.observe(el));
+    requestAnimationFrame(() => {
+      const vh = Math.max(window.innerHeight || 0, 1);
+      els.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 1.12 && r.bottom > -vh * .12) revealNow(el);
+      });
+    });
     this.formatIO = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) entry.target.classList.add('is-visible');
       });
-    }, { threshold: 0.28, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: 0.08, rootMargin: '14% 0px -6% 0px' });
     formatChapters.forEach((el) => this.formatIO.observe(el));
   }
 
@@ -2398,19 +2640,19 @@ class Component extends DCLogic {
       if (player && playerDevices.length && !reducedMotion) {
         const deviceStage = player.querySelector('.v-player-devices');
         const rect = deviceStage.getBoundingClientRect();
-        const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh * .92)));
-        const startAngles = [-24, 0, 24];
+        const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 1.05)));
+        const startAngles = [-18, 0, 18];
         const endAngles = [-10, 0, 10];
-        const delays = [.08, 0, .12];
+        const delays = [.04, 0, .06];
         playerDevices.forEach((device, index) => {
-          const local = Math.max(0, Math.min(1, (progress - delays[index]) / .78));
+          const local = Math.max(0, Math.min(1, (progress - delays[index]) / .68));
           const eased = 1 - Math.pow(1 - local, 3);
           const side = index === 1 ? 0 : 1;
           const rotate = startAngles[index] + ((endAngles[index] - startAngles[index]) * eased);
-          const y = (110 * (1 - eased)) + (side * 18);
+          const y = (52 * (1 - eased)) + (side * 12);
           const endScale = side ? .94 : 1;
-          const scale = .82 + ((endScale - .82) * eased);
-          const opacity = .08 + (.92 * eased);
+          const scale = .9 + ((endScale - .9) * eased);
+          const opacity = .5 + (.5 * eased);
           device.style.setProperty('--device-y', y.toFixed(2) + 'px');
           device.style.setProperty('--device-rotate', rotate.toFixed(2) + 'deg');
           device.style.setProperty('--device-scale', scale.toFixed(4));
