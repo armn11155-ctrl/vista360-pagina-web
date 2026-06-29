@@ -184,7 +184,7 @@
   }
   .v360p-frame__img { position:absolute; inset:0; z-index:3; width:100%; height:100%; pointer-events:none; display:block; }
   .v360p-screen { position:absolute; top:1.9%; right:4.9%; bottom:1.8%; left:4.7%; z-index:1; border-radius:clamp(16px,9%,28px); overflow:hidden; background:#070B14; }
-  .v360p-screen__bg { position:absolute; inset:0; background-image:linear-gradient(180deg, rgba(6,10,20,0.5) 0%, rgba(6,10,20,0.3) 38%, rgba(6,10,20,0.94) 100%), url('panels/skyline-night.jpg'); background-size:cover; background-position:center 60%; }
+  .v360p-screen__bg { position:absolute; inset:0; background:linear-gradient(180deg,#10274A 0%,#07101D 42%,#03070D 100%); }
   .v360p-statusbar { position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; padding:16px 18px 0; font-size:12px; font-weight:600; color:rgba(255,255,255,0.85); }
   .v360p-statusicons { display:flex; align-items:center; gap:4px; color:rgba(255,255,255,0.85); }
   .v360p-screen__content { position:absolute; left:0; right:0; bottom:46px; z-index:2; padding:0 22px; }
@@ -1263,6 +1263,465 @@
     .v-closing-cta { border-radius:0; }
     .v-premium-player-shell { border-radius:24px; }
   }
+  /* ---------- VISTA360 PLAYER · PRODUCT LAUNCH ---------- */
+  .v-premium-player {
+    position:relative;
+    overflow:hidden;
+    padding:clamp(88px,10vw,150px) clamp(18px,4vw,44px) !important;
+    background:#000000 !important;
+    color:#FFFFFF;
+  }
+  .v-premium-player::before {
+    content:"";
+    position:absolute;
+    top:20%;
+    left:50%;
+    width:min(900px,90vw);
+    height:min(900px,90vw);
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(22,105,224,.2), transparent 66%);
+    transform:translateX(-50%);
+    pointer-events:none;
+  }
+  .v-premium-player-shell {
+    position:relative;
+    z-index:1;
+    max-width:1320px !important;
+    padding:0 !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    box-shadow:none !important;
+  }
+  .v-player-localnav {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    width:min(100%,1120px);
+    margin:0 auto clamp(90px,11vw,160px);
+    padding:12px 14px 12px 20px;
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:20px;
+    background:rgba(22,22,24,.78);
+    backdrop-filter:blur(18px);
+  }
+  .v-player-localnav__brand {
+    color:#FFFFFF;
+    font-size:15px;
+    font-weight:800;
+    letter-spacing:-.02em;
+  }
+  .v-player-localnav__actions {
+    display:flex;
+    align-items:center;
+    gap:9px;
+  }
+  .v-player-localnav__link {
+    padding:9px 15px;
+    border:1px solid rgba(255,255,255,.3);
+    border-radius:999px;
+    color:#FFFFFF;
+    font-size:13px;
+    font-weight:700;
+    text-decoration:none;
+  }
+  .v-player-localnav__link--primary {
+    border-color:#1769E0;
+    background:#1769E0;
+  }
+  .v-player-hero {
+    max-width:1040px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .v-player-kicker {
+    margin-bottom:20px;
+    color:#4C9AFF;
+    font-size:clamp(15px,1.5vw,20px);
+    font-weight:800;
+  }
+  .v-player-hero h2 {
+    margin:0;
+    color:#FFFFFF;
+    font-size:clamp(52px,8vw,112px);
+    font-weight:700;
+    letter-spacing:-.06em;
+    line-height:.92;
+  }
+  .v-player-hero > p {
+    max-width:700px;
+    margin:30px auto 0;
+    color:#8E8E93;
+    font-size:clamp(17px,1.55vw,21px);
+    font-weight:600;
+    line-height:1.55;
+  }
+  .v-player-devices {
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    gap:clamp(0px,1vw,18px);
+    min-height:clamp(560px,73vw,900px);
+    margin:clamp(54px,7vw,90px) auto 18px;
+    perspective:1500px;
+  }
+  .v-player-device {
+    --device-y:90px;
+    --device-rotate:0deg;
+    --device-scale:.88;
+    --device-opacity:.1;
+    position:relative;
+    flex:0 0 clamp(190px,25vw,310px);
+    opacity:var(--device-opacity);
+    transform:translate3d(0,var(--device-y),0) rotateY(var(--device-rotate)) scale(var(--device-scale));
+    transform-origin:center bottom;
+    transform-style:preserve-3d;
+    will-change:transform,opacity;
+  }
+  .v-player-device--center { z-index:3; }
+  .v-player-device--side { z-index:2; flex-basis:clamp(170px,22vw,275px); }
+  .v-player-device .v360p-frame {
+    width:100%;
+    transform:none !important;
+    filter:drop-shadow(0 34px 50px rgba(0,0,0,.7));
+  }
+  .v-player-device .v360p-screen {
+    background:#07101D;
+  }
+  .v-player-screen {
+    position:absolute;
+    inset:0;
+    padding:54px 22px 24px;
+    color:#FFFFFF;
+    background:
+      radial-gradient(circle at 50% 12%, rgba(32,121,255,.28), transparent 32%),
+      linear-gradient(180deg,#07101D,#03070D);
+  }
+  .v-player-screen__eyebrow {
+    display:flex;
+    align-items:center;
+    gap:7px;
+    margin-bottom:11px;
+    color:#8AB9FF;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  .v-player-screen__dot {
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#35D07F;
+    box-shadow:0 0 10px #35D07F;
+  }
+  .v-player-screen h3 {
+    margin:0 0 8px;
+    color:#FFFFFF;
+    font-size:clamp(18px,2vw,25px);
+    font-weight:800;
+    letter-spacing:-.035em;
+    line-height:1.05;
+  }
+  .v-player-screen__sub {
+    margin:0;
+    color:rgba(229,237,250,.62);
+    font-size:10px;
+    line-height:1.45;
+  }
+  .v-player-screen__visual {
+    position:relative;
+    height:38%;
+    margin:22px 0 16px;
+    overflow:hidden;
+    border:1px solid rgba(113,169,255,.18);
+    border-radius:16px;
+    background:
+      linear-gradient(180deg,rgba(2,8,18,.08),rgba(2,8,18,.74)),
+      linear-gradient(135deg,#14315E,#07101D 56%,#1A6FE8);
+  }
+  .v-player-screen__visual::before {
+    content:"";
+    position:absolute;
+    left:12%;
+    right:12%;
+    top:48%;
+    height:2px;
+    background:linear-gradient(90deg,transparent,#61A8FF 25%,#FFFFFF 52%,#297CEB 74%,transparent);
+    box-shadow:0 0 18px rgba(77,154,255,.8);
+    transform:rotate(-9deg);
+  }
+  .v-player-screen__stats {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+  .v-player-screen__stat {
+    padding:10px;
+    border:1px solid rgba(255,255,255,.09);
+    border-radius:12px;
+    background:rgba(255,255,255,.055);
+  }
+  .v-player-screen__stat b {
+    display:block;
+    color:#FFFFFF;
+    font-size:15px;
+  }
+  .v-player-screen__stat span {
+    display:block;
+    margin-top:3px;
+    color:#7E8CA2;
+    font-size:8px;
+  }
+  .v-player-screen__bars {
+    display:flex;
+    align-items:flex-end;
+    gap:6px;
+    height:42%;
+    margin:28px 0 20px;
+    padding:14px;
+    border-radius:16px;
+    background:rgba(255,255,255,.045);
+  }
+  .v-player-screen__bars span {
+    flex:1;
+    min-height:18%;
+    border-radius:5px 5px 2px 2px;
+    background:linear-gradient(180deg,#57A5FF,#1769E0);
+  }
+  .v-player-screen__message {
+    margin:30px 0 18px;
+    padding:18px 14px;
+    border:1px solid rgba(83,153,255,.22);
+    border-radius:18px;
+    background:rgba(23,105,224,.14);
+  }
+  .v-player-screen__message b {
+    display:block;
+    margin-bottom:7px;
+    font-size:14px;
+  }
+  .v-player-screen__message p {
+    margin:0;
+    color:rgba(229,237,250,.68);
+    font-size:9px;
+    line-height:1.45;
+  }
+  .v-player-screen__button {
+    display:block;
+    padding:11px;
+    border-radius:999px;
+    background:#1769E0;
+    color:#FFFFFF;
+    font-size:9px;
+    font-weight:800;
+    text-align:center;
+  }
+  .v-player-caption {
+    max-width:760px;
+    margin:0 auto;
+    color:#8E8E93;
+    font-size:clamp(16px,1.5vw,20px);
+    font-weight:600;
+    line-height:1.55;
+    text-align:center;
+  }
+  .v-player-feature-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin:clamp(100px,12vw,170px) auto 0;
+  }
+  .v-player-feature {
+    min-height:310px;
+    padding:clamp(25px,3vw,38px);
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:30px;
+    background:linear-gradient(145deg,#121318,#08090C);
+  }
+  .v-player-feature__icon {
+    display:grid;
+    place-items:center;
+    width:48px;
+    height:48px;
+    margin-bottom:70px;
+    border-radius:15px;
+    background:#1769E0;
+    color:#FFFFFF;
+    font-size:21px;
+    font-weight:800;
+  }
+  .v-player-feature h3 {
+    margin:0 0 13px;
+    color:#FFFFFF;
+    font-size:clamp(23px,2.5vw,34px);
+    font-weight:750;
+    letter-spacing:-.04em;
+    line-height:1;
+  }
+  .v-player-feature p {
+    margin:0;
+    color:#8E8E93;
+    font-size:14px;
+    line-height:1.55;
+  }
+  .v-player-landscape {
+    display:grid;
+    grid-template-columns:minmax(260px,.72fr) 1.28fr;
+    align-items:center;
+    gap:clamp(44px,7vw,100px);
+    margin:clamp(120px,15vw,220px) auto 0;
+    min-height:720px;
+  }
+  .v-player-landscape__copy h3 {
+    margin:0 0 24px;
+    color:#FFFFFF;
+    font-size:clamp(48px,6.5vw,88px);
+    font-weight:700;
+    letter-spacing:-.055em;
+    line-height:.94;
+  }
+  .v-player-landscape__copy p {
+    margin:0;
+    color:#8E8E93;
+    font-size:clamp(16px,1.4vw,20px);
+    font-weight:600;
+    line-height:1.55;
+  }
+  .v-landscape-phone {
+    --landscape-y:80px;
+    --landscape-scale:.9;
+    position:relative;
+    aspect-ratio:2.08/1;
+    padding:12px;
+    border:1px solid #45464D;
+    border-radius:clamp(34px,4vw,58px);
+    background:linear-gradient(145deg,#25262B,#08090B 70%);
+    box-shadow:0 45px 90px rgba(0,0,0,.65), inset 0 0 0 3px #0B0C0F;
+    transform:translateY(var(--landscape-y)) scale(var(--landscape-scale));
+    transform-origin:center;
+    will-change:transform;
+  }
+  .v-landscape-phone__screen {
+    position:relative;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    border-radius:clamp(25px,3vw,46px);
+    background:
+      radial-gradient(circle at 80% 16%,rgba(28,111,232,.25),transparent 32%),
+      linear-gradient(135deg,#061225,#020509 65%);
+  }
+  .v-landscape-phone__screen::before {
+    content:"";
+    position:absolute;
+    top:50%;
+    left:12px;
+    width:18px;
+    height:76px;
+    border-radius:999px;
+    background:#000000;
+    transform:translateY(-50%);
+  }
+  .v-landscape-dashboard {
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:18px;
+    height:100%;
+    padding:clamp(28px,4vw,58px);
+  }
+  .v-landscape-dashboard__map {
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(81,151,255,.16);
+    border-radius:22px;
+    background:
+      linear-gradient(30deg,transparent 46%,rgba(90,157,255,.2) 47%,rgba(90,157,255,.2) 49%,transparent 50%),
+      linear-gradient(-25deg,transparent 45%,rgba(90,157,255,.13) 46%,rgba(90,157,255,.13) 48%,transparent 49%),
+      #091324;
+  }
+  .v-landscape-dashboard__map::after {
+    content:"";
+    position:absolute;
+    top:44%;
+    left:56%;
+    width:16px;
+    height:16px;
+    border:5px solid rgba(85,161,255,.26);
+    border-radius:50%;
+    background:#4D9AFF;
+    box-shadow:0 0 22px #2C80ED;
+  }
+  .v-landscape-dashboard__data {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:12px;
+  }
+  .v-landscape-dashboard__data h4 {
+    margin:0 0 6px;
+    color:#FFFFFF;
+    font-size:clamp(17px,2vw,28px);
+    letter-spacing:-.03em;
+  }
+  .v-landscape-dashboard__row {
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    padding:12px 14px;
+    border-radius:12px;
+    background:rgba(255,255,255,.055);
+    color:#8E9AAF;
+    font-size:10px;
+  }
+  .v-landscape-dashboard__row b { color:#FFFFFF; }
+  .v-player-stores {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    margin-top:clamp(76px,8vw,110px);
+  }
+  .v-player-stores img { width:auto; height:42px; }
+  @media (max-width:760px) {
+    .v-premium-player { padding-left:16px !important; padding-right:16px !important; }
+    .v-player-localnav { margin-bottom:86px; }
+    .v-player-localnav__actions .v-player-localnav__link:first-child { display:none; }
+    .v-player-hero h2 { font-size:clamp(48px,15vw,76px); }
+    .v-player-devices {
+      min-height:590px;
+      margin-left:-68px;
+      margin-right:-68px;
+      gap:0;
+    }
+    .v-player-device { flex-basis:220px; }
+    .v-player-device--side { flex-basis:180px; }
+    .v-player-feature-grid { grid-template-columns:1fr; }
+    .v-player-feature { min-height:260px; }
+    .v-player-feature__icon { margin-bottom:54px; }
+    .v-player-landscape {
+      grid-template-columns:1fr;
+      min-height:0;
+    }
+    .v-landscape-phone { width:120%; margin-left:-10%; }
+    .v-landscape-dashboard { padding:26px 30px; gap:10px; }
+    .v-landscape-dashboard__row { padding:9px; font-size:8px; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    .v-player-device {
+      --device-y:0px !important;
+      --device-rotate:0deg !important;
+      --device-scale:1 !important;
+      --device-opacity:1 !important;
+    }
+    .v-player-device--side { --device-scale:.94 !important; }
+    .v-landscape-phone {
+      --landscape-y:0px !important;
+      --landscape-scale:1 !important;
+    }
+  }
   dc-import{display:block}
 </style>
 </helmet>
@@ -1366,21 +1825,21 @@
     </div>
     <div class="v-highlights__track" aria-label="Aspectos destacados de Vista360">
       <article class="v-highlight-card">
-        <img src="panels/premium-unipolar.jpg" alt="Panel unipolar premium en una avenida">
+        <img src="panels/premium-unipolar.jpg" loading="lazy" decoding="async" alt="Panel unipolar premium en una avenida">
         <div class="v-highlight-card__copy">
           <div class="v-highlight-card__eyebrow">Escala</div>
           <h3>La ciudad se convierte en tu escenario.</h3>
         </div>
       </article>
       <article class="v-highlight-card">
-        <img src="panels/detail-mural.jpg" alt="Detalle del acabado de un mural publicitario">
+        <img src="panels/detail-mural.jpg" loading="lazy" decoding="async" alt="Detalle del acabado de un mural publicitario">
         <div class="v-highlight-card__copy">
           <div class="v-highlight-card__eyebrow">Acabados</div>
           <h3>La calidad también se nota de cerca.</h3>
         </div>
       </article>
       <article class="v-highlight-card">
-        <img src="panels/tech-led-modules.jpg" alt="Módulos tecnológicos de una pantalla LED">
+        <img src="panels/tech-led-modules.jpg" loading="lazy" decoding="async" alt="Módulos tecnológicos de una pantalla LED">
         <div class="v-highlight-card__copy">
           <div class="v-highlight-card__eyebrow">Tecnología</div>
           <h3>Preparados para una presencia en movimiento.</h3>
@@ -1393,7 +1852,7 @@
   <section class="v-scroll-story" data-scroll-story aria-label="Una nueva escala para tu marca">
     <div class="v-scroll-story__sticky">
       <article class="v-story-scene is-active">
-        <img src="panels/premium-unipolar.jpg" alt="Unipolar Vista360 iluminado al anochecer">
+        <img src="panels/premium-unipolar.jpg" loading="lazy" decoding="async" alt="Unipolar Vista360 iluminado al anochecer">
         <div class="v-story-scene__copy">
           <div class="v-story-scene__number">01 · Presencia</div>
           <h2>Diseñada para dominar el entorno.</h2>
@@ -1401,7 +1860,7 @@
         </div>
       </article>
       <article class="v-story-scene">
-        <img src="panels/editorial-mural-night.jpg" alt="Mural arquitectónico Vista360 iluminado de noche">
+        <img src="panels/editorial-mural-night.jpg" loading="lazy" decoding="async" alt="Mural arquitectónico Vista360 iluminado de noche">
         <div class="v-story-scene__copy">
           <div class="v-story-scene__number">02 · Integración</div>
           <h2>La arquitectura también puede comunicar.</h2>
@@ -1409,7 +1868,7 @@
         </div>
       </article>
       <article class="v-story-scene">
-        <img src="panels/detail-unipolar.jpg" alt="Detalle estructural de un soporte unipolar">
+        <img src="panels/detail-unipolar.jpg" loading="lazy" decoding="async" alt="Detalle estructural de un soporte unipolar">
         <div class="v-story-scene__copy">
           <div class="v-story-scene__number">03 · Precisión</div>
           <h2>Impacto por fuera. Cuidado por dentro.</h2>
@@ -1417,7 +1876,7 @@
         </div>
       </article>
       <article class="v-story-scene">
-        <img src="panels/premium-totem.jpg" alt="Tótem digital Vista360 en un espacio peatonal">
+        <img src="panels/premium-totem.jpg" loading="lazy" decoding="async" alt="Tótem digital Vista360 en un espacio peatonal">
         <div class="v-story-scene__copy">
           <div class="v-story-scene__number">04 · Cercanía</div>
           <h2>A la altura de cada mirada.</h2>
@@ -1425,7 +1884,7 @@
         </div>
       </article>
       <article class="v-story-scene">
-        <img src="panels/premium-led.jpg" alt="Pantalla LED exterior Vista360">
+        <img src="panels/premium-led.jpg" loading="lazy" decoding="async" alt="Pantalla LED exterior Vista360">
         <div class="v-story-scene__copy">
           <div class="v-story-scene__number">05 · Movimiento</div>
           <h2>Una imagen que nunca se queda quieta.</h2>
@@ -1447,7 +1906,7 @@
         <p>No presentamos solo espacios publicitarios. Diseñamos soportes que unen escala, materiales y visibilidad en una sola experiencia.</p>
       </div>
       <div class="v-craft-visual">
-        <img src="panels/product-unipolar-studio.jpg" alt="Soporte unipolar Vista360 presentado como producto">
+        <img src="panels/product-unipolar-studio.jpg" loading="lazy" decoding="async" alt="Soporte unipolar Vista360 presentado como producto">
         <div class="v-craft-pills">
           <div class="v-craft-pill"><span>+</span>Estructura precisa</div>
           <div class="v-craft-pill"><span>+</span>Acabado profesional</div>
@@ -1498,56 +1957,124 @@
   </section>
 
   <!-- ============ VISTA360 PLAYER (app showcase) ============ -->
-  <section class="v-premium-player" data-player-scroll style="background:#ffffff; padding:clamp(64px,8vw,116px) clamp(16px,4vw,40px);">
-    <div class="v-premium-player-shell" style="max-width:1280px; margin:0 auto;">
-      <div class="v360p-grid" data-reveal>
+  <section class="v-premium-player" data-player-scroll>
+    <div class="v-premium-player-shell">
+      <div class="v-player-localnav">
+        <div class="v-player-localnav__brand">Vista360 Player</div>
+        <div class="v-player-localnav__actions">
+          <a class="v-player-localnav__link" href="#player-features">Conocer</a>
+          <a class="v-player-localnav__link v-player-localnav__link--primary" href="contacto.html">Próximamente</a>
+        </div>
+      </div>
 
-        <div class="v360p-phonewrap">
-          <svg class="v360p-chevron" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+      <div class="v-player-hero" data-reveal>
+        <div class="v-player-kicker">Todo bajo control</div>
+        <h2>Tu publicidad exterior, en la palma de tu mano.</h2>
+        <p>Monitorea tus soportes, consulta información clave y recibe ayuda desde una experiencia creada para Vista360.</p>
+      </div>
+
+      <div class="v-player-devices" aria-label="Funciones de Vista360 Player">
+        <article class="v-player-device v-player-device--side" data-device-index="0">
           <div class="v360p-frame">
             <div class="v360p-screen">
-              <div class="v360p-screen__bg"></div>
-              <div class="v360p-statusbar">
-                <span>10:41</span>
-                <div class="v360p-statusicons">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a16 16 0 0 1 20 0M5.5 12a11 11 0 0 1 13 0M9 15.5a6 6 0 0 1 6 0"></path><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"></circle></svg>
-                  <svg width="16" height="11" viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="1" width="19" height="12" rx="2.5"></rect><rect x="21.5" y="5" width="1.5" height="4" rx="0.7" fill="currentColor" stroke="none"></rect></svg>
+              <div class="v-player-screen">
+                <div class="v-player-screen__eyebrow"><span class="v-player-screen__dot"></span>En vivo</div>
+                <h3>Monitoreo</h3>
+                <p class="v-player-screen__sub">Revisa el estado de tus soportes.</p>
+                <div class="v-player-screen__visual"></div>
+                <div class="v-player-screen__stats">
+                  <div class="v-player-screen__stat"><b>4</b><span>Soportes activos</span></div>
+                  <div class="v-player-screen__stat"><b>100%</b><span>Operativos</span></div>
                 </div>
               </div>
-              <div class="v360p-screen__content">
-                <span class="v360p-tag">Próximamente</span>
-                <h3 class="v360p-screen__title">Vista360 Player</h3>
-                <p class="v360p-screen__sub">La nueva forma de vivir el OOH, directo en tu celular.</p>
+            </div>
+            <img class="v360p-frame__img" src="vista360player-phone-frame-v2.png" loading="lazy" decoding="async" alt="" aria-hidden="true">
+          </div>
+        </article>
+
+        <article class="v-player-device v-player-device--center" data-device-index="1">
+          <div class="v360p-frame">
+            <div class="v360p-screen">
+              <div class="v-player-screen">
+                <div class="v-player-screen__eyebrow">Vista360 Player</div>
+                <h3>Resumen</h3>
+                <p class="v-player-screen__sub">La actividad de tu publicidad en un vistazo.</p>
+                <div class="v-player-screen__bars">
+                  <span style="height:42%;"></span><span style="height:68%;"></span><span style="height:54%;"></span><span style="height:88%;"></span><span style="height:72%;"></span><span style="height:96%;"></span>
+                </div>
+                <div class="v-player-screen__stats">
+                  <div class="v-player-screen__stat"><b>24/7</b><span>Seguimiento</span></div>
+                  <div class="v-player-screen__stat"><b>Hoy</b><span>Última revisión</span></div>
+                </div>
               </div>
-              <div class="v360p-dots"><span></span><span></span><span></span><span></span></div>
             </div>
-            <img class="v360p-frame__img" src="vista360player-phone-frame-v2.png" alt="" aria-hidden="true">
+            <img class="v360p-frame__img" src="vista360player-phone-frame-v2.png" loading="lazy" decoding="async" alt="" aria-hidden="true">
           </div>
-          <svg class="v360p-chevron" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
+        </article>
+
+        <article class="v-player-device v-player-device--side" data-device-index="2">
+          <div class="v360p-frame">
+            <div class="v360p-screen">
+              <div class="v-player-screen">
+                <div class="v-player-screen__eyebrow">Soporte</div>
+                <h3>Estamos contigo.</h3>
+                <p class="v-player-screen__sub">Comunícate con el equipo de Vista360 cuando lo necesites.</p>
+                <div class="v-player-screen__message">
+                  <b>¿Necesitas ayuda?</b>
+                  <p>Cuéntanos qué sucede y te responderemos lo antes posible.</p>
+                </div>
+                <span class="v-player-screen__button">Iniciar conversación</span>
+              </div>
+            </div>
+            <img class="v360p-frame__img" src="vista360player-phone-frame-v2.png" loading="lazy" decoding="async" alt="" aria-hidden="true">
+          </div>
+        </article>
+      </div>
+
+      <p class="v-player-caption">Una sola aplicación para mantener tu publicidad visible, organizada y acompañada.</p>
+
+      <div id="player-features" class="v-player-feature-grid">
+        <article class="v-player-feature" data-reveal>
+          <div class="v-player-feature__icon">◎</div>
+          <h3>Monitoreo claro.</h3>
+          <p>Consulta el estado de tus soportes y accede a la información esencial de cada ubicación.</p>
+        </article>
+        <article class="v-player-feature" data-reveal data-reveal-delay="100">
+          <div class="v-player-feature__icon">↗</div>
+          <h3>Información útil.</h3>
+          <p>Visualiza actividad y métricas disponibles sin perderte entre reportes complicados.</p>
+        </article>
+        <article class="v-player-feature" data-reveal data-reveal-delay="200">
+          <div class="v-player-feature__icon">●</div>
+          <h3>Soporte cercano.</h3>
+          <p>Comunícate directamente con Vista360 desde una experiencia rápida y sencilla.</p>
+        </article>
+      </div>
+
+      <div class="v-player-landscape" data-player-landscape>
+        <div class="v-player-landscape__copy" data-reveal>
+          <div class="v-player-kicker">Información en grande</div>
+          <h3>Todo el panorama. Sin perder detalle.</h3>
+          <p>Gira el teléfono y consulta ubicaciones, estado e información de tus soportes en una vista más amplia.</p>
         </div>
-
-        <div>
-          <div class="v360p-wordmark"><img src="vista360player-wordmark.png" alt="Vista360 Player" style="display:block; width:clamp(190px,22vw,260px); height:auto;"></div>
-          <h2 style="font-size:clamp(28px,3.6vw,46px); font-weight:800; letter-spacing:-0.035em; line-height:1.06; color:#0E1A2E; margin:0 0 18px;">Tu publicidad exterior, directo en tu celular.</h2>
-          <p style="font-size:clamp(15px,1.3vw,17px); line-height:1.65; color:#6E6E7A; margin:0 0 16px;">Vista360 Player será el primer aplicativo móvil pensado para que monitorees tu publicidad exterior en el Perú.</p>
-          <p style="font-size:clamp(15px,1.3vw,17px); line-height:1.65; color:#6E6E7A; margin:0;">Tendrás acceso inmediato y en tiempo real al contenido de tus pantallas digitales, además de funciones pensadas para que tu inversión rinda al máximo.</p>
-
-          <ul class="v360p-features">
-            <li><span class="v360p-fic"><span></span></span>Monitoreo de tus pantallas en tiempo real.</li>
-            <li><span class="v360p-fic"><span></span></span>Conteo de impactos vehiculares en tiempo real.</li>
-            <li><span class="v360p-fic"><span></span></span>Soporte post-venta en menos de 24 horas.</li>
-            <li><span class="v360p-fic"><span></span></span>Programación de contenidos a tu medida.</li>
-          </ul>
-
-          <div class="v360p-stores">
-            <p class="v360p-store-note">Próximamente disponible en:</p>
-            <div class="v360p-store-row">
-              <img class="v360p-store-badge" src="app-store-badge.svg" alt="Descárgalo próximamente en App Store">
-              <img class="v360p-store-badge" src="google-play-badge.svg" alt="Descárgalo próximamente en Google Play">
+        <div class="v-landscape-phone">
+          <div class="v-landscape-phone__screen">
+            <div class="v-landscape-dashboard">
+              <div class="v-landscape-dashboard__map"></div>
+              <div class="v-landscape-dashboard__data">
+                <h4>Panel Universitaria</h4>
+                <div class="v-landscape-dashboard__row"><span>Estado</span><b>Operativo</b></div>
+                <div class="v-landscape-dashboard__row"><span>Contenido</span><b>Programado</b></div>
+                <div class="v-landscape-dashboard__row"><span>Última revisión</span><b>Hoy</b></div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
+      <div class="v-player-stores" aria-label="Próximamente disponible">
+        <img src="app-store-badge.svg" loading="lazy" decoding="async" alt="Próximamente en App Store">
+        <img src="google-play-badge.svg" loading="lazy" decoding="async" alt="Próximamente en Google Play">
       </div>
     </div>
   </section>
@@ -1841,7 +2368,8 @@ class Component extends DCLogic {
     const story = root.querySelector('[data-scroll-story]');
     const craft = root.querySelector('[data-craft-scroll]');
     const player = root.querySelector('[data-player-scroll]');
-    const playerFrame = player ? player.querySelector('.v360p-frame') : null;
+    const playerDevices = player ? Array.from(player.querySelectorAll('.v-player-device')) : [];
+    const playerLandscape = player ? player.querySelector('.v-landscape-phone') : null;
     const scenes = story ? Array.from(story.querySelectorAll('.v-story-scene')) : [];
     const progressBars = story ? Array.from(story.querySelectorAll('.v-story-progress span')) : [];
     const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1867,18 +2395,35 @@ class Component extends DCLogic {
         craft.style.setProperty('--craft-progress', progress.toFixed(4));
       }
 
-      if (player && playerFrame && !reducedMotion) {
-        const rect = player.getBoundingClientRect();
-        const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh * .95)));
-        const mobile = window.innerWidth <= 760;
-        const startAngle = mobile ? -8 : -12;
-        const rotate = startAngle * (1 - progress);
-        const lift = (mobile ? 18 : 30) * (1 - progress);
-        const scale = (mobile ? .97 : .94) + ((mobile ? .03 : .06) * progress);
-        playerFrame.style.setProperty('--player-rotate', rotate.toFixed(2) + 'deg');
-        playerFrame.style.setProperty('--player-tilt', (2 * (1 - progress)).toFixed(2) + 'deg');
-        playerFrame.style.setProperty('--player-lift', lift.toFixed(2) + 'px');
-        playerFrame.style.setProperty('--player-scale', scale.toFixed(4));
+      if (player && playerDevices.length && !reducedMotion) {
+        const deviceStage = player.querySelector('.v-player-devices');
+        const rect = deviceStage.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh * .92)));
+        const startAngles = [-24, 0, 24];
+        const endAngles = [-10, 0, 10];
+        const delays = [.08, 0, .12];
+        playerDevices.forEach((device, index) => {
+          const local = Math.max(0, Math.min(1, (progress - delays[index]) / .78));
+          const eased = 1 - Math.pow(1 - local, 3);
+          const side = index === 1 ? 0 : 1;
+          const rotate = startAngles[index] + ((endAngles[index] - startAngles[index]) * eased);
+          const y = (110 * (1 - eased)) + (side * 18);
+          const endScale = side ? .94 : 1;
+          const scale = .82 + ((endScale - .82) * eased);
+          const opacity = .08 + (.92 * eased);
+          device.style.setProperty('--device-y', y.toFixed(2) + 'px');
+          device.style.setProperty('--device-rotate', rotate.toFixed(2) + 'deg');
+          device.style.setProperty('--device-scale', scale.toFixed(4));
+          device.style.setProperty('--device-opacity', opacity.toFixed(4));
+        });
+      }
+
+      if (playerLandscape && !reducedMotion) {
+        const rect = playerLandscape.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh * .9)));
+        const eased = 1 - Math.pow(1 - progress, 3);
+        playerLandscape.style.setProperty('--landscape-y', (90 * (1 - eased)).toFixed(2) + 'px');
+        playerLandscape.style.setProperty('--landscape-scale', (.9 + (.1 * eased)).toFixed(4));
       }
     };
 
@@ -2045,7 +2590,7 @@ class Component extends DCLogic {
     ];
     const products = productData.map((p) => ({
       title: p.title, location: p.location, desc: p.desc,
-      imgNode: React.createElement('img', { src: p.img, alt: p.title, style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: p.objPos || 'center', display: 'block' } }),
+      imgNode: React.createElement('img', { src: p.img, alt: p.title, loading: 'lazy', decoding: 'async', style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: p.objPos || 'center', display: 'block' } }),
       detailNode: React.createElement('img', { src: p.detail, alt: 'Detalle de ' + p.title, loading: 'lazy' })
     }));
 
@@ -2067,6 +2612,8 @@ class Component extends DCLogic {
       productData.map((p, i) => React.createElement('img', {
         key: i,
         src: p.img,
+        loading: 'lazy',
+        decoding: 'async',
         alt: p.title,
         style: {
           position: 'absolute', inset: 0, width: '100%', height: '100%',
@@ -2080,8 +2627,8 @@ class Component extends DCLogic {
     // Imágenes "peek" a los costados (anterior/siguiente) -- efecto rueda.
     const prevIdx = (productIndex - 1 + productCount) % productCount;
     const nextIdx = (productIndex + 1) % productCount;
-    const prevPeekImg = React.createElement('img', { src: productData[prevIdx].img, alt: productData[prevIdx].title, style: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: productData[prevIdx].objPos || 'center', display: 'block' } });
-    const nextPeekImg = React.createElement('img', { src: productData[nextIdx].img, alt: productData[nextIdx].title, style: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: productData[nextIdx].objPos || 'center', display: 'block' } });
+    const prevPeekImg = React.createElement('img', { src: productData[prevIdx].img, alt: productData[prevIdx].title, loading: 'lazy', decoding: 'async', style: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: productData[prevIdx].objPos || 'center', display: 'block' } });
+    const nextPeekImg = React.createElement('img', { src: productData[nextIdx].img, alt: productData[nextIdx].title, loading: 'lazy', decoding: 'async', style: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: productData[nextIdx].objPos || 'center', display: 'block' } });
     // Los puntos se construyen como UN solo nodo React (no via <sc-for> +
     // clase dinamica en la plantilla) para mantenerse dentro de patrones
     // ya probados en este archivo.
