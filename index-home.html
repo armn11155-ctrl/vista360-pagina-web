@@ -425,6 +425,7 @@
     object-fit:cover !important;
     transform:scale(1.035);
     transition:transform 1.6s cubic-bezier(.16,1,.3,1), filter 1s ease;
+    animation:vFormatBreathe 14s ease-in-out infinite alternate;
   }
   .v-format-chapter:hover > img {
     transform:scale(1.075);
@@ -444,6 +445,64 @@
     right:clamp(26px,6vw,86px);
     bottom:clamp(32px,7vw,90px);
     max-width:670px;
+    opacity:0;
+    transform:translateY(34px);
+    transition:opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1);
+  }
+  .v-format-chapter.is-visible .v-format-chapter__content {
+    opacity:1;
+    transform:none;
+  }
+  .v-format-detail {
+    position:absolute;
+    z-index:2;
+    top:clamp(24px,4vw,58px);
+    right:clamp(24px,4vw,58px);
+    width:clamp(220px,28vw,410px);
+    aspect-ratio:16/9;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:clamp(16px,2vw,26px);
+    background:#08101D;
+    box-shadow:0 24px 70px rgba(0,0,0,.36);
+    opacity:0;
+    transform:translateY(24px) scale(.96);
+    transition:opacity 1.1s .18s cubic-bezier(.16,1,.3,1), transform 1.1s .18s cubic-bezier(.16,1,.3,1);
+  }
+  .v-format-detail img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transform:scale(1.03);
+    transition:transform 1.4s cubic-bezier(.16,1,.3,1);
+  }
+  .v-format-chapter.is-visible .v-format-detail {
+    opacity:1;
+    transform:none;
+  }
+  .v-format-chapter:hover .v-format-detail img { transform:scale(1.08); }
+  .v-format-chapter:first-child .v-format-chapter__content,
+  .v-format-chapter:nth-child(4) .v-format-chapter__content {
+    left:auto;
+    max-width:590px;
+    text-align:right;
+  }
+  .v-format-chapter:first-child .v-format-chapter__location,
+  .v-format-chapter:nth-child(4) .v-format-chapter__location,
+  .v-format-chapter:first-child .v-format-chapter__link,
+  .v-format-chapter:nth-child(4) .v-format-chapter__link {
+    justify-content:flex-end;
+  }
+  .v-format-chapter:first-child .v-format-detail,
+  .v-format-chapter:nth-child(4) .v-format-detail {
+    right:auto;
+    left:clamp(24px,4vw,58px);
+  }
+  .v-format-chapter:first-child .v-format-chapter__shade,
+  .v-format-chapter:nth-child(4) .v-format-chapter__shade {
+    background:
+      linear-gradient(270deg, rgba(3,8,16,.9) 0%, rgba(3,8,16,.44) 47%, rgba(3,8,16,.08) 76%),
+      linear-gradient(0deg, rgba(3,8,16,.58) 0%, transparent 52%);
   }
   .v-format-chapter__location {
     display:flex;
@@ -491,9 +550,27 @@
     transition:background .25s ease, transform .25s ease;
   }
   .v-format-chapter__link:hover span { background:#1C6FE8; transform:translateX(4px); }
+  @keyframes vFormatBreathe {
+    from { transform:scale(1.035) translate3d(-.3%, -.15%, 0); }
+    to { transform:scale(1.075) translate3d(.35%, .2%, 0); }
+  }
+  @supports (animation-timeline:view()) {
+    .v-format-chapter > img {
+      animation:vFormatScroll linear both;
+      animation-timeline:view();
+      animation-range:entry 0% exit 100%;
+    }
+    @keyframes vFormatScroll {
+      from { transform:scale(1.09) translateY(-2%); }
+      to { transform:scale(1.035) translateY(2%); }
+    }
+  }
   @media (prefers-reduced-motion:reduce) {
     .v-premium-products .v-prod-center img { animation:none; transform:none; }
     .v-premium-stats .v-fig, .v-closing-btn { transition:none; }
+    .v-format-chapter > img { animation:none; transform:scale(1.035); }
+    .v-format-chapter__content { opacity:1; transform:none; transition:none; }
+    .v-format-detail { opacity:1; transform:none; transition:none; }
   }
   .v-process-section {
     padding:clamp(76px,9vw,126px) clamp(16px,4vw,40px);
@@ -639,6 +716,29 @@
     .v-premium-products .v-prod-info { padding-left:4px; padding-right:4px; }
     .v-format-chapter { top:62px; min-height:72vh; border-radius:22px; }
     .v-format-chapter__shade { background:linear-gradient(0deg, rgba(3,8,16,.9) 0%, rgba(3,8,16,.18) 76%); }
+    .v-format-chapter:first-child .v-format-chapter__content,
+    .v-format-chapter:nth-child(4) .v-format-chapter__content {
+      left:clamp(26px,6vw,86px);
+      right:clamp(26px,6vw,86px);
+      text-align:left;
+    }
+    .v-format-chapter:first-child .v-format-chapter__location,
+    .v-format-chapter:nth-child(4) .v-format-chapter__location,
+    .v-format-chapter:first-child .v-format-chapter__link,
+    .v-format-chapter:nth-child(4) .v-format-chapter__link {
+      justify-content:flex-start;
+    }
+    .v-format-chapter:first-child .v-format-chapter__shade,
+    .v-format-chapter:nth-child(4) .v-format-chapter__shade {
+      background:linear-gradient(0deg, rgba(3,8,16,.9) 0%, rgba(3,8,16,.18) 76%);
+    }
+    .v-format-detail {
+      top:20px;
+      right:20px;
+      left:auto !important;
+      width:min(42vw,230px);
+      border-radius:14px;
+    }
   }
   /* ---------- UNIFIED PREMIUM DESIGN SYSTEM ---------- */
   :root {
@@ -994,6 +1094,7 @@
           <article class="v-format-chapter">
             {{ pr.imgNode }}
             <div class="v-format-chapter__shade"></div>
+            <div class="v-format-detail">{{ pr.detailNode }}</div>
             <div class="v-format-chapter__content">
               <div class="v-format-chapter__location"><span aria-hidden="true">●</span>{{ pr.location }}</div>
               <h3>{{ pr.title }}</h3>
@@ -1215,6 +1316,7 @@ class Component extends DCLogic {
     this.startProductTimer(4);
     this.initParallax();
     const els = Array.from(root.querySelectorAll('[data-reveal]'));
+    const formatChapters = Array.from(root.querySelectorAll('.v-format-chapter'));
     els.forEach((el) => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(28px)';
@@ -1224,6 +1326,7 @@ class Component extends DCLogic {
     });
     if (!('IntersectionObserver' in window)) {
       els.forEach((el) => { el.style.opacity = '1'; el.style.transform = 'none'; });
+      formatChapters.forEach((el) => el.classList.add('is-visible'));
       this.animateCounts();
       return;
     }
@@ -1238,6 +1341,12 @@ class Component extends DCLogic {
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
     els.forEach((el) => this.io.observe(el));
+    this.formatIO = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+      });
+    }, { threshold: 0.28, rootMargin: '0px 0px -8% 0px' });
+    formatChapters.forEach((el) => this.formatIO.observe(el));
   }
 
   startNetwork() {
@@ -1332,6 +1441,7 @@ class Component extends DCLogic {
 
   componentWillUnmount() {
     if (this.io) this.io.disconnect();
+    if (this.formatIO) this.formatIO.disconnect();
     if (this._heroVideoWatchdog) clearInterval(this._heroVideoWatchdog);
     if (this._netRAF) cancelAnimationFrame(this._netRAF);
     if (this._netRO) this._netRO.disconnect();
@@ -1381,14 +1491,15 @@ class Component extends DCLogic {
     ];
 
     const productData = [
-      { title: 'Murales', location: 'Muros urbanos · Huánuco', desc: 'Gran escala en fachadas de alto tránsito.', img: 'panels/mural.jpg', objPos: 'center 45%' },
-      { title: 'Unipolares', location: 'Avenidas principales · Huánuco', desc: 'Visibilidad a larga distancia en rutas clave.', img: 'panels/unipolar-home.jpg', objPos: '72% 32%' },
-      { title: 'Tótems', location: 'Zonas peatonales · Huánuco', desc: 'Presencia cercana, a la altura de la calle.', img: 'panels/totem.jpg', objPos: '57% 48%' },
-      { title: 'Pantallas LED', location: 'Circuito digital · Próximamente', desc: 'Contenido dinámico con mayor frecuencia visual.', img: 'panels/led.jpg', objPos: 'center 42%' }
+      { title: 'Murales', location: 'Muros urbanos · Huánuco', desc: 'Gran escala en fachadas de alto tránsito.', img: 'panels/premium-mural.jpg', detail: 'panels/detail-mural.jpg', objPos: 'center' },
+      { title: 'Unipolares', location: 'Avenidas principales · Huánuco', desc: 'Visibilidad a larga distancia en rutas clave.', img: 'panels/premium-unipolar.jpg', detail: 'panels/detail-unipolar.jpg', objPos: 'center' },
+      { title: 'Tótems', location: 'Zonas peatonales · Huánuco', desc: 'Presencia cercana, a la altura de la calle.', img: 'panels/premium-totem.jpg', detail: 'panels/detail-totem.jpg', objPos: 'center' },
+      { title: 'Pantallas LED', location: 'Circuito digital · Próximamente', desc: 'Contenido dinámico con mayor frecuencia visual.', img: 'panels/premium-led.jpg', detail: 'panels/detail-led.jpg', objPos: 'center' }
     ];
     const products = productData.map((p) => ({
       title: p.title, location: p.location, desc: p.desc,
-      imgNode: React.createElement('img', { src: p.img, alt: p.title, style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: p.objPos || 'center', display: 'block' } })
+      imgNode: React.createElement('img', { src: p.img, alt: p.title, style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: p.objPos || 'center', display: 'block' } }),
+      detailNode: React.createElement('img', { src: p.detail, alt: 'Detalle de ' + p.title, loading: 'lazy' })
     }));
 
     // ── Carrusel de productos (solo móvil) ──────────────────────────
