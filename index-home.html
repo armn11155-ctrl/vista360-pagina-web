@@ -2640,6 +2640,231 @@
       align-items:flex-start;
     }
   }
+  /* ---------- VISTA360 HOME · ULTRA PREMIUM STORY PASS ---------- */
+  .v-home-surface {
+    background:#05080F !important;
+  }
+  .v-home-surface canvas {
+    display:none !important;
+  }
+  .v-apple-statement {
+    position:relative;
+    overflow:hidden;
+    min-height:clamp(680px,86vh,980px);
+    display:flex;
+    align-items:flex-end;
+    padding:clamp(80px,10vw,150px) clamp(20px,6vw,72px) !important;
+    background:#05080F;
+  }
+  .v-apple-statement::before {
+    content:"";
+    position:absolute;
+    inset:-10%;
+    background:
+      linear-gradient(90deg, rgba(5,8,15,.92) 0%, rgba(5,8,15,.62) 44%, rgba(5,8,15,.86) 100%),
+      url('panels/editorial-mural-night.jpg') center/cover;
+    filter:blur(18px) saturate(1.06) brightness(.74);
+    transform:scale(1.08);
+  }
+  .v-apple-statement::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 72% 18%, rgba(28,111,232,.28), transparent 28%),
+      radial-gradient(circle at 12% 86%, rgba(255,122,26,.18), transparent 32%);
+  }
+  .v-apple-statement__inner {
+    position:relative;
+    z-index:1;
+  }
+  .v-apple-statement h2 {
+    color:#FFFFFF;
+    font-size:clamp(58px,9.5vw,148px);
+    letter-spacing:-.075em;
+    line-height:.88;
+  }
+  .v-apple-statement h2 span {
+    display:block;
+    background:linear-gradient(105deg,#FFFFFF 4%,#7DB4FF 45%,#B7C7E8 78%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .v-highlights {
+    position:relative;
+    background:#05080F;
+    padding-top:clamp(90px,12vw,180px);
+  }
+  .v-highlights::before {
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    height:clamp(220px,28vw,420px);
+    background:
+      linear-gradient(180deg, rgba(5,8,15,.18), #05080F 92%),
+      url('panels/premium-led-macro.jpg') center/cover;
+    filter:saturate(.92) brightness(.85);
+  }
+  .v-highlights__head {
+    position:relative;
+    z-index:1;
+  }
+  .v-highlights__head h2 {
+    color:#FFFFFF;
+    font-size:clamp(54px,8.2vw,122px);
+  }
+  .v-highlights__hint {
+    color:rgba(239,245,255,.62);
+  }
+  .v-highlight-card {
+    min-height:min(78vh,820px);
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 44px 120px -74px rgba(28,111,232,.72);
+  }
+  .v-highlight-card__eyebrow {
+    color:#FF7A1A;
+  }
+  .v-scroll-story {
+    background:#05080F;
+  }
+  .v-story-scene::after {
+    background:
+      linear-gradient(90deg, rgba(2,6,13,.94) 0%, rgba(2,6,13,.52) 45%, rgba(2,6,13,.08) 76%),
+      radial-gradient(circle at 78% 18%, rgba(28,111,232,.22), transparent 28%),
+      linear-gradient(0deg, rgba(2,6,13,.62), transparent 62%);
+  }
+  .v-craft-section {
+    background:#FFFFFF;
+  }
+  .v-craft-head {
+    text-align:left;
+    margin-left:0;
+  }
+  .v-craft-head h2 {
+    max-width:1100px;
+    font-size:clamp(58px,8.6vw,132px);
+    line-height:.88;
+  }
+  .v-craft-head p {
+    margin-left:0;
+    max-width:700px;
+  }
+  .v-craft-visual {
+    min-height:clamp(720px,82vh,980px);
+    border-radius:clamp(32px,4vw,64px);
+    box-shadow:0 48px 130px -78px rgba(16,24,39,.62);
+  }
+  .v-craft-visual::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:2;
+    background:radial-gradient(circle at 78% 16%, rgba(28,111,232,.28), transparent 30%);
+    pointer-events:none;
+  }
+  .v-precision-section {
+    padding-top:clamp(100px,12vw,190px);
+    padding-bottom:clamp(100px,12vw,190px);
+    background:
+      radial-gradient(circle at 18% 18%, rgba(123,106,255,.12), transparent 24%),
+      linear-gradient(180deg,#FFFFFF 0%,#F5F7FB 100%);
+  }
+  .v-precision-head {
+    max-width:1120px;
+  }
+  .v-precision-visual {
+    min-height:clamp(760px,84vw,1040px);
+    box-shadow:0 48px 120px -80px rgba(18,35,60,.54);
+  }
+  .v-precision-note {
+    background:rgba(255,255,255,.7);
+  }
+  .v-premium-products {
+    background:
+      radial-gradient(circle at 72% 12%, rgba(28,111,232,.22), transparent 28%),
+      linear-gradient(180deg,#05080F 0%,#000000 100%) !important;
+  }
+  .v-products-head h2 {
+    font-size:clamp(60px,9.2vw,138px) !important;
+    line-height:.88 !important;
+  }
+  .v-format-chapter {
+    min-height:min(88vh,980px);
+    border-radius:clamp(32px,4vw,64px);
+  }
+  .v-format-chapter h3 {
+    font-size:clamp(58px,9vw,132px);
+  }
+  .v-player-phone-stage,
+  .v-process-step,
+  .v-format-chapter,
+  .v-highlight-card,
+  .v-craft-visual,
+  .v-precision-visual {
+    transform:translateZ(0);
+  }
+  .v-closing-wrap {
+    background:#05080F;
+    padding-top:clamp(84px,10vw,150px);
+  }
+  .v-closing-cta {
+    background:
+      linear-gradient(90deg, rgba(5,8,15,.86), rgba(5,8,15,.42), rgba(5,8,15,.88)),
+      url('panels/premium-totem.jpg') center/cover;
+    border-radius:clamp(30px,4vw,58px);
+    min-height:clamp(520px,58vh,720px);
+    display:flex;
+    align-items:flex-end;
+  }
+  .v-closing-cta::after {
+    display:none;
+  }
+  .v-closing-copy h2 {
+    font-size:clamp(50px,7.6vw,116px) !important;
+    line-height:.9 !important;
+  }
+  @media (max-width:760px) {
+    .v-apple-statement,
+    .v-highlights,
+    .v-craft-section,
+    .v-precision-section,
+    .v-premium-products,
+    .v-process-section,
+    .v-closing-wrap {
+      padding-left:0 !important;
+      padding-right:0 !important;
+    }
+    .v-apple-statement__inner,
+    .v-highlights__head,
+    .v-craft-shell,
+    .v-precision-shell,
+    .v-products-head,
+    .v-closing-inner {
+      padding-left:22px;
+      padding-right:22px;
+    }
+    .v-apple-statement {
+      min-height:760px;
+    }
+    .v-apple-statement h2,
+    .v-products-head h2,
+    .v-craft-head h2 {
+      font-size:clamp(56px,16vw,86px) !important;
+    }
+    .v-craft-visual,
+    .v-precision-visual,
+    .v-format-chapter,
+    .v-closing-cta {
+      border-radius:0;
+    }
+    .v-highlight-card {
+      flex-basis:88vw;
+      min-height:72vh;
+    }
+  }
   dc-import{display:block}
 </style>
 </helmet>
@@ -3231,13 +3456,12 @@ class Component extends DCLogic {
       el.style.opacity = '1';
       el.style.transform = 'none';
     };
-    els.forEach((el) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(28px)';
-      el.style.transition = 'opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1)';
-      const d = el.getAttribute('data-reveal-delay');
-      if (d) el.style.transitionDelay = d + 'ms';
-    });
+    // Premium sin espacios vacíos: antes estos bloques arrancaban en opacity:0
+    // y esperaban al scroll/observer para aparecer. Si el usuario baja rápido
+    // o una imagen tarda, se siente como una sección rota. Ahora todo inicia
+    // visible; las transiciones pesadas quedan solo para fondos y detalles.
+    els.forEach(revealNow);
+    formatChapters.forEach((el) => el.classList.add('is-visible'));
     if (!('IntersectionObserver' in window)) {
       els.forEach(revealNow);
       formatChapters.forEach((el) => el.classList.add('is-visible'));
