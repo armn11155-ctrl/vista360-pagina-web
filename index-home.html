@@ -279,9 +279,41 @@
     text-align:center;
     padding:26px 24px 0;
   }
+  .v-prod-location {
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    margin-bottom:12px;
+    color:#1C6FE8;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+  @keyframes vEditorialDrift {
+    0% { transform:scale(1.025) translate3d(-.35%, -.2%, 0); }
+    100% { transform:scale(1.075) translate3d(.55%, .35%, 0); }
+  }
+  .v-premium-products .v-prod-center img {
+    animation:vEditorialDrift 13s ease-in-out infinite alternate;
+    will-change:transform;
+  }
+  .v-premium-products .v-prod-center:hover img {
+    animation-play-state:paused;
+  }
+  .v-premium-showcase #vParallaxImg {
+    transition:filter .8s ease;
+  }
+  .v-premium-showcase:hover #vParallaxImg {
+    filter:brightness(.71) contrast(1.06) saturate(1.08) !important;
+  }
   .v-premium-products .v-prod-info p {
     margin-left:auto !important;
     margin-right:auto !important;
+  }
+  @media (prefers-reduced-motion:reduce) {
+    .v-premium-products .v-prod-center img { animation:none; transform:none; }
+    .v-premium-stats .v-fig, .v-closing-btn { transition:none; }
   }
   .v-process-section {
     padding:clamp(76px,9vw,126px) clamp(16px,4vw,40px);
@@ -651,9 +683,10 @@
           </button>
         </div>
         <div class="v-prod-info">
+          <div class="v-prod-location"><span aria-hidden="true">●</span> {{ currentProduct.location }}</div>
           <h3 style="font-size:clamp(21px,2vw,26px); font-weight:800; letter-spacing:-0.02em; line-height:1.1; color:#0E1A2E; margin:0 0 8px;">{{ currentProduct.title }}</h3>
           <p style="font-size:14px; line-height:1.5; color:#5B6678; margin:0 0 14px; max-width:520px;">{{ currentProduct.desc }}</p>
-          <a href="soluciones.html" style="display:inline-flex; align-items:center; gap:8px; color:#1C6FE8; font-size:14px; font-weight:700; text-decoration:none;">Ver producto <span style="font-size:16px;">&rarr;</span></a>
+          <a href="soluciones.html" style="display:inline-flex; align-items:center; gap:8px; color:#0E1A2E; font-size:13px; font-weight:800; letter-spacing:.02em; text-decoration:none;">Explorar formato <span style="font-size:16px; color:#1C6FE8;">&rarr;</span></a>
         </div>
         {{ productDotsNode }}
       </div>
@@ -1003,10 +1036,10 @@ class Component extends DCLogic {
     ];
 
     const productData = [
-      { title: 'Murales', desc: 'Gran escala en muros y fachadas de alto tránsito.', img: 'panels/mural.jpg', objPos: 'center 45%' },
-      { title: 'Unipolares', desc: 'Impacto a larga distancia en avenidas principales.', img: 'panels/unipolar-home.jpg', objPos: '72% 32%' },
-      { title: 'Tótems', desc: 'Presencia peatonal, a la altura de la calle.', img: 'panels/totem.jpg', objPos: '57% 48%' },
-      { title: 'Pantallas LED', desc: 'Contenido dinámico en movimiento. Próximamente.', img: 'panels/led.jpg', objPos: 'center 42%' }
+      { title: 'Murales', location: 'Muros urbanos · Huánuco', desc: 'Gran escala en fachadas de alto tránsito.', img: 'panels/mural.jpg', objPos: 'center 45%' },
+      { title: 'Unipolares', location: 'Avenidas principales · Huánuco', desc: 'Visibilidad a larga distancia en rutas clave.', img: 'panels/unipolar-home.jpg', objPos: '72% 32%' },
+      { title: 'Tótems', location: 'Zonas peatonales · Huánuco', desc: 'Presencia cercana, a la altura de la calle.', img: 'panels/totem.jpg', objPos: '57% 48%' },
+      { title: 'Pantallas LED', location: 'Circuito digital · Próximamente', desc: 'Contenido dinámico con mayor frecuencia visual.', img: 'panels/led.jpg', objPos: 'center 42%' }
     ];
     const products = productData.map((p) => ({
       title: p.title, desc: p.desc,
@@ -1040,7 +1073,7 @@ class Component extends DCLogic {
         }
       }))
     );
-    const currentProduct = { title: cp.title, desc: cp.desc, imgNode: productStackNode };
+    const currentProduct = { title: cp.title, location: cp.location, desc: cp.desc, imgNode: productStackNode };
     // Imágenes "peek" a los costados (anterior/siguiente) -- efecto rueda.
     const prevIdx = (productIndex - 1 + productCount) % productCount;
     const nextIdx = (productIndex + 1) % productCount;
