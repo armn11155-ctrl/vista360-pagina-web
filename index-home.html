@@ -740,6 +740,339 @@
       border-radius:14px;
     }
   }
+  /* ---------- APPLE-STYLE LONG-FORM STORY ---------- */
+  .v-highlights {
+    padding:clamp(92px,11vw,160px) 0 clamp(108px,13vw,190px);
+    overflow:hidden;
+    background:#F5F5F7;
+  }
+  .v-highlights__head {
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    max-width:1280px;
+    margin:0 auto clamp(40px,5vw,66px);
+    padding:0 clamp(20px,5vw,64px);
+  }
+  .v-highlights__head h2 {
+    max-width:760px;
+    margin:0;
+    color:#101827;
+    font-size:clamp(46px,7vw,94px);
+    font-weight:700;
+    letter-spacing:-.055em;
+    line-height:.96;
+  }
+  .v-highlights__hint {
+    flex:0 0 auto;
+    color:#667085;
+    font-size:14px;
+    font-weight:700;
+  }
+  .v-highlights__track {
+    display:flex;
+    gap:clamp(18px,2.2vw,30px);
+    width:100%;
+    padding:0 max(clamp(20px,5vw,64px), calc((100vw - 1280px)/2));
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+    overscroll-behavior-inline:contain;
+  }
+  .v-highlights__track::-webkit-scrollbar { display:none; }
+  .v-highlight-card {
+    position:relative;
+    flex:0 0 min(78vw,900px);
+    min-height:min(72vh,760px);
+    overflow:hidden;
+    border-radius:clamp(28px,3vw,42px);
+    background:#080D16;
+    scroll-snap-align:center;
+    box-shadow:0 28px 80px -50px rgba(10,20,38,.45);
+  }
+  .v-highlight-card > img {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transform:scale(1.025);
+    transition:transform 1.4s cubic-bezier(.16,1,.3,1), filter 1s ease;
+  }
+  .v-highlight-card:hover > img {
+    transform:scale(1.065);
+    filter:saturate(1.06);
+  }
+  .v-highlight-card::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(3,8,16,.06) 35%, rgba(3,8,16,.86) 100%);
+  }
+  .v-highlight-card__copy {
+    position:absolute;
+    z-index:2;
+    left:clamp(28px,4vw,58px);
+    right:clamp(28px,4vw,58px);
+    bottom:clamp(30px,4.5vw,64px);
+    max-width:650px;
+    color:#FFFFFF;
+  }
+  .v-highlight-card__eyebrow {
+    margin-bottom:14px;
+    color:#80B6FF;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.17em;
+    text-transform:uppercase;
+  }
+  .v-highlight-card h3 {
+    margin:0;
+    color:#FFFFFF;
+    font-size:clamp(34px,5vw,68px);
+    font-weight:700;
+    letter-spacing:-.045em;
+    line-height:.98;
+  }
+  .v-scroll-story {
+    --story-progress:0;
+    position:relative;
+    height:500vh;
+    background:#05080F;
+  }
+  .v-scroll-story__sticky {
+    position:sticky;
+    top:0;
+    height:100vh;
+    min-height:620px;
+    overflow:hidden;
+    background:#05080F;
+  }
+  .v-story-scene {
+    position:absolute;
+    inset:0;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity 1s cubic-bezier(.16,1,.3,1), visibility 1s;
+  }
+  .v-story-scene.is-active {
+    opacity:1;
+    visibility:visible;
+  }
+  .v-story-scene > img {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transform:scale(1.12);
+    transition:transform 1.8s cubic-bezier(.16,1,.3,1), filter 1.2s ease;
+    filter:brightness(.72) saturate(.92);
+  }
+  .v-story-scene.is-active > img {
+    transform:scale(1.02);
+    filter:brightness(.8) saturate(1.02);
+  }
+  .v-story-scene::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(90deg, rgba(2,6,13,.9) 0%, rgba(2,6,13,.42) 48%, rgba(2,6,13,.08) 78%),
+      linear-gradient(0deg, rgba(2,6,13,.56), transparent 60%);
+  }
+  .v-story-scene__copy {
+    position:absolute;
+    z-index:2;
+    left:max(clamp(24px,7vw,110px), calc((100vw - 1400px)/2));
+    bottom:clamp(70px,10vh,120px);
+    max-width:760px;
+    color:#FFFFFF;
+    opacity:0;
+    transform:translateY(36px);
+    transition:opacity .9s .22s cubic-bezier(.16,1,.3,1), transform .9s .22s cubic-bezier(.16,1,.3,1);
+  }
+  .v-story-scene.is-active .v-story-scene__copy {
+    opacity:1;
+    transform:none;
+  }
+  .v-story-scene__number {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+    color:#89BAFF;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+  }
+  .v-story-scene__number::before {
+    content:"";
+    width:34px;
+    height:1px;
+    background:#4D9AFF;
+  }
+  .v-story-scene h2 {
+    margin:0 0 22px;
+    color:#FFFFFF;
+    font-size:clamp(52px,8.2vw,120px);
+    font-weight:700;
+    letter-spacing:-.06em;
+    line-height:.9;
+  }
+  .v-story-scene p {
+    max-width:550px;
+    margin:0;
+    color:rgba(239,245,255,.76);
+    font-size:clamp(17px,1.5vw,21px);
+    line-height:1.55;
+  }
+  .v-story-progress {
+    position:absolute;
+    z-index:4;
+    right:clamp(20px,4vw,58px);
+    top:50%;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+    transform:translateY(-50%);
+  }
+  .v-story-progress span {
+    width:4px;
+    height:28px;
+    border-radius:4px;
+    background:rgba(255,255,255,.24);
+    transition:height .4s ease, background .4s ease;
+  }
+  .v-story-progress span.is-active {
+    height:58px;
+    background:#FFFFFF;
+  }
+  .v-craft-section {
+    position:relative;
+    padding:clamp(110px,14vw,210px) clamp(20px,5vw,64px);
+    overflow:hidden;
+    background:#FFFFFF;
+  }
+  .v-craft-shell {
+    max-width:1280px;
+    margin:0 auto;
+  }
+  .v-craft-head {
+    max-width:980px;
+    margin:0 auto clamp(60px,8vw,110px);
+    text-align:center;
+  }
+  .v-craft-head__eyebrow {
+    margin-bottom:22px;
+    color:#1769E0;
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+  }
+  .v-craft-head h2 {
+    margin:0 0 28px;
+    color:#101827;
+    font-size:clamp(50px,8vw,112px);
+    font-weight:700;
+    letter-spacing:-.06em;
+    line-height:.92;
+  }
+  .v-craft-head p {
+    max-width:660px;
+    margin:0 auto;
+    color:#667085;
+    font-size:clamp(17px,1.55vw,21px);
+    line-height:1.55;
+  }
+  .v-craft-visual {
+    position:relative;
+    min-height:min(76vh,820px);
+    overflow:hidden;
+    border-radius:clamp(28px,3.5vw,48px);
+    background:#07101E;
+  }
+  .v-craft-visual > img {
+    position:absolute;
+    inset:-5%;
+    width:110%;
+    height:110%;
+    object-fit:cover;
+    transform:translate3d(0, calc((var(--craft-progress, .5) - .5) * 7%), 0) scale(1.03);
+    will-change:transform;
+  }
+  .v-craft-visual::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(0deg, rgba(2,7,15,.84) 0%, rgba(2,7,15,.08) 65%);
+  }
+  .v-craft-pills {
+    position:absolute;
+    z-index:2;
+    left:clamp(24px,4vw,56px);
+    right:clamp(24px,4vw,56px);
+    bottom:clamp(24px,4vw,56px);
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .v-craft-pill {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 20px;
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:999px;
+    background:rgba(7,16,30,.5);
+    color:#FFFFFF;
+    font-size:14px;
+    font-weight:750;
+    backdrop-filter:blur(14px);
+  }
+  .v-craft-pill span {
+    display:grid;
+    place-items:center;
+    width:27px;
+    height:27px;
+    border-radius:50%;
+    background:#1769E0;
+    font-size:16px;
+  }
+  @media (max-width:760px) {
+    .v-highlights__head { align-items:flex-start; flex-direction:column; }
+    .v-highlight-card { flex-basis:86vw; min-height:66vh; }
+    .v-scroll-story { height:450vh; }
+    .v-scroll-story__sticky { min-height:560px; }
+    .v-story-scene::after {
+      background:linear-gradient(0deg, rgba(2,6,13,.94) 0%, rgba(2,6,13,.2) 78%);
+    }
+    .v-story-scene__copy {
+      left:24px;
+      right:48px;
+      bottom:66px;
+    }
+    .v-story-scene h2 { font-size:clamp(46px,15vw,74px); }
+    .v-story-progress { right:16px; }
+    .v-story-progress span { height:20px; }
+    .v-story-progress span.is-active { height:42px; }
+    .v-craft-visual { min-height:68vh; }
+    .v-craft-pills { align-items:flex-start; flex-direction:column; }
+    .v-craft-pill { padding:11px 15px; font-size:13px; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    .v-highlight-card > img,
+    .v-story-scene,
+    .v-story-scene > img,
+    .v-story-scene__copy,
+    .v-craft-visual > img {
+      transition:none;
+      animation:none;
+    }
+  }
   /* ---------- UNIFIED PREMIUM DESIGN SYSTEM ---------- */
   :root {
     --v-ink:#101827;
@@ -763,10 +1096,13 @@
     display:none;
   }
   .v-apple-statement { order:1; }
-  .v-premium-products { order:2; }
-  .v-process-section { order:3; }
-  .v-premium-player { order:4; }
-  .v-closing-wrap { order:5; }
+  .v-highlights { order:2; }
+  .v-scroll-story { order:3; }
+  .v-premium-products { order:4; }
+  .v-craft-section { order:5; }
+  .v-process-section { order:6; }
+  .v-premium-player { order:7; }
+  .v-closing-wrap { order:8; }
   .v-home-surface h2,
   .v-home-surface h3 {
     text-wrap:balance;
@@ -970,6 +1306,106 @@
     <div class="v-apple-statement__inner" data-reveal>
       <div style="font-size:12px; font-weight:800; letter-spacing:.17em; text-transform:uppercase; color:#1C6FE8; margin-bottom:clamp(24px,3vw,38px);">Presencia exterior</div>
       <h2 id="v-statement-title">Tu marca no necesita ocupar más espacio. <span>Necesita ocupar el espacio correcto.</span></h2>
+    </div>
+  </section>
+
+  <!-- ============ HIGHLIGHTS EDITORIALES ============ -->
+  <section class="v-highlights" aria-labelledby="v-highlights-title">
+    <div class="v-highlights__head" data-reveal>
+      <h2 id="v-highlights-title">Conoce lo esencial.</h2>
+      <div class="v-highlights__hint">Desliza para explorar →</div>
+    </div>
+    <div class="v-highlights__track" aria-label="Aspectos destacados de Vista360">
+      <article class="v-highlight-card">
+        <img src="panels/premium-unipolar.jpg" alt="Panel unipolar premium en una avenida">
+        <div class="v-highlight-card__copy">
+          <div class="v-highlight-card__eyebrow">Escala</div>
+          <h3>La ciudad se convierte en tu escenario.</h3>
+        </div>
+      </article>
+      <article class="v-highlight-card">
+        <img src="panels/detail-mural.jpg" alt="Detalle del acabado de un mural publicitario">
+        <div class="v-highlight-card__copy">
+          <div class="v-highlight-card__eyebrow">Acabados</div>
+          <h3>La calidad también se nota de cerca.</h3>
+        </div>
+      </article>
+      <article class="v-highlight-card">
+        <img src="panels/tech-led-modules.jpg" alt="Módulos tecnológicos de una pantalla LED">
+        <div class="v-highlight-card__copy">
+          <div class="v-highlight-card__eyebrow">Tecnología</div>
+          <h3>Preparados para una presencia en movimiento.</h3>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ HISTORIA INMERSIVA CONTROLADA POR SCROLL ============ -->
+  <section class="v-scroll-story" data-scroll-story aria-label="Una nueva escala para tu marca">
+    <div class="v-scroll-story__sticky">
+      <article class="v-story-scene is-active">
+        <img src="panels/premium-unipolar.jpg" alt="Unipolar Vista360 iluminado al anochecer">
+        <div class="v-story-scene__copy">
+          <div class="v-story-scene__number">01 · Presencia</div>
+          <h2>Diseñada para dominar el entorno.</h2>
+          <p>Una ubicación correcta transforma una pieza publicitaria en parte del paisaje cotidiano.</p>
+        </div>
+      </article>
+      <article class="v-story-scene">
+        <img src="panels/editorial-mural-night.jpg" alt="Mural arquitectónico Vista360 iluminado de noche">
+        <div class="v-story-scene__copy">
+          <div class="v-story-scene__number">02 · Integración</div>
+          <h2>La arquitectura también puede comunicar.</h2>
+          <p>Murales que siguen el espacio y convierten una fachada en una pieza de presencia urbana.</p>
+        </div>
+      </article>
+      <article class="v-story-scene">
+        <img src="panels/detail-unipolar.jpg" alt="Detalle estructural de un soporte unipolar">
+        <div class="v-story-scene__copy">
+          <div class="v-story-scene__number">03 · Precisión</div>
+          <h2>Impacto por fuera. Cuidado por dentro.</h2>
+          <p>Estructuras, uniones y acabados pensados para que cada soporte se sienta sólido y profesional.</p>
+        </div>
+      </article>
+      <article class="v-story-scene">
+        <img src="panels/premium-totem.jpg" alt="Tótem digital Vista360 en un espacio peatonal">
+        <div class="v-story-scene__copy">
+          <div class="v-story-scene__number">04 · Cercanía</div>
+          <h2>A la altura de cada mirada.</h2>
+          <p>Formatos cercanos al peatón para comunicar con claridad en espacios de circulación diaria.</p>
+        </div>
+      </article>
+      <article class="v-story-scene">
+        <img src="panels/premium-led.jpg" alt="Pantalla LED exterior Vista360">
+        <div class="v-story-scene__copy">
+          <div class="v-story-scene__number">05 · Movimiento</div>
+          <h2>Una imagen que nunca se queda quieta.</h2>
+          <p>La evolución digital de Vista360 llevará contenido dinámico a puntos estratégicos de la ciudad.</p>
+        </div>
+      </article>
+      <div class="v-story-progress" aria-hidden="true">
+        <span class="is-active"></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRODUCTO Y MATERIALES ============ -->
+  <section class="v-craft-section" data-craft-scroll aria-labelledby="v-craft-title">
+    <div class="v-craft-shell">
+      <div class="v-craft-head" data-reveal>
+        <div class="v-craft-head__eyebrow">Diseño del soporte</div>
+        <h2 id="v-craft-title">Hecho para la calle. Cuidado como producto.</h2>
+        <p>No presentamos solo espacios publicitarios. Diseñamos soportes que unen escala, materiales y visibilidad en una sola experiencia.</p>
+      </div>
+      <div class="v-craft-visual">
+        <img src="panels/product-unipolar-studio.jpg" alt="Soporte unipolar Vista360 presentado como producto">
+        <div class="v-craft-pills">
+          <div class="v-craft-pill"><span>+</span>Estructura precisa</div>
+          <div class="v-craft-pill"><span>+</span>Acabado profesional</div>
+          <div class="v-craft-pill"><span>+</span>Iluminación estratégica</div>
+          <div class="v-craft-pill"><span>+</span>Visibilidad urbana</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1315,6 +1751,7 @@ class Component extends DCLogic {
     // productos en productData (Murales/Unipolares/Tótems/LED).
     this.startProductTimer(4);
     this.initParallax();
+    this.initAppleScroll();
     const els = Array.from(root.querySelectorAll('[data-reveal]'));
     const formatChapters = Array.from(root.querySelectorAll('.v-format-chapter'));
     els.forEach((el) => {
@@ -1347,6 +1784,50 @@ class Component extends DCLogic {
       });
     }, { threshold: 0.28, rootMargin: '0px 0px -8% 0px' });
     formatChapters.forEach((el) => this.formatIO.observe(el));
+  }
+
+  initAppleScroll() {
+    const root = this.rootEl;
+    if (!root) return;
+    const story = root.querySelector('[data-scroll-story]');
+    const craft = root.querySelector('[data-craft-scroll]');
+    const scenes = story ? Array.from(story.querySelectorAll('.v-story-scene')) : [];
+    const progressBars = story ? Array.from(story.querySelectorAll('.v-story-progress span')) : [];
+    const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let raf = 0;
+
+    const update = () => {
+      raf = 0;
+      const vh = Math.max(window.innerHeight || 0, 1);
+
+      if (story && scenes.length) {
+        const rect = story.getBoundingClientRect();
+        const travel = Math.max(story.offsetHeight - vh, 1);
+        const progress = Math.max(0, Math.min(1, -rect.top / travel));
+        const activeIndex = Math.min(scenes.length - 1, Math.floor(progress * scenes.length));
+        story.style.setProperty('--story-progress', progress.toFixed(4));
+        scenes.forEach((scene, index) => scene.classList.toggle('is-active', index === activeIndex));
+        progressBars.forEach((bar, index) => bar.classList.toggle('is-active', index === activeIndex));
+      }
+
+      if (craft && !reducedMotion) {
+        const rect = craft.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
+        craft.style.setProperty('--craft-progress', progress.toFixed(4));
+      }
+    };
+
+    const requestUpdate = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    window.addEventListener('scroll', requestUpdate, { passive:true });
+    window.addEventListener('resize', requestUpdate, { passive:true });
+    update();
+    this._premiumScrollCleanup = () => {
+      window.removeEventListener('scroll', requestUpdate);
+      window.removeEventListener('resize', requestUpdate);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }
 
   startNetwork() {
@@ -1447,6 +1928,7 @@ class Component extends DCLogic {
     if (this._netRO) this._netRO.disconnect();
     if (this._carouselTimer) clearInterval(this._carouselTimer);
     if (this._parallaxCleanup) this._parallaxCleanup();
+    if (this._premiumScrollCleanup) this._premiumScrollCleanup();
   }
 
   renderVals() {
