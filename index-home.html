@@ -640,6 +640,131 @@
     .v-format-chapter { top:62px; min-height:72vh; border-radius:22px; }
     .v-format-chapter__shade { background:linear-gradient(0deg, rgba(3,8,16,.9) 0%, rgba(3,8,16,.18) 76%); }
   }
+  /* ---------- UNIFIED PREMIUM DESIGN SYSTEM ---------- */
+  :root {
+    --v-ink:#101827;
+    --v-muted:#667085;
+    --v-blue:#1769E0;
+    --v-page:#F5F5F7;
+    --v-panel:#FFFFFF;
+    --v-line:rgba(16,24,39,.1);
+    --v-radius:32px;
+    --v-section-space:clamp(88px,10vw,148px);
+  }
+  .v-home-surface {
+    background:var(--v-page) !important;
+  }
+  .v-home-surface h2,
+  .v-home-surface h3 {
+    text-wrap:balance;
+  }
+  .v-premium-stats,
+  .v-premium-player,
+  .v-process-section {
+    padding-top:var(--v-section-space) !important;
+    padding-bottom:var(--v-section-space) !important;
+  }
+  .v-premium-stats .v-figs {
+    gap:0;
+    overflow:hidden;
+    border:1px solid var(--v-line);
+    border-radius:var(--v-radius);
+    background:var(--v-panel);
+  }
+  .v-premium-stats .v-fig {
+    min-height:250px;
+    border:0 !important;
+    border-right:1px solid var(--v-line) !important;
+    border-radius:0;
+    background:transparent;
+    box-shadow:none;
+    backdrop-filter:none;
+  }
+  .v-premium-stats .v-fig:last-child { border-right:0 !important; }
+  .v-premium-stats .v-fig:hover {
+    transform:none;
+    border-color:var(--v-line) !important;
+    background:#FAFBFD;
+    box-shadow:none;
+  }
+  .v-premium-showcase,
+  .v-premium-player-shell,
+  .v-closing-cta {
+    border-radius:var(--v-radius);
+  }
+  .v-premium-showcase {
+    box-shadow:none;
+    border:1px solid rgba(255,255,255,.09);
+  }
+  .v-premium-showcase .v-intro-stats > div {
+    border-radius:20px;
+    background:rgba(5,12,24,.36);
+    box-shadow:none;
+  }
+  .v-premium-player {
+    background:var(--v-page) !important;
+  }
+  .v-premium-player-shell {
+    border:1px solid var(--v-line);
+    background:var(--v-panel);
+    box-shadow:none;
+  }
+  .v-process-section,
+  .v-closing-wrap {
+    background:var(--v-page);
+  }
+  .v-process-grid {
+    border-color:var(--v-line);
+  }
+  .v-process-step {
+    border-color:var(--v-line);
+  }
+  .v-process-note {
+    border-color:var(--v-line);
+    border-radius:20px;
+    background:var(--v-panel);
+  }
+  .v-closing-cta {
+    border:1px solid rgba(255,255,255,.1);
+    box-shadow:none;
+  }
+  .v-closing-btn {
+    border-radius:999px;
+    padding-left:27px;
+    padding-right:27px;
+  }
+  .v-format-chapter {
+    border-radius:var(--v-radius);
+    box-shadow:none;
+  }
+  .v-products-head,
+  .v-process-shell,
+  .v-apple-statement__inner {
+    width:100%;
+    max-width:1280px !important;
+  }
+  @media (min-width:560px) and (max-width:959px) {
+    .v-premium-stats .v-fig {
+      border-right:0 !important;
+      border-bottom:1px solid var(--v-line) !important;
+    }
+    .v-premium-stats .v-fig:nth-child(odd) { border-right:1px solid var(--v-line) !important; }
+    .v-premium-stats .v-fig:nth-last-child(-n+2) { border-bottom:0 !important; }
+  }
+  @media (max-width:559px) {
+    .v-premium-stats .v-fig {
+      border-right:0 !important;
+      border-bottom:1px solid var(--v-line) !important;
+    }
+    .v-premium-stats .v-fig:last-child { border-bottom:0 !important; }
+  }
+  @media (max-width:760px) {
+    :root { --v-radius:24px; --v-section-space:72px; }
+    .v-premium-stats .v-figs { border-radius:24px; }
+    .v-premium-showcase,
+    .v-closing-cta { border-radius:0; }
+    .v-premium-player-shell { border-radius:24px; }
+  }
   dc-import{display:block}
 </style>
 </helmet>
