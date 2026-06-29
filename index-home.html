@@ -2200,6 +2200,348 @@
       grid-template-columns:repeat(2,1fr);
     }
   }
+  /* ---------- FINAL PREMIUM DIRECTION: PLAYER + CAMPAIGN ---------- */
+  .v-premium-player {
+    isolation:isolate;
+    padding-top:clamp(96px,12vw,180px) !important;
+    padding-bottom:clamp(108px,13vw,190px) !important;
+    background:
+      radial-gradient(circle at 74% 18%, rgba(84,151,255,.34), transparent 25%),
+      radial-gradient(circle at 12% 58%, rgba(119,83,255,.22), transparent 29%),
+      radial-gradient(circle at 76% 88%, rgba(14,174,121,.16), transparent 28%),
+      linear-gradient(180deg,#05070B 0%,#000000 46%,#07101D 100%) !important;
+  }
+  .v-premium-player::before {
+    top:auto;
+    left:auto;
+    right:-20%;
+    bottom:4%;
+    width:min(980px,92vw);
+    height:min(980px,92vw);
+    background:radial-gradient(circle, rgba(28,111,232,.22), transparent 63%);
+    transform:none;
+    filter:blur(10px);
+  }
+  .v-player-localnav {
+    width:min(100%,1180px);
+    margin-bottom:clamp(92px,12vw,170px);
+  }
+  .v-player-story {
+    display:block;
+    min-height:0;
+  }
+  .v-player-hero {
+    max-width:1160px;
+    margin:0 auto clamp(58px,8vw,108px);
+    text-align:center;
+  }
+  .v-player-kicker {
+    color:#FF7A1A;
+    font-size:clamp(18px,1.7vw,24px);
+  }
+  .v-player-hero h2 {
+    max-width:1120px;
+    margin:0 auto;
+    font-size:clamp(58px,9.4vw,150px);
+    letter-spacing:-.075em;
+    line-height:.88;
+  }
+  .v-player-hero > p {
+    max-width:760px;
+    margin:clamp(26px,3vw,40px) auto 0;
+    color:rgba(245,248,255,.68);
+    font-size:clamp(18px,1.7vw,23px);
+  }
+  .v-player-proof {
+    max-width:760px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .v-player-visual {
+    width:min(1260px,100%);
+    min-height:clamp(760px,78vw,980px);
+    margin:0 auto;
+  }
+  .v-player-glow {
+    inset:5% 6% auto;
+    height:72%;
+    background:
+      radial-gradient(circle at 65% 35%, rgba(28,111,232,.36), transparent 36%),
+      radial-gradient(circle at 28% 70%, rgba(255,122,26,.18), transparent 34%);
+    filter:blur(34px);
+  }
+  .v-player-dashboard-card {
+    inset:0;
+    border-radius:clamp(36px,4vw,64px);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.035)),
+      radial-gradient(circle at 22% 0%, rgba(255,255,255,.16), transparent 26%),
+      linear-gradient(135deg,#10141F,#05070D 58%,#081629);
+    box-shadow:
+      0 60px 140px -70px rgba(28,111,232,.9),
+      inset 0 1px 0 rgba(255,255,255,.18);
+    transform:translateY(var(--landscape-y, 24px)) scale(var(--landscape-scale, .985));
+  }
+  .v-player-dashboard {
+    grid-template-columns:.88fr 1.12fr;
+    gap:clamp(24px,4vw,58px);
+    padding:clamp(26px,5vw,76px);
+  }
+  .v-player-map {
+    min-height:100%;
+    border-radius:clamp(28px,3.5vw,46px);
+    background:
+      linear-gradient(180deg, rgba(3,7,14,.18), rgba(3,7,14,.74)),
+      url('panels/premium-led-macro.jpg') center/cover;
+    filter:saturate(.92) contrast(1.08);
+  }
+  .v-player-map::before {
+    left:9%;
+    right:12%;
+    top:62%;
+    height:5px;
+    background:linear-gradient(90deg, transparent, #56A2FF 18%, #FFFFFF 52%, #35D07F 78%, transparent);
+    transform:rotate(-17deg);
+  }
+  .v-player-data {
+    justify-content:center;
+    gap:clamp(18px,2.4vw,32px);
+  }
+  .v-player-data h3 {
+    max-width:540px;
+    font-size:clamp(46px,6vw,86px);
+    letter-spacing:-.065em;
+  }
+  .v-player-data p {
+    max-width:480px;
+    color:rgba(237,244,255,.67);
+    font-size:clamp(16px,1.45vw,20px);
+  }
+  .v-player-live-card {
+    min-height:clamp(128px,14vw,180px);
+    padding:clamp(18px,2.2vw,28px);
+    border-radius:clamp(22px,2.5vw,32px);
+    background:rgba(255,255,255,.075);
+    backdrop-filter:blur(18px);
+  }
+  .v-player-live-card b {
+    font-size:clamp(26px,3.4vw,48px);
+  }
+  .v-player-timeline {
+    padding:clamp(18px,2.2vw,28px);
+    border-radius:999px;
+  }
+  .v-player-feature-grid {
+    width:min(1180px,100%);
+    grid-template-columns:repeat(3,1fr);
+    gap:clamp(16px,2vw,26px);
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .v-player-feature {
+    min-height:clamp(300px,28vw,420px);
+    padding:clamp(28px,3.4vw,48px);
+    border-radius:clamp(28px,3vw,42px);
+  }
+  .v-player-app-icons {
+    width:min(900px,100%);
+  }
+  .v-player-app-icon {
+    box-shadow:0 32px 90px -58px rgba(255,255,255,.34);
+  }
+  .v-process-section {
+    position:relative;
+    overflow:hidden;
+    padding:clamp(106px,13vw,190px) clamp(18px,4vw,44px) !important;
+    background:#05080F;
+    color:#FFFFFF;
+  }
+  .v-process-section::before {
+    content:"";
+    position:absolute;
+    inset:-12%;
+    background:
+      linear-gradient(90deg, rgba(5,8,15,.72), rgba(5,8,15,.48), rgba(5,8,15,.86)),
+      radial-gradient(circle at 16% 16%, rgba(255,122,26,.22), transparent 28%),
+      radial-gradient(circle at 72% 40%, rgba(28,111,232,.28), transparent 33%),
+      url('panels/editorial-mural-night.jpg') center/cover;
+    filter:blur(20px) saturate(1.06) brightness(.7);
+    transform:scale(1.08);
+  }
+  .v-process-section::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(5,8,15,.94), rgba(5,8,15,.62) 42%, rgba(5,8,15,.96));
+    pointer-events:none;
+  }
+  .v-process-shell {
+    position:relative;
+    z-index:1;
+    max-width:1280px;
+  }
+  .v-process-head {
+    display:grid;
+    grid-template-columns:minmax(0,1.12fr) minmax(280px,.88fr);
+    align-items:end;
+    gap:clamp(28px,6vw,86px);
+    margin-bottom:clamp(46px,7vw,104px);
+  }
+  .v-process-head h2 {
+    color:#FFFFFF !important;
+    font-size:clamp(54px,8.2vw,124px) !important;
+    font-weight:750 !important;
+    letter-spacing:-.075em !important;
+    line-height:.9 !important;
+  }
+  .v-process-intro {
+    max-width:560px;
+    color:rgba(239,245,255,.72);
+    font-size:clamp(17px,1.55vw,22px);
+    font-weight:650;
+  }
+  .v-process-grid {
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:clamp(18px,2.2vw,30px);
+    border:0;
+  }
+  .v-process-step {
+    min-height:clamp(230px,22vw,330px);
+    padding:clamp(28px,3.5vw,48px) !important;
+    border:1px solid rgba(255,255,255,.13) !important;
+    border-radius:clamp(26px,3vw,42px);
+    background:
+      linear-gradient(145deg, rgba(255,255,255,.16), rgba(255,255,255,.045)),
+      rgba(255,255,255,.04);
+    backdrop-filter:blur(22px);
+    box-shadow:0 34px 90px -62px rgba(0,0,0,.8);
+  }
+  .v-process-step:first-child {
+    grid-row:span 2;
+    min-height:clamp(480px,48vw,700px);
+    background:
+      linear-gradient(180deg, rgba(3,7,14,.12), rgba(3,7,14,.78)),
+      url('panels/premium-unipolar.jpg') center/cover;
+  }
+  .v-process-number {
+    width:auto;
+    height:auto;
+    margin-bottom:clamp(26px,4vw,58px);
+    border:0;
+    border-radius:0;
+    color:#FF7A1A;
+    background:transparent;
+    font-size:13px;
+    font-weight:850;
+    letter-spacing:.16em;
+  }
+  .v-process-step h3 {
+    max-width:560px;
+    color:#FFFFFF;
+    font-size:clamp(30px,4.6vw,72px);
+    font-weight:750;
+    letter-spacing:-.06em;
+    line-height:.95;
+  }
+  .v-process-step:not(:first-child) h3 {
+    font-size:clamp(25px,3vw,44px);
+  }
+  .v-process-step p {
+    max-width:520px;
+    color:rgba(239,245,255,.72);
+    font-size:clamp(15px,1.35vw,18px);
+    font-weight:600;
+  }
+  .v-process-note {
+    margin-top:clamp(24px,3vw,40px);
+    border-color:rgba(255,255,255,.13);
+    border-radius:999px;
+    background:rgba(255,255,255,.09);
+    backdrop-filter:blur(18px);
+  }
+  .v-process-note strong {
+    color:#FFFFFF !important;
+  }
+  .v-process-note span {
+    color:rgba(239,245,255,.64) !important;
+  }
+  .v-process-note a {
+    color:#FFFFFF !important;
+  }
+  @media (max-width:900px) {
+    .v-process-head,
+    .v-process-grid {
+      grid-template-columns:1fr;
+    }
+    .v-process-step:first-child {
+      min-height:560px;
+    }
+  }
+  @media (max-width:760px) {
+    .v-premium-player {
+      padding-left:0 !important;
+      padding-right:0 !important;
+    }
+    .v-player-localnav,
+    .v-player-hero,
+    .v-player-feature-grid,
+    .v-player-app-icons,
+    .v-player-stores {
+      width:auto;
+      margin-left:18px;
+      margin-right:18px;
+    }
+    .v-player-hero {
+      text-align:left;
+    }
+    .v-player-hero h2 {
+      margin-left:0;
+      margin-right:0;
+      font-size:clamp(56px,16vw,86px);
+    }
+    .v-player-proof,
+    .v-player-feature-grid,
+    .v-player-app-icons {
+      grid-template-columns:1fr;
+    }
+    .v-player-visual {
+      min-height:780px;
+      margin:0;
+    }
+    .v-player-dashboard {
+      grid-template-columns:1fr;
+      padding:30px 18px;
+    }
+    .v-player-map {
+      min-height:360px;
+    }
+    .v-player-dashboard-card {
+      border-left:0;
+      border-right:0;
+      border-radius:0;
+    }
+    .v-player-data h3 {
+      font-size:clamp(40px,12vw,62px);
+    }
+    .v-process-section {
+      padding-left:0 !important;
+      padding-right:0 !important;
+    }
+    .v-process-head,
+    .v-process-grid,
+    .v-process-note {
+      margin-left:18px;
+      margin-right:18px;
+    }
+    .v-process-step:first-child {
+      min-height:620px;
+    }
+    .v-process-note {
+      border-radius:28px;
+      align-items:flex-start;
+    }
+  }
   dc-import{display:block}
 </style>
 </helmet>
@@ -2618,32 +2960,32 @@
     <div class="v-process-shell">
       <div class="v-process-head" data-reveal>
         <div>
-          <div style="font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#1C6FE8; margin-bottom:15px;">Una campaña bien acompañada</div>
-          <h2 id="v-process-title" style="font-size:clamp(30px,4.4vw,58px); font-weight:800; letter-spacing:-.04em; line-height:1.03; color:#0E1A2E; margin:0;">De la primera idea<br>hasta la calle.</h2>
+          <div style="font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#FF7A1A; margin-bottom:15px;">Una campaña bien acompañada</div>
+          <h2 id="v-process-title" style="font-size:clamp(30px,4.4vw,58px); font-weight:800; letter-spacing:-.04em; line-height:1.03; color:#0E1A2E; margin:0;">Del primer mensaje<br>al primer impacto.</h2>
         </div>
-        <p class="v-process-intro">Somos una empresa nueva con una forma de trabajar cercana y clara. Te acompañamos en cada decisión para convertir tu objetivo en una presencia exterior bien ejecutada.</p>
+        <p class="v-process-intro">No se trata de llenar un espacio. Se trata de elegir el punto correcto, preparar una propuesta clara y hacer que tu marca aparezca en la ciudad con presencia.</p>
       </div>
 
       <div class="v-process-grid" data-reveal>
         <article class="v-process-step">
           <span class="v-process-number">01</span>
-          <h3>Entendemos tu objetivo</h3>
-          <p>Conversamos sobre tu marca, público y el resultado que quieres conseguir.</p>
+          <h3>Primero entendemos qué quieres provocar.</h3>
+          <p>Visibilidad, recordación, lanzamiento o presencia local. Antes del formato, definimos la intención de la campaña.</p>
         </article>
         <article class="v-process-step">
           <span class="v-process-number">02</span>
-          <h3>Elegimos el formato</h3>
-          <p>Definimos el soporte y la ubicación más adecuados para tu campaña.</p>
+          <h3>Elegimos el lugar que trabaja por tu marca.</h3>
+          <p>Ubicación, escala y lectura visual se ordenan para que tu mensaje no solo aparezca: destaque.</p>
         </article>
         <article class="v-process-step">
           <span class="v-process-number">03</span>
-          <h3>Preparamos la propuesta</h3>
-          <p>Ordenamos diseño, medidas, producción y tiempos en un plan fácil de entender.</p>
+          <h3>Convertimos la idea en una presencia real.</h3>
+          <p>Te acompañamos con medidas, diseño, tiempos y coordinación para que la campaña se sienta clara desde el inicio.</p>
         </article>
         <article class="v-process-step">
           <span class="v-process-number">04</span>
-          <h3>Llevamos tu marca afuera</h3>
-          <p>Coordinamos la implementación y te mantenemos informado durante el proceso.</p>
+          <h3>Tu marca sale a la calle con intención.</h3>
+          <p>La implementación se comunica de forma directa, cuidando que cada detalle sostenga una imagen profesional.</p>
         </article>
       </div>
 
