@@ -3394,6 +3394,771 @@
       padding-left:var(--v-page-gutter) !important;
     }
   }
+
+  /* ---------- VISTA360 NARRATIVE HOME ---------- */
+  .v-home-surface {
+    display:none !important;
+  }
+  .vn-story {
+    --vn-ink:#111318;
+    --vn-muted:#666B76;
+    --vn-blue:#1769E8;
+    --vn-line:rgba(17,19,24,.12);
+    position:relative;
+    overflow:hidden;
+    color:var(--vn-ink);
+    background:#FFFFFF;
+  }
+  .vn-shell {
+    width:min(1180px, calc(100% - 96px));
+    margin:0 auto;
+  }
+  .vn-kicker {
+    margin:0 0 20px;
+    color:var(--vn-blue);
+    font-size:14px;
+    font-weight:700;
+    line-height:1.3;
+    letter-spacing:0;
+  }
+  .vn-title {
+    max-width:960px;
+    margin:0;
+    font-size:72px;
+    font-weight:700;
+    line-height:1.02;
+    letter-spacing:0;
+  }
+  .vn-lead {
+    max-width:700px;
+    margin:28px 0 0;
+    color:var(--vn-muted);
+    font-size:21px;
+    font-weight:500;
+    line-height:1.55;
+  }
+  .vn-intro {
+    position:relative;
+    display:flex;
+    align-items:center;
+    min-height:82vh;
+    padding:132px 0;
+    background:
+      radial-gradient(circle at 82% 62%, rgba(23,105,232,.12), transparent 25%),
+      radial-gradient(circle at 68% 32%, rgba(139,61,255,.08), transparent 22%),
+      #FFFFFF;
+  }
+  .vn-intro::after {
+    content:"";
+    position:absolute;
+    right:-4%;
+    bottom:-16%;
+    width:48vw;
+    height:48vw;
+    max-width:680px;
+    max-height:680px;
+    border:1px solid rgba(17,19,24,.07);
+    border-radius:50%;
+    box-shadow:
+      0 0 0 72px rgba(23,105,232,.025),
+      0 0 0 144px rgba(17,19,24,.018);
+  }
+  .vn-intro-copy {
+    position:relative;
+    z-index:1;
+    max-width:1000px;
+  }
+  .vn-city,
+  .vn-craft {
+    position:relative;
+    display:flex;
+    min-height:100vh;
+    overflow:hidden;
+    background:#070A10;
+    color:#FFFFFF;
+  }
+  .vn-city {
+    align-items:center;
+    background-image:url('panels/story-city-new-york.png');
+    background-position:center;
+    background-size:cover;
+  }
+  .vn-city::before,
+  .vn-craft::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+  }
+  .vn-city::before {
+    background:
+      linear-gradient(90deg, rgba(5,8,15,.9) 0%, rgba(5,8,15,.6) 35%, rgba(5,8,15,.08) 72%),
+      linear-gradient(0deg, rgba(5,8,15,.42), transparent 50%);
+  }
+  .vn-city-copy {
+    position:relative;
+    z-index:1;
+    max-width:610px;
+    padding:120px 0;
+  }
+  .vn-city .vn-kicker,
+  .vn-craft .vn-kicker {
+    color:#82B5FF;
+  }
+  .vn-city .vn-title,
+  .vn-craft .vn-title {
+    font-size:64px;
+  }
+  .vn-city .vn-lead,
+  .vn-craft .vn-lead {
+    color:rgba(255,255,255,.78);
+    font-size:19px;
+  }
+  .vn-product {
+    padding:140px 0 0;
+    overflow:hidden;
+    background:#F5F5F7;
+  }
+  .vn-product-copy {
+    position:relative;
+    z-index:1;
+    max-width:900px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .vn-product-copy .vn-lead {
+    margin-right:auto;
+    margin-left:auto;
+  }
+  .vn-product-visual {
+    position:relative;
+    width:min(1160px, 96vw);
+    height:620px;
+    margin:72px auto 0;
+    overflow:hidden;
+  }
+  .vn-product-visual::before {
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-18%;
+    width:72%;
+    height:42%;
+    border-radius:50%;
+    background:rgba(23,105,232,.16);
+    filter:blur(80px);
+    transform:translateX(-50%);
+  }
+  .vn-product-visual img {
+    position:relative;
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 42%;
+    border-radius:8px 8px 0 0;
+  }
+  .vn-facts {
+    padding:132px 0 152px;
+    background:#FFFFFF;
+  }
+  .vn-facts-head {
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    align-items:end;
+    gap:80px;
+    padding-bottom:72px;
+    border-bottom:1px solid var(--vn-line);
+  }
+  .vn-facts-head .vn-title {
+    font-size:56px;
+  }
+  .vn-facts-head .vn-lead {
+    margin:0;
+    font-size:18px;
+  }
+  .vn-fact-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
+  }
+  .vn-fact {
+    min-height:310px;
+    padding:52px 42px 24px;
+    border-right:1px solid var(--vn-line);
+  }
+  .vn-fact:first-child {
+    padding-left:0;
+  }
+  .vn-fact:last-child {
+    padding-right:0;
+    border-right:0;
+  }
+  .vn-fact-number {
+    display:block;
+    margin-bottom:54px;
+    color:var(--vn-blue);
+    font-size:14px;
+    font-weight:800;
+  }
+  .vn-fact h3 {
+    margin:0 0 14px;
+    font-size:28px;
+    line-height:1.15;
+    letter-spacing:0;
+  }
+  .vn-fact p {
+    max-width:300px;
+    margin:0;
+    color:var(--vn-muted);
+    font-size:16px;
+    line-height:1.6;
+  }
+  .vn-craft {
+    align-items:center;
+    justify-content:flex-end;
+    background-image:url('panels/story-campaign-craft.png');
+    background-position:center;
+    background-size:cover;
+  }
+  .vn-craft::before {
+    background:
+      linear-gradient(270deg, rgba(5,7,12,.94) 0%, rgba(5,7,12,.72) 38%, rgba(5,7,12,.08) 68%),
+      linear-gradient(0deg, rgba(5,7,12,.38), transparent 48%);
+  }
+  .vn-craft-layout {
+    position:relative;
+    z-index:1;
+    display:flex;
+    justify-content:flex-end;
+  }
+  .vn-craft-copy {
+    width:50%;
+    max-width:590px;
+    padding:120px 0;
+  }
+  .vn-formats {
+    padding:140px 0 152px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 78% 10%, rgba(51,113,235,.16), transparent 24%),
+      #05070C;
+    color:#FFFFFF;
+  }
+  .vn-formats-head {
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:64px;
+    margin-bottom:64px;
+  }
+  .vn-formats-head .vn-title {
+    max-width:760px;
+    font-size:64px;
+  }
+  .vn-formats-head p {
+    max-width:350px;
+    margin:0 0 6px;
+    color:rgba(255,255,255,.62);
+    font-size:17px;
+    line-height:1.55;
+  }
+  .vn-format-track {
+    display:grid;
+    grid-template-columns:1.2fr 1fr 1fr;
+    gap:18px;
+  }
+  .vn-format {
+    position:relative;
+    min-height:590px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:8px;
+    background:#10141C;
+  }
+  .vn-format img {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .8s cubic-bezier(.16,1,.3,1);
+  }
+  .vn-format:hover img {
+    transform:scale(1.035);
+  }
+  .vn-format::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(3,5,10,.02) 38%, rgba(3,5,10,.9) 100%);
+  }
+  .vn-format-copy {
+    position:absolute;
+    z-index:1;
+    right:30px;
+    bottom:30px;
+    left:30px;
+  }
+  .vn-format-copy span {
+    color:#82B5FF;
+    font-size:12px;
+    font-weight:700;
+  }
+  .vn-format-copy h3 {
+    margin:10px 0 0;
+    font-size:30px;
+    line-height:1.08;
+    letter-spacing:0;
+  }
+  .vn-control {
+    padding:148px 0 100px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 50% 64%, rgba(23,105,232,.14), transparent 26%),
+      #F5F5F7;
+  }
+  .vn-control-copy {
+    max-width:900px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .vn-control-copy .vn-lead {
+    margin-right:auto;
+    margin-left:auto;
+  }
+  .vn-control-visual {
+    position:relative;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    gap:22px;
+    width:min(940px, 94vw);
+    height:650px;
+    margin:56px auto 0;
+    overflow:hidden;
+  }
+  .vn-device {
+    flex:0 0 250px;
+    height:510px;
+    padding:9px;
+    border:1px solid rgba(255,255,255,.45);
+    border-radius:38px;
+    background:linear-gradient(145deg,#30343C,#080A0E 55%,#242832);
+    box-shadow:0 42px 55px rgba(8,22,48,.2);
+    transform-origin:center bottom;
+  }
+  .vn-device--side {
+    opacity:.86;
+    transform:translateY(62px) scale(.9);
+  }
+  .vn-device-screen {
+    position:relative;
+    height:100%;
+    overflow:hidden;
+    padding:38px 19px 20px;
+    border-radius:30px;
+    background:
+      radial-gradient(circle at 82% 8%, rgba(48,126,255,.3), transparent 26%),
+      linear-gradient(180deg,#101827,#07101E);
+    color:#FFFFFF;
+  }
+  .vn-device-screen::before {
+    content:"";
+    position:absolute;
+    top:10px;
+    left:50%;
+    width:78px;
+    height:22px;
+    border-radius:14px;
+    background:#020306;
+    transform:translateX(-50%);
+  }
+  .vn-app-label {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:28px;
+    font-size:12px;
+    font-weight:700;
+  }
+  .vn-app-live {
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    color:#8DB9FF;
+    font-size:10px;
+  }
+  .vn-app-live::before {
+    content:"";
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#55D98B;
+    box-shadow:0 0 12px #55D98B;
+  }
+  .vn-app-map {
+    position:relative;
+    height:230px;
+    margin-bottom:18px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:8px;
+    background:
+      linear-gradient(30deg, transparent 46%, rgba(112,153,214,.2) 47%, rgba(112,153,214,.2) 49%, transparent 50%),
+      linear-gradient(145deg, transparent 44%, rgba(112,153,214,.16) 45%, rgba(112,153,214,.16) 47%, transparent 48%),
+      #121D2D;
+    background-size:74px 74px,96px 96px,auto;
+  }
+  .vn-app-pin {
+    position:absolute;
+    width:13px;
+    height:13px;
+    border:3px solid #FFFFFF;
+    border-radius:50%;
+    background:#1769E8;
+    box-shadow:0 0 0 7px rgba(23,105,232,.24);
+  }
+  .vn-app-pin--one { top:28%; left:30%; }
+  .vn-app-pin--two { top:58%; left:64%; }
+  .vn-app-pin--three { top:38%; left:76%; }
+  .vn-app-summary {
+    padding:15px;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:8px;
+    background:rgba(255,255,255,.055);
+  }
+  .vn-app-summary small {
+    display:block;
+    margin-bottom:7px;
+    color:#8DB9FF;
+    font-size:10px;
+  }
+  .vn-app-summary strong {
+    display:block;
+    font-size:16px;
+  }
+  .vn-app-list {
+    display:grid;
+    gap:10px;
+  }
+  .vn-app-row {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:13px;
+    border:1px solid rgba(255,255,255,.09);
+    border-radius:8px;
+    background:rgba(255,255,255,.05);
+  }
+  .vn-app-row i {
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#55D98B;
+  }
+  .vn-app-row div {
+    min-width:0;
+  }
+  .vn-app-row b,
+  .vn-app-row span {
+    display:block;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .vn-app-row b {
+    margin-bottom:3px;
+    font-size:12px;
+  }
+  .vn-app-row span {
+    color:rgba(255,255,255,.56);
+    font-size:9px;
+  }
+  .vn-app-metric {
+    margin-top:16px;
+    padding:22px 16px;
+    border-radius:8px;
+    background:linear-gradient(135deg,#1769E8,#3D8BFF);
+  }
+  .vn-app-metric b {
+    display:block;
+    margin-bottom:4px;
+    font-size:34px;
+  }
+  .vn-app-metric span {
+    font-size:11px;
+    opacity:.82;
+  }
+  .vn-control-points {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:40px;
+    padding-top:56px;
+    border-top:1px solid var(--vn-line);
+  }
+  .vn-control-point strong {
+    display:block;
+    margin-bottom:9px;
+    font-size:18px;
+  }
+  .vn-control-point span {
+    color:var(--vn-muted);
+    font-size:15px;
+    line-height:1.55;
+  }
+  .vn-close {
+    display:flex;
+    align-items:center;
+    min-height:76vh;
+    padding:130px 0;
+    background:
+      radial-gradient(circle at 80% 18%, rgba(44,117,232,.25), transparent 24%),
+      linear-gradient(135deg,#05070C 0%,#0B1322 58%,#101C31 100%);
+    color:#FFFFFF;
+  }
+  .vn-close-copy {
+    max-width:920px;
+  }
+  .vn-close .vn-title {
+    font-size:72px;
+  }
+  .vn-close .vn-lead {
+    color:rgba(255,255,255,.68);
+  }
+  .vn-actions {
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:38px;
+  }
+  .vn-btn {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:52px;
+    padding:0 25px;
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:8px;
+    color:#FFFFFF;
+    font-size:15px;
+    font-weight:700;
+    text-decoration:none;
+    transition:transform .25s ease, background .25s ease;
+  }
+  .vn-btn:hover {
+    transform:translateY(-2px);
+  }
+  .vn-btn--primary {
+    border-color:#FFFFFF;
+    color:#111318;
+    background:#FFFFFF;
+  }
+  .vn-btn--secondary {
+    background:rgba(255,255,255,.06);
+  }
+
+  @media (max-width:900px) {
+    .vn-shell {
+      width:min(100% - 44px, 720px);
+    }
+    .vn-title,
+    .vn-close .vn-title {
+      font-size:48px;
+      line-height:1.04;
+    }
+    .vn-lead {
+      margin-top:22px;
+      font-size:18px;
+    }
+    .vn-intro {
+      min-height:76vh;
+      padding:104px 0;
+    }
+    .vn-city,
+    .vn-craft {
+      min-height:84vh;
+    }
+    .vn-city {
+      align-items:flex-end;
+      background-position:60% center;
+    }
+    .vn-city::before {
+      background:
+        linear-gradient(0deg, rgba(5,8,15,.94) 0%, rgba(5,8,15,.45) 62%, rgba(5,8,15,.12) 100%);
+    }
+    .vn-city-copy,
+    .vn-craft-copy {
+      width:100%;
+      max-width:100%;
+      padding:96px 0 72px;
+    }
+    .vn-city .vn-title,
+    .vn-craft .vn-title,
+    .vn-formats-head .vn-title {
+      font-size:44px;
+    }
+    .vn-product {
+      padding-top:96px;
+    }
+    .vn-product-visual {
+      height:460px;
+      margin-top:48px;
+    }
+    .vn-facts {
+      padding:96px 0;
+    }
+    .vn-facts-head {
+      grid-template-columns:1fr;
+      gap:24px;
+      padding-bottom:42px;
+    }
+    .vn-facts-head .vn-title {
+      font-size:44px;
+    }
+    .vn-facts-head .vn-lead {
+      font-size:17px;
+    }
+    .vn-fact-grid {
+      grid-template-columns:1fr;
+    }
+    .vn-fact {
+      min-height:0;
+      padding:38px 0;
+      border-right:0;
+      border-bottom:1px solid var(--vn-line);
+    }
+    .vn-fact:last-child {
+      border-bottom:0;
+    }
+    .vn-fact-number {
+      margin-bottom:24px;
+    }
+    .vn-craft {
+      align-items:flex-end;
+      background-position:34% center;
+    }
+    .vn-craft::before {
+      background:
+        linear-gradient(0deg, rgba(5,7,12,.96) 0%, rgba(5,7,12,.68) 58%, rgba(5,7,12,.04) 100%);
+    }
+    .vn-formats {
+      padding:96px 0;
+    }
+    .vn-formats-head {
+      display:block;
+      margin-bottom:42px;
+    }
+    .vn-formats-head p {
+      margin-top:22px;
+    }
+    .vn-format-track {
+      display:flex;
+      width:calc(100vw - 22px);
+      gap:14px;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      scrollbar-width:none;
+    }
+    .vn-format-track::-webkit-scrollbar {
+      display:none;
+    }
+    .vn-format {
+      flex:0 0 calc(100vw - 66px);
+      min-height:570px;
+      scroll-snap-align:start;
+    }
+    .vn-control {
+      padding:96px 0 74px;
+    }
+    .vn-control-visual {
+      width:calc(100vw - 22px);
+      height:500px;
+      margin-top:34px;
+    }
+    .vn-device {
+      flex-basis:205px;
+      height:430px;
+      border-radius:32px;
+    }
+    .vn-device--side {
+      opacity:.72;
+      transform:translateY(54px) scale(.84);
+    }
+    .vn-device-screen {
+      padding:34px 14px 16px;
+      border-radius:25px;
+    }
+    .vn-app-map {
+      height:184px;
+    }
+    .vn-control-points {
+      grid-template-columns:1fr;
+      gap:0;
+      padding-top:0;
+    }
+    .vn-control-point {
+      padding:28px 0;
+      border-bottom:1px solid var(--vn-line);
+    }
+    .vn-control-point:last-child {
+      border-bottom:0;
+    }
+    .vn-close {
+      min-height:72vh;
+      padding:96px 0;
+    }
+  }
+
+  @media (max-width:520px) {
+    .vn-title,
+    .vn-close .vn-title {
+      font-size:42px;
+    }
+    .vn-intro::after {
+      right:-40%;
+      bottom:-4%;
+      width:100vw;
+      height:100vw;
+    }
+    .vn-city .vn-title,
+    .vn-craft .vn-title,
+    .vn-formats-head .vn-title,
+    .vn-facts-head .vn-title {
+      font-size:40px;
+    }
+    .vn-product-visual {
+      width:100%;
+      height:390px;
+    }
+    .vn-product-visual img {
+      border-radius:0;
+    }
+    .vn-format {
+      min-height:520px;
+    }
+    .vn-control-visual {
+      width:calc(100vw - 22px);
+      height:440px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .vn-device {
+      flex-basis:184px;
+      height:392px;
+    }
+    .vn-app-label {
+      margin-bottom:20px;
+    }
+    .vn-app-map {
+      height:164px;
+    }
+    .vn-actions,
+    .vn-btn {
+      width:100%;
+    }
+  }
   dc-import{display:block}
 </style>
 </helmet>
@@ -3437,6 +4202,191 @@
       <svg class="sh-chev" style="animation-delay:.44s; margin-top:-5px;" width="20" height="11" viewBox="0 0 20 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l8 7 8-7"></path></svg>
     </a>
   </section>
+
+  <main class="vn-story">
+    <section class="vn-intro" aria-labelledby="vn-intro-title">
+      <div class="vn-shell">
+        <div class="vn-intro-copy" data-reveal>
+          <p class="vn-kicker">Presencia exterior</p>
+          <h2 class="vn-title" id="vn-intro-title">La ciudad no se detiene. Tu marca tampoco.</h2>
+          <p class="vn-lead">Vista360 convierte ubicaciones, escala y ejecución en una presencia que se integra a la ciudad y permanece en la memoria.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="vn-city" aria-labelledby="vn-city-title">
+      <div class="vn-shell">
+        <div class="vn-city-copy" data-reveal>
+          <p class="vn-kicker">Atención</p>
+          <h2 class="vn-title" id="vn-city-title">Una presencia clara dentro de una ciudad en movimiento.</h2>
+          <p class="vn-lead">La publicidad exterior funciona cuando encuentra el lugar, el momento y la escala correctos. Diseñamos cada campaña para destacar sin añadir ruido.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="vn-product" aria-labelledby="vn-product-title">
+      <div class="vn-shell">
+        <div class="vn-product-copy" data-reveal>
+          <p class="vn-kicker">Ubicación estratégica</p>
+          <h2 class="vn-title" id="vn-product-title">Un punto bien elegido cambia toda la campaña.</h2>
+          <p class="vn-lead">Analizamos el entorno, la distancia de lectura y el flujo de la vía para darle a cada mensaje un lugar que realmente trabaje por la marca.</p>
+        </div>
+      </div>
+      <div class="vn-product-visual" data-reveal>
+        <img src="panels/product-unipolar-studio.jpg" loading="lazy" decoding="async" alt="Soporte unipolar Vista360 presentado como producto">
+      </div>
+    </section>
+
+    <section class="vn-facts" aria-labelledby="vn-facts-title">
+      <div class="vn-shell">
+        <div class="vn-facts-head" data-reveal>
+          <div>
+            <p class="vn-kicker">Decisiones que se notan</p>
+            <h2 class="vn-title" id="vn-facts-title">Todo empieza antes de instalar.</h2>
+          </div>
+          <p class="vn-lead">Una campaña sólida no depende de llenar la ciudad de soportes. Depende de tomar pocas decisiones y hacerlas bien.</p>
+        </div>
+        <div class="vn-fact-grid">
+          <article class="vn-fact" data-reveal>
+            <span class="vn-fact-number">01</span>
+            <h3>El lugar correcto.</h3>
+            <p>Elegimos ubicaciones donde el mensaje pueda verse con claridad y durante el tiempo necesario.</p>
+          </article>
+          <article class="vn-fact" data-reveal>
+            <span class="vn-fact-number">02</span>
+            <h3>La escala precisa.</h3>
+            <p>Adaptamos formato, proporción y lectura al entorno para que la campaña se sienta natural y contundente.</p>
+          </article>
+          <article class="vn-fact" data-reveal>
+            <span class="vn-fact-number">03</span>
+            <h3>Una ejecución cuidada.</h3>
+            <p>Coordinamos materiales, producción e instalación para que el resultado final sostenga la calidad de tu marca.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="vn-craft" aria-labelledby="vn-craft-title">
+      <div class="vn-shell vn-craft-layout">
+        <div class="vn-craft-copy" data-reveal>
+          <p class="vn-kicker">Preparación</p>
+          <h2 class="vn-title" id="vn-craft-title">La presencia se construye en los detalles.</h2>
+          <p class="vn-lead">Medimos, revisamos y preparamos cada pieza antes de llevarla a la calle. El impacto empieza con un proceso ordenado.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="vn-formats" aria-labelledby="vn-formats-title">
+      <div class="vn-shell">
+        <div class="vn-formats-head" data-reveal>
+          <div>
+            <p class="vn-kicker">Formatos Vista360</p>
+            <h2 class="vn-title" id="vn-formats-title">Una solución para cada escala.</h2>
+          </div>
+          <p>Los formatos aparecen juntos en un solo momento para comparar posibilidades sin saturar la historia.</p>
+        </div>
+        <div class="vn-format-track">
+          <a class="vn-format" href="soluciones.html" aria-label="Descubrir unipolares">
+            <img src="panels/premium-unipolar.jpg" loading="lazy" decoding="async" alt="Unipolar Vista360 en una avenida">
+            <div class="vn-format-copy">
+              <span>Gran formato</span>
+              <h3>Unipolares</h3>
+            </div>
+          </a>
+          <a class="vn-format" href="soluciones.html" aria-label="Descubrir murales">
+            <img src="panels/premium-mural.jpg" loading="lazy" decoding="async" alt="Mural urbano Vista360">
+            <div class="vn-format-copy">
+              <span>Integración urbana</span>
+              <h3>Murales</h3>
+            </div>
+          </a>
+          <a class="vn-format" href="soluciones.html" aria-label="Descubrir tótems">
+            <img src="panels/premium-totem.jpg" loading="lazy" decoding="async" alt="Tótem publicitario Vista360">
+            <div class="vn-format-copy">
+              <span>Cercanía</span>
+              <h3>Tótems</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="vn-control" aria-labelledby="vn-control-title">
+      <div class="vn-shell">
+        <div class="vn-control-copy" data-reveal>
+          <p class="vn-kicker">Vista360 Player</p>
+          <h2 class="vn-title" id="vn-control-title">La campaña sigue clara después de salir a la calle.</h2>
+          <p class="vn-lead">Una experiencia digital pensada para consultar ubicaciones, estados y próximos pasos desde un solo lugar.</p>
+        </div>
+        <div class="vn-control-visual" data-reveal aria-label="Vista conceptual de Vista360 Player en tres teléfonos">
+          <div class="vn-device vn-device--side" aria-hidden="true">
+            <div class="vn-device-screen">
+              <div class="vn-app-label"><span>Campañas</span><span class="vn-app-live">En línea</span></div>
+              <div class="vn-app-list">
+                <div class="vn-app-row"><i></i><div><b>Lanzamiento</b><span>3 ubicaciones activas</span></div></div>
+                <div class="vn-app-row"><i></i><div><b>Temporada</b><span>2 soportes instalados</span></div></div>
+                <div class="vn-app-row"><i></i><div><b>Institucional</b><span>Producción completada</span></div></div>
+              </div>
+              <div class="vn-app-metric"><b>100%</b><span>Información de campaña ordenada</span></div>
+            </div>
+          </div>
+          <div class="vn-device">
+            <div class="vn-device-screen">
+              <div class="vn-app-label"><span>Vista360</span><span class="vn-app-live">Campaña activa</span></div>
+              <div class="vn-app-map">
+                <span class="vn-app-pin vn-app-pin--one"></span>
+                <span class="vn-app-pin vn-app-pin--two"></span>
+                <span class="vn-app-pin vn-app-pin--three"></span>
+              </div>
+              <div class="vn-app-summary">
+                <small>Resumen de hoy</small>
+                <strong>3 puntos visibles</strong>
+              </div>
+            </div>
+          </div>
+          <div class="vn-device vn-device--side" aria-hidden="true">
+            <div class="vn-device-screen">
+              <div class="vn-app-label"><span>Actividad</span><span class="vn-app-live">Actualizado</span></div>
+              <div class="vn-app-list">
+                <div class="vn-app-row"><i></i><div><b>Producción lista</b><span>Material validado</span></div></div>
+                <div class="vn-app-row"><i></i><div><b>Instalación</b><span>Coordinación confirmada</span></div></div>
+                <div class="vn-app-row"><i></i><div><b>Seguimiento</b><span>Estado disponible</span></div></div>
+              </div>
+              <div class="vn-app-metric"><b>24/7</b><span>Tu campaña siempre a la vista</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="vn-control-points">
+          <div class="vn-control-point">
+            <strong>Ubicaciones ordenadas.</strong>
+            <span>Consulta cada punto de campaña de forma sencilla.</span>
+          </div>
+          <div class="vn-control-point">
+            <strong>Estado visible.</strong>
+            <span>Revisa la información esencial sin depender de mensajes dispersos.</span>
+          </div>
+          <div class="vn-control-point">
+            <strong>Soporte cercano.</strong>
+            <span>Mantén una comunicación directa durante el desarrollo de la campaña.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="vn-close" aria-labelledby="vn-close-title">
+      <div class="vn-shell">
+        <div class="vn-close-copy" data-reveal>
+          <p class="vn-kicker">Tu próxima campaña</p>
+          <h2 class="vn-title" id="vn-close-title">Haz visible lo que hace diferente a tu marca.</h2>
+          <p class="vn-lead">Cuéntanos qué quieres comunicar. Nosotros encontraremos la escala y el lugar para convertirlo en presencia.</p>
+          <div class="vn-actions">
+            <a class="vn-btn vn-btn--primary" href="contacto.html">Cotizar campaña</a>
+            <a class="vn-btn vn-btn--secondary" href="portafolio.html">Ver portafolio</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- ===== ANIMATED WHITE-SECTION WRAP (constellation canvas) ===== -->
   <div class="v-home-surface" style="position:relative; background:#ffffff;">
