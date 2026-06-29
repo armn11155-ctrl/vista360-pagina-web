@@ -203,6 +203,151 @@
     .v-acc-open { height:300px; }
     .v-acc-more { opacity:1; transform:none; }
   }
+  /* ---------- PREMIUM HOME SURFACE (hero/video intentionally untouched) ---------- */
+  .v-home-surface {
+    background:
+      radial-gradient(circle at 8% 6%, rgba(28,111,232,0.08), transparent 28%),
+      radial-gradient(circle at 92% 32%, rgba(109,150,211,0.08), transparent 24%),
+      linear-gradient(180deg, #F8FAFD 0%, #FFFFFF 42%, #F5F8FC 100%) !important;
+  }
+  .v-premium-stats {
+    padding-top:clamp(78px,10vw,138px) !important;
+    padding-bottom:clamp(78px,9vw,124px) !important;
+  }
+  .v-premium-stats .v-figs {
+    gap:14px;
+    border:0;
+  }
+  .v-premium-stats .v-fig {
+    min-height:245px;
+    padding:clamp(25px,2.8vw,36px);
+    border:1px solid rgba(19,49,88,0.09) !important;
+    border-radius:22px;
+    background:rgba(255,255,255,0.88);
+    box-shadow:0 18px 55px -38px rgba(13,38,75,0.46);
+    backdrop-filter:blur(12px);
+    transition:transform .35s cubic-bezier(.16,1,.3,1), border-color .35s ease, box-shadow .35s ease;
+  }
+  .v-premium-stats .v-fig:hover {
+    transform:translateY(-7px);
+    border-color:rgba(28,111,232,0.24) !important;
+    box-shadow:0 28px 66px -40px rgba(13,38,75,0.58);
+  }
+  .v-premium-showcase {
+    width:min(1440px, calc(100% - clamp(24px,5vw,76px)));
+    margin:0 auto !important;
+    border-radius:clamp(24px,3vw,38px);
+    box-shadow:0 34px 90px -50px rgba(3,14,31,0.72);
+  }
+  .v-premium-showcase .v-intro-stats > div {
+    padding:clamp(20px,2.4vw,30px) clamp(14px,2vw,24px);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:20px;
+    background:rgba(4,12,25,0.24);
+    backdrop-filter:blur(9px);
+  }
+  .v-premium-player {
+    background:transparent !important;
+    padding-top:clamp(78px,9vw,126px) !important;
+    padding-bottom:clamp(70px,8vw,110px) !important;
+  }
+  .v-premium-player-shell {
+    padding:clamp(34px,5vw,72px);
+    border:1px solid rgba(19,49,88,0.09);
+    border-radius:clamp(24px,3vw,36px);
+    background:rgba(255,255,255,0.9);
+    box-shadow:0 30px 85px -52px rgba(13,38,75,0.52);
+  }
+  .v-premium-player .v360p-frame {
+    filter:drop-shadow(0 28px 34px rgba(13,38,75,0.2));
+  }
+  .v-premium-player .v360p-fic {
+    background:#F4F8FF;
+  }
+  .v-premium-products {
+    background:linear-gradient(180deg, rgba(245,248,252,0) 0%, #EEF3F9 100%) !important;
+    padding-top:clamp(56px,7vw,92px) !important;
+    padding-bottom:clamp(84px,10vw,138px) !important;
+  }
+  .v-premium-products .v-prod-card {
+    border:1px solid rgba(255,255,255,0.72);
+    box-shadow:0 28px 70px -43px rgba(10,35,69,0.62);
+  }
+  .v-premium-products .v-prod-info {
+    max-width:680px;
+    margin:0 auto;
+    text-align:center;
+    padding:26px 24px 0;
+  }
+  .v-premium-products .v-prod-info p {
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+  .v-closing-wrap {
+    padding:0 clamp(16px,4vw,40px) clamp(72px,9vw,124px);
+    background:#EEF3F9;
+  }
+  .v-closing-cta {
+    position:relative;
+    max-width:1280px;
+    margin:0 auto;
+    overflow:hidden;
+    padding:clamp(42px,6vw,78px);
+    border-radius:clamp(24px,3vw,36px);
+    background:
+      radial-gradient(circle at 86% 20%, rgba(63,137,245,0.3), transparent 32%),
+      linear-gradient(120deg, #07111F 0%, #0B1B34 58%, #123A73 100%);
+    box-shadow:0 32px 84px -46px rgba(6,24,49,0.82);
+  }
+  .v-closing-cta::after {
+    content:"";
+    position:absolute;
+    width:340px;
+    height:340px;
+    right:-130px;
+    bottom:-220px;
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:50%;
+    box-shadow:0 0 0 52px rgba(255,255,255,0.035), 0 0 0 104px rgba(255,255,255,0.02);
+  }
+  .v-closing-inner {
+    position:relative;
+    z-index:1;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:clamp(24px,3vw,38px);
+  }
+  .v-closing-copy { max-width:760px; }
+  .v-closing-actions { display:flex; flex-wrap:wrap; gap:12px; }
+  .v-closing-btn {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:15px 25px;
+    border-radius:12px;
+    font-size:15px;
+    font-weight:700;
+    text-decoration:none;
+    transition:transform .25s cubic-bezier(.16,1,.3,1), background .25s ease;
+  }
+  .v-closing-btn:hover { transform:translateY(-3px); }
+  .v-closing-btn--primary { background:#FFFFFF; color:#0E1A2E; }
+  .v-closing-btn--secondary { border:1px solid rgba(255,255,255,0.26); background:rgba(255,255,255,0.06); color:#FFFFFF; }
+  @media (min-width:820px) {
+    .v-closing-inner { flex-direction:row; align-items:flex-end; justify-content:space-between; }
+    .v-closing-actions { justify-content:flex-end; }
+  }
+  @media (max-width:760px) {
+    .v-premium-stats .v-fig { min-height:auto; }
+    .v-premium-showcase { width:100%; border-radius:0; }
+    .v-premium-showcase .v-intro-stats > div { padding:18px 12px; }
+    .v-premium-player-shell { padding:34px 20px; }
+    .v-closing-wrap { padding-left:0; padding-right:0; padding-bottom:0; }
+    .v-closing-cta { border-radius:0; }
+    .v-closing-actions, .v-closing-btn { width:100%; }
+  }
   dc-import{display:block}
 </style>
 </helmet>
@@ -248,13 +393,13 @@
   </section>
 
   <!-- ===== ANIMATED WHITE-SECTION WRAP (constellation canvas) ===== -->
-  <div style="position:relative; background:#ffffff;">
+  <div class="v-home-surface" style="position:relative; background:#ffffff;">
     <canvas ref="{{ setNet }}" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0;"></canvas>
     <div style="position:relative; z-index:1;">
 
   <!-- ============ STATS COUNTER (dark band) ============ -->
   <!-- ============ CIFRAS (editorial, airy) ============ -->
-  <section id="stats" style="background:transparent; padding:clamp(60px,9vw,120px) clamp(16px,4vw,40px);">
+  <section id="stats" class="v-premium-stats" style="background:transparent; padding:clamp(60px,9vw,120px) clamp(16px,4vw,40px);">
     <div data-reveal style="max-width:1180px; margin:0 auto;">
       <div style="text-align:center; max-width:660px; margin:0 auto clamp(40px,5vw,64px);">
         <div style="display:inline-flex; align-items:center; gap:9px; margin-bottom:18px;"><span style="width:8px; height:8px; border-radius:50%; background:#1C6FE8;"></span><span style="font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#1C6FE8;">Por qué VISTA360</span></div>
@@ -292,7 +437,7 @@
   </section>
 
   <!-- ============ INTRO + STATS (headline left / stat grid right over photo) ============ -->
-  <section style="position:relative; overflow:hidden; background:#05080F; margin-top:clamp(20px,3vw,40px);">
+  <section class="v-premium-showcase" style="position:relative; overflow:hidden; background:#05080F; margin-top:clamp(20px,3vw,40px);">
     <div id="vParallaxImg" role="img" aria-label="Panel publicitario VISTA360 iluminado en Huánuco" style="position:absolute; left:0; right:0; top:-20%; height:140%; width:100%; background-image:url('panels/unipolar.jpg'); background-size:cover; background-position:center; filter:brightness(0.66) contrast(1.04) saturate(1.04); will-change:transform;"></div>
     <div style="position:absolute; inset:0; background:linear-gradient(105deg, rgba(5,8,15,0.6) 0%, rgba(5,8,15,0.34) 48%, rgba(5,8,15,0.5) 100%);"></div>
     <div style="position:absolute; top:-22%; right:-6%; width:480px; height:480px; max-width:70vw; border-radius:50%; background:radial-gradient(circle, rgba(28,111,232,0.22), transparent 50%); pointer-events:none;"></div>
@@ -331,8 +476,8 @@
   </section>
 
   <!-- ============ VISTA360 PLAYER (app showcase) ============ -->
-  <section style="background:#ffffff; padding:clamp(64px,8vw,116px) clamp(16px,4vw,40px);">
-    <div style="max-width:1280px; margin:0 auto;">
+  <section class="v-premium-player" style="background:#ffffff; padding:clamp(64px,8vw,116px) clamp(16px,4vw,40px);">
+    <div class="v-premium-player-shell" style="max-width:1280px; margin:0 auto;">
       <div class="v360p-grid" data-reveal>
 
         <div class="v360p-phonewrap">
@@ -386,7 +531,7 @@
   </section>
 
   <!-- ============ CONOCE NUESTROS PRODUCTOS ============ -->
-  <section style="background:transparent; padding:clamp(34px,4.5vw,60px) clamp(16px,4vw,40px) clamp(64px,8vw,96px);">
+  <section class="v-premium-products" style="background:transparent; padding:clamp(34px,4.5vw,60px) clamp(16px,4vw,40px) clamp(64px,8vw,96px);">
     <div style="max-width:1400px; margin:0 auto;">
       <div data-reveal style="text-align:center; max-width:680px; margin:0 auto clamp(34px,4vw,52px);">
         <div style="display:inline-flex; align-items:center; gap:9px; margin-bottom:16px;"><span style="width:8px; height:8px; border-radius:50%; background:#1C6FE8;"></span><span style="font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#1C6FE8;">Nuestros formatos</span></div>
@@ -435,6 +580,22 @@
           <a href="soluciones.html" style="display:inline-flex; align-items:center; gap:8px; color:#1C6FE8; font-size:14px; font-weight:700; text-decoration:none;">Ver producto <span style="font-size:16px;">&rarr;</span></a>
         </div>
         {{ productDotsNode }}
+      </div>
+    </div>
+  </section>
+
+  <section class="v-closing-wrap" aria-labelledby="v-closing-title">
+    <div class="v-closing-cta" data-reveal>
+      <div class="v-closing-inner">
+        <div class="v-closing-copy">
+          <div style="font-size:12px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#8CB9FF; margin-bottom:15px;">Tu próxima campaña empieza aquí</div>
+          <h2 id="v-closing-title" style="font-size:clamp(30px,4.4vw,58px); font-weight:800; letter-spacing:-0.04em; line-height:1.02; color:#FFFFFF; margin:0 0 17px;">Haz que tu marca ocupe un lugar imposible de ignorar.</h2>
+          <p style="font-size:clamp(15px,1.35vw,18px); line-height:1.65; color:rgba(226,235,250,0.72); margin:0; max-width:650px;">Cuéntanos tu objetivo y diseñaremos una propuesta de publicidad exterior pensada para las calles de Huánuco.</p>
+        </div>
+        <div class="v-closing-actions">
+          <a class="v-closing-btn v-closing-btn--primary" href="contacto.html">Cotizar campaña <span aria-hidden="true">&rarr;</span></a>
+          <a class="v-closing-btn v-closing-btn--secondary" href="portafolio.html">Ver portafolio</a>
+        </div>
       </div>
     </div>
   </section>
