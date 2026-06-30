@@ -5837,6 +5837,93 @@
   .vn-format-benefit {
     min-height:210px;
   }
+  .vn-format-story--unipolar .vn-format-opening {
+    color:#111318;
+    background:#F4F7FC;
+  }
+  .vn-format-story--unipolar .vn-format-opening::before {
+    filter:blur(42px) saturate(.75);
+    opacity:.12;
+  }
+  .vn-format-story--unipolar .vn-format-opening::after {
+    background:linear-gradient(180deg,rgba(255,255,255,.76),rgba(244,247,252,.94));
+  }
+  .vn-format-story--unipolar .vn-format-number,
+  .vn-format-story--unipolar .vn-format-opening p {
+    color:#555C68;
+  }
+  .vn-format-story--unipolar .vn-format-word {
+    background-image:radial-gradient(circle,#1769E8 0 1.35px,rgba(23,105,232,.15) 1.6px 2.35px,transparent 2.55px);
+  }
+  .vn-format-story--unipolar .vn-format-product {
+    background:#F4F7FC;
+  }
+  .vn-format-story--led .vn-format-product {
+    color:#FFFFFF;
+    background:#05080F;
+  }
+  .vn-format-story--led .vn-format-product-copy p {
+    color:rgba(255,255,255,.65);
+  }
+  .vn-format-story--led .vn-format-product-stage::after {
+    background:rgba(23,105,232,.34);
+  }
+  .vn-format-story--totem .vn-format-opening {
+    background:#0A1020;
+  }
+  .vn-format-story--totem .vn-format-product {
+    background:#F7F8FA;
+  }
+  .vn-impact-number {
+    position:relative;
+    overflow:hidden;
+    padding:130px 0 142px;
+    background:#FFFFFF;
+    text-align:center;
+  }
+  .vn-impact-number::before {
+    content:"";
+    position:absolute;
+    top:20%;
+    left:50%;
+    width:520px;
+    height:280px;
+    background:radial-gradient(circle,rgba(23,105,232,.16),transparent 68%);
+    filter:blur(36px);
+    transform:translateX(-50%);
+  }
+  .vn-impact-number .vn-shell {
+    position:relative;
+  }
+  .vn-impact-number span {
+    display:block;
+    color:var(--vn-blue);
+    font-size:14px;
+    font-weight:800;
+  }
+  .vn-impact-number strong {
+    display:block;
+    margin:20px 0 12px;
+    color:#111318;
+    font-size:clamp(100px,18vw,240px);
+    font-weight:820;
+    line-height:.82;
+    letter-spacing:0;
+  }
+  .vn-impact-number h2 {
+    max-width:850px;
+    margin:0 auto;
+    font-size:52px;
+    line-height:1.04;
+    letter-spacing:0;
+  }
+  .vn-impact-number p {
+    max-width:620px;
+    margin:24px auto 0;
+    color:var(--vn-muted);
+    font-size:18px;
+    line-height:1.6;
+  }
   .vn-campaign-steps {
     padding-top:104px;
     padding-bottom:112px;
@@ -5858,6 +5945,12 @@
     }
     .vn-format-product-stage {
       height:480px;
+    }
+    .vn-impact-number {
+      padding:100px 0 110px;
+    }
+    .vn-impact-number h2 {
+      font-size:44px;
     }
   }
   @media (max-width:520px) {
@@ -5881,6 +5974,15 @@
     }
     .vn-format-benefits {
       padding-bottom:82px;
+    }
+    .vn-impact-number {
+      padding:82px 0 92px;
+    }
+    .vn-impact-number h2 {
+      font-size:38px;
+    }
+    .vn-impact-number p {
+      font-size:16px;
     }
   }
   dc-import{display:block}
@@ -5942,7 +6044,7 @@
       <div class="vn-shell">
         <div class="vn-ad-promise-copy" data-reveal>
           <span>Visibilidad con intención</span>
-          <h2 id="vn-ad-promise-title">Publicidad que aparece donde la atención sucede.</h2>
+          <h2 id="vn-ad-promise-title">Tu marca puede cambiar el paisaje.</h2>
           <p>Elegimos el lugar, el formato y el momento para que tu campaña forme parte del recorrido cotidiano de su audiencia.</p>
           <div class="vn-ad-signals">
             <div><strong>Más visibilidad</strong><small>Aparece donde la atención sucede.</small></div>
@@ -5953,8 +6055,17 @@
       </div>
     </section>
 
+    <section class="vn-impact-number" aria-labelledby="vn-impact-number-title">
+      <div class="vn-shell" data-reveal>
+        <span>Presencia que se multiplica</span>
+        <strong>1</strong>
+        <h2 id="vn-impact-number-title">ubicación. Miles de oportunidades para ser visto.</h2>
+        <p>Cuando el lugar forma parte del recorrido diario, cada paso y cada trayecto vuelven a poner tu marca frente a su audiencia.</p>
+      </div>
+    </section>
+
     <section class="vn-format-stories" aria-label="Formatos publicitarios Vista360">
-      <article class="vn-format-story vn-format-story--mural" data-format-story style="--chapter-accent:#1769E8;--chapter-bg:url('panels/story-mural-newyork-v2.jpg');">
+      <article class="vn-format-story vn-format-story--mural" data-format-story style="--chapter-accent:#1769E8;--chapter-bg:url('panels/campaign-mural-automotive-v2.jpg');">
         <header class="vn-format-opening">
           <div class="vn-format-opening-inner">
             <span class="vn-format-number">01 / Formato arquitectónico</span>
@@ -5962,7 +6073,7 @@
             <p>Una campaña que se integra a la arquitectura y acompaña el recorrido diario de peatones y conductores.</p>
           </div>
         </header>
-        <section class="vn-format-context vn-format-context--right" style="--context-bg:url('panels/story-mural-newyork-v2.jpg');">
+        <section class="vn-format-context vn-format-context--right" style="--context-bg:url('panels/campaign-mural-automotive-v2.jpg');">
           <div class="vn-shell">
             <div class="vn-format-context-copy">
               <span>Integración urbana</span>
@@ -6010,7 +6121,7 @@
         </section>
       </article>
 
-      <article class="vn-format-story vn-format-story--unipolar" data-format-story style="--chapter-accent:#246FE5;--chapter-bg:url('panels/story-unipolar-newyork-v2.jpg');">
+      <article class="vn-format-story vn-format-story--unipolar" data-format-story style="--chapter-accent:#246FE5;--chapter-bg:url('panels/campaign-unipolar-fashion-v2.jpg');">
         <header class="vn-format-opening">
           <div class="vn-format-opening-inner">
             <span class="vn-format-number">02 / Gran distancia</span>
@@ -6018,7 +6129,7 @@
             <p>Imagina tu marca apareciendo por encima de la vía, visible desde lejos y presente durante todo el trayecto.</p>
           </div>
         </header>
-        <section class="vn-format-context" style="--context-bg:url('panels/story-unipolar-newyork-v2.jpg');">
+        <section class="vn-format-context" style="--context-bg:url('panels/campaign-unipolar-fashion-v2.jpg');">
           <div class="vn-shell">
             <div class="vn-format-context-copy">
               <span>Escala monumental</span>
@@ -6066,7 +6177,7 @@
         </section>
       </article>
 
-      <article class="vn-format-story vn-format-story--led" data-format-story style="--chapter-accent:#1258D3;--chapter-bg:url('panels/story-led-macro-v2.jpg');">
+      <article class="vn-format-story vn-format-story--led" data-format-story style="--chapter-accent:#1258D3;--chapter-bg:url('panels/campaign-led-technology-v2.jpg');">
         <header class="vn-format-opening">
           <div class="vn-format-opening-inner">
             <span class="vn-format-number">03 / Contenido dinámico</span>
@@ -6074,7 +6185,7 @@
             <p>Tu marca puede cambiar de mensaje, aprovechar distintos horarios y seguir destacando con luz propia.</p>
           </div>
         </header>
-        <section class="vn-format-context vn-format-context--right" style="--context-bg:url('panels/premium-led.jpg');">
+        <section class="vn-format-context vn-format-context--right" style="--context-bg:url('panels/campaign-led-technology-v2.jpg');">
           <div class="vn-shell">
             <div class="vn-format-context-copy">
               <span>Luz en movimiento</span>
@@ -6122,7 +6233,7 @@
         </section>
       </article>
 
-      <article class="vn-format-story vn-format-story--totem" data-format-story style="--chapter-accent:#4A76D8;--chapter-bg:url('panels/premium-totem.jpg');">
+      <article class="vn-format-story vn-format-story--totem" data-format-story style="--chapter-accent:#4A76D8;--chapter-bg:url('panels/campaign-totem-fragrance-v2.jpg');">
         <header class="vn-format-opening">
           <div class="vn-format-opening-inner">
             <span class="vn-format-number">04 / Lectura cercana</span>
@@ -6130,7 +6241,7 @@
             <p>Tu marca presente justo donde las personas entran, esperan, deciden y cambian de dirección.</p>
           </div>
         </header>
-        <section class="vn-format-context" style="--context-bg:url('panels/totem-hero-wide.jpg');">
+        <section class="vn-format-context" style="--context-bg:url('panels/campaign-totem-fragrance-v2.jpg');">
           <div class="vn-shell">
             <div class="vn-format-context-copy">
               <span>Proximidad</span>
