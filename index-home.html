@@ -3953,17 +3953,7 @@
     min-height:480px;
     margin:0 auto 72px;
     overflow:hidden;
-    background-color:#080B11;
-    background-image:radial-gradient(circle, rgba(255,255,255,.14) 0 2px, transparent 2.3px);
-    background-size:11px 11px;
-    box-shadow:inset 0 0 100px rgba(0,0,0,.58);
-  }
-  .vn-led-matrix::after {
-    content:"";
-    position:absolute;
-    inset:0;
-    background:radial-gradient(circle at 50% 50%, rgba(28,111,232,.1), transparent 56%);
-    pointer-events:none;
+    background:transparent;
   }
   .vn-led-matrix strong {
     position:relative;
@@ -3974,13 +3964,13 @@
   }
   .vn-chapter-white .vn-scroll-word--led {
     color:transparent;
-    background-image:radial-gradient(circle, #1C6FE8 0 3.1px, rgba(28,111,232,.28) 3.3px 4.6px, transparent 4.9px);
+    background-image:radial-gradient(circle, #124FC4 0 3.1px, rgba(18,79,196,.3) 3.3px 4.6px, transparent 4.9px);
     background-size:11px 11px;
     background-position:center;
     -webkit-background-clip:text;
     background-clip:text;
     -webkit-text-fill-color:transparent;
-    filter:drop-shadow(0 0 10px rgba(28,111,232,.18));
+    filter:drop-shadow(0 0 9px rgba(18,79,196,.2));
   }
   .vn-chapter-white h2 {
     position:relative;
@@ -6137,12 +6127,12 @@ class Component extends DCLogic {
         }
         if (led) {
           const glow = 5 + presence * 22;
-          const glowAlpha = .12 + presence * .48;
+          const glowAlpha = .1 + presence * .36;
           word.style.filter =
-            'brightness(' + (0.72 + presence * 1.45).toFixed(2) + ')' +
-            ' saturate(' + (0.78 + presence * 1.35).toFixed(2) + ')' +
-            ' drop-shadow(0 0 ' + glow.toFixed(0) + 'px rgba(31,126,255,' + glowAlpha.toFixed(3) + '))' +
-            ' drop-shadow(0 0 ' + (glow * 2.25).toFixed(0) + 'px rgba(23,105,232,' + (glowAlpha * .42).toFixed(3) + '))';
+            'brightness(' + (0.76 + presence * .54).toFixed(2) + ')' +
+            ' saturate(' + (0.96 + presence * .38).toFixed(2) + ')' +
+            ' drop-shadow(0 0 ' + glow.toFixed(0) + 'px rgba(18,79,196,' + glowAlpha.toFixed(3) + '))' +
+            ' drop-shadow(0 0 ' + (glow * 2.25).toFixed(0) + 'px rgba(18,79,196,' + (glowAlpha * .34).toFixed(3) + '))';
           word.style.backgroundPosition = 'center ' + (progress * 22).toFixed(1) + 'px';
         }
       });
