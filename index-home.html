@@ -3437,6 +3437,109 @@
     font-weight:500;
     line-height:1.55;
   }
+  .vn-highlights {
+    padding:132px 0 146px;
+    overflow:hidden;
+    background:#F5F5F7;
+  }
+  .vn-highlights-head {
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:40px;
+    margin-bottom:52px;
+  }
+  .vn-highlights-head h2 {
+    max-width:760px;
+    margin:0;
+    font-size:56px;
+    line-height:1.04;
+    letter-spacing:0;
+  }
+  .vn-highlights-head span {
+    color:var(--vn-muted);
+    font-size:14px;
+    font-weight:600;
+  }
+  .vn-highlights-track {
+    display:flex;
+    gap:22px;
+    width:100%;
+    padding:0 max(48px, calc((100vw - 1180px)/2));
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+    overscroll-behavior-inline:contain;
+  }
+  .vn-highlights-track::-webkit-scrollbar {
+    display:none;
+  }
+  .vn-highlight {
+    position:relative;
+    flex:0 0 min(72vw,880px);
+    height:min(68vh,680px);
+    min-height:560px;
+    overflow:hidden;
+    border-radius:8px;
+    color:#FFFFFF;
+    background:#0B0E14;
+    scroll-snap-align:center;
+  }
+  .vn-highlight img {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .8s cubic-bezier(.16,1,.3,1);
+  }
+  .vn-highlight:hover img {
+    transform:scale(1.025);
+  }
+  .vn-highlight::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(3,5,9,.02) 38%, rgba(3,5,9,.86) 100%);
+  }
+  .vn-highlight-copy {
+    position:absolute;
+    z-index:1;
+    right:42px;
+    bottom:40px;
+    left:42px;
+    max-width:650px;
+  }
+  .vn-highlight-copy span {
+    display:block;
+    margin-bottom:12px;
+    color:#9DC3FF;
+    font-size:13px;
+    font-weight:700;
+  }
+  .vn-highlight-copy h3 {
+    margin:0;
+    font-size:46px;
+    line-height:1.04;
+    letter-spacing:0;
+  }
+  .vn-highlights-nav {
+    display:flex;
+    justify-content:center;
+    gap:9px;
+    margin-top:34px;
+  }
+  .vn-highlights-nav i {
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#B7BAC1;
+  }
+  .vn-highlights-nav i:first-child {
+    width:34px;
+    border-radius:8px;
+    background:#31343A;
+  }
   .vn-intro {
     position:relative;
     display:flex;
@@ -4077,6 +4180,37 @@
       margin-top:22px;
       font-size:18px;
     }
+    .vn-highlights {
+      padding:92px 0 104px;
+    }
+    .vn-highlights-head {
+      display:block;
+      margin-bottom:36px;
+    }
+    .vn-highlights-head h2 {
+      font-size:44px;
+    }
+    .vn-highlights-head span {
+      display:none;
+    }
+    .vn-highlights-track {
+      gap:14px;
+      padding-right:22px;
+      padding-left:22px;
+    }
+    .vn-highlight {
+      flex-basis:calc(100vw - 44px);
+      height:620px;
+      min-height:0;
+    }
+    .vn-highlight-copy {
+      right:26px;
+      bottom:28px;
+      left:26px;
+    }
+    .vn-highlight-copy h3 {
+      font-size:38px;
+    }
     .vn-intro {
       min-height:76vh;
       padding:104px 0;
@@ -4389,6 +4523,48 @@
   </section>
 
   <main class="vn-story">
+    <section class="vn-highlights" aria-labelledby="vn-highlights-title">
+      <div class="vn-shell">
+        <div class="vn-highlights-head">
+          <h2 id="vn-highlights-title">Mira lo más destacado.</h2>
+          <span>Desliza para explorar</span>
+        </div>
+      </div>
+      <div class="vn-highlights-track" aria-label="Aspectos destacados de Vista360">
+        <article class="vn-highlight">
+          <img src="panels/premium-mural.jpg" loading="eager" decoding="async" alt="Mural Vista360 integrado a una fachada premium">
+          <div class="vn-highlight-copy">
+            <span>Murales</span>
+            <h3>La arquitectura también puede comunicar.</h3>
+          </div>
+        </article>
+        <article class="vn-highlight">
+          <img src="panels/story-city-new-york.png" loading="lazy" decoding="async" alt="Escena urbana premium de Nueva York">
+          <div class="vn-highlight-copy">
+            <span>Ubicación</span>
+            <h3>Presencia clara dentro de una ciudad en movimiento.</h3>
+          </div>
+        </article>
+        <article class="vn-highlight">
+          <img src="panels/story-campaign-craft.png" loading="lazy" decoding="async" alt="Preparación precisa de una campaña Vista360">
+          <div class="vn-highlight-copy">
+            <span>Proceso</span>
+            <h3>Cada campaña se prepara al detalle.</h3>
+          </div>
+        </article>
+        <article class="vn-highlight">
+          <img src="panels/panel-closeup.jpg" loading="lazy" decoding="async" alt="Detalle de acabado de un soporte Vista360">
+          <div class="vn-highlight-copy">
+            <span>Ejecución</span>
+            <h3>Impacto por fuera. Cuidado por dentro.</h3>
+          </div>
+        </article>
+      </div>
+      <div class="vn-highlights-nav" aria-hidden="true">
+        <i></i><i></i><i></i><i></i>
+      </div>
+    </section>
+
     <section class="vn-intro" aria-labelledby="vn-intro-title">
       <div class="vn-shell">
         <div class="vn-intro-copy" data-reveal>
