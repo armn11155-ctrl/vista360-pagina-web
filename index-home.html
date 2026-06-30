@@ -3731,6 +3731,29 @@
     border-top:1px solid var(--vn-line);
     background:#FFFFFF;
   }
+  .vn-product-word {
+    position:absolute;
+    top:58px;
+    left:50%;
+    z-index:0;
+    color:rgba(23,105,232,.08);
+    font-size:clamp(112px,17vw,250px);
+    font-weight:780;
+    line-height:.78;
+    letter-spacing:0;
+    white-space:nowrap;
+    opacity:.08;
+    transform:translate3d(-50%,40px,0);
+    transition:text-shadow .45s ease,color .45s ease;
+    pointer-events:none;
+    will-change:opacity,transform;
+  }
+  .vn-product-word--led {
+    color:rgba(36,126,255,.12);
+    text-shadow:
+      0 0 24px rgba(44,135,255,.14),
+      0 0 80px rgba(23,105,232,.1);
+  }
   .vn-product-item:nth-child(even) {
     grid-template-columns:minmax(280px,.78fr) minmax(0,1.22fr);
   }
@@ -3913,6 +3936,15 @@
     font-size:clamp(150px,24vw,340px);
     font-weight:780;
     line-height:.72;
+    opacity:.1;
+    transform:translate3d(0,38px,0);
+    will-change:opacity,transform,text-shadow;
+  }
+  .vn-chapter-white .vn-scroll-word--led {
+    color:rgba(30,120,255,.14);
+    text-shadow:
+      0 0 28px rgba(50,145,255,.16),
+      0 0 96px rgba(23,105,232,.12);
   }
   .vn-chapter-white h2 {
     position:relative;
@@ -4635,6 +4667,10 @@
       grid-template-columns:1fr;
       min-height:0;
     }
+    .vn-product-word {
+      top:42px;
+      font-size:clamp(76px,20vw,150px);
+    }
     .vn-product-item--unipolar .vn-product-media,
     .vn-product-item--unipolar .vn-product-copy-panel {
       grid-column:1;
@@ -5061,6 +5097,7 @@
       </div>
       <div class="vn-product-gallery">
         <article class="vn-product-item vn-product-item--mural" data-reveal>
+          <span class="vn-product-word" data-product-word>MURAL</span>
           <div class="vn-product-media">
             <img src="panels/story-mural-transparent.png" loading="lazy" decoding="async" alt="Panel mural impreso Vista360 instalado sobre una fachada de un piso">
           </div>
@@ -5076,6 +5113,7 @@
           </div>
         </article>
         <article class="vn-product-item vn-product-item--unipolar" data-reveal>
+          <span class="vn-product-word" data-product-word>UNIPOLAR</span>
           <div class="vn-product-media">
             <img src="panels/story-unipolar-transparent.png" loading="lazy" decoding="async" alt="Panel unipolar Vista360 alto y monumental presentado sin fondo">
           </div>
@@ -5091,6 +5129,7 @@
           </div>
         </article>
         <article class="vn-product-item vn-product-item--led" data-reveal>
+          <span class="vn-product-word vn-product-word--led" data-product-word data-word-led>LED</span>
           <div class="vn-product-media">
             <img src="panels/story-led-transparent-v2.png" loading="lazy" decoding="async" alt="Pantalla LED publicitaria Vista360 presentada como producto sin fondo">
           </div>
@@ -5171,7 +5210,7 @@
     </section>
 
     <section class="vn-chapter-white" aria-labelledby="vn-led-chapter-title">
-      <strong aria-hidden="true">LED</strong>
+      <strong class="vn-scroll-word--led" data-product-word data-word-led aria-hidden="true">LED</strong>
       <h2 id="vn-led-chapter-title">Cuando el mensaje cambia, la superficie responde.</h2>
       <p>Una pantalla exterior combina presencia física y contenido dinámico. La tecnología amplía las posibilidades sin perder claridad en la calle.</p>
     </section>
@@ -5894,6 +5933,7 @@ class Component extends DCLogic {
     this.startProductTimer(4);
     this.initParallax();
     this.initAppleScroll();
+    this.initProductWordScroll();
     const els = Array.from(root.querySelectorAll('[data-reveal]'));
     const formatChapters = Array.from(root.querySelectorAll('.v-format-chapter'));
     const revealNow = (el) => {
@@ -6015,6 +6055,55 @@ class Component extends DCLogic {
     };
   }
 
+  initProductWordScroll() {
+    const root = this.rootEl;
+    if (!root) return;
+    const words = Array.from(root.querySelectorAll('[data-product-word]'));
+    if (!words.length) return;
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const vh = Math.max(window.innerHeight || 0, 1);
+      words.forEach((word) => {
+        const section = word.closest('.vn-product-item, .vn-chapter-white');
+        if (!section) return;
+        const rect = section.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
+        const presence = Math.max(0, 1 - Math.abs(progress - .48) * 2.7);
+        const led = word.hasAttribute('data-word-led');
+        const base = led ? .045 : .025;
+        const peak = led ? .32 : .18;
+        word.style.opacity = reduced ? String(base + peak) : String(base + peak * presence);
+        if (!reduced) {
+          const y = 58 - progress * 116;
+          const scale = .985 + presence * .025;
+          const centered = word.classList.contains('vn-product-word');
+          word.style.transform = centered
+            ? 'translate3d(-50%,' + y.toFixed(1) + 'px,0) scale(' + scale.toFixed(3) + ')'
+            : 'translate3d(0,' + y.toFixed(1) + 'px,0) scale(' + scale.toFixed(3) + ')';
+        }
+        if (led) {
+          const glow = 12 + presence * 34;
+          word.style.textShadow =
+            '0 0 ' + glow.toFixed(0) + 'px rgba(48,143,255,' + (.12 + presence * .2).toFixed(3) + '),' +
+            '0 0 ' + (glow * 2.6).toFixed(0) + 'px rgba(23,105,232,' + (.06 + presence * .12).toFixed(3) + ')';
+        }
+      });
+    };
+    const requestUpdate = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    window.addEventListener('scroll', requestUpdate, { passive:true });
+    window.addEventListener('resize', requestUpdate, { passive:true });
+    update();
+    this._productWordCleanup = () => {
+      window.removeEventListener('scroll', requestUpdate);
+      window.removeEventListener('resize', requestUpdate);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }
+
   startNetwork() {
     const canvas = this.netEl;
     const wrap = canvas && canvas.parentElement;
@@ -6114,6 +6203,7 @@ class Component extends DCLogic {
     if (this._carouselTimer) clearInterval(this._carouselTimer);
     if (this._parallaxCleanup) this._parallaxCleanup();
     if (this._premiumScrollCleanup) this._premiumScrollCleanup();
+    if (this._productWordCleanup) this._productWordCleanup();
   }
 
   renderVals() {
