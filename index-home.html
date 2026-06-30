@@ -6347,6 +6347,96 @@
       grid-template-columns:1fr;
     }
   }
+  .v-hero-eyebrow {
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:clamp(20px,2.5vw,28px);
+    color:#DCE8FB;
+    font-size:12px;
+    font-weight:750;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    opacity:0;
+    animation:vfadeup .9s cubic-bezier(.16,1,.3,1) .05s forwards;
+  }
+  .v-hero-eyebrow::before {
+    content:"";
+    width:26px;
+    height:1px;
+    background:#6CA8FF;
+    box-shadow:0 0 12px rgba(108,168,255,.7);
+  }
+  .v-hero-actions {
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    gap:22px;
+    opacity:0;
+    animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .46s forwards;
+  }
+  .v-hero-primary {
+    padding:15px 27px;
+    border-radius:6px;
+    background:#1769E8;
+    color:#FFFFFF;
+    font-size:15px;
+    font-weight:750;
+    text-decoration:none;
+    box-shadow:0 12px 32px rgba(23,105,232,.26);
+    transition:background .22s ease,transform .22s ease,box-shadow .22s ease;
+  }
+  .v-hero-primary:hover {
+    background:#2A78EA;
+    box-shadow:0 16px 38px rgba(23,105,232,.34);
+    transform:translateY(-2px);
+  }
+  .v-hero-secondary {
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    padding:12px 0;
+    color:#FFFFFF;
+    font-size:15px;
+    font-weight:700;
+    text-decoration:none;
+  }
+  .v-hero-secondary::after {
+    content:"\2192";
+    color:#78AEFF;
+    transition:transform .22s ease;
+  }
+  .v-hero-secondary:hover::after {
+    transform:translateX(5px);
+  }
+  .vn-context-benefits b,
+  .vn-solution,
+  .vn-objectives span {
+    transition:background .22s ease,color .22s ease,transform .22s ease;
+  }
+  .vn-context-benefits b:hover {
+    border-color:rgba(138,184,255,.62);
+    background:rgba(23,105,232,.34);
+    transform:translateY(-2px);
+  }
+  .vn-solution:hover {
+    background:#F5F8FD;
+  }
+  .vn-objectives span:hover {
+    color:#FFFFFF;
+    background:rgba(255,255,255,.05);
+  }
+  @media (max-width:520px) {
+    .v-hero-actions {
+      flex-direction:column;
+      gap:10px;
+    }
+    .v-hero-primary {
+      width:min(100%,300px);
+      text-align:center;
+    }
+  }
   dc-import{display:block}
 </style>
 </helmet>
@@ -6363,21 +6453,15 @@
 
     <div style="position:relative; z-index:3; flex:1; width:100%; display:flex; align-items:center; justify-content:center;">
     <div id="heroContent" style="width:100%; max-width:1000px; padding:104px clamp(20px,5vw,40px) clamp(36px,4vw,56px); text-align:center;">
-      <div style="display:inline-flex; align-items:center; gap:11px; margin-bottom:clamp(22px,3vw,32px); padding:8px 18px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); backdrop-filter:blur(8px); opacity:0; animation:vfadeup .9s cubic-bezier(.16,1,.3,1) .05s forwards;">
-        <span style="width:7px; height:7px; border-radius:50%; background:#56A2FF; box-shadow:0 0 10px #56A2FF;"></span>
-        <span style="font-size:clamp(11px,1.1vw,13px); font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#DCE8FB;">Especialistas en publicidad exterior · Huánuco</span>
-      </div>
+      <div class="v-hero-eyebrow">Publicidad exterior en Huánuco</div>
       <h1 style="margin:0; color:#fff; letter-spacing:-0.03em; line-height:0.98; opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .18s forwards;">
         <span style="display:block; font-size:clamp(23px,4.2vw,44px); font-weight:300; color:rgba(255,255,255,0.9); letter-spacing:-0.005em; margin-bottom:clamp(4px,0.8vw,10px);">Hacemos que tu marca sea</span>
         <span style="display:block; font-size:clamp(50px,9.6vw,118px); font-weight:800; text-transform:uppercase; letter-spacing:-0.035em; text-shadow:0 18px 54px rgba(0,0,0,0.55);">Imposible<br>no verla</span>
       </h1>
-      <p style="font-size:clamp(16px,1.5vw,20px); font-weight:400; line-height:1.55; color:rgba(255,255,255,0.82); max-width:600px; margin:clamp(22px,3vw,32px) auto clamp(30px,4vw,40px); opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .32s forwards;">Publicidad exterior planificada para que tu marca aparezca en los recorridos, horarios y ubicaciones que realmente importan.</p>
-      <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:14px; opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .46s forwards;">
-        <a href="contacto.html" style="text-decoration:none; padding:15px 34px; border-radius:13px; background:#1C6FE8; color:#fff; font-size:16px; font-weight:600; transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Planear mi campaña</a>
-        <a href="productos.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:11px; padding:15px 28px; border-radius:13px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.28); color:#fff; font-size:16px; font-weight:600; backdrop-filter:blur(8px); transition:background .2s ease, transform .2s ease;" style-hover="background:rgba(255,255,255,0.16); transform:translateY(-2px);">
-          <span style="width:24px; height:24px; border-radius:50%; background:#1C6FE8; display:inline-flex; align-items:center; justify-content:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.4"></rect><rect x="14" y="3" width="7" height="7" rx="1.4"></rect><rect x="3" y="14" width="7" height="7" rx="1.4"></rect><rect x="14" y="14" width="7" height="7" rx="1.4"></rect></svg></span>
-          Conocer formatos
-        </a>
+      <p style="font-size:clamp(16px,1.5vw,20px); font-weight:400; line-height:1.55; color:rgba(255,255,255,0.82); max-width:570px; margin:clamp(22px,3vw,32px) auto clamp(30px,4vw,40px); opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .32s forwards;">Ubicación, formato y estrategia para que tu marca aparezca donde realmente importa.</p>
+      <div class="v-hero-actions">
+        <a class="v-hero-primary" href="contacto.html">Planear mi campaña</a>
+        <a class="v-hero-secondary" href="#formato-mural">Explorar formatos</a>
       </div>
     </div>
     </div>
