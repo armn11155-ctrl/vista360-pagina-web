@@ -3629,21 +3629,27 @@
     position:absolute;
     inset:-12%;
     background:center/cover no-repeat;
-    filter:blur(46px) saturate(.9);
-    opacity:.5;
+    filter:blur(34px) saturate(.92);
+    opacity:.7;
     transform:scale(1.13);
   }
   .vn-blur-echo::after {
     content:"";
     position:absolute;
     inset:0;
-    background:linear-gradient(180deg, rgba(4,7,12,.46), rgba(4,7,12,.82));
+    background:linear-gradient(180deg, rgba(4,7,12,.34), rgba(4,7,12,.7));
   }
   .vn-blur-echo--city::before {
     background-image:url('panels/story-city-new-york.png');
   }
   .vn-blur-echo--craft::before {
     background-image:url('panels/story-mural-install-detail-v2.jpg');
+  }
+  .vn-blur-echo--led::before {
+    background-image:url('panels/story-led-macro-v2.jpg');
+  }
+  .vn-blur-echo--engineering::before {
+    background-image:url('panels/story-cable-detail-v3.jpg');
   }
   .vn-blur-echo .vn-shell {
     position:relative;
@@ -3893,6 +3899,37 @@
     color:var(--vn-muted);
     font-size:15px;
     line-height:1.5;
+  }
+  .vn-chapter-white {
+    position:relative;
+    padding:142px 0 126px;
+    overflow:hidden;
+    background:#FFFFFF;
+    text-align:center;
+  }
+  .vn-chapter-white strong {
+    display:block;
+    color:rgba(23,105,232,.1);
+    font-size:clamp(150px,24vw,340px);
+    font-weight:780;
+    line-height:.72;
+  }
+  .vn-chapter-white h2 {
+    position:relative;
+    z-index:1;
+    max-width:850px;
+    margin:-8px auto 0;
+    font-size:64px;
+    line-height:1.03;
+    letter-spacing:0;
+  }
+  .vn-chapter-white p {
+    max-width:690px;
+    margin:30px auto 0;
+    color:var(--vn-muted);
+    font-size:19px;
+    font-weight:550;
+    line-height:1.58;
   }
   .vn-product-callout strong {
     display:block;
@@ -4572,6 +4609,12 @@
     .vn-scale {
       padding:100px 0;
     }
+    .vn-chapter-white {
+      padding:100px 0 92px;
+    }
+    .vn-chapter-white h2 {
+      font-size:46px;
+    }
     .vn-scale-ring {
       width:min(88vw,680px);
     }
@@ -4788,6 +4831,14 @@
     }
     .vn-scale-ring {
       width:94vw;
+    }
+    .vn-chapter-white h2 {
+      width:calc(100% - 44px);
+      font-size:40px;
+    }
+    .vn-chapter-white p {
+      width:calc(100% - 44px);
+      font-size:17px;
     }
     .vn-scale-copy strong {
       font-size:100px;
@@ -5119,6 +5170,12 @@
       </div>
     </section>
 
+    <section class="vn-chapter-white" aria-labelledby="vn-led-chapter-title">
+      <strong aria-hidden="true">LED</strong>
+      <h2 id="vn-led-chapter-title">Cuando el mensaje cambia, la superficie responde.</h2>
+      <p>Una pantalla exterior combina presencia física y contenido dinámico. La tecnología amplía las posibilidades sin perder claridad en la calle.</p>
+    </section>
+
     <section class="vn-led-detail" aria-labelledby="vn-led-detail-title">
       <div class="vn-shell">
         <div class="vn-led-detail-copy" data-reveal>
@@ -5134,19 +5191,33 @@
       </div>
     </section>
 
-    <section class="vn-engineering" aria-labelledby="vn-engineering-title">
-      <div class="vn-engineering-hero">
-        <div class="vn-shell">
-          <div class="vn-engineering-copy" data-reveal>
-            <p class="vn-kicker">Ingeniería exterior</p>
-            <h2 class="vn-title" id="vn-engineering-title">Lo que sostiene el impacto también importa.</h2>
-            <p class="vn-lead">Cables de seguridad, anclajes y tensión trabajan fuera de la vista. Su precisión permite que el formato conserve estabilidad y presencia.</p>
-          </div>
+    <section class="vn-blur-echo vn-blur-echo--led" aria-labelledby="vn-led-echo-title">
+      <div class="vn-shell">
+        <h2 id="vn-led-echo-title">Brillo, módulos y control trabajan como una sola superficie.</h2>
+        <div class="vn-echo-grid">
+          <article class="vn-echo-item">
+            <span>01 / Imagen</span>
+            <strong>Contraste que conserva la lectura.</strong>
+            <p>El contenido se prepara para responder a distancia, movimiento y condiciones cambiantes de luz.</p>
+          </article>
+          <article class="vn-echo-item">
+            <span>02 / Módulos</span>
+            <strong>Una gran pantalla, construida por partes.</strong>
+            <p>La alineación de cada gabinete permite mantener una imagen continua y facilitar intervenciones técnicas.</p>
+          </article>
+          <article class="vn-echo-item">
+            <span>03 / Operación</span>
+            <strong>Contenido que puede evolucionar.</strong>
+            <p>La programación permite adaptar mensajes y momentos sin reemplazar físicamente toda la superficie.</p>
+          </article>
         </div>
       </div>
+    </section>
+
+    <section class="vn-engineering" aria-labelledby="vn-engineering-title">
       <div class="vn-engineering-details">
         <div class="vn-shell">
-          <h2>Diseñado para verse bien. Preparado para mantenerse así.</h2>
+          <h2 id="vn-engineering-title">Diseñado para verse bien. Preparado para mantenerse así.</h2>
           <div class="vn-engineering-grid">
             <figure class="vn-engineering-figure" data-reveal>
               <img src="panels/story-led-service-v3.jpg" loading="lazy" decoding="async" alt="Conexión y mantenimiento modular de una pantalla LED exterior">
@@ -5176,6 +5247,38 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="vn-engineering-hero">
+        <div class="vn-shell">
+          <div class="vn-engineering-copy" data-reveal>
+            <p class="vn-kicker">Ingeniería exterior</p>
+            <h2 class="vn-title">Lo que sostiene el impacto también importa.</h2>
+            <p class="vn-lead">Cables de seguridad, anclajes y tensión trabajan fuera de la vista. Su precisión permite que el formato conserve estabilidad y presencia.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="vn-blur-echo vn-blur-echo--engineering" aria-labelledby="vn-engineering-echo-title">
+      <div class="vn-shell">
+        <h2 id="vn-engineering-echo-title">La confianza también se diseña.</h2>
+        <div class="vn-echo-grid">
+          <article class="vn-echo-item">
+            <span>01 / Anclaje</span>
+            <strong>La carga encuentra una estructura.</strong>
+            <p>Placas, pernos y puntos de unión transfieren el esfuerzo hacia elementos preparados para recibirlo.</p>
+          </article>
+          <article class="vn-echo-item">
+            <span>02 / Seguridad</span>
+            <strong>Elementos que trabajan en conjunto.</strong>
+            <p>Cables y tensores complementan la fijación principal y ayudan a conservar una respuesta estable.</p>
+          </article>
+          <article class="vn-echo-item">
+            <span>03 / Acceso</span>
+            <strong>Preparado para revisar y mantener.</strong>
+            <p>La ingeniería considera cómo llegar a cada componente cuando la campaña ya está instalada.</p>
+          </article>
         </div>
       </div>
     </section>
