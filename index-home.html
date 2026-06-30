@@ -3749,10 +3749,14 @@
     will-change:opacity,transform;
   }
   .vn-product-word--led {
-    color:rgba(36,126,255,.12);
-    text-shadow:
-      0 0 24px rgba(44,135,255,.14),
-      0 0 80px rgba(23,105,232,.1);
+    color:transparent;
+    background-image:radial-gradient(circle, rgba(72,154,255,.92) 0 2.2px, rgba(72,154,255,.08) 2.4px 4.2px, transparent 4.4px);
+    background-size:11px 11px;
+    background-position:center;
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 0 8px rgba(31,126,255,.14));
   }
   .vn-product-item:nth-child(even) {
     grid-template-columns:minmax(280px,.78fr) minmax(0,1.22fr);
@@ -3941,10 +3945,14 @@
     will-change:opacity,transform,text-shadow;
   }
   .vn-chapter-white .vn-scroll-word--led {
-    color:rgba(30,120,255,.14);
-    text-shadow:
-      0 0 28px rgba(50,145,255,.16),
-      0 0 96px rgba(23,105,232,.12);
+    color:transparent;
+    background-image:radial-gradient(circle, rgba(63,151,255,.95) 0 2.6px, rgba(63,151,255,.09) 2.8px 4.8px, transparent 5px);
+    background-size:13px 13px;
+    background-position:center;
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 0 10px rgba(31,126,255,.14));
   }
   .vn-chapter-white h2 {
     position:relative;
@@ -6072,8 +6080,8 @@ class Component extends DCLogic {
         const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
         const presence = Math.max(0, 1 - Math.abs(progress - .48) * 2.7);
         const led = word.hasAttribute('data-word-led');
-        const base = led ? .045 : .025;
-        const peak = led ? .32 : .18;
+        const base = led ? .08 : .025;
+        const peak = led ? .88 : .18;
         word.style.opacity = reduced ? String(base + peak) : String(base + peak * presence);
         if (!reduced) {
           const y = 58 - progress * 116;
@@ -6084,10 +6092,14 @@ class Component extends DCLogic {
             : 'translate3d(0,' + y.toFixed(1) + 'px,0) scale(' + scale.toFixed(3) + ')';
         }
         if (led) {
-          const glow = 12 + presence * 34;
-          word.style.textShadow =
-            '0 0 ' + glow.toFixed(0) + 'px rgba(48,143,255,' + (.12 + presence * .2).toFixed(3) + '),' +
-            '0 0 ' + (glow * 2.6).toFixed(0) + 'px rgba(23,105,232,' + (.06 + presence * .12).toFixed(3) + ')';
+          const glow = 5 + presence * 22;
+          const glowAlpha = .12 + presence * .48;
+          word.style.filter =
+            'brightness(' + (0.72 + presence * 1.45).toFixed(2) + ')' +
+            ' saturate(' + (0.78 + presence * 1.35).toFixed(2) + ')' +
+            ' drop-shadow(0 0 ' + glow.toFixed(0) + 'px rgba(31,126,255,' + glowAlpha.toFixed(3) + '))' +
+            ' drop-shadow(0 0 ' + (glow * 2.25).toFixed(0) + 'px rgba(23,105,232,' + (glowAlpha * .42).toFixed(3) + '))';
+          word.style.backgroundPosition = 'center ' + (progress * 22).toFixed(1) + 'px';
         }
       });
     };
