@@ -3944,15 +3944,43 @@
     transform:translate3d(0,38px,0);
     will-change:opacity,transform,text-shadow;
   }
+  .vn-led-matrix {
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:min(1120px,calc(100% - 72px));
+    min-height:480px;
+    margin:0 auto 72px;
+    overflow:hidden;
+    background-color:#080B11;
+    background-image:radial-gradient(circle, rgba(255,255,255,.14) 0 2px, transparent 2.3px);
+    background-size:11px 11px;
+    box-shadow:inset 0 0 100px rgba(0,0,0,.58);
+  }
+  .vn-led-matrix::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at 50% 50%, rgba(28,111,232,.1), transparent 56%);
+    pointer-events:none;
+  }
+  .vn-led-matrix strong {
+    position:relative;
+    z-index:1;
+    width:100%;
+    font-size:clamp(150px,24vw,340px);
+    line-height:.72;
+  }
   .vn-chapter-white .vn-scroll-word--led {
     color:transparent;
-    background-image:radial-gradient(circle, rgba(63,151,255,.95) 0 2.6px, rgba(63,151,255,.09) 2.8px 4.8px, transparent 5px);
-    background-size:13px 13px;
+    background-image:radial-gradient(circle, #1C6FE8 0 3.1px, rgba(28,111,232,.28) 3.3px 4.6px, transparent 4.9px);
+    background-size:11px 11px;
     background-position:center;
     -webkit-background-clip:text;
     background-clip:text;
     -webkit-text-fill-color:transparent;
-    filter:drop-shadow(0 0 10px rgba(31,126,255,.14));
+    filter:drop-shadow(0 0 10px rgba(28,111,232,.18));
   }
   .vn-chapter-white h2 {
     position:relative;
@@ -4652,6 +4680,11 @@
     .vn-chapter-white {
       padding:100px 0 92px;
     }
+    .vn-led-matrix {
+      width:calc(100% - 44px);
+      min-height:350px;
+      margin-bottom:54px;
+    }
     .vn-chapter-white h2 {
       font-size:46px;
     }
@@ -4879,6 +4912,15 @@
     .vn-chapter-white h2 {
       width:calc(100% - 44px);
       font-size:40px;
+    }
+    .vn-led-matrix {
+      width:calc(100% - 28px);
+      min-height:250px;
+      margin-bottom:44px;
+      background-size:8px 8px;
+    }
+    .vn-led-matrix strong {
+      font-size:28vw;
     }
     .vn-chapter-white p {
       width:calc(100% - 44px);
@@ -5218,7 +5260,9 @@
     </section>
 
     <section class="vn-chapter-white" aria-labelledby="vn-led-chapter-title">
-      <strong class="vn-scroll-word--led" data-product-word data-word-led aria-hidden="true">LED</strong>
+      <div class="vn-led-matrix" aria-hidden="true">
+        <strong class="vn-scroll-word--led" data-product-word data-word-led>LED</strong>
+      </div>
       <h2 id="vn-led-chapter-title">Cuando el mensaje cambia, la superficie responde.</h2>
       <p>Una pantalla exterior combina presencia física y contenido dinámico. La tecnología amplía las posibilidades sin perder claridad en la calle.</p>
     </section>
