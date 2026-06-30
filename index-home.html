@@ -3767,10 +3767,11 @@
   .vn-product-item {
     position:relative;
     display:grid;
-    grid-template-columns:minmax(0,1.22fr) minmax(280px,.78fr);
+    grid-template-columns:1fr;
+    grid-template-rows:auto minmax(650px,1fr);
     align-items:center;
     width:min(1400px,100%);
-    min-height:860px;
+    min-height:1120px;
     margin:0 auto;
     overflow:hidden;
     border-top:1px solid var(--vn-line);
@@ -3804,7 +3805,7 @@
     filter:drop-shadow(0 0 8px rgba(31,126,255,.14));
   }
   .vn-product-item:nth-child(even) {
-    grid-template-columns:minmax(280px,.78fr) minmax(0,1.22fr);
+    grid-template-columns:1fr;
   }
   .vn-product-media {
     position:relative;
@@ -3813,7 +3814,10 @@
     justify-content:center;
     align-self:stretch;
     min-width:0;
-    padding:72px 20px;
+    grid-column:1;
+    grid-row:2;
+    min-height:680px;
+    padding:24px 40px 64px;
   }
   .vn-product-media::after {
     content:"";
@@ -3863,11 +3867,31 @@
     }
   }
   .vn-product-item--mural .vn-product-media img {
-    max-height:620px;
+    max-height:590px;
+    transform:translate3d(-2%,12px,0) rotate(-1.5deg) scale(1.04);
+  }
+  .vn-product-item--led .vn-product-media img {
+    max-height:720px;
+    transform:translate3d(3%,24px,0) rotate(1.2deg) scale(.96);
+  }
+  .vn-product-item--totem .vn-product-media img {
+    max-height:680px;
+    transform:translate3d(-3%,22px,0) rotate(-2deg) scale(.94);
+  }
+  @media (hover:hover) {
+    .vn-product-item--mural:hover .vn-product-media img {
+      transform:translate3d(-2%,2px,0) rotate(-.7deg) scale(1.065);
+    }
+    .vn-product-item--led:hover .vn-product-media img {
+      transform:translate3d(3%,10px,0) rotate(.5deg) scale(.99);
+    }
+    .vn-product-item--totem:hover .vn-product-media img {
+      transform:translate3d(-3%,10px,0) rotate(-1deg) scale(.97);
+    }
   }
   .vn-product-item--unipolar .vn-product-media {
-    grid-column:2;
-    grid-row:1;
+    grid-column:1;
+    grid-row:2;
   }
   .vn-product-item--unipolar .vn-product-copy-panel {
     grid-column:1;
@@ -3876,11 +3900,16 @@
   .vn-product-copy-panel {
     position:relative;
     z-index:2;
-    padding:76px 92px 76px 44px;
+    grid-column:1;
+    grid-row:1;
+    width:min(900px,calc(100% - 96px));
+    margin:0 auto;
+    padding:100px 0 24px;
+    text-align:center;
   }
   .vn-product-item:nth-child(even) .vn-product-copy-panel {
-    padding-right:44px;
-    padding-left:92px;
+    padding-right:0;
+    padding-left:0;
   }
   .vn-product-index {
     display:block;
@@ -3896,6 +3925,9 @@
     letter-spacing:0;
   }
   .vn-product-copy-panel p {
+    max-width:720px;
+    margin-right:auto;
+    margin-left:auto;
     margin:0;
     color:var(--vn-muted);
     font-size:17px;
@@ -3903,15 +3935,21 @@
   }
   .vn-product-specs {
     display:grid;
+    grid-template-columns:repeat(3,1fr);
     gap:12px;
     margin-top:30px;
     padding-top:24px;
     border-top:1px solid var(--vn-line);
   }
   .vn-product-specs span {
+    padding:0 20px;
+    border-right:1px solid var(--vn-line);
     color:#31343A;
     font-size:14px;
     font-weight:650;
+  }
+  .vn-product-specs span:last-child {
+    border-right:0;
   }
   .vn-scale {
     position:relative;
@@ -4799,12 +4837,12 @@
     .vn-product-item--unipolar .vn-product-media,
     .vn-product-item--unipolar .vn-product-copy-panel {
       grid-column:1;
-      grid-row:auto;
     }
     .vn-product-item--unipolar .vn-product-media {
-      grid-row:1;
+      grid-row:2;
     }
     .vn-product-media {
+      grid-row:2;
       min-height:500px;
       padding:34px 18px 12px;
     }
@@ -4822,10 +4860,23 @@
     }
     .vn-product-copy-panel,
     .vn-product-item:nth-child(even) .vn-product-copy-panel {
+      grid-row:1;
+      width:calc(100% - 44px);
       padding:40px 38px 48px;
     }
     .vn-product-copy-panel h3 {
       font-size:34px;
+    }
+    .vn-product-specs {
+      grid-template-columns:1fr;
+    }
+    .vn-product-specs span {
+      padding:11px 0;
+      border-right:0;
+      border-bottom:1px solid var(--vn-line);
+    }
+    .vn-product-specs span:last-child {
+      border-bottom:0;
     }
     .vn-engineering-hero {
       align-items:flex-end;
@@ -5120,7 +5171,7 @@
     <section class="vn-highlights" aria-labelledby="vn-highlights-title">
       <div class="vn-shell">
         <div class="vn-highlights-head">
-          <h2 id="vn-highlights-title">Mira lo más destacado.</h2>
+          <h2 id="vn-highlights-title">La ciudad también puede hablar por tu marca.</h2>
           <span>Desliza para explorar</span>
         </div>
       </div>
@@ -5231,26 +5282,25 @@
     <section class="vn-product" aria-labelledby="vn-product-title">
       <div class="vn-shell">
         <div class="vn-product-copy" data-reveal>
-          <p class="vn-kicker">Tres escalas de presencia</p>
+          <p class="vn-kicker">Cuatro escalas de presencia</p>
           <h2 class="vn-title" id="vn-product-title">El producto se entiende cuando puede apreciarse.</h2>
-          <p class="vn-lead">Primero la arquitectura, después la distancia y finalmente la luz. Cada formato ocupa su propio espacio para mostrar con claridad qué hace y dónde funciona mejor.</p>
+          <p class="vn-lead">Mural, unipolar, panel LED y tótem ocupan espacios distintos. Cada formato tiene su propio capítulo para mostrar con claridad cómo se construye y dónde funciona mejor.</p>
         </div>
       </div>
       <div class="vn-product-gallery">
         <article class="vn-product-item vn-product-item--mural" data-reveal>
           <span class="vn-product-word" data-product-word>MURAL</span>
-          <div class="vn-product-media vn-product-media--sequence" data-mural-sequence>
-            <img class="vn-sequence-before" src="panels/story-mural-transparent.png" loading="lazy" decoding="async" alt="Estructura mural Vista360 preparada para una fachada">
-            <img class="vn-sequence-after" src="panels/story-mural-newyork-v2.jpg" loading="lazy" decoding="async" alt="Mural Vista360 terminado e integrado a una fachada urbana">
+          <div class="vn-product-media">
+            <img src="panels/story-mural-panel-transparent-v4.png" loading="lazy" decoding="async" alt="Panel mural Vista360 fijado al muro e iluminado desde arriba">
           </div>
           <div class="vn-product-copy-panel">
             <span class="vn-product-index">01 / Mural</span>
-            <h3>Una fachada convertida en presencia.</h3>
-            <p>El vinil se produce a escala, se tensa sobre la superficie y se ajusta a la arquitectura. El resultado no parece añadido: pertenece al edificio.</p>
+            <h3>Un panel que trabaja con el muro.</h3>
+            <p>El bastidor se fija a la superficie, contiene la gráfica y organiza su iluminación. La profundidad del marco hace visible que existe un producto real sobre la arquitectura.</p>
             <div class="vn-product-specs">
               <span>Lectura peatonal y vehicular</span>
-              <span>Adaptación a medidas reales</span>
-              <span>Acabado continuo de gran formato</span>
+              <span>Bastidor fijado a muro</span>
+              <span>Iluminación superior dirigida</span>
             </div>
           </div>
         </article>
@@ -5273,7 +5323,7 @@
         <article class="vn-product-item vn-product-item--led" data-reveal>
           <span class="vn-product-word vn-product-word--led" data-product-word data-word-led>LED</span>
           <div class="vn-product-media">
-            <img src="panels/story-led-transparent-v2.png" loading="lazy" decoding="async" alt="Pantalla LED publicitaria Vista360 presentada como producto sin fondo">
+            <img src="panels/story-led-unipolar-transparent-v4.png" loading="lazy" decoding="async" alt="Panel LED Vista360 elevado sobre una columna unipolar">
           </div>
           <div class="vn-product-copy-panel">
             <span class="vn-product-index">03 / LED</span>
@@ -5283,6 +5333,22 @@
               <span>Contenido dinámico y programable</span>
               <span>Contraste visible de día y de noche</span>
               <span>Construcción modular para exterior</span>
+            </div>
+          </div>
+        </article>
+        <article class="vn-product-item vn-product-item--totem" data-reveal>
+          <span class="vn-product-word" data-product-word>TÓTEM</span>
+          <div class="vn-product-media">
+            <img src="panels/story-totem-transparent-v4.png" loading="lazy" decoding="async" alt="Tótem publicitario digital Vista360 presentado sin fondo">
+          </div>
+          <div class="vn-product-copy-panel">
+            <span class="vn-product-index">04 / Tótem</span>
+            <h3>Presencia cercana en el recorrido.</h3>
+            <p>Su formato vertical acompaña accesos, zonas peatonales y puntos de espera donde la comunicación puede observarse a menor distancia.</p>
+            <div class="vn-product-specs">
+              <span>Lectura próxima y vertical</span>
+              <span>Integración en accesos y recorridos</span>
+              <span>Formato compacto con gran presencia</span>
             </div>
           </div>
         </article>
@@ -6293,9 +6359,11 @@ class Component extends DCLogic {
       if (next) next.disabled = active === cards.length - 1;
     };
     const goTo = (index) => {
-      if (!cards.length) return;
+      if (!track || !cards.length) return;
       active = (index + cards.length) % cards.length;
-      cards[active].scrollIntoView({ behavior:reduced ? 'auto' : 'smooth', block:'nearest', inline:'center' });
+      const target = cards[active];
+      const left = target.offsetLeft - (track.clientWidth - target.offsetWidth) / 2;
+      track.scrollTo({ left:left, behavior:reduced ? 'auto' : 'smooth' });
     };
     const stopAuto = () => {
       if (carouselTimer) window.clearInterval(carouselTimer);
@@ -6303,7 +6371,6 @@ class Component extends DCLogic {
     };
     const startAuto = () => {
       stopAuto();
-      if (!reduced && cards.length > 1) carouselTimer = window.setInterval(() => goTo(active + 1), 5200);
     };
     if (prev) prev.addEventListener('click', () => { stopAuto(); goTo(active - 1); });
     if (next) next.addEventListener('click', () => { stopAuto(); goTo(active + 1); });
