@@ -6437,6 +6437,171 @@
       text-align:center;
     }
   }
+  .vn-intro {
+    padding:146px 0 138px;
+  }
+  .vn-intro-copy {
+    max-width:980px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .vn-intro .vn-title {
+    max-width:900px;
+    margin-right:auto;
+    margin-left:auto;
+    font-size:clamp(56px,7vw,92px);
+    line-height:.98;
+  }
+  .vn-intro .vn-lead {
+    max-width:650px;
+    margin-right:auto;
+    margin-left:auto;
+  }
+  .vn-intro .vn-ad-signals {
+    max-width:820px;
+    margin:62px auto 0;
+    border-top-color:var(--vn-line);
+    text-align:left;
+  }
+  .vn-intro .vn-ad-signals strong {
+    color:var(--vn-ink);
+  }
+  .vn-intro .vn-ad-signals small {
+    color:var(--vn-muted);
+  }
+  .vn-format-opening {
+    display:flex !important;
+    align-items:center;
+    justify-content:center;
+    min-height:34vh;
+    color:#111318;
+    background:#FFFFFF;
+  }
+  .vn-format-opening::before,
+  .vn-format-opening::after {
+    display:none;
+  }
+  .vn-format-opening-inner {
+    padding:64px 22px;
+  }
+  .vn-format-number {
+    margin-bottom:22px;
+    color:#68707D;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  .vn-format-opening p {
+    display:none;
+  }
+  .vn-format-word {
+    max-width:100%;
+    font-size:clamp(68px,10vw,142px);
+    line-height:.88;
+    opacity:1;
+    filter:none;
+    transform:none;
+  }
+  .vn-format-story--mural .vn-format-opening,
+  .vn-format-story--led .vn-format-opening {
+    color:#111318;
+    background:#FFFFFF;
+  }
+  .vn-format-story--unipolar .vn-format-opening,
+  .vn-format-story--totem .vn-format-opening {
+    color:#FFFFFF;
+    background:#05080F;
+  }
+  .vn-format-story--unipolar .vn-format-number,
+  .vn-format-story--totem .vn-format-number {
+    color:rgba(255,255,255,.55);
+  }
+  .vn-summary-footer {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:48px;
+    align-items:end;
+    margin-top:44px;
+  }
+  .vn-summary-footer .vn-objectives {
+    max-width:700px;
+    border-top-color:var(--vn-line);
+  }
+  .vn-summary-footer .vn-objectives span {
+    color:#555C68;
+    border-bottom-color:var(--vn-line);
+  }
+  .vn-summary-footer .vn-objectives span:hover {
+    color:#111318;
+    background:#F5F8FD;
+  }
+  .vn-summary-footer .vn-solutions-action {
+    margin:0;
+  }
+  .vn-control {
+    padding:124px 0 132px;
+    color:#FFFFFF;
+    background:#07101F;
+  }
+  .vn-control-copy {
+    max-width:920px;
+    margin:0;
+    text-align:left;
+  }
+  .vn-control-copy .vn-title {
+    color:#FFFFFF;
+    font-size:clamp(52px,6vw,78px);
+  }
+  .vn-control-copy .vn-lead {
+    max-width:680px;
+    margin-left:0;
+    color:rgba(255,255,255,.65);
+  }
+  .vn-control-points {
+    margin-top:68px;
+    padding-top:0;
+    border-top:1px solid rgba(255,255,255,.18);
+  }
+  .vn-control-point {
+    padding-top:32px;
+  }
+  .vn-control-point span {
+    color:rgba(255,255,255,.58);
+  }
+  @media (max-width:900px) {
+    .vn-intro {
+      padding:110px 0 104px;
+    }
+    .vn-summary-footer {
+      grid-template-columns:1fr;
+    }
+    .vn-summary-footer .vn-solutions-action {
+      justify-content:flex-start;
+    }
+  }
+  @media (max-width:520px) {
+    .vn-intro {
+      padding:86px 0 82px;
+    }
+    .vn-intro .vn-title {
+      font-size:44px;
+    }
+    .vn-intro .vn-ad-signals {
+      margin-top:42px;
+    }
+    .vn-format-opening {
+      min-height:25vh;
+    }
+    .vn-format-opening-inner {
+      padding:46px 18px;
+    }
+    .vn-format-word {
+      font-size:clamp(54px,17vw,86px);
+    }
+    .vn-control {
+      padding:88px 0 92px;
+    }
+  }
   dc-import{display:block}
 </style>
 </helmet>
@@ -6485,19 +6650,9 @@
     <section class="vn-intro" aria-labelledby="vn-intro-title">
       <div class="vn-shell">
         <div class="vn-intro-copy" data-reveal>
-          <p class="vn-kicker">Publicidad exterior</p>
-          <h2 class="vn-title" id="vn-intro-title">Tu marca dentro del recorrido real de la ciudad.</h2>
-          <p class="vn-lead">Creamos campañas para que las personas encuentren tu mensaje mientras se mueven, trabajan, compran y vuelven a casa. Elegimos ubicación, formato y escala según lo que necesitas comunicar.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="vn-ad-promise" aria-labelledby="vn-ad-promise-title">
-      <div class="vn-shell">
-        <div class="vn-ad-promise-copy" data-reveal>
-          <span>Visibilidad con intención</span>
-          <h2 id="vn-ad-promise-title">Tu marca puede cambiar el paisaje.</h2>
-          <p>Elegimos el lugar, el formato y el momento para que tu campaña forme parte del recorrido cotidiano de su audiencia.</p>
+          <p class="vn-kicker">Visibilidad con intención</p>
+          <h2 class="vn-title" id="vn-intro-title">Tu marca puede cambiar el paisaje.</h2>
+          <p class="vn-lead">Elegimos el lugar, el formato y el momento para que tu campaña forme parte del recorrido real de su audiencia.</p>
           <div class="vn-ad-signals">
             <div><strong>Más visibilidad</strong><small>Aparece donde la atención sucede.</small></div>
             <div><strong>Más recordación</strong><small>Repite tu mensaje en recorridos habituales.</small></div>
@@ -6744,8 +6899,8 @@
     <section class="vn-solutions-summary" aria-labelledby="vn-solutions-title">
       <div class="vn-shell">
         <div class="vn-solutions-summary-head" data-reveal>
-          <h2 id="vn-solutions-title">Una campaña. Cuatro maneras de ocupar la ciudad.</h2>
-          <p>No elegimos el formato más grande. Elegimos el que mejor responde a tu objetivo, tu audiencia y el momento de tu marca.</p>
+          <h2 id="vn-solutions-title">Encuentra el espacio correcto para tu próxima campaña.</h2>
+          <p>Elegimos el formato según el objetivo, la audiencia y el momento de tu marca.</p>
         </div>
         <div class="vn-solutions-grid">
           <article class="vn-solution"><span>01</span><h3>Mural</h3><p>Para integrarte a la arquitectura y construir recordación cercana.</p></article>
@@ -6753,22 +6908,14 @@
           <article class="vn-solution"><span>03</span><h3>Panel LED</h3><p>Para comunicar con luz, movimiento y mensajes cambiantes.</p></article>
           <article class="vn-solution"><span>04</span><h3>Tótem</h3><p>Para acercarte al público en accesos y puntos de decisión.</p></article>
         </div>
-        <div class="vn-solutions-action"><a href="contacto.html">Encontrar mi formato</a></div>
-      </div>
-    </section>
-
-    <section class="vn-availability" aria-labelledby="vn-availability-title">
-      <div class="vn-shell vn-availability-layout">
-        <div>
-          <h2 id="vn-availability-title">La próxima marca que transforme estos espacios puede ser la tuya.</h2>
-          <p>Cuéntanos qué quieres conseguir y te ayudaremos a identificar el formato y la ubicación con mayor sentido para tu campaña.</p>
-          <a href="contacto.html">Consultar espacios disponibles</a>
-        </div>
-        <div class="vn-objectives" aria-label="Objetivos de campaña">
+        <div class="vn-summary-footer">
+          <div class="vn-objectives" aria-label="Objetivos de campaña">
           <span>Lanzar un producto</span>
           <span>Aumentar recordación</span>
           <span>Promocionar una ubicación</span>
           <span>Ganar presencia local</span>
+          </div>
+          <div class="vn-solutions-action"><a href="contacto.html">Consultar espacios disponibles</a></div>
         </div>
       </div>
     </section>
@@ -7109,60 +7256,22 @@
     <section class="vn-control" aria-labelledby="vn-control-title">
       <div class="vn-shell">
         <div class="vn-control-copy" data-reveal>
-          <p class="vn-kicker">Seguimiento de campaña</p>
-          <h2 class="vn-title" id="vn-control-title">Tu publicidad no termina cuando se instala.</h2>
-          <p class="vn-lead">Centralizamos ubicaciones, avances y estados para que sepas dónde está tu marca y cómo avanza cada etapa de la campaña.</p>
-        </div>
-        <div class="vn-control-visual" data-reveal aria-label="Vista conceptual de Vista360 Player en tres teléfonos">
-          <div class="vn-device vn-device--side" aria-hidden="true">
-            <div class="vn-device-screen">
-              <div class="vn-app-label"><span>Campañas</span><span class="vn-app-live">En línea</span></div>
-              <div class="vn-app-list">
-                <div class="vn-app-row"><i></i><div><b>Lanzamiento</b><span>3 ubicaciones activas</span></div></div>
-                <div class="vn-app-row"><i></i><div><b>Temporada</b><span>2 soportes instalados</span></div></div>
-                <div class="vn-app-row"><i></i><div><b>Institucional</b><span>Producción completada</span></div></div>
-              </div>
-              <div class="vn-app-metric"><b>100%</b><span>Información de campaña ordenada</span></div>
-            </div>
-          </div>
-          <div class="vn-device">
-            <div class="vn-device-screen">
-              <div class="vn-app-label"><span>Vista360</span><span class="vn-app-live">Campaña activa</span></div>
-              <div class="vn-app-map">
-                <span class="vn-app-pin vn-app-pin--one"></span>
-                <span class="vn-app-pin vn-app-pin--two"></span>
-                <span class="vn-app-pin vn-app-pin--three"></span>
-              </div>
-              <div class="vn-app-summary">
-                <small>Resumen de hoy</small>
-                <strong>3 puntos visibles</strong>
-              </div>
-            </div>
-          </div>
-          <div class="vn-device vn-device--side" aria-hidden="true">
-            <div class="vn-device-screen">
-              <div class="vn-app-label"><span>Actividad</span><span class="vn-app-live">Actualizado</span></div>
-              <div class="vn-app-list">
-                <div class="vn-app-row"><i></i><div><b>Producción lista</b><span>Material validado</span></div></div>
-                <div class="vn-app-row"><i></i><div><b>Instalación</b><span>Coordinación confirmada</span></div></div>
-                <div class="vn-app-row"><i></i><div><b>Seguimiento</b><span>Estado disponible</span></div></div>
-              </div>
-              <div class="vn-app-metric"><b>24/7</b><span>Tu campaña siempre a la vista</span></div>
-            </div>
-          </div>
+          <p class="vn-kicker">Servicio Vista360</p>
+          <h2 class="vn-title" id="vn-control-title">De la primera idea a la calle.</h2>
+          <p class="vn-lead">Te acompañamos para que cada decisión mantenga una misma intención: hacer que tu marca se vea clara, profesional y presente.</p>
         </div>
         <div class="vn-control-points">
           <div class="vn-control-point">
-            <strong>Tu presencia, ubicada.</strong>
-            <span>Consulta cada punto donde tu marca está activa.</span>
+            <strong>01 / Objetivo.</strong>
+            <span>Definimos qué debe conseguir la campaña antes de elegir el soporte.</span>
           </div>
           <div class="vn-control-point">
-            <strong>Avances claros.</strong>
-            <span>Revisa producción, instalación y seguimiento sin información dispersa.</span>
+            <strong>02 / Ubicación y formato.</strong>
+            <span>Seleccionamos la presencia adecuada para el recorrido de tu audiencia.</span>
           </div>
           <div class="vn-control-point">
-            <strong>Decisiones acompañadas.</strong>
-            <span>Mantén comunicación directa para ajustar y proyectar los siguientes pasos.</span>
+            <strong>03 / Adaptación e implementación.</strong>
+            <span>Cuidamos que la idea llegue al espacio con claridad y una presentación consistente.</span>
           </div>
         </div>
       </div>
@@ -7172,8 +7281,8 @@
       <div class="vn-shell">
         <div class="vn-close-copy" data-reveal>
           <p class="vn-kicker">Tu marca puede estar aquí</p>
-          <h2 class="vn-title" id="vn-close-title">Encuentra el lugar donde tu campaña será imposible de ignorar.</h2>
-          <p class="vn-lead">Cuéntanos qué quieres conseguir. Te propondremos la ubicación, el formato y la manera de convertir tu mensaje en presencia real.</p>
+          <h2 class="vn-title" id="vn-close-title">La próxima marca que transforme la ciudad puede ser la tuya.</h2>
+          <p class="vn-lead">Cuéntanos qué quieres conseguir. Encontraremos el formato y el lugar para convertirlo en presencia real.</p>
           <div class="vn-actions">
             <a class="vn-btn vn-btn--primary" href="contacto.html">Planear mi campaña</a>
             <a class="vn-btn vn-btn--secondary" href="portafolio.html">Ver ubicaciones</a>
