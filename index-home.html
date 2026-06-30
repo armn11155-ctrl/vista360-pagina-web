@@ -4697,6 +4697,336 @@
     background:rgba(255,255,255,.06);
   }
 
+  /* Product chapters replace the earlier mixed-format narrative. */
+  .vn-city,
+  .vn-blur-echo,
+  .vn-scale,
+  .vn-product,
+  .vn-facts,
+  .vn-craft,
+  .vn-chapter-white,
+  .vn-led-detail,
+  .vn-engineering {
+    display:none !important;
+  }
+  .vn-format-stories {
+    background:#FFFFFF;
+  }
+  .vn-format-story {
+    --chapter-accent:#1769E8;
+    --chapter-bg:none;
+    position:relative;
+  }
+  .vn-format-opening {
+    position:relative;
+    display:flex;
+    align-items:center;
+    min-height:92vh;
+    overflow:hidden;
+    color:#FFFFFF;
+    background:#05070C;
+  }
+  .vn-format-opening::before {
+    content:"";
+    position:absolute;
+    inset:-12%;
+    background-image:var(--chapter-bg);
+    background-position:center;
+    background-size:cover;
+    filter:blur(38px) saturate(.85) brightness(.62);
+    opacity:.8;
+    transform:scale(1.14);
+  }
+  .vn-format-opening::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 50% 48%, color-mix(in srgb,var(--chapter-accent) 26%,transparent), transparent 34%),
+      linear-gradient(180deg,rgba(3,5,9,.26),rgba(3,5,9,.74));
+  }
+  .vn-format-opening-inner {
+    position:relative;
+    z-index:1;
+    width:100%;
+    padding:120px 0;
+    text-align:center;
+  }
+  .vn-format-number {
+    display:block;
+    margin-bottom:26px;
+    color:rgba(255,255,255,.62);
+    font-size:13px;
+    font-weight:700;
+  }
+  .vn-format-word {
+    display:inline-block;
+    max-width:96vw;
+    margin:0;
+    color:transparent;
+    background-image:radial-gradient(circle,var(--chapter-accent) 0 1.45px,rgba(255,255,255,.12) 1.7px 2.5px,transparent 2.7px);
+    background-size:7px 7px;
+    background-position:center;
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 0 15px color-mix(in srgb,var(--chapter-accent) 56%,transparent));
+    font-size:clamp(86px,15vw,220px);
+    font-weight:780;
+    line-height:.82;
+    letter-spacing:0;
+    opacity:.28;
+    transform:scale(.82);
+    will-change:transform,opacity,filter;
+  }
+  .vn-format-opening p {
+    max-width:680px;
+    margin:34px auto 0;
+    color:rgba(255,255,255,.76);
+    font-size:19px;
+    font-weight:550;
+    line-height:1.55;
+  }
+  .vn-format-context {
+    position:relative;
+    display:flex;
+    align-items:center;
+    min-height:100vh;
+    overflow:hidden;
+    color:#FFFFFF;
+    background-image:var(--context-bg);
+    background-position:center;
+    background-size:cover;
+  }
+  .vn-format-context::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(90deg,rgba(4,7,12,.92),rgba(4,7,12,.55) 40%,rgba(4,7,12,.06) 74%),
+      linear-gradient(0deg,rgba(4,7,12,.4),transparent 54%);
+  }
+  .vn-format-context--right::before {
+    background:
+      linear-gradient(270deg,rgba(4,7,12,.92),rgba(4,7,12,.55) 40%,rgba(4,7,12,.06) 74%),
+      linear-gradient(0deg,rgba(4,7,12,.4),transparent 54%);
+  }
+  .vn-format-context-copy {
+    position:relative;
+    z-index:1;
+    max-width:590px;
+    padding:120px 0;
+  }
+  .vn-format-context--right .vn-format-context-copy {
+    margin-left:auto;
+  }
+  .vn-format-context-copy span {
+    color:color-mix(in srgb,var(--chapter-accent) 70%,white);
+    font-size:14px;
+    font-weight:800;
+  }
+  .vn-format-context-copy h3 {
+    margin:20px 0 0;
+    font-size:62px;
+    line-height:1.02;
+    letter-spacing:0;
+  }
+  .vn-format-context-copy p {
+    margin:26px 0 0;
+    color:rgba(255,255,255,.72);
+    font-size:18px;
+    line-height:1.6;
+  }
+  .vn-format-process {
+    padding:140px 0 150px;
+    background:#F5F5F7;
+  }
+  .vn-format-process-head {
+    display:grid;
+    grid-template-columns:1fr .7fr;
+    align-items:end;
+    gap:72px;
+    margin-bottom:70px;
+  }
+  .vn-format-process-head h3 {
+    margin:0;
+    font-size:58px;
+    line-height:1.04;
+    letter-spacing:0;
+  }
+  .vn-format-process-head p {
+    margin:0;
+    color:var(--vn-muted);
+    font-size:17px;
+    line-height:1.6;
+  }
+  .vn-format-process-grid {
+    display:grid;
+    grid-template-columns:1.35fr .65fr;
+    gap:22px;
+  }
+  .vn-process-image {
+    margin:0;
+  }
+  .vn-process-image img {
+    display:block;
+    width:100%;
+    height:540px;
+    object-fit:cover;
+  }
+  .vn-process-image--small img {
+    height:360px;
+  }
+  .vn-process-image figcaption {
+    padding-top:22px;
+  }
+  .vn-process-image strong,
+  .vn-process-image span {
+    display:block;
+  }
+  .vn-process-image strong {
+    margin-bottom:8px;
+    font-size:19px;
+  }
+  .vn-process-image span {
+    color:var(--vn-muted);
+    font-size:15px;
+    line-height:1.55;
+  }
+  .vn-process-side {
+    display:flex;
+    flex-direction:column;
+    gap:34px;
+  }
+  .vn-process-note {
+    padding:28px 0;
+    border-top:1px solid var(--vn-line);
+  }
+  .vn-process-note b {
+    display:block;
+    margin-bottom:10px;
+    font-size:21px;
+  }
+  .vn-process-note p {
+    margin:0;
+    color:var(--vn-muted);
+    font-size:15px;
+    line-height:1.55;
+  }
+  .vn-format-product {
+    position:relative;
+    min-height:1120px;
+    overflow:hidden;
+    padding:130px 0 80px;
+    background:#FFFFFF;
+    text-align:center;
+  }
+  .vn-format-product-copy {
+    position:relative;
+    z-index:2;
+    max-width:840px;
+    margin:0 auto;
+  }
+  .vn-format-product-copy span {
+    color:var(--chapter-accent);
+    font-size:14px;
+    font-weight:800;
+  }
+  .vn-format-product-copy h3 {
+    margin:18px 0 0;
+    font-size:62px;
+    line-height:1.02;
+    letter-spacing:0;
+  }
+  .vn-format-product-copy p {
+    max-width:660px;
+    margin:24px auto 0;
+    color:var(--vn-muted);
+    font-size:18px;
+    line-height:1.58;
+  }
+  .vn-format-product-stage {
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:min(1280px,100%);
+    height:690px;
+    margin:38px auto 0;
+  }
+  .vn-format-product-stage::after {
+    content:"";
+    position:absolute;
+    right:17%;
+    bottom:4%;
+    left:17%;
+    height:15%;
+    border-radius:50%;
+    background:color-mix(in srgb,var(--chapter-accent) 12%,transparent);
+    filter:blur(72px);
+  }
+  .vn-format-product-stage img {
+    position:relative;
+    z-index:1;
+    display:block;
+    width:92%;
+    height:100%;
+    object-fit:contain;
+    will-change:transform;
+  }
+  .vn-format-story--mural .vn-format-product-stage img {
+    transform:translate3d(-2%,10px,0) rotate(-1.4deg) scale(1.03);
+  }
+  .vn-format-story--unipolar .vn-format-product-stage img {
+    transform:translate3d(6%,44px,0) rotate(1.3deg) scale(.96);
+  }
+  .vn-format-story--led .vn-format-product-stage img {
+    transform:translate3d(-4%,36px,0) rotate(-1.2deg) scale(.94);
+  }
+  .vn-format-story--totem .vn-format-product-stage img {
+    transform:translate3d(8%,34px,0) rotate(2.2deg) scale(.9);
+  }
+  .vn-format-benefits {
+    padding:0 0 148px;
+    background:#FFFFFF;
+  }
+  .vn-format-benefits-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--vn-line);
+  }
+  .vn-format-benefit {
+    min-height:250px;
+    padding:38px 34px 0;
+    border-right:1px solid var(--vn-line);
+  }
+  .vn-format-benefit:first-child {
+    padding-left:0;
+  }
+  .vn-format-benefit:last-child {
+    padding-right:0;
+    border-right:0;
+  }
+  .vn-format-benefit span {
+    display:block;
+    margin-bottom:28px;
+    color:var(--chapter-accent);
+    font-size:13px;
+    font-weight:800;
+  }
+  .vn-format-benefit h4 {
+    margin:0 0 12px;
+    font-size:24px;
+    line-height:1.15;
+    letter-spacing:0;
+  }
+  .vn-format-benefit p {
+    margin:0;
+    color:var(--vn-muted);
+    font-size:15px;
+    line-height:1.58;
+  }
+
   @media (max-width:900px) {
     .vn-shell {
       width:min(100% - 44px, 720px);
@@ -4709,6 +5039,88 @@
     .vn-lead {
       margin-top:22px;
       font-size:18px;
+    }
+    .vn-format-opening {
+      min-height:76vh;
+    }
+    .vn-format-opening-inner {
+      padding:92px 0;
+    }
+    .vn-format-word {
+      font-size:clamp(64px,18vw,140px);
+    }
+    .vn-format-opening p {
+      width:min(100% - 44px,620px);
+      font-size:17px;
+    }
+    .vn-format-context {
+      align-items:flex-end;
+      min-height:82vh;
+      background-position:58% center;
+    }
+    .vn-format-context::before,
+    .vn-format-context--right::before {
+      background:linear-gradient(0deg,rgba(4,7,12,.95),rgba(4,7,12,.58) 60%,rgba(4,7,12,.08));
+    }
+    .vn-format-context-copy,
+    .vn-format-context--right .vn-format-context-copy {
+      max-width:100%;
+      margin:0;
+      padding:92px 0 68px;
+    }
+    .vn-format-context-copy h3 {
+      font-size:44px;
+    }
+    .vn-format-process {
+      padding:96px 0 104px;
+    }
+    .vn-format-process-head {
+      grid-template-columns:1fr;
+      gap:22px;
+      margin-bottom:44px;
+    }
+    .vn-format-process-head h3 {
+      font-size:44px;
+    }
+    .vn-format-process-grid {
+      grid-template-columns:1fr;
+      gap:42px;
+    }
+    .vn-process-image img,
+    .vn-process-image--small img {
+      height:auto;
+      aspect-ratio:16/10;
+    }
+    .vn-format-product {
+      min-height:0;
+      padding:96px 0 42px;
+    }
+    .vn-format-product-copy {
+      width:min(100% - 44px,720px);
+    }
+    .vn-format-product-copy h3 {
+      font-size:44px;
+    }
+    .vn-format-product-stage {
+      height:570px;
+      margin-top:22px;
+    }
+    .vn-format-benefits {
+      padding-bottom:100px;
+    }
+    .vn-format-benefits-grid {
+      grid-template-columns:1fr;
+    }
+    .vn-format-benefit,
+    .vn-format-benefit:first-child,
+    .vn-format-benefit:last-child {
+      min-height:0;
+      padding:30px 0;
+      border-right:0;
+      border-bottom:1px solid var(--vn-line);
+    }
+    .vn-format-benefit:last-child {
+      border-bottom:0;
     }
     .vn-highlights {
       padding:92px 0 104px;
@@ -5027,6 +5439,18 @@
     .vn-close .vn-title {
       font-size:42px;
     }
+    .vn-format-word {
+      font-size:17vw;
+      background-size:6px 6px;
+    }
+    .vn-format-context-copy h3,
+    .vn-format-process-head h3,
+    .vn-format-product-copy h3 {
+      font-size:39px;
+    }
+    .vn-format-product-stage {
+      height:430px;
+    }
     .vn-intro::after {
       right:-40%;
       bottom:-4%;
@@ -5220,6 +5644,228 @@
           <p class="vn-lead">Vista360 convierte ubicaciones, escala y ejecución en una presencia que se integra a la ciudad y permanece en la memoria.</p>
         </div>
       </div>
+    </section>
+
+    <section class="vn-format-stories" aria-label="Formatos publicitarios Vista360">
+      <article class="vn-format-story vn-format-story--mural" data-format-story style="--chapter-accent:#1769E8;--chapter-bg:url('panels/story-mural-newyork-v2.jpg');">
+        <header class="vn-format-opening">
+          <div class="vn-format-opening-inner">
+            <span class="vn-format-number">01 / Formato arquitectónico</span>
+            <h2 class="vn-format-word" data-format-word>MURAL</h2>
+            <p>Un soporte fijado a la arquitectura, iluminado para convertir una pared disponible en presencia de marca.</p>
+          </div>
+        </header>
+        <section class="vn-format-context" style="--context-bg:url('panels/story-mural-newyork-v2.jpg');">
+          <div class="vn-shell">
+            <div class="vn-format-context-copy">
+              <span>Integración urbana</span>
+              <h3>La pared deja de ser fondo.</h3>
+              <p>El panel mural acompaña la proporción del edificio y mantiene la gráfica visible de día y de noche sin perder su condición de producto instalado.</p>
+            </div>
+          </div>
+        </section>
+        <section class="vn-format-process">
+          <div class="vn-shell">
+            <div class="vn-format-process-head">
+              <h3>Precisión desde el muro hasta la gráfica.</h3>
+              <p>Medición, bastidor, tensión e iluminación se coordinan para que el panel se lea como una sola pieza.</p>
+            </div>
+            <div class="vn-format-process-grid">
+              <figure class="vn-process-image">
+                <img src="panels/story-mural-install-detail-v2.jpg" loading="lazy" decoding="async" alt="Detalle del montaje de la gráfica en un panel mural">
+                <figcaption><strong>Tensión y borde limpio.</strong><span>La superficie se ajusta dentro del marco para conservar continuidad y proporción.</span></figcaption>
+              </figure>
+              <div class="vn-process-side">
+                <figure class="vn-process-image vn-process-image--small">
+                  <img src="panels/detail-mural.jpg" loading="lazy" decoding="async" alt="Detalle de estructura e iluminación del panel mural">
+                  <figcaption><strong>Luz dirigida.</strong><span>Las luminarias se orientan para cubrir la gráfica sin reflejos innecesarios.</span></figcaption>
+                </figure>
+                <div class="vn-process-note"><b>El muro define la medida.</b><p>La propuesta parte de la superficie real, sus accesos y la distancia desde la que será observada.</p></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="vn-format-product">
+          <div class="vn-format-product-copy">
+            <span>Panel mural Vista360</span>
+            <h3>Un marco que transforma la superficie.</h3>
+            <p>El bastidor separa la gráfica del muro, organiza la iluminación y convierte la instalación en un producto reconocible.</p>
+          </div>
+          <div class="vn-format-product-stage"><img src="panels/story-mural-panel-transparent-v4.png" loading="lazy" decoding="async" alt="Panel mural Vista360 sin fondo"></div>
+        </section>
+        <section class="vn-format-benefits">
+          <div class="vn-shell vn-format-benefits-grid">
+            <div class="vn-format-benefit"><span>01</span><h4>Presencia integrada.</h4><p>Aprovecha una pared existente sin perder profundidad, marco ni iluminación propia.</p></div>
+            <div class="vn-format-benefit"><span>02</span><h4>Lectura cercana.</h4><p>Funciona en recorridos peatonales y vehiculares donde la fachada permanece dentro del campo visual.</p></div>
+            <div class="vn-format-benefit"><span>03</span><h4>Escala adaptable.</h4><p>El bastidor puede responder a proporciones distintas manteniendo una terminación consistente.</p></div>
+          </div>
+        </section>
+      </article>
+
+      <article class="vn-format-story vn-format-story--unipolar" data-format-story style="--chapter-accent:#246FE5;--chapter-bg:url('panels/story-unipolar-newyork-v2.jpg');">
+        <header class="vn-format-opening">
+          <div class="vn-format-opening-inner">
+            <span class="vn-format-number">02 / Gran distancia</span>
+            <h2 class="vn-format-word" data-format-word>UNIPOLAR</h2>
+            <p>Altura, estructura y una superficie amplia para ordenar la mirada en avenidas y recorridos de alta velocidad.</p>
+          </div>
+        </header>
+        <section class="vn-format-context vn-format-context--right" style="--context-bg:url('panels/story-unipolar-newyork-v2.jpg');">
+          <div class="vn-shell">
+            <div class="vn-format-context-copy">
+              <span>Escala monumental</span>
+              <h3>Visible antes de llegar.</h3>
+              <p>Su elevación libera el mensaje del ruido inmediato de la vía y crea una lectura clara mientras el público se aproxima.</p>
+            </div>
+          </div>
+        </section>
+        <section class="vn-format-process">
+          <div class="vn-shell">
+            <div class="vn-format-process-head">
+              <h3>La fuerza está en lo que sostiene la imagen.</h3>
+              <p>Columna, plataforma, anclajes y acceso técnico trabajan juntos para mantener la superficie estable.</p>
+            </div>
+            <div class="vn-format-process-grid">
+              <figure class="vn-process-image">
+                <img src="panels/story-cable-detail-v3.jpg" loading="lazy" decoding="async" alt="Cable y anclaje de seguridad de una estructura unipolar">
+                <figcaption><strong>Seguridad estructural.</strong><span>Los puntos de unión distribuyen esfuerzos y complementan la fijación principal.</span></figcaption>
+              </figure>
+              <div class="vn-process-side">
+                <figure class="vn-process-image vn-process-image--small">
+                  <img src="panels/detail-unipolar.jpg" loading="lazy" decoding="async" alt="Detalle técnico de un panel unipolar">
+                  <figcaption><strong>Acceso previsto.</strong><span>La plataforma permite revisar iluminación, gráfica y estructura.</span></figcaption>
+                </figure>
+                <div class="vn-process-note"><b>Diseñado para la distancia.</b><p>La proporción del arte y el contraste se definen según velocidad, ángulo y aproximación.</p></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="vn-format-product">
+          <div class="vn-format-product-copy">
+            <span>Panel unipolar Vista360</span>
+            <h3>Una estructura que domina la vía.</h3>
+            <p>La columna eleva el mensaje y deja visible la ingeniería que permite sostener una gran superficie.</p>
+          </div>
+          <div class="vn-format-product-stage"><img src="panels/story-unipolar-transparent.png" loading="lazy" decoding="async" alt="Panel unipolar Vista360 sin fondo"></div>
+        </section>
+        <section class="vn-format-benefits">
+          <div class="vn-shell vn-format-benefits-grid">
+            <div class="vn-format-benefit"><span>01</span><h4>Gran alcance.</h4><p>Su altura y tamaño permiten iniciar la lectura a mayor distancia.</p></div>
+            <div class="vn-format-benefit"><span>02</span><h4>Presencia continua.</h4><p>La iluminación conserva el mensaje visible cuando cambia la luz del entorno.</p></div>
+            <div class="vn-format-benefit"><span>03</span><h4>Referencia urbana.</h4><p>Una ubicación estratégica puede convertir el soporte en un punto reconocible del recorrido.</p></div>
+          </div>
+        </section>
+      </article>
+
+      <article class="vn-format-story vn-format-story--led" data-format-story style="--chapter-accent:#1258D3;--chapter-bg:url('panels/story-led-macro-v2.jpg');">
+        <header class="vn-format-opening">
+          <div class="vn-format-opening-inner">
+            <span class="vn-format-number">03 / Contenido dinámico</span>
+            <h2 class="vn-format-word" data-format-word>LED</h2>
+            <p>Una gran superficie elevada que combina presencia física, luminosidad y contenido capaz de cambiar.</p>
+          </div>
+        </header>
+        <section class="vn-format-context" style="--context-bg:url('panels/premium-led.jpg');">
+          <div class="vn-shell">
+            <div class="vn-format-context-copy">
+              <span>Luz en movimiento</span>
+              <h3>La campaña puede responder al momento.</h3>
+              <p>El panel LED mantiene la escala del unipolar y añade programación para mostrar distintas piezas durante el día.</p>
+            </div>
+          </div>
+        </section>
+        <section class="vn-format-process">
+          <div class="vn-shell">
+            <div class="vn-format-process-head">
+              <h3>Una imagen grande construida módulo a módulo.</h3>
+              <p>Gabinetes, datos, energía y ventilación forman una superficie continua preparada para exterior.</p>
+            </div>
+            <div class="vn-format-process-grid">
+              <figure class="vn-process-image">
+                <img src="panels/story-led-service-v3.jpg" loading="lazy" decoding="async" alt="Conexión técnica de módulos LED exteriores">
+                <figcaption><strong>Acceso modular.</strong><span>Cada gabinete puede revisarse sin desmontar toda la pantalla.</span></figcaption>
+              </figure>
+              <div class="vn-process-side">
+                <figure class="vn-process-image vn-process-image--small">
+                  <img src="panels/story-led-macro-v2.jpg" loading="lazy" decoding="async" alt="Macrofotografía de píxeles de un panel LED">
+                  <figcaption><strong>Píxeles alineados.</strong><span>El detalle cercano se convierte en una imagen continua a la distancia correcta.</span></figcaption>
+                </figure>
+                <div class="vn-process-note"><b>Brillo controlado.</b><p>El contenido se ajusta para conservar contraste sin perder naturalidad dentro del entorno.</p></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="vn-format-product">
+          <div class="vn-format-product-copy">
+            <span>Panel LED unipolar Vista360</span>
+            <h3>La escala del exterior. La flexibilidad de una pantalla.</h3>
+            <p>Un panel digital elevado sobre columna para campañas que necesitan presencia y capacidad de actualización.</p>
+          </div>
+          <div class="vn-format-product-stage"><img src="panels/story-led-unipolar-transparent-v4.png" loading="lazy" decoding="async" alt="Panel LED unipolar Vista360 sin fondo"></div>
+        </section>
+        <section class="vn-format-benefits">
+          <div class="vn-shell vn-format-benefits-grid">
+            <div class="vn-format-benefit"><span>01</span><h4>Contenido programable.</h4><p>Permite organizar distintas piezas y horarios dentro de una misma ubicación.</p></div>
+            <div class="vn-format-benefit"><span>02</span><h4>Luz propia.</h4><p>La emisión directa mantiene contraste y presencia durante diferentes condiciones ambientales.</p></div>
+            <div class="vn-format-benefit"><span>03</span><h4>Mantenimiento modular.</h4><p>El acceso posterior facilita revisar componentes específicos de la superficie.</p></div>
+          </div>
+        </section>
+      </article>
+
+      <article class="vn-format-story vn-format-story--totem" data-format-story style="--chapter-accent:#4A76D8;--chapter-bg:url('panels/premium-totem.jpg');">
+        <header class="vn-format-opening">
+          <div class="vn-format-opening-inner">
+            <span class="vn-format-number">04 / Lectura cercana</span>
+            <h2 class="vn-format-word" data-format-word>TÓTEM</h2>
+            <p>Un formato vertical para accesos, recorridos peatonales y puntos donde el público puede acercarse al mensaje.</p>
+          </div>
+        </header>
+        <section class="vn-format-context vn-format-context--right" style="--context-bg:url('panels/totem-hero-wide.jpg');">
+          <div class="vn-shell">
+            <div class="vn-format-context-copy">
+              <span>Proximidad</span>
+              <h3>Presencia a la altura del recorrido.</h3>
+              <p>El tótem ocupa menos superficie horizontal y mantiene la comunicación visible en entradas, plazas y zonas de espera.</p>
+            </div>
+          </div>
+        </section>
+        <section class="vn-format-process">
+          <div class="vn-shell">
+            <div class="vn-format-process-head">
+              <h3>Compacto por fuera. Preparado por dentro.</h3>
+              <p>Base, gabinete, ventilación y acceso técnico se integran dentro de una pieza vertical limpia.</p>
+            </div>
+            <div class="vn-format-process-grid">
+              <figure class="vn-process-image">
+                <img src="panels/detail-totem.jpg" loading="lazy" decoding="async" alt="Detalle constructivo de un tótem publicitario">
+                <figcaption><strong>Gabinete protegido.</strong><span>La estructura organiza pantalla, conexiones y ventilación dentro de un volumen compacto.</span></figcaption>
+              </figure>
+              <div class="vn-process-side">
+                <figure class="vn-process-image vn-process-image--small">
+                  <img src="panels/totem.jpg" loading="lazy" decoding="async" alt="Tótem publicitario instalado en contexto">
+                  <figcaption><strong>Ubicación cercana.</strong><span>Su escala acompaña accesos y recorridos sin bloquear el espacio.</span></figcaption>
+                </figure>
+                <div class="vn-process-note"><b>Base estable.</b><p>La fijación inferior mantiene la pieza firme y facilita definir una posición precisa.</p></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="vn-format-product">
+          <div class="vn-format-product-copy">
+            <span>Tótem Vista360</span>
+            <h3>Una presencia vertical, cercana y precisa.</h3>
+            <p>El formato concentra la comunicación en una pieza compacta que puede integrarse a distintos recorridos.</p>
+          </div>
+          <div class="vn-format-product-stage"><img src="panels/story-totem-transparent-v4.png" loading="lazy" decoding="async" alt="Tótem Vista360 sin fondo"></div>
+        </section>
+        <section class="vn-format-benefits">
+          <div class="vn-shell vn-format-benefits-grid">
+            <div class="vn-format-benefit"><span>01</span><h4>Lectura próxima.</h4><p>Permite trabajar mensajes con mayor detalle en zonas de menor velocidad.</p></div>
+            <div class="vn-format-benefit"><span>02</span><h4>Huella compacta.</h4><p>La proporción vertical aprovecha espacios reducidos sin perder visibilidad.</p></div>
+            <div class="vn-format-benefit"><span>03</span><h4>Integración flexible.</h4><p>Puede acompañar entradas, circulaciones y puntos de decisión dentro del recorrido.</p></div>
+          </div>
+        </section>
+      </article>
     </section>
 
     <section class="vn-city" aria-labelledby="vn-city-title">
@@ -6145,6 +6791,7 @@ class Component extends DCLogic {
     this.initAppleScroll();
     this.initProductWordScroll();
     this.initHomepageInteractions();
+    this.initFormatStoryScroll();
     const els = Array.from(root.querySelectorAll('[data-reveal]'));
     const formatChapters = Array.from(root.querySelectorAll('.v-format-chapter'));
     const revealNow = (el) => {
@@ -6438,6 +7085,62 @@ class Component extends DCLogic {
     };
   }
 
+  initFormatStoryScroll() {
+    const root = this.rootEl;
+    if (!root) return;
+    const stories = Array.from(root.querySelectorAll('[data-format-story]'));
+    if (!stories.length) return;
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let raf = 0;
+    const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+    const update = () => {
+      raf = 0;
+      const vh = Math.max(window.innerHeight || 0, 1);
+      stories.forEach((story) => {
+        const opening = story.querySelector('.vn-format-opening');
+        const word = story.querySelector('[data-format-word]');
+        const context = story.querySelector('.vn-format-context');
+        const product = story.querySelector('.vn-format-product-stage');
+        const productImage = product ? product.querySelector('img') : null;
+        if (opening && word) {
+          const rect = opening.getBoundingClientRect();
+          const p = clamp((vh - rect.top) / (vh + rect.height), 0, 1);
+          const presence = clamp(1 - Math.abs(p - .5) * 2.35, 0, 1);
+          word.style.opacity = String(.18 + presence * .82);
+          if (!reduced) {
+            const pulse = Math.sin(p * Math.PI * 8) * .008 * presence;
+            word.style.transform = 'translate3d(0,' + ((.5 - p) * 50).toFixed(1) + 'px,0) scale(' + (.8 + presence * .2 + pulse).toFixed(3) + ')';
+            word.style.filter = 'brightness(' + (.72 + presence * .82).toFixed(2) + ') saturate(' + (.88 + presence * .42).toFixed(2) + ') drop-shadow(0 0 ' + (12 + presence * 30).toFixed(0) + 'px color-mix(in srgb,var(--chapter-accent) ' + (24 + presence * 44).toFixed(0) + '%,transparent))';
+            word.style.backgroundPosition = 'center ' + (p * 20).toFixed(1) + 'px';
+          }
+        }
+        if (context && !reduced) {
+          const rect = context.getBoundingClientRect();
+          const p = clamp((vh - rect.top) / (vh + rect.height), 0, 1);
+          context.style.backgroundPosition = 'center calc(50% + ' + ((p - .5) * 56).toFixed(1) + 'px)';
+        }
+        if (product && productImage && !reduced) {
+          const rect = product.getBoundingClientRect();
+          const p = clamp((vh - rect.top) / (vh + rect.height), 0, 1);
+          const presence = clamp(1 - Math.abs(p - .52) * 2, 0, 1);
+          productImage.style.translate = '0 ' + (34 - presence * 52).toFixed(1) + 'px';
+          productImage.style.scale = (.94 + presence * .06).toFixed(3);
+        }
+      });
+    };
+    const requestUpdate = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    window.addEventListener('scroll', requestUpdate, { passive:true });
+    window.addEventListener('resize', requestUpdate, { passive:true });
+    update();
+    this._formatStoryCleanup = () => {
+      window.removeEventListener('scroll', requestUpdate);
+      window.removeEventListener('resize', requestUpdate);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }
+
   startNetwork() {
     const canvas = this.netEl;
     const wrap = canvas && canvas.parentElement;
@@ -6539,6 +7242,7 @@ class Component extends DCLogic {
     if (this._premiumScrollCleanup) this._premiumScrollCleanup();
     if (this._productWordCleanup) this._productWordCleanup();
     if (this._homepageInteractionCleanup) this._homepageInteractionCleanup();
+    if (this._formatStoryCleanup) this._formatStoryCleanup();
   }
 
   renderVals() {
