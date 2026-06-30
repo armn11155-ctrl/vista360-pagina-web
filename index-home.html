@@ -5999,6 +5999,16 @@
     min-height:100vh;
     border-top:1px solid rgba(255,255,255,.08);
   }
+  .vn-format-context::before {
+    background:
+      linear-gradient(90deg,rgba(4,7,12,.78),rgba(4,7,12,.36) 34%,rgba(4,7,12,.02) 62%),
+      linear-gradient(0deg,rgba(4,7,12,.28),transparent 52%);
+  }
+  .vn-format-context--right::before {
+    background:
+      linear-gradient(270deg,rgba(4,7,12,.78),rgba(4,7,12,.36) 34%,rgba(4,7,12,.02) 62%),
+      linear-gradient(0deg,rgba(4,7,12,.28),transparent 52%);
+  }
   .vn-format-story--mural .vn-format-context {
     min-height:94vh;
     background-position:center;
@@ -6027,6 +6037,7 @@
     margin-top:18px;
     font-size:clamp(56px,6.5vw,92px);
     line-height:.96;
+    text-shadow:0 3px 28px rgba(0,0,0,.34);
   }
   .vn-format-context-copy p {
     max-width:540px;
@@ -6047,6 +6058,52 @@
     font-size:13px;
     font-weight:750;
     backdrop-filter:blur(10px);
+  }
+  .vn-context-cta {
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top:28px;
+    color:#FFFFFF;
+    font-size:15px;
+    font-weight:800;
+    text-decoration:none;
+  }
+  .vn-context-cta::after {
+    content:"\2192";
+    transition:transform .25s ease;
+  }
+  .vn-context-cta:hover::after {
+    transform:translateX(5px);
+  }
+  .vn-story-nav {
+    position:fixed;
+    top:50%;
+    right:22px;
+    z-index:20;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    padding:12px 9px;
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:18px;
+    background:rgba(5,8,15,.52);
+    backdrop-filter:blur(14px);
+    transform:translateY(-50%);
+  }
+  .vn-story-nav a {
+    display:block;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:rgba(255,255,255,.42);
+    text-indent:-9999px;
+    transition:background .2s ease,transform .2s ease;
+  }
+  .vn-story-nav a:hover,
+  .vn-story-nav a:focus-visible {
+    background:#72A9FF;
+    transform:scale(1.45);
   }
   .vn-solutions-summary {
     padding:126px 0 138px;
@@ -6121,6 +6178,56 @@
     font-weight:800;
     text-decoration:none;
   }
+  .vn-availability {
+    padding:116px 0;
+    color:#FFFFFF;
+    background:#07101F;
+  }
+  .vn-availability-layout {
+    display:grid;
+    grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);
+    gap:90px;
+    align-items:end;
+  }
+  .vn-availability h2 {
+    max-width:760px;
+    margin:0;
+    font-size:62px;
+    line-height:1.02;
+    letter-spacing:0;
+  }
+  .vn-availability p {
+    margin:22px 0 0;
+    color:rgba(255,255,255,.66);
+    font-size:17px;
+    line-height:1.6;
+  }
+  .vn-objectives {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    border-top:1px solid rgba(255,255,255,.18);
+  }
+  .vn-objectives span {
+    padding:18px 14px 18px 0;
+    border-bottom:1px solid rgba(255,255,255,.14);
+    color:rgba(255,255,255,.82);
+    font-size:14px;
+    font-weight:700;
+  }
+  .vn-availability a {
+    display:inline-flex;
+    margin-top:28px;
+    padding:14px 21px;
+    border-radius:6px;
+    background:#1769E8;
+    color:#FFFFFF;
+    font-size:15px;
+    font-weight:800;
+    text-decoration:none;
+  }
+  [data-reveal] {
+    transition:none !important;
+  }
   @media (max-width:900px) {
     .vn-format-context,
     .vn-format-story--mural .vn-format-context,
@@ -6134,6 +6241,10 @@
       max-width:100%;
       padding:110px 0 70px;
     }
+    .vn-format-context::before,
+    .vn-format-context--right::before {
+      background:linear-gradient(0deg,rgba(4,7,12,.9),rgba(4,7,12,.36) 56%,rgba(4,7,12,0) 82%);
+    }
     .vn-format-context-copy h3 {
       font-size:54px;
     }
@@ -6146,6 +6257,16 @@
     }
     .vn-solutions-grid {
       grid-template-columns:1fr 1fr;
+    }
+    .vn-story-nav {
+      display:none;
+    }
+    .vn-availability-layout {
+      grid-template-columns:1fr;
+      gap:54px;
+    }
+    .vn-availability h2 {
+      font-size:48px;
     }
     .vn-solution,
     .vn-solution:first-child,
@@ -6216,6 +6337,15 @@
       width:100%;
       text-align:center;
     }
+    .vn-availability {
+      padding:86px 0;
+    }
+    .vn-availability h2 {
+      font-size:40px;
+    }
+    .vn-objectives {
+      grid-template-columns:1fr;
+    }
   }
   dc-import{display:block}
 </style>
@@ -6262,6 +6392,12 @@
   </section>
 
   <main class="vn-story">
+    <nav class="vn-story-nav" aria-label="Recorrido de formatos">
+      <a href="#formato-mural" aria-label="Ir a Mural">Mural</a>
+      <a href="#formato-unipolar" aria-label="Ir a Unipolar">Unipolar</a>
+      <a href="#formato-led" aria-label="Ir a Panel LED">LED</a>
+      <a href="#formato-totem" aria-label="Ir a Tótem">Tótem</a>
+    </nav>
     <section class="vn-intro" aria-labelledby="vn-intro-title">
       <div class="vn-shell">
         <div class="vn-intro-copy" data-reveal>
@@ -6287,17 +6423,8 @@
       </div>
     </section>
 
-    <section class="vn-impact-number" aria-labelledby="vn-impact-number-title">
-      <div class="vn-shell" data-reveal>
-        <span>Presencia que se multiplica</span>
-        <strong>1</strong>
-        <h2 id="vn-impact-number-title">ubicación. Miles de oportunidades para ser visto.</h2>
-        <p>Cuando el lugar forma parte del recorrido diario, cada paso y cada trayecto vuelven a poner tu marca frente a su audiencia.</p>
-      </div>
-    </section>
-
     <section class="vn-format-stories" aria-label="Formatos publicitarios Vista360">
-      <article class="vn-format-story vn-format-story--mural" data-format-story style="--chapter-accent:#1769E8;--chapter-bg:url('panels/campaign-mural-automotive-v2.jpg');">
+      <article class="vn-format-story vn-format-story--mural" data-format-story style="--chapter-accent:#1769E8;--chapter-bg:url('panels/campaign-mural-framed-v3.png');">
         <header class="vn-format-opening">
           <div class="vn-format-opening-inner">
             <span class="vn-format-number">01 / Formato arquitectónico</span>
@@ -6305,13 +6432,14 @@
             <p>Una campaña que se integra a la arquitectura y acompaña el recorrido diario de peatones y conductores.</p>
           </div>
         </header>
-        <section class="vn-format-context vn-format-context--right" style="--context-bg:url('panels/campaign-mural-automotive-v2.jpg');">
+        <section class="vn-format-context vn-format-context--right" id="formato-mural" style="--context-bg:url('panels/campaign-mural-framed-v3.png');">
           <div class="vn-shell">
             <div class="vn-format-context-copy">
               <span>01 / Mural</span>
               <h3>Tu marca se vuelve parte del lugar.</h3>
               <p>Una fachada estratégica se transforma en una presencia que la ciudad reconoce y recuerda.</p>
               <div class="vn-context-benefits"><b>Alta recordación</b><b>Cercanía</b><b>Visibilidad nocturna</b></div>
+              <a class="vn-context-cta" href="contacto.html">Quiero mi marca en esta fachada</a>
             </div>
           </div>
         </section>
@@ -6362,13 +6490,14 @@
             <p>Imagina tu marca apareciendo por encima de la vía, visible desde lejos y presente durante todo el trayecto.</p>
           </div>
         </header>
-        <section class="vn-format-context vn-format-context--right" style="--context-bg:url('panels/campaign-unipolar-fashion-v2.jpg');">
+        <section class="vn-format-context vn-format-context--right" id="formato-unipolar" style="--context-bg:url('panels/campaign-unipolar-fashion-v2.jpg');">
           <div class="vn-shell">
             <div class="vn-format-context-copy">
               <span>02 / Unipolar</span>
               <h3>Haz que te vean antes de llegar.</h3>
               <p>Altura, distancia y repetición para convertir tu campaña en una referencia dentro del recorrido.</p>
               <div class="vn-context-benefits"><b>Gran alcance</b><b>Frecuencia diaria</b><b>Posicionamiento</b></div>
+              <a class="vn-context-cta" href="contacto.html">Quiero mi marca en esta vía</a>
             </div>
           </div>
         </section>
@@ -6419,13 +6548,14 @@
             <p>Tu marca puede cambiar de mensaje, aprovechar distintos horarios y seguir destacando con luz propia.</p>
           </div>
         </header>
-        <section class="vn-format-context" style="--context-bg:url('panels/campaign-led-technology-v2.jpg');">
+        <section class="vn-format-context" id="formato-led" style="--context-bg:url('panels/campaign-led-technology-v2.jpg');">
           <div class="vn-shell">
             <div class="vn-format-context-copy">
               <span>03 / Panel LED</span>
               <h3>El mensaje correcto en el momento correcto.</h3>
               <p>Una ubicación viva para lanzar, cambiar y actualizar mensajes mientras la ciudad sigue en movimiento.</p>
               <div class="vn-context-benefits"><b>Movimiento</b><b>Programación</b><b>Actualización inmediata</b></div>
+              <a class="vn-context-cta" href="contacto.html">Quiero una campaña dinámica</a>
             </div>
           </div>
         </section>
@@ -6476,13 +6606,14 @@
             <p>Tu marca presente justo donde las personas entran, esperan, deciden y cambian de dirección.</p>
           </div>
         </header>
-        <section class="vn-format-context" style="--context-bg:url('panels/campaign-totem-fragrance-v2.jpg');">
+        <section class="vn-format-context" id="formato-totem" style="--context-bg:url('panels/campaign-totem-fragrance-v2.jpg');">
           <div class="vn-shell">
             <div class="vn-format-context-copy">
               <span>04 / Tótem</span>
               <h3>Tu publicidad cerca de la decisión.</h3>
               <p>Presencia a escala humana en accesos y zonas donde una visita, una compra o una elección está por suceder.</p>
               <div class="vn-context-benefits"><b>Proximidad</b><b>Más atención</b><b>Impulso a la acción</b></div>
+              <a class="vn-context-cta" href="contacto.html">Quiero aparecer cerca de la decisión</a>
             </div>
           </div>
         </section>
@@ -6539,6 +6670,22 @@
           <article class="vn-solution"><span>04</span><h3>Tótem</h3><p>Para acercarte al público en accesos y puntos de decisión.</p></article>
         </div>
         <div class="vn-solutions-action"><a href="contacto.html">Encontrar mi formato</a></div>
+      </div>
+    </section>
+
+    <section class="vn-availability" aria-labelledby="vn-availability-title">
+      <div class="vn-shell vn-availability-layout">
+        <div>
+          <h2 id="vn-availability-title">La próxima marca que transforme estos espacios puede ser la tuya.</h2>
+          <p>Cuéntanos qué quieres conseguir y te ayudaremos a identificar el formato y la ubicación con mayor sentido para tu campaña.</p>
+          <a href="contacto.html">Consultar espacios disponibles</a>
+        </div>
+        <div class="vn-objectives" aria-label="Objetivos de campaña">
+          <span>Lanzar un producto</span>
+          <span>Aumentar recordación</span>
+          <span>Promocionar una ubicación</span>
+          <span>Ganar presencia local</span>
+        </div>
       </div>
     </section>
 
@@ -7488,7 +7635,6 @@ class Component extends DCLogic {
     this.initAppleScroll();
     this.initProductWordScroll();
     this.initHomepageInteractions();
-    this.initFormatStoryScroll();
     const els = Array.from(root.querySelectorAll('[data-reveal]'));
     const formatChapters = Array.from(root.querySelectorAll('.v-format-chapter'));
     const revealNow = (el) => {
