@@ -3452,7 +3452,7 @@
   .vn-highlights-head h2 {
     max-width:760px;
     margin:0;
-    font-size:56px;
+    font-size:52px;
     line-height:1.04;
     letter-spacing:0;
   }
@@ -3476,9 +3476,9 @@
   }
   .vn-highlight {
     position:relative;
-    flex:0 0 min(72vw,880px);
-    height:min(68vh,680px);
-    min-height:560px;
+    flex:0 0 min(64vw,780px);
+    height:min(58vh,590px);
+    min-height:500px;
     overflow:hidden;
     border-radius:8px;
     color:#FFFFFF;
@@ -3519,7 +3519,7 @@
   }
   .vn-highlight-copy h3 {
     margin:0;
-    font-size:46px;
+    font-size:40px;
     line-height:1.04;
     letter-spacing:0;
   }
@@ -3633,66 +3633,104 @@
     margin-right:auto;
     margin-left:auto;
   }
-  .vn-product-visual {
+  .vn-product-gallery {
+    display:grid;
+    gap:28px;
+    width:min(1180px, calc(100% - 96px));
+    margin:82px auto 0;
+  }
+  .vn-product-item {
     position:relative;
     display:grid;
-    grid-template-columns:minmax(0,1.18fr) minmax(300px,.72fr);
-    grid-template-rows:560px 760px;
-    grid-template-areas:
-      "mural top"
-      "bottom street";
+    grid-template-columns:minmax(0,1.22fr) minmax(280px,.78fr);
     align-items:center;
-    gap:34px 70px;
-    width:min(1320px, calc(100% - 72px));
-    height:auto;
-    margin:72px auto 0;
-    overflow:visible;
+    min-height:650px;
+    overflow:hidden;
+    border-radius:8px;
+    background:#F5F5F7;
   }
-  .vn-product-visual::after {
+  .vn-product-item:nth-child(even) {
+    grid-template-columns:minmax(280px,.78fr) minmax(0,1.22fr);
+  }
+  .vn-product-media {
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    align-self:stretch;
+    min-width:0;
+    padding:44px 24px;
+  }
+  .vn-product-media::after {
     content:"";
     position:absolute;
-    left:50%;
-    bottom:6%;
-    width:68%;
+    right:12%;
+    bottom:8%;
+    left:12%;
     height:18%;
     border-radius:50%;
-    background:rgba(23,105,232,.1);
-    filter:blur(90px);
-    transform:translateX(-50%);
+    background:rgba(23,105,232,.11);
+    filter:blur(68px);
   }
-  .vn-product-shot {
+  .vn-product-media img {
     position:relative;
     z-index:1;
-    margin:0;
-  }
-  .vn-product-shot img {
     display:block;
     width:100%;
-    height:auto;
-    mix-blend-mode:multiply;
+    height:100%;
+    max-height:570px;
+    object-fit:contain;
   }
-  .vn-product-shot--mural {
-    grid-area:mural;
-    width:100%;
+  .vn-product-item--mural .vn-product-media img {
+    max-height:500px;
   }
-  .vn-product-shot--street {
-    grid-area:street;
-    justify-self:center;
-    width:min(100%,500px);
+  .vn-product-item--unipolar .vn-product-media {
+    grid-column:2;
+    grid-row:1;
   }
-  .vn-product-callout {
+  .vn-product-item--unipolar .vn-product-copy-panel {
+    grid-column:1;
+    grid-row:1;
+  }
+  .vn-product-copy-panel {
     position:relative;
     z-index:2;
-    width:min(100%,340px);
+    padding:64px 64px 64px 30px;
   }
-  .vn-product-callout--top {
-    grid-area:top;
-    align-self:center;
+  .vn-product-item:nth-child(even) .vn-product-copy-panel {
+    padding-right:30px;
+    padding-left:64px;
   }
-  .vn-product-callout--bottom {
-    grid-area:bottom;
-    align-self:center;
-    justify-self:end;
+  .vn-product-index {
+    display:block;
+    margin-bottom:20px;
+    color:var(--vn-blue);
+    font-size:13px;
+    font-weight:800;
+  }
+  .vn-product-copy-panel h3 {
+    margin:0 0 18px;
+    font-size:40px;
+    line-height:1.04;
+    letter-spacing:0;
+  }
+  .vn-product-copy-panel p {
+    margin:0;
+    color:var(--vn-muted);
+    font-size:17px;
+    line-height:1.58;
+  }
+  .vn-product-specs {
+    display:grid;
+    gap:12px;
+    margin-top:30px;
+    padding-top:24px;
+    border-top:1px solid var(--vn-line);
+  }
+  .vn-product-specs span {
+    color:#31343A;
+    font-size:14px;
+    font-weight:650;
   }
   .vn-product-callout strong {
     display:block;
@@ -3704,43 +3742,6 @@
     margin:0;
     color:var(--vn-muted);
     font-size:16px;
-    line-height:1.55;
-  }
-  .vn-product-features {
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    width:min(1180px, calc(100% - 96px));
-    margin:72px auto 0;
-    border-top:1px solid var(--vn-line);
-  }
-  .vn-product-feature {
-    padding:42px 32px 0;
-    border-right:1px solid var(--vn-line);
-  }
-  .vn-product-feature:first-child {
-    padding-left:0;
-  }
-  .vn-product-feature:last-child {
-    padding-right:0;
-    border-right:0;
-  }
-  .vn-product-feature span {
-    display:block;
-    margin-bottom:24px;
-    color:var(--vn-blue);
-    font-size:13px;
-    font-weight:800;
-  }
-  .vn-product-feature h3 {
-    margin:0 0 10px;
-    font-size:22px;
-    line-height:1.2;
-    letter-spacing:0;
-  }
-  .vn-product-feature p {
-    margin:0;
-    color:var(--vn-muted);
-    font-size:15px;
     line-height:1.55;
   }
   .vn-facts {
@@ -4241,66 +4242,40 @@
     .vn-product {
       padding-top:96px;
     }
-    .vn-product-visual {
-      display:block;
-      width:100%;
-      height:auto;
+    .vn-product-gallery {
+      width:min(100% - 44px,720px);
       margin-top:48px;
-      overflow:visible;
     }
-    .vn-product-visual::after {
-      display:none;
+    .vn-product-item,
+    .vn-product-item:nth-child(even) {
+      grid-template-columns:1fr;
+      min-height:0;
     }
-    .vn-product-shot,
-    .vn-product-shot--mural,
-    .vn-product-shot--street {
-      position:relative;
-      top:auto;
-      right:auto;
-      bottom:auto;
-      left:auto;
-      width:112%;
+    .vn-product-item--unipolar .vn-product-media,
+    .vn-product-item--unipolar .vn-product-copy-panel {
+      grid-column:1;
+      grid-row:auto;
     }
-    .vn-product-shot--mural {
-      margin-left:-12%;
+    .vn-product-item--unipolar .vn-product-media {
+      grid-row:1;
     }
-    .vn-product-shot--street {
-      width:88%;
-      margin-top:-4%;
-      margin-left:24%;
+    .vn-product-media {
+      min-height:500px;
+      padding:34px 18px 12px;
     }
-    .vn-product-callout {
-      position:relative;
-      top:auto;
-      right:auto;
-      bottom:auto;
-      left:auto;
-      width:min(100% - 44px, 720px);
-      margin:20px auto 44px;
+    .vn-product-item--mural .vn-product-media {
+      min-height:420px;
     }
-    .vn-product-callout--bottom {
-      margin-top:12px;
+    .vn-product-media img,
+    .vn-product-item--mural .vn-product-media img {
+      max-height:470px;
     }
-    .vn-product-features {
-      grid-template-columns:repeat(2,1fr);
-      width:min(100% - 44px, 720px);
-      margin-top:56px;
+    .vn-product-copy-panel,
+    .vn-product-item:nth-child(even) .vn-product-copy-panel {
+      padding:40px 38px 48px;
     }
-    .vn-product-feature {
-      padding:32px 24px 36px;
-      border-bottom:1px solid var(--vn-line);
-    }
-    .vn-product-feature:nth-child(2) {
-      border-right:0;
-    }
-    .vn-product-feature:nth-child(3) {
-      padding-left:0;
-      border-bottom:0;
-    }
-    .vn-product-feature:nth-child(4) {
-      padding-right:0;
-      border-right:0;
-      border-bottom:0;
+    .vn-product-copy-panel h3 {
+      font-size:34px;
     }
     .vn-facts {
       padding:96px 0;
@@ -4424,35 +4399,21 @@
     .vn-facts-head .vn-title {
       font-size:40px;
     }
-    .vn-product-visual {
-      width:100%;
-      height:auto;
+    .vn-product-gallery {
+      width:calc(100% - 28px);
     }
-    .vn-product-shot,
-    .vn-product-shot--mural,
-    .vn-product-shot--street {
-      width:122%;
+    .vn-product-media {
+      min-height:400px;
     }
-    .vn-product-shot--mural {
-      margin-left:-20%;
+    .vn-product-item--mural .vn-product-media {
+      min-height:330px;
     }
-    .vn-product-shot--street {
-      width:92%;
-      margin-left:22%;
+    .vn-product-copy-panel,
+    .vn-product-item:nth-child(even) .vn-product-copy-panel {
+      padding:34px 26px 42px;
     }
-    .vn-product-features {
-      grid-template-columns:1fr;
-    }
-    .vn-product-feature,
-    .vn-product-feature:first-child,
-    .vn-product-feature:nth-child(3),
-    .vn-product-feature:nth-child(4) {
-      padding:32px 0;
-      border-right:0;
-      border-bottom:1px solid var(--vn-line);
-    }
-    .vn-product-feature:last-child {
-      border-bottom:0;
+    .vn-product-copy-panel h3 {
+      font-size:31px;
     }
     .vn-format {
       min-height:520px;
@@ -4588,47 +4549,56 @@
     <section class="vn-product" aria-labelledby="vn-product-title">
       <div class="vn-shell">
         <div class="vn-product-copy" data-reveal>
-          <p class="vn-kicker">Cuatro formas de hacerse visible</p>
-          <h2 class="vn-title" id="vn-product-title">Una presencia diseñada para cada lugar.</h2>
-          <p class="vn-lead">Murales, pantallas LED, unipolares y tótems responden a escalas distintas. Elegimos el formato que mejor trabaja con el entorno y con el mensaje.</p>
+          <p class="vn-kicker">Tres escalas de presencia</p>
+          <h2 class="vn-title" id="vn-product-title">El producto se entiende cuando puede apreciarse.</h2>
+          <p class="vn-lead">Primero la arquitectura, después la distancia y finalmente la luz. Cada formato ocupa su propio espacio para mostrar con claridad qué hace y dónde funciona mejor.</p>
         </div>
       </div>
-      <div class="vn-product-visual" data-reveal>
-        <figure class="vn-product-shot vn-product-shot--mural">
-          <img src="panels/story-mural-transparent.png" loading="lazy" decoding="async" alt="Panel mural impreso Vista360 instalado en una fachada de un piso">
-        </figure>
-        <div class="vn-product-callout vn-product-callout--top">
-          <strong>Un mural que transforma la fachada.</strong>
-          <p>Vinil impreso, tensado y ajustado a la arquitectura para convertir una superficie real en presencia de marca.</p>
-        </div>
-        <figure class="vn-product-shot vn-product-shot--street">
-          <img src="panels/story-unipolar-transparent.png" loading="lazy" decoding="async" alt="Unipolar Vista360 alto y monumental presentado sin fondo">
-        </figure>
-        <div class="vn-product-callout vn-product-callout--bottom">
-          <strong>Unipolares hechos para dominar la vía.</strong>
-          <p>Altura, estructura y una lectura clara a distancia para que la campaña mantenga su fuerza en movimiento.</p>
-        </div>
-      </div>
-      <div class="vn-product-features">
-        <article class="vn-product-feature">
-          <span>01</span>
-          <h3>Murales</h3>
-          <p>Gran presencia integrada a muros y fachadas urbanas.</p>
+      <div class="vn-product-gallery">
+        <article class="vn-product-item vn-product-item--mural" data-reveal>
+          <div class="vn-product-media">
+            <img src="panels/story-mural-transparent.png" loading="lazy" decoding="async" alt="Panel mural impreso Vista360 instalado sobre una fachada de un piso">
+          </div>
+          <div class="vn-product-copy-panel">
+            <span class="vn-product-index">01 / Mural</span>
+            <h3>Una fachada convertida en presencia.</h3>
+            <p>El vinil se produce a escala, se tensa sobre la superficie y se ajusta a la arquitectura. El resultado no parece añadido: pertenece al edificio.</p>
+            <div class="vn-product-specs">
+              <span>Lectura peatonal y vehicular</span>
+              <span>Adaptación a medidas reales</span>
+              <span>Acabado continuo de gran formato</span>
+            </div>
+          </div>
         </article>
-        <article class="vn-product-feature">
-          <span>02</span>
-          <h3>Pantallas LED</h3>
-          <p>Contenido dinámico, luminoso y adaptable a cada campaña.</p>
+        <article class="vn-product-item vn-product-item--unipolar" data-reveal>
+          <div class="vn-product-media">
+            <img src="panels/story-unipolar-transparent.png" loading="lazy" decoding="async" alt="Panel unipolar Vista360 alto y monumental presentado sin fondo">
+          </div>
+          <div class="vn-product-copy-panel">
+            <span class="vn-product-index">02 / Unipolar</span>
+            <h3>Altura que ordena la mirada.</h3>
+            <p>Su estructura eleva el mensaje por encima del entorno y conserva una lectura clara mientras la ciudad se mueve. Es presencia pensada para la distancia.</p>
+            <div class="vn-product-specs">
+              <span>Visibilidad de largo alcance</span>
+              <span>Escala dominante en vías rápidas</span>
+              <span>Iluminación para lectura nocturna</span>
+            </div>
+          </div>
         </article>
-        <article class="vn-product-feature">
-          <span>03</span>
-          <h3>Unipolares</h3>
-          <p>Lectura a distancia en vías de alto tránsito y gran escala.</p>
-        </article>
-        <article class="vn-product-feature">
-          <span>04</span>
-          <h3>Tótems</h3>
-          <p>Comunicación cercana en accesos y recorridos peatonales.</p>
+        <article class="vn-product-item vn-product-item--led" data-reveal>
+          <div class="vn-product-media">
+            <img src="panels/story-led-transparent-v2.png" loading="lazy" decoding="async" alt="Pantalla LED publicitaria Vista360 presentada como producto sin fondo">
+          </div>
+          <div class="vn-product-copy-panel">
+            <span class="vn-product-index">03 / LED</span>
+            <h3>Una superficie que cambia con la campaña.</h3>
+            <p>La pantalla combina brillo, movimiento y programación para adaptar el mensaje a distintos horarios sin perder presencia física en la calle.</p>
+            <div class="vn-product-specs">
+              <span>Contenido dinámico y programable</span>
+              <span>Contraste visible de día y de noche</span>
+              <span>Construcción modular para exterior</span>
+            </div>
+          </div>
         </article>
       </div>
     </section>
