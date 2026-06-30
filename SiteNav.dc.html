@@ -12,7 +12,63 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  .vn-links { display:flex; align-items:center; gap:clamp(20px,2.2vw,38px); }
+  .vn-links { display:flex; align-items:center; gap:clamp(20px,2vw,32px); }
+  .vn-nav-logo img { transition:opacity .22s ease,transform .22s ease; }
+  .vn-nav-logo:hover img { opacity:.9; transform:translateY(-1px); }
+  .vn-nav-link {
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    height:66px;
+  }
+  .vn-nav-link::after {
+    content:"";
+    position:absolute;
+    right:0;
+    bottom:9px;
+    left:0;
+    height:2px;
+    border-radius:2px;
+    background:#4B91F2;
+    box-shadow:0 0 10px rgba(75,145,242,.42);
+    transform:scaleX(var(--vn-active,0));
+    transform-origin:center;
+    transition:transform .26s cubic-bezier(.16,1,.3,1);
+  }
+  .vn-nav-link:hover::after,
+  .vn-nav-link:focus-visible::after { transform:scaleX(1); }
+  .vn-nav-link:focus-visible { outline:none; }
+  .vn-cta {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .vn-cta::after {
+    content:"\2192";
+    font-size:16px;
+    transition:transform .22s ease;
+  }
+  .vn-cta:hover::after { transform:translateX(4px); }
+  .vn-mobile-link {
+    position:relative;
+    transition:color .2s ease,transform .2s ease;
+  }
+  .vn-mobile-link:hover { color:#8DB9FF !important; transform:translateX(3px); }
+  .vn-mobile-cta {
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    margin-top:18px;
+    padding:13px 21px;
+    border-radius:8px;
+    background:#1C6FE8;
+    color:#FFFFFF;
+    font-size:16px;
+    font-weight:750;
+    text-decoration:none;
+    font-family:'Plus Jakarta Sans',sans-serif;
+  }
+  .vn-mobile-cta::after { content:"\2192"; }
   .vn-burger { display:none; }
   @media (max-width: 940px){
     .vn-links { display:none !important; }
@@ -27,16 +83,16 @@
 </helmet>
 <nav style="{{ navStyle }}">
   <div style="width:100%; max-width:1500px; margin:0 auto; padding:0 clamp(20px,5vw,72px); height:66px; display:flex; align-items:center; justify-content:space-between; gap:28px; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif;">
-    <a href="index.html" style="display:flex; align-items:center; text-decoration:none;">
-      <img src="vista360-logo.png" alt="VISTA360" style="height:30px; width:auto; display:block;" />
+    <a href="index.html" class="vn-nav-logo" style="display:flex; align-items:center; text-decoration:none;">
+      <img src="vista360-logo.png" alt="VISTA360" style="height:34px; width:auto; display:block;" />
     </a>
     <div class="vn-links">
-      <a href="index.html" style="{{ inicioStyle }}" style-hover="color:#fff;">Inicio</a>
-      <a href="productos.html" style="{{ productosStyle }}" style-hover="color:#fff;">Productos</a>
-      <a href="servicios.html" style="{{ serviciosStyle }}" style-hover="color:#fff;">Servicios</a>
-      <a href="nosotros.html" style="{{ nosotrosStyle }}" style-hover="color:#fff;">Nosotros</a>
+      <a href="index.html" class="vn-nav-link" style="{{ inicioStyle }}" style-hover="color:#fff;">Inicio</a>
+      <a href="productos.html" class="vn-nav-link" style="{{ productosStyle }}" style-hover="color:#fff;">Formatos</a>
+      <a href="servicios.html" class="vn-nav-link" style="{{ serviciosStyle }}" style-hover="color:#fff;">Servicios</a>
+      <a href="nosotros.html" class="vn-nav-link" style="{{ nosotrosStyle }}" style-hover="color:#fff;">Nosotros</a>
     </div>
-    <a href="contacto.html" class="vn-cta" style="text-decoration:none; padding:11px 28px; border-radius:999px; background:#1C6FE8; color:#fff; font-size:15px; font-weight:600; white-space:nowrap; transition:background .25s ease, transform .2s ease;" style-hover="background:#1559C4; transform:translateY(-1px);">Cotizar</a>
+    <a href="contacto.html" class="vn-cta" style="text-decoration:none; padding:11px 20px; border-radius:8px; background:#1C6FE8; color:#fff; font-size:14px; font-weight:700; white-space:nowrap; transition:background .25s ease, transform .2s ease, box-shadow .2s ease; box-shadow:0 9px 24px rgba(28,111,232,.2);" style-hover="background:#2A78EA; transform:translateY(-1px); box-shadow:0 12px 28px rgba(28,111,232,.3);">Consultar espacios</a>
     <button class="vn-burger" onClick="{{ toggleMenu }}" aria-label="Menú" style="flex-direction:column; gap:5px; background:transparent; border:none; cursor:pointer; padding:6px;">
       <span style="width:24px; height:2px; background:#fff; border-radius:2px;"></span>
       <span style="width:24px; height:2px; background:#fff; border-radius:2px;"></span>
@@ -47,11 +103,11 @@
 <div id="vnMobileMenu" style="{{ menuStyle }}">
   <button onClick="{{ closeMenu }}" aria-label="Cerrar" style="position:absolute; top:22px; right:24px; background:transparent; border:none; color:#fff; font-size:34px; cursor:pointer; line-height:1; font-family:'Plus Jakarta Sans',sans-serif;">&times;</button>
   <sc-for list="{{ mlinksTop }}" as="ml" hint-placeholder-count="1">
-    <a href="{{ ml.href }}" onClick="{{ closeMenu }}" style="text-decoration:none; color:#fff; font-size:28px; font-weight:700; letter-spacing:-0.02em; padding:12px; font-family:'Plus Jakarta Sans',sans-serif;">{{ ml.label }}</a>
+    <a href="{{ ml.href }}" class="vn-mobile-link" onClick="{{ closeMenu }}" style="text-decoration:none; color:#fff; font-size:28px; font-weight:700; letter-spacing:-0.02em; padding:12px; font-family:'Plus Jakarta Sans',sans-serif;">{{ ml.label }}</a>
   </sc-for>
 
   <button type="button" onClick="{{ toggleMobileProducts }}" style="display:flex; align-items:center; gap:9px; background:transparent; border:none; cursor:pointer; color:#fff; font-size:28px; font-weight:700; letter-spacing:-0.02em; padding:12px; font-family:'Plus Jakarta Sans',sans-serif;">
-    Productos
+    Formatos
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="{{ mobileProductsChevStyle }}"><path d="M6 9l6 6 6-6"></path></svg>
   </button>
   <div style="{{ mobileProductsPanelStyle }}">
@@ -59,9 +115,10 @@
     <a href="vista360-digital.html" onClick="{{ closeMenu }}" style="text-decoration:none; color:rgba(255,255,255,0.85); font-size:19px; font-weight:600; padding:6px 12px; font-family:'Plus Jakarta Sans',sans-serif;">VISTA360 Digital</a>
   </div>
 
-  <sc-for list="{{ mlinksBottom }}" as="ml" hint-placeholder-count="3">
-    <a href="{{ ml.href }}" onClick="{{ closeMenu }}" style="text-decoration:none; color:#fff; font-size:28px; font-weight:700; letter-spacing:-0.02em; padding:12px; font-family:'Plus Jakarta Sans',sans-serif;">{{ ml.label }}</a>
+  <sc-for list="{{ mlinksBottom }}" as="ml" hint-placeholder-count="2">
+    <a href="{{ ml.href }}" class="vn-mobile-link" onClick="{{ closeMenu }}" style="text-decoration:none; color:#fff; font-size:28px; font-weight:700; letter-spacing:-0.02em; padding:12px; font-family:'Plus Jakarta Sans',sans-serif;">{{ ml.label }}</a>
   </sc-for>
+  <a href="contacto.html" class="vn-mobile-cta" onClick="{{ closeMenu }}">Consultar espacios</a>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:66},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;inicio&quot;,&quot;productos&quot;,&quot;servicios&quot;,&quot;ubicaciones&quot;,&quot;portafolio&quot;,&quot;contacto&quot;],&quot;default&quot;:&quot;inicio&quot;},&quot;transparent&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false},&quot;topColor&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#0A1426&quot;}}">
@@ -209,7 +266,9 @@ class Component extends DCLogic {
       textDecoration: 'none', fontSize: '16px', whiteSpace: 'nowrap', cursor: 'pointer',
       fontWeight: key === active ? 700 : 500,
       color: key === active ? '#fff' : 'rgba(255,255,255,0.82)',
-      transition: 'color .2s'
+      letterSpacing: '0',
+      transition: 'color .2s',
+      '--vn-active': key === active ? 1 : 0
     });
     const inicioStyle = baseLink('inicio');
     const productosStyle = baseLink('productos');
@@ -223,8 +282,7 @@ class Component extends DCLogic {
 
     const mlinksBottom = [
       ['Servicios', 'servicios.html'],
-      ['Nosotros', 'nosotros.html'],
-      ['Contacto', 'contacto.html']
+      ['Nosotros', 'nosotros.html']
     ].map(([label, href]) => ({ label, href }));
 
     const mobileProductsOpen = !!this.state.mobileProductsOpen;
@@ -266,6 +324,4 @@ class Component extends DCLogic {
 </script>
 </body>
 </html>
-
-
 
