@@ -3802,21 +3802,19 @@
   }
   .vn-craft {
     align-items:center;
-    justify-content:flex-end;
-    background-image:url('panels/story-campaign-craft.png');
+    background-image:url('panels/story-mural-install-detail-v2.jpg');
     background-position:center;
     background-size:cover;
   }
   .vn-craft::before {
     background:
-      linear-gradient(270deg, rgba(5,7,12,.94) 0%, rgba(5,7,12,.72) 38%, rgba(5,7,12,.08) 68%),
+      linear-gradient(90deg, rgba(5,7,12,.94) 0%, rgba(5,7,12,.7) 36%, rgba(5,7,12,.06) 67%),
       linear-gradient(0deg, rgba(5,7,12,.38), transparent 48%);
   }
   .vn-craft-layout {
     position:relative;
     z-index:1;
     display:flex;
-    justify-content:flex-end;
   }
   .vn-craft-copy {
     width:50%;
@@ -3919,6 +3917,52 @@
     font-size:30px;
     line-height:1.08;
     letter-spacing:0;
+  }
+  .vn-led-detail {
+    position:relative;
+    display:flex;
+    align-items:center;
+    min-height:92vh;
+    overflow:hidden;
+    background:#03050A url('panels/story-led-macro-v2.jpg') center/cover no-repeat;
+    color:#FFFFFF;
+  }
+  .vn-led-detail::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(90deg, rgba(3,5,10,.94) 0%, rgba(3,5,10,.72) 34%, rgba(3,5,10,.08) 68%),
+      linear-gradient(0deg, rgba(3,5,10,.4), transparent 46%);
+  }
+  .vn-led-detail-copy {
+    position:relative;
+    z-index:1;
+    max-width:540px;
+    padding:120px 0;
+  }
+  .vn-led-detail .vn-kicker {
+    color:#82B5FF;
+  }
+  .vn-led-detail .vn-title {
+    font-size:64px;
+  }
+  .vn-led-detail .vn-lead {
+    color:rgba(255,255,255,.72);
+    font-size:18px;
+  }
+  .vn-led-notes {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    margin-top:46px;
+    border-top:1px solid rgba(255,255,255,.2);
+  }
+  .vn-led-notes span {
+    padding:20px 18px 0 0;
+    color:rgba(255,255,255,.72);
+    font-size:13px;
+    font-weight:650;
+    line-height:1.4;
   }
   .vn-control {
     padding:148px 0 100px;
@@ -4217,7 +4261,8 @@
       padding:104px 0;
     }
     .vn-city,
-    .vn-craft {
+    .vn-craft,
+    .vn-led-detail {
       min-height:84vh;
     }
     .vn-city {
@@ -4236,6 +4281,7 @@
     }
     .vn-city .vn-title,
     .vn-craft .vn-title,
+    .vn-led-detail .vn-title,
     .vn-formats-head .vn-title {
       font-size:44px;
     }
@@ -4308,11 +4354,23 @@
     }
     .vn-craft {
       align-items:flex-end;
-      background-position:34% center;
+      background-position:62% center;
     }
     .vn-craft::before {
       background:
         linear-gradient(0deg, rgba(5,7,12,.96) 0%, rgba(5,7,12,.68) 58%, rgba(5,7,12,.04) 100%);
+    }
+    .vn-led-detail {
+      align-items:flex-end;
+      background-position:64% center;
+    }
+    .vn-led-detail::before {
+      background:
+        linear-gradient(0deg, rgba(3,5,10,.96) 0%, rgba(3,5,10,.58) 62%, rgba(3,5,10,.08) 100%);
+    }
+    .vn-led-detail-copy {
+      max-width:100%;
+      padding:94px 0 72px;
     }
     .vn-formats {
       padding:96px 0;
@@ -4395,9 +4453,17 @@
     }
     .vn-city .vn-title,
     .vn-craft .vn-title,
+    .vn-led-detail .vn-title,
     .vn-formats-head .vn-title,
     .vn-facts-head .vn-title {
       font-size:40px;
+    }
+    .vn-led-notes {
+      grid-template-columns:1fr;
+    }
+    .vn-led-notes span {
+      padding:14px 0;
+      border-bottom:1px solid rgba(255,255,255,.14);
     }
     .vn-product-gallery {
       width:calc(100% - 28px);
@@ -4493,7 +4559,7 @@
       </div>
       <div class="vn-highlights-track" aria-label="Aspectos destacados de Vista360">
         <article class="vn-highlight">
-          <img src="panels/premium-mural.jpg" loading="eager" decoding="async" alt="Mural Vista360 integrado a una fachada premium">
+          <img src="panels/story-mural-newyork-v2.jpg" loading="eager" decoding="async" alt="Mural Vista360 integrado a una fachada urbana de un piso">
           <div class="vn-highlight-copy">
             <span>Murales</span>
             <h3>La arquitectura también puede comunicar.</h3>
@@ -4514,10 +4580,10 @@
           </div>
         </article>
         <article class="vn-highlight">
-          <img src="panels/panel-closeup.jpg" loading="lazy" decoding="async" alt="Detalle de acabado de un soporte Vista360">
+          <img src="panels/story-unipolar-newyork-v2.jpg" loading="lazy" decoding="async" alt="Unipolar Vista360 monumental en una avenida de Nueva York">
           <div class="vn-highlight-copy">
-            <span>Ejecución</span>
-            <h3>Impacto por fuera. Cuidado por dentro.</h3>
+            <span>Escala</span>
+            <h3>Una presencia que ordena la mirada a distancia.</h3>
           </div>
         </article>
       </div>
@@ -4635,9 +4701,9 @@
     <section class="vn-craft" aria-labelledby="vn-craft-title">
       <div class="vn-shell vn-craft-layout">
         <div class="vn-craft-copy" data-reveal>
-          <p class="vn-kicker">Preparación</p>
-          <h2 class="vn-title" id="vn-craft-title">La presencia se construye en los detalles.</h2>
-          <p class="vn-lead">Medimos, revisamos y preparamos cada pieza antes de llevarla a la calle. El impacto empieza con un proceso ordenado.</p>
+          <p class="vn-kicker">Acabado mural</p>
+          <h2 class="vn-title" id="vn-craft-title">La escala se sostiene en los detalles.</h2>
+          <p class="vn-lead">Tensión uniforme, fijaciones precisas y un borde limpio hacen que una pieza de gran formato se sienta parte de la arquitectura.</p>
         </div>
       </div>
     </section>
@@ -4680,6 +4746,21 @@
               <h3>Tótems</h3>
             </div>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="vn-led-detail" aria-labelledby="vn-led-detail-title">
+      <div class="vn-shell">
+        <div class="vn-led-detail-copy" data-reveal>
+          <p class="vn-kicker">Tecnología LED</p>
+          <h2 class="vn-title" id="vn-led-detail-title">La luz también tiene estructura.</h2>
+          <p class="vn-lead">Detrás de una imagen luminosa hay módulos alineados, ventilación y control de brillo. La calidad está tanto en lo que se ve como en lo que lo hace posible.</p>
+          <div class="vn-led-notes">
+            <span>Módulos preparados para exterior</span>
+            <span>Contraste controlado</span>
+            <span>Mantenimiento accesible</span>
+          </div>
         </div>
       </div>
     </section>
