@@ -185,7 +185,7 @@
   }
   .sv-promise__phases {
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(5,1fr);
     margin-top:86px;
     border-top:1px solid var(--line);
   }
@@ -426,6 +426,40 @@
     transition:transform .8s cubic-bezier(.16,1,.3,1);
   }
   .sv-player__image:hover { transform:translateY(-10px) scale(1.012); }
+  .sv-player__benefits {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    width:min(960px,100%);
+    margin:16px auto 0;
+    border-top:1px solid var(--line);
+  }
+  .sv-player__benefit {
+    min-height:142px;
+    padding:28px 30px 0;
+    border-right:1px solid var(--line);
+    text-align:left;
+  }
+  .sv-player__benefit:last-child { border-right:0; }
+  .sv-player__benefit span {
+    display:block;
+    margin-bottom:14px;
+    color:var(--blue);
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.12em;
+  }
+  .sv-player__benefit strong {
+    display:block;
+    margin-bottom:7px;
+    color:var(--text);
+    font-size:16px;
+  }
+  .sv-player__benefit p {
+    margin:0;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.55;
+  }
 
   /* Formats */
   .sv-formats {
@@ -595,6 +629,13 @@
     .sv-formats__head { grid-template-columns:1fr; gap:30px; }
     .sv-promise__phases,
     .sv-method__steps { grid-template-columns:1fr 1fr; }
+    .sv-player__benefits { grid-template-columns:1fr; }
+    .sv-player__benefit {
+      min-height:0;
+      padding:24px 0;
+      border-right:0;
+      border-bottom:1px solid var(--line);
+    }
     .sv-formats__grid { grid-template-columns:1fr 1fr; }
   }
   @media (max-width:600px) {
@@ -659,12 +700,12 @@
 
   <main>
     <section class="sv-hero" aria-labelledby="sv-title">
-      <img class="sv-hero__image" data-parallax data-speed="0.06" src="panels/totem-hero-wide.jpg" alt="Tótem publicitario VISTA360 integrado a una avenida urbana" />
+      <img class="sv-hero__image" data-parallax data-speed="0.06" src="panels/services-hero-footwear-v2.png" alt="Panel unipolar VISTA360 con una campaña de calzado deportivo en una avenida urbana" />
       <div class="sv-hero__veil"></div>
       <div class="sv-hero__inner">
         <div class="sv-kicker sv-kicker--light">Servicios VISTA360</div>
-        <h1 id="sv-title">Tu campaña, bien ubicada y bien ejecutada.</h1>
-        <p class="sv-hero__lead">Estrategia, producción, instalación y seguimiento para convertir una intención de marca en presencia real en la ciudad.</p>
+        <h1 id="sv-title">Tu campaña, visible de principio a fin.</h1>
+        <p class="sv-hero__lead">Convertimos un objetivo de marca en una presencia exterior clara: elegimos el espacio, adaptamos la pieza, ejecutamos la instalación y acompañamos el resultado.</p>
         <a class="sv-hero__action" href="contacto.html">Planificar mi campaña <span>&rarr;</span></a>
       </div>
     </section>
@@ -674,15 +715,16 @@
         <div class="sv-promise__head">
           <div data-reveal>
             <div class="sv-kicker">Servicio integral</div>
-            <h2 id="promise-title">No entregamos únicamente un espacio.</h2>
+            <h2 id="promise-title">Un solo equipo para todo el recorrido.</h2>
           </div>
-          <p data-reveal>Construimos la campaña alrededor de él. Conectamos objetivo, ubicación, producción y seguimiento para que cada decisión tenga una razón clara.</p>
+          <p data-reveal>Coordinamos cada etapa para que la campaña no sea una suma de tareas aisladas. Desde la primera conversación hasta la evidencia final, todas las decisiones responden al mismo objetivo.</p>
         </div>
         <div class="sv-promise__phases" data-reveal>
-          <article class="sv-phase"><span>01</span><h3>Estrategia</h3><p>Entendemos qué necesita conseguir la marca.</p></article>
-          <article class="sv-phase"><span>02</span><h3>Ubicación</h3><p>Buscamos el recorrido y formato con mayor sentido.</p></article>
-          <article class="sv-phase"><span>03</span><h3>Ejecución</h3><p>Preparamos, producimos e instalamos la campaña.</p></article>
-          <article class="sv-phase"><span>04</span><h3>Seguimiento</h3><p>Acompañamos y mostramos el resultado.</p></article>
+          <article class="sv-phase"><span>01</span><h3>Objetivo</h3><p>Definimos qué necesita conseguir la marca.</p></article>
+          <article class="sv-phase"><span>02</span><h3>Selección</h3><p>Elegimos ubicación, recorrido y formato.</p></article>
+          <article class="sv-phase"><span>03</span><h3>Adaptación</h3><p>Preparamos la pieza para lectura exterior.</p></article>
+          <article class="sv-phase"><span>04</span><h3>Ejecución</h3><p>Producimos e instalamos con precisión.</p></article>
+          <article class="sv-phase"><span>05</span><h3>Evidencia</h3><p>Ordenamos el seguimiento de la campaña.</p></article>
         </div>
       </div>
     </section>
@@ -737,15 +779,6 @@
       </div>
     </section>
 
-    <section class="sv-player" aria-labelledby="player-title">
-      <div class="sv-shell">
-        <div class="sv-kicker">Seguimiento digital</div>
-        <h2 id="player-title">Tu campaña también continúa después de instalarse.</h2>
-        <p>VISTA360 Player reúne campañas, pantallas, evidencias y reportes para ofrecer una experiencia más clara y ordenada desde cualquier dispositivo.</p>
-        <img class="sv-player__image" data-reveal src="panels/vista360-player-devices-v1.png" alt="VISTA360 Player en una computadora portátil y un teléfono" />
-      </div>
-    </section>
-
     <section class="sv-formats" aria-labelledby="formats-title">
       <div class="sv-shell">
         <div class="sv-formats__head" data-reveal>
@@ -763,12 +796,26 @@
 
     <section class="sv-method" aria-labelledby="method-title">
       <div class="sv-shell">
-        <div data-reveal><div class="sv-kicker">Una ruta clara</div><h2 id="method-title">De tu mensaje a una campaña visible.</h2></div>
+        <div data-reveal><div class="sv-kicker">Lo que recibe tu marca</div><h2 id="method-title">Un servicio pensado para avanzar con claridad.</h2></div>
         <div class="sv-method__steps" data-reveal>
-          <article class="sv-method__step"><span>01 / CONVERSAMOS</span><h3>Cuéntanos el objetivo.</h3><p>Marca, público, zona o fecha aproximada.</p></article>
-          <article class="sv-method__step"><span>02 / SELECCIONAMOS</span><h3>Elegimos ubicación y formato.</h3><p>Revisamos qué combinación tiene mayor sentido.</p></article>
-          <article class="sv-method__step"><span>03 / PROPONEMOS</span><h3>Preparamos una ruta concreta.</h3><p>Presentamos disponibilidad y siguientes pasos.</p></article>
-          <article class="sv-method__step"><span>04 / EJECUTAMOS</span><h3>Hacemos visible la campaña.</h3><p>Producimos, instalamos y acompañamos.</p></article>
+          <article class="sv-method__step"><span>01 / RECOMENDACIÓN</span><h3>Una propuesta con criterio.</h3><p>Formato y ubicación relacionados con el objetivo de campaña.</p></article>
+          <article class="sv-method__step"><span>02 / ADAPTACIÓN</span><h3>Una pieza preparada para la calle.</h3><p>Lectura, escala y contraste revisados antes de producir.</p></article>
+          <article class="sv-method__step"><span>03 / EJECUCIÓN</span><h3>Una instalación coordinada.</h3><p>Producción y montaje gestionados como un solo proceso.</p></article>
+          <article class="sv-method__step"><span>04 / SEGUIMIENTO</span><h3>Una campaña fácil de revisar.</h3><p>Información y evidencias organizadas después de instalar.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sv-player" aria-labelledby="player-title">
+      <div class="sv-shell">
+        <div class="sv-kicker">VISTA360 Player</div>
+        <h2 id="player-title">La campaña no desaparece después de instalarse.</h2>
+        <p>Centralizamos la información de tu campaña para que puedas consultar avances, pantallas, evidencias y reportes desde cualquier dispositivo.</p>
+        <img class="sv-player__image" data-reveal src="panels/vista360-player-devices-v1.png" alt="VISTA360 Player en una computadora portátil y un teléfono" />
+        <div class="sv-player__benefits" data-reveal>
+          <article class="sv-player__benefit"><span>01</span><strong>Campañas organizadas</strong><p>Consulta la información principal desde un mismo lugar.</p></article>
+          <article class="sv-player__benefit"><span>02</span><strong>Evidencias disponibles</strong><p>Revisa el material asociado a cada instalación.</p></article>
+          <article class="sv-player__benefit"><span>03</span><strong>Seguimiento más claro</strong><p>Mantén una visión ordenada durante el servicio.</p></article>
         </div>
       </div>
     </section>
