@@ -2,11 +2,11 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<title>Nosotros | VISTA360</title>
+<title>Quiénes somos | VISTA360</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Conoce a Vista360: una compañía de publicidad exterior nacida en Huánuco, con equipo local, creatividad in-house y servicio de punta a punta.">
-<meta name="theme-color" content="#070B14">
-<meta name="color-scheme" content="light dark">
+<meta name="description" content="VISTA360 nace en Huánuco para crear publicidad exterior con estrategia, presencia y acompañamiento de principio a fin.">
+<meta name="theme-color" content="#05080F">
+<meta name="color-scheme" content="light">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
@@ -21,280 +21,611 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   * { box-sizing:border-box; }
-  html { overscroll-behavior-y:contain; background:#FFFFFF; }
-  body { margin:0; background:#FFFFFF; color:#0E1A2E; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
-  ::selection { background:#2E7CF6; color:#fff; }
+  html { overscroll-behavior-y:contain; background:#05080F; }
+  body {
+    margin:0;
+    overflow-x:hidden;
+    background:#FFFFFF;
+    color:#111827;
+    font-family:'Plus Jakarta Sans','Helvetica Neue',Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection { background:#1769E8; color:#FFFFFF; }
+  .about {
+    --ink:#05080F;
+    --paper:#FFFFFF;
+    --soft:#F3F6FA;
+    --text:#111827;
+    --muted:#667085;
+    --line:#DDE3EC;
+    --blue:#1769E8;
+    --blue-light:#7CB1FF;
+    position:relative;
+    width:100%;
+    overflow:hidden;
+    background:var(--paper);
+  }
+  .about-kicker {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:0 0 24px;
+    color:var(--blue);
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+  .about-kicker::before {
+    content:"";
+    width:30px;
+    height:1px;
+    background:currentColor;
+  }
+  .about-kicker--light { color:var(--blue-light); }
 
-  /* ---- design tokens ---- */
-  .vn-wrap{
-    --ink:#070B14; --ink-2:#0B1326; --ink-3:#111C35;
-    --line:rgba(255,255,255,0.10); --line-2:rgba(255,255,255,0.16);
-    --mist:#5A6072; --mist-2:#6E7A92; --snow:#F3F6FC;
-    --blue:#2E7CF6; --blue-2:#7FB0FF; --blue-3:#56A2FF;
-    --paper:#FFFFFF; --hair:#ECEAF3; --accent:#1C6FE8; --ink-on-paper:#0E1A2E;
-    position:relative; width:100%; overflow-x:hidden; background:var(--paper); color:var(--ink-on-paper);
+  /* Hero */
+  .about-hero {
+    position:relative;
+    display:flex;
+    align-items:flex-end;
+    min-height:100svh;
+    overflow:hidden;
+    color:#FFFFFF;
+    background:var(--ink);
+  }
+  .about-hero__image {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 56%;
+    filter:saturate(.92) contrast(1.05);
+    transform:scale(1.015);
+  }
+  .about-hero__veil {
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(90deg,rgba(5,8,15,.94) 0%,rgba(5,8,15,.64) 48%,rgba(5,8,15,.16) 100%),
+      linear-gradient(0deg,rgba(5,8,15,.72) 0%,transparent 54%);
+  }
+  .about-hero__inner {
+    position:relative;
+    z-index:1;
+    width:min(100% - 48px,1180px);
+    margin:0 auto;
+    padding:160px 0 92px;
+  }
+  .about-hero h1 {
+    max-width:900px;
+    margin:0;
+    color:#FFFFFF;
+    font-size:clamp(56px,7.7vw,116px);
+    font-weight:800;
+    line-height:.96;
+    letter-spacing:0;
+    text-wrap:balance;
+  }
+  .about-hero__footer {
+    display:grid;
+    grid-template-columns:minmax(0,560px) auto;
+    gap:80px;
+    align-items:end;
+    margin-top:54px;
+  }
+  .about-hero__footer p {
+    margin:0;
+    color:rgba(238,243,252,.74);
+    font-size:18px;
+    line-height:1.65;
+  }
+  .about-hero__place {
+    padding-top:15px;
+    border-top:1px solid rgba(255,255,255,.34);
+    color:rgba(255,255,255,.72);
+    font-size:13px;
+    line-height:1.5;
   }
 
-  .vn-mono{ font-family:'Plus Jakarta Sans',sans-serif; }
-  .vn-serif{ font-family:'Plus Jakarta Sans',sans-serif; }
-
-  .vn-eyebrow{ display:inline-flex; align-items:center; gap:12px; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:var(--blue-2); }
-  .vn-eyebrow::before{ content:""; width:26px; height:1px; background:linear-gradient(90deg,var(--blue-2),transparent); }
-
-  /* ============ HERO ============ */
-  @keyframes vn-kb{ 0%{ transform:scale(1.05) translate(0,0); } 100%{ transform:scale(1.15) translate(-1.3%,-1.3%); } }
-  @keyframes vn-fadeup{ 0%{ opacity:0; transform:translateY(22px); } 100%{ opacity:1; transform:translateY(0); } }
-  .vn-hero{ position:relative; min-height:100svh; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; background:var(--ink); padding:clamp(110px,14vh,160px) clamp(20px,5vw,76px) clamp(90px,12vh,140px); }
-  .vn-hero__bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 62%; filter:saturate(1.12) contrast(1.05) brightness(0.88); animation:vn-kb 22s ease-in-out infinite alternate; will-change:transform,opacity; opacity:0; transition:opacity 1.2s ease; }
-  .vn-hero__veil{ position:absolute; inset:0; pointer-events:none; z-index:1;
-    background:linear-gradient(180deg, rgba(7,11,20,0.5) 0%, rgba(7,11,20,0.32) 40%, rgba(7,11,20,0.62) 100%); }
-  .vn-hero__inner{ position:relative; z-index:3; width:100%; max-width:1320px; margin:0 auto; text-align:center; display:flex; flex-direction:column; align-items:center; }
-  .vn-hero__stage{ position:relative; width:100%; min-height:clamp(110px,17vw,250px); }
-  .vn-hero__slide{ position:absolute; left:0; top:0; right:0; opacity:0; transition:opacity .9s ease; pointer-events:none; display:flex; flex-direction:column; align-items:center; }
-  .vn-hero h1{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(46px,9.2vw,150px); line-height:1.0; letter-spacing:-0.04em; color:var(--snow); margin:0 auto; max-width:18ch; text-align:center; text-shadow:0 10px 60px rgba(7,11,20,0.6); }
-  .vn-hero h1 em{ font-style:normal; font-weight:800; color:var(--blue-2); }
-  .vn-hero__logo-mark{ display:block; height:clamp(46px,7vw,86px); margin:0 auto 18px; filter:drop-shadow(0 10px 40px rgba(0,0,0,0.55)); }
-  .vn-hero__logo-tag{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(243,246,252,0.78); margin:0; text-align:center; }
-  
-
-  /* ============ MARQUEE divider ============ */
-  
-  
-
-  /* ============ SECTION shells ============ */
-  .vn-sec{ position:relative; max-width:1320px; margin:0 auto; padding:clamp(72px,10vw,150px) clamp(20px,5vw,76px); }
-  .vn-kick{ display:flex; align-items:baseline; gap:14px; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:clamp(22px,3vw,30px); }
-  .vn-kick i{ font-style:normal; color:var(--mist-2); }
-
-  /* ============ MANIFIESTO ============ */
-  .vn-manif{ display:grid; grid-template-columns:1fr; gap:clamp(34px,5vw,72px); }
-  @media (min-width:920px){ .vn-manif{ grid-template-columns:0.85fr 1.15fr; align-items:start; } }
-  .vn-manif__lead{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(28px,3.4vw,46px); line-height:1.12; letter-spacing:-0.02em; color:var(--ink-on-paper); margin:0; }
-  .vn-manif__lead em{ font-style:normal; color:var(--accent); }
-  .vn-manif__body p{ font-size:clamp(15.5px,1.25vw,18px); line-height:1.74; color:var(--mist); margin:0 0 22px; max-width:60ch; }
-  .vn-manif__body p:last-child{ margin-bottom:0; }
-  .vn-rule{ height:1px; background:linear-gradient(90deg,var(--accent),transparent); margin:0 0 26px; max-width:120px; }
-
-  /* ============ PRINCIPIOS explorer ============ */
-  .vn-prin{ display:grid; grid-template-columns:1fr; gap:clamp(28px,3vw,48px); }
-  @media (min-width:920px){ .vn-prin{ grid-template-columns:0.78fr 1.22fr; align-items:stretch; } }
-  .vn-prin__rail{ display:flex; flex-direction:column; gap:2px; border-top:1px solid var(--hair); }
-  .vn-prin__item{ width:100%; text-align:left; cursor:pointer; background:transparent; border:none; border-bottom:1px solid var(--hair); padding:clamp(15px,1.6vw,20px) 6px; display:flex; align-items:center; gap:16px; font-family:inherit; transition:padding .4s cubic-bezier(.16,1,.3,1), color .3s ease; }
-  .vn-prin__num{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:12px; color:var(--mist-2); transition:color .3s ease; }
-  .vn-prin__lab{ font-size:clamp(17px,1.7vw,21px); font-weight:600; letter-spacing:-0.01em; color:var(--mist); transition:color .3s ease; flex:1; }
-  .vn-prin__dot{ width:7px; height:7px; border-radius:50%; background:transparent; transition:background .3s ease, box-shadow .3s ease; }
-  .vn-prin__stage{ position:relative; min-height:clamp(340px,34vw,420px); background:linear-gradient(160deg,var(--ink-3) 0%,var(--ink-2) 100%); border:1px solid rgba(255,255,255,0.08); border-radius:24px; padding:clamp(30px,3.4vw,52px); overflow:hidden; box-shadow:0 30px 60px -36px rgba(7,11,20,0.55); }
-  .vn-prin__panel{ position:absolute; inset:0; padding:clamp(30px,3.4vw,52px); display:flex; flex-direction:column; justify-content:center; transition:opacity .6s ease, transform .8s cubic-bezier(.16,1,.3,1); }
-  .vn-prin__tag{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:11.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--blue-2); margin-bottom:18px; }
-  .vn-prin__title{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(30px,3.6vw,52px); line-height:1.0; letter-spacing:-0.02em; color:var(--snow); margin:0 0 18px; }
-  .vn-prin__txt{ font-size:clamp(15px,1.3vw,17.5px); line-height:1.7; color:rgba(243,246,252,0.72); margin:0; max-width:46ch; }
-  .vn-prin__ix{ position:absolute; right:clamp(24px,3vw,44px); top:clamp(24px,3vw,40px); font-family:'Plus Jakarta Sans',sans-serif; font-size:clamp(60px,8vw,120px); line-height:1; color:rgba(245,240,228,0.24); font-weight:800; pointer-events:none; }
-
-  /* ============ RECORRIDO stepper ============ */
-  .vn-rec{ position:relative; }
-  .vn-rec__head{ display:grid; grid-template-columns:1fr 1fr; gap:2px; }
-  @media (min-width:760px){ .vn-rec__head{ grid-template-columns:repeat(4,1fr); } }
-  .vn-rec__step{ position:relative; text-align:left; cursor:pointer; background:transparent; border:none; padding:18px 4px 22px; font-family:inherit; border-top:1px solid var(--hair); transition:color .3s ease; }
-  .vn-rec__sn{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:12px; color:var(--mist-2); transition:color .3s ease; }
-  .vn-rec__sl{ display:block; margin-top:8px; font-size:clamp(14px,1.3vw,16px); font-weight:600; color:var(--mist); transition:color .3s ease; }
-  .vn-rec__bar{ position:absolute; left:0; top:-1px; height:2px; background:linear-gradient(90deg,var(--accent),var(--blue)); transition:width .6s cubic-bezier(.16,1,.3,1); box-shadow:0 0 14px rgba(46,124,246,0.55); }
-  .vn-rec__stage{ position:relative; min-height:clamp(170px,16vw,210px); margin-top:clamp(28px,3vw,40px); }
-  .vn-rec__panel{ position:absolute; inset:0; transition:opacity .55s ease, transform .7s cubic-bezier(.16,1,.3,1); }
-  .vn-rec__pt{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(26px,3vw,40px); line-height:1.05; letter-spacing:-0.02em; color:var(--ink-on-paper); margin:0 0 16px; max-width:20ch; }
-  .vn-rec__pb{ font-size:clamp(15px,1.3vw,17.5px); line-height:1.7; color:var(--mist); margin:0; max-width:52ch; }
-
-  /* ============ FORMATOS gallery ============ */
-  .vn-fmt{ display:grid; grid-template-columns:1fr; gap:clamp(26px,3vw,44px); align-items:center; }
-  @media (min-width:920px){ .vn-fmt{ grid-template-columns:1.1fr 0.9fr; } }
-  .vn-fmt__media{ position:relative; border-radius:24px; overflow:hidden; aspect-ratio:4/3.2; background:var(--ink-2); border:1px solid var(--line); box-shadow:0 50px 90px -50px rgba(0,0,0,0.8); }
-  .vn-fmt__img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  .vn-fmt__grad{ position:absolute; inset:0; background:linear-gradient(180deg,transparent 40%,rgba(7,11,20,0.86) 100%); pointer-events:none; }
-  .vn-fmt__cap{ position:absolute; left:0; right:0; bottom:0; padding:clamp(22px,2.6vw,32px); pointer-events:none; }
-  .vn-fmt__captag{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--blue-2); }
-  .vn-fmt__capttl{ font-family:'Plus Jakarta Sans',sans-serif; font-size:clamp(24px,2.6vw,34px); font-weight:800; color:#fff; margin:8px 0 6px; letter-spacing:-0.01em; }
-  .vn-fmt__capdesc{ font-size:14px; line-height:1.5; color:rgba(243,246,252,0.82); margin:0; max-width:44ch; }
-  .vn-fmt__list{ display:flex; flex-direction:column; gap:2px; border-top:1px solid var(--hair); }
-  .vn-fmt__row{ width:100%; text-align:left; cursor:pointer; background:transparent; border:none; border-bottom:1px solid var(--hair); padding:clamp(16px,1.7vw,22px) 6px; display:flex; align-items:center; gap:16px; font-family:inherit; transition:padding .4s cubic-bezier(.16,1,.3,1); }
-  .vn-fmt__rn{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:12px; color:var(--mist-2); }
-  .vn-fmt__rl{ font-size:clamp(17px,1.7vw,22px); font-weight:600; color:var(--mist); flex:1; transition:color .3s ease; }
-  .vn-fmt__arrow{ color:var(--mist-2); transition:transform .4s cubic-bezier(.16,1,.3,1), color .3s ease; }
-
-  /* ============ CTA ============ */
-  .vn-finalcta{ position:relative; overflow:hidden; min-height:clamp(420px,52vw,560px); display:flex; align-items:center; justify-content:center; text-align:center; padding:clamp(80px,11vw,140px) clamp(20px,5vw,40px); }
-  .vn-finalcta__img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  .vn-finalcta__veil{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(7,11,20,0.62),rgba(7,11,20,0.5) 45%,rgba(7,11,20,0.7)); }
-  .vn-finalcta__inner{ position:relative; z-index:2; max-width:900px; }
-  .vn-finalcta__ttl{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(32px,5vw,68px); line-height:1.04; letter-spacing:-0.025em; color:#fff; margin:0 0 clamp(28px,4vw,42px); text-shadow:0 10px 50px rgba(7,11,20,0.6); }
-  .vn-finalcta__ttl em{ font-style:normal; color:var(--blue-2); }
-  .vn-btn{ text-decoration:none; display:inline-flex; align-items:center; gap:11px; padding:17px 38px; border-radius:14px; background:var(--blue); color:#fff; font-size:16.5px; font-weight:700; transition:background .25s ease, transform .2s ease, box-shadow .3s ease; box-shadow:0 18px 40px -20px rgba(46,124,246,0.7); }
-
-  :focus-visible{ outline:2px solid var(--blue-2); outline-offset:3px; border-radius:4px; }
-
-  @media (prefers-reduced-motion: reduce){
-    .vn-hero__bg{ animation:none; }
-    .vn-hero__stage{ animation:none; opacity:1; }
-    .vn-hero__slide{ transition:none; }
-    *{ scroll-behavior:auto !important; }
+  /* Origin */
+  .about-origin {
+    padding:132px 0 140px;
+    background:var(--paper);
+  }
+  .about-origin__inner {
+    width:min(100% - 48px,1180px);
+    margin:0 auto;
+  }
+  .about-origin__head {
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:90px;
+    align-items:start;
+  }
+  .about-origin h2 {
+    max-width:690px;
+    margin:0;
+    color:var(--text);
+    font-size:clamp(44px,5.3vw,76px);
+    line-height:1.02;
+    letter-spacing:0;
+  }
+  .about-origin__copy {
+    padding-top:48px;
+  }
+  .about-origin__copy p {
+    margin:0 0 22px;
+    color:var(--muted);
+    font-size:17px;
+    line-height:1.75;
+  }
+  .about-origin__copy strong { color:var(--text); }
+  .about-origin__statement {
+    margin-top:100px;
+    padding:38px 0 0;
+    border-top:1px solid var(--line);
+    color:var(--blue);
+    font-size:clamp(26px,3vw,42px);
+    font-weight:800;
+    line-height:1.18;
   }
 
-  .sc-placeholder{ background:transparent !important; border-color:transparent !important; }
-  dc-import{ display:block; }
+  /* City image */
+  .about-city {
+    position:relative;
+    min-height:760px;
+    overflow:hidden;
+    color:#FFFFFF;
+    background:var(--ink);
+  }
+  .about-city__image {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+  }
+  .about-city__veil {
+    position:absolute;
+    inset:0;
+    background:linear-gradient(90deg,rgba(5,8,15,.9),rgba(5,8,15,.46) 50%,rgba(5,8,15,.14));
+  }
+  .about-city__inner {
+    position:relative;
+    z-index:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    width:min(100% - 48px,1180px);
+    min-height:760px;
+    margin:0 auto;
+  }
+  .about-city h2 {
+    max-width:720px;
+    margin:0 0 28px;
+    font-size:clamp(46px,6vw,84px);
+    line-height:1;
+    letter-spacing:0;
+  }
+  .about-city p {
+    max-width:540px;
+    margin:0;
+    color:rgba(239,244,252,.76);
+    font-size:17px;
+    line-height:1.7;
+  }
+
+  /* Method */
+  .about-method {
+    padding:130px 0 138px;
+    color:#FFFFFF;
+    background:var(--ink);
+  }
+  .about-method__inner {
+    width:min(100% - 48px,1180px);
+    margin:0 auto;
+  }
+  .about-method__head {
+    display:grid;
+    grid-template-columns:1fr .85fr;
+    gap:90px;
+    align-items:end;
+    margin-bottom:72px;
+  }
+  .about-method h2 {
+    max-width:650px;
+    margin:0;
+    font-size:clamp(42px,5vw,70px);
+    line-height:1.02;
+  }
+  .about-method__head p {
+    margin:0;
+    color:rgba(229,236,248,.64);
+    font-size:16px;
+    line-height:1.7;
+  }
+  .about-method__visual {
+    position:relative;
+    min-height:580px;
+    overflow:hidden;
+  }
+  .about-method__visual img {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+  }
+  .about-method__visual::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(0deg,rgba(5,8,15,.8),transparent 58%);
+  }
+  .about-method__steps {
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    min-height:580px;
+    align-items:end;
+  }
+  .about-method__step {
+    min-height:190px;
+    padding:30px 28px;
+    border-top:1px solid rgba(255,255,255,.28);
+    border-right:1px solid rgba(255,255,255,.18);
+    background:rgba(5,8,15,.26);
+    backdrop-filter:blur(7px);
+  }
+  .about-method__step:last-child { border-right:0; }
+  .about-method__step span {
+    color:var(--blue-light);
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.12em;
+  }
+  .about-method__step h3 {
+    margin:30px 0 9px;
+    font-size:19px;
+  }
+  .about-method__step p {
+    margin:0;
+    color:rgba(234,240,249,.68);
+    font-size:13px;
+    line-height:1.6;
+  }
+
+  /* Player */
+  .about-player {
+    padding:126px 0 60px;
+    overflow:hidden;
+    background:var(--paper);
+  }
+  .about-player__inner {
+    width:min(100% - 48px,1180px);
+    margin:0 auto;
+    text-align:center;
+  }
+  .about-player__inner .about-kicker { justify-content:center; }
+  .about-player h2 {
+    max-width:850px;
+    margin:0 auto 24px;
+    color:var(--text);
+    font-size:clamp(42px,5vw,72px);
+    line-height:1.02;
+  }
+  .about-player__lead {
+    max-width:650px;
+    margin:0 auto;
+    color:var(--muted);
+    font-size:17px;
+    line-height:1.7;
+  }
+  .about-player__devices {
+    display:block;
+    width:min(1120px,110%);
+    max-height:700px;
+    margin:52px auto 0;
+    object-fit:contain;
+    object-position:center bottom;
+  }
+
+  /* Commitment */
+  .about-commit {
+    padding:126px 0 134px;
+    background:var(--soft);
+  }
+  .about-commit__inner {
+    display:grid;
+    grid-template-columns:.85fr 1.15fr;
+    gap:90px;
+    width:min(100% - 48px,1180px);
+    margin:0 auto;
+    align-items:start;
+  }
+  .about-commit h2 {
+    margin:0;
+    color:var(--text);
+    font-size:clamp(40px,4.6vw,64px);
+    line-height:1.03;
+  }
+  .about-commit__list {
+    border-top:1px solid #CCD4E0;
+  }
+  .about-commit__item {
+    display:grid;
+    grid-template-columns:50px 1fr;
+    gap:18px;
+    padding:26px 0;
+    border-bottom:1px solid #CCD4E0;
+  }
+  .about-commit__item span {
+    color:var(--blue);
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.08em;
+  }
+  .about-commit__item h3 {
+    margin:0 0 7px;
+    color:var(--text);
+    font-size:18px;
+  }
+  .about-commit__item p {
+    margin:0;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.65;
+  }
+
+  /* Final */
+  .about-final {
+    position:relative;
+    display:flex;
+    align-items:center;
+    min-height:720px;
+    overflow:hidden;
+    color:#FFFFFF;
+    background:var(--ink);
+  }
+  .about-final__image {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+  }
+  .about-final__veil {
+    position:absolute;
+    inset:0;
+    background:linear-gradient(90deg,rgba(5,8,15,.94),rgba(5,8,15,.52) 58%,rgba(5,8,15,.12));
+  }
+  .about-final__inner {
+    position:relative;
+    z-index:1;
+    width:min(100% - 48px,1180px);
+    margin:0 auto;
+  }
+  .about-final h2 {
+    max-width:800px;
+    margin:0 0 34px;
+    font-size:clamp(48px,6.3vw,88px);
+    line-height:.99;
+  }
+  .about-final__button {
+    display:inline-flex;
+    align-items:center;
+    gap:18px;
+    min-height:56px;
+    padding:0 24px;
+    border-radius:7px;
+    background:var(--blue);
+    color:#FFFFFF;
+    font-size:15px;
+    font-weight:800;
+    text-decoration:none;
+    transition:transform .2s ease,background .2s ease,box-shadow .2s ease;
+  }
+  .about-final__button:hover {
+    transform:translateY(-2px);
+    background:#2878ED;
+    box-shadow:0 18px 34px rgba(23,105,232,.28);
+  }
+
+  @media (max-width:900px) {
+    .about-hero__footer,
+    .about-origin__head,
+    .about-method__head,
+    .about-commit__inner {
+      grid-template-columns:1fr;
+      gap:32px;
+    }
+    .about-origin__copy { padding-top:0; }
+    .about-method__steps { grid-template-columns:1fr 1fr; }
+    .about-method__step { border-bottom:1px solid rgba(255,255,255,.18); }
+  }
+  @media (max-width:600px) {
+    .about-hero { min-height:760px; }
+    .about-hero__inner,
+    .about-origin__inner,
+    .about-city__inner,
+    .about-method__inner,
+    .about-player__inner,
+    .about-commit__inner,
+    .about-final__inner { width:calc(100% - 36px); }
+    .about-hero__inner { padding:138px 0 68px; }
+    .about-hero h1 { font-size:49px; }
+    .about-hero__footer { margin-top:38px; }
+    .about-hero__footer p { font-size:16px; }
+    .about-origin,
+    .about-method,
+    .about-commit { padding:84px 0 90px; }
+    .about-origin__statement { margin-top:58px; }
+    .about-city,
+    .about-city__inner { min-height:650px; }
+    .about-method__visual { min-height:720px; }
+    .about-method__steps { grid-template-columns:1fr; min-height:720px; }
+    .about-method__step { min-height:0; padding:20px; }
+    .about-method__step h3 { margin-top:14px; }
+    .about-player { padding:84px 0 34px; }
+    .about-player__devices { width:140%; margin-left:-20%; }
+    .about-final { min-height:650px; }
+    .about-final h2 { font-size:48px; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    * { scroll-behavior:auto !important; }
+  }
+  .sc-placeholder { background:transparent !important; border-color:transparent !important; }
+  dc-import { display:block; }
 </style>
 </helmet>
 
-<div ref="{{ setRoot }}" class="vn-wrap">
-
+<div ref="{{ setRoot }}" class="about">
   <dc-import name="SiteNetwork" hint-size="100%,100%"></dc-import>
-  <dc-import name="SiteNav" active="nosotros" transparent="{{ true }}" top-color="#070B14" hint-size="100%,66px"></dc-import>
+  <dc-import name="SiteNav" active="nosotros" transparent="{{ true }}" top-color="#05080F" hint-size="100%,66px"></dc-import>
 
-  <!-- ============ HERO (carrusel cinematico) ============ -->
-  <section class="vn-hero">
-    <img class="vn-hero__bg" style="{{ heroBg0 }}" src="panels/hero-nosotros.jpg" alt="Valla VISTA360 al anochecer con la ciudad de fondo" />
-    <img class="vn-hero__bg" style="{{ heroBg1 }}" src="panels/skyline-night.jpg" alt="Horizonte de la ciudad de noche" />
-    <img class="vn-hero__bg" style="{{ heroBg2 }}" src="panels/unipolar-billboard-night.jpg" alt="Valla VISTA360 de noche junto a una avenida con tránsito" />
-    <div class="vn-hero__veil"></div>
-    <div class="vn-hero__inner">
-
-      <div class="vn-hero__stage" style="opacity:0; animation:vn-fadeup 1s cubic-bezier(.16,1,.3,1) .1s forwards;">
-        <div class="vn-hero__slide" style="{{ heroSlideStyle0 }}"><h1>Nacimos para<br>que <em>te vean.</em></h1></div>
-        <div class="vn-hero__slide" style="{{ heroSlideStyle1 }}">
-          <img class="vn-hero__logo-mark" src="vista360-logo.png" alt="VISTA360" />
-          <p class="vn-hero__logo-tag">Publicidad exterior · Huánuco, Perú</p>
-        </div>
-        <div class="vn-hero__slide" style="{{ heroSlideStyle2 }}"><h1>La calle es<br>nuestro <em>lienzo.</em></h1></div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============ MARQUEE ============ -->
-  
-
-  <!-- ============ MANIFIESTO ============ -->
-  <section class="vn-sec">
-    <div data-reveal class="vn-kick"><span>Manifiesto</span><i>/ 01</i></div>
-    <div data-reveal class="vn-manif">
-      <div>
-        <div class="vn-rule"></div>
-        <p class="vn-manif__lead">La mejor publicidad es la que <em>no se puede esquivar.</em></p>
-      </div>
-      <div class="vn-manif__body">
-        <p>Partimos de una convicción simple: en la calle, la atención no se compra, se gana. Por eso elegimos cada soporte por su tránsito real y su visibilidad, no por llenar un mapa. No vendemos espacios; vendemos miradas.</p>
-        <p>Combinamos la fuerza de la vía pública —murales, unipolares y tótems— con un servicio integral de principio a fin: un mismo equipo que planifica, diseña, produce e instala, para que tu campaña salga impecable. La publicidad en pantallas LED llegará muy pronto a nuestra red.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ PRINCIPIOS ============ -->
-  <section class="vn-sec" style="padding-top:0;">
-    <div data-reveal class="vn-kick"><span>Principios</span><i>/ 02</i></div>
-    <div data-reveal class="vn-prin">
-      <div class="vn-prin__rail">
-        <sc-for list="{{ principios }}" as="p" hint-placeholder-count="6">
-          <button class="vn-prin__item" style="{{ p.railStyle }}" onClick="{{ p.onClick }}">
-            <span class="vn-prin__num" style="{{ p.numStyle }}">{{ p.num }}</span>
-            <span class="vn-prin__lab" style="{{ p.labStyle }}">{{ p.label }}</span>
-            <span class="vn-prin__dot" style="{{ p.dotStyle }}"></span>
-          </button>
-        </sc-for>
-      </div>
-      <div class="vn-prin__stage">
-        <sc-for list="{{ principios }}" as="p" hint-placeholder-count="6">
-          <div class="vn-prin__panel" style="{{ p.panelStyle }}">
-            <span class="vn-prin__ix vn-serif">{{ p.num }}</span>
-            <span class="vn-prin__tag">{{ p.tag }}</span>
-            <h3 class="vn-prin__title">{{ p.label }}</h3>
-            <p class="vn-prin__txt">{{ p.body }}</p>
-          </div>
-        </sc-for>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ RECORRIDO ============ -->
-  <section class="vn-sec" style="padding-top:0;">
-    <div data-reveal class="vn-kick"><span>Proceso</span><i>/ 03</i></div>
-    <h2 data-reveal class="vn-serif" style="font-weight:800; font-size:clamp(28px,4vw,54px); line-height:1.02; letter-spacing:-0.025em; color:var(--ink-on-paper); margin:0 0 clamp(34px,4.4vw,56px); max-width:18ch;">De la idea a la calle, <em style="font-style:normal; color:var(--accent);">sin intermediarios.</em></h2>
-    <div data-reveal class="vn-rec">
-      <div class="vn-rec__head">
-        <sc-for list="{{ pasos }}" as="s" hint-placeholder-count="4">
-          <button class="vn-rec__step" onClick="{{ s.onClick }}">
-            <span class="vn-rec__bar" style="{{ s.barStyle }}"></span>
-            <span class="vn-rec__sn" style="{{ s.snStyle }}">{{ s.num }}</span>
-            <span class="vn-rec__sl" style="{{ s.slStyle }}">{{ s.label }}</span>
-          </button>
-        </sc-for>
-      </div>
-      <div class="vn-rec__stage">
-        <sc-for list="{{ pasos }}" as="s" hint-placeholder-count="4">
-          <div class="vn-rec__panel" style="{{ s.panelStyle }}">
-            <h3 class="vn-rec__pt">{{ s.title }}</h3>
-            <p class="vn-rec__pb">{{ s.body }}</p>
-          </div>
-        </sc-for>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ FORMATOS ============ -->
-  <section class="vn-sec" style="padding-top:0;">
-    <div data-reveal class="vn-kick"><span>Formatos</span><i>/ 04</i></div>
-    <div data-reveal class="vn-fmt">
-      <div class="vn-fmt__media">
-        <sc-for list="{{ formatos }}" as="f" hint-placeholder-count="4">
-          <img class="vn-fmt__img" src="{{ f.img }}" alt="{{ f.title }}" style="{{ f.imgStyle }}" />
-        </sc-for>
-        <div class="vn-fmt__grad"></div>
-        <div class="vn-fmt__cap">
-          <div class="vn-fmt__captag">Formato seleccionado</div>
-          <div class="vn-fmt__capttl">{{ activeFmtTitle }}</div>
-          <p class="vn-fmt__capdesc">{{ activeFmtDesc }}</p>
+  <main>
+    <section class="about-hero" aria-labelledby="about-title">
+      <img class="about-hero__image" src="panels/hero-nosotros.jpg" alt="Panel VISTA360 integrado al paisaje urbano al anochecer" />
+      <div class="about-hero__veil"></div>
+      <div class="about-hero__inner">
+        <div class="about-kicker about-kicker--light">Quiénes somos</div>
+        <h1 id="about-title">Creamos lugares donde las marcas pueden ser vistas.</h1>
+        <div class="about-hero__footer">
+          <p>VISTA360 nace para elevar la publicidad exterior en Huánuco: mejores ubicaciones, campañas mejor cuidadas y una relación más clara con cada marca.</p>
+          <div class="about-hero__place">Huánuco, Perú<br>Publicidad exterior</div>
         </div>
       </div>
-      <div class="vn-fmt__list">
-        <sc-for list="{{ formatos }}" as="f" hint-placeholder-count="4">
-          <button class="vn-fmt__row" style="{{ f.rowStyle }}" onClick="{{ f.onClick }}">
-            <span class="vn-fmt__rn">{{ f.num }}</span>
-            <span class="vn-fmt__rl" style="{{ f.rlStyle }}">{{ f.label }}</span>
-            <span class="vn-fmt__arrow" style="{{ f.arrowStyle }}">&rarr;</span>
-          </button>
-        </sc-for>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============ CTA ============ -->
-  <section class="vn-finalcta">
-    <img class="vn-finalcta__img" src="panels/billboard-vista360.jpg" alt="Publicidad exterior VISTA360" />
-    <div class="vn-finalcta__veil"></div>
-    <div data-reveal class="vn-finalcta__inner">
-      <h2 class="vn-finalcta__ttl">Démosle a tu marca la <em>escala de toda la ciudad.</em></h2>
-      <a href="contacto.html" class="vn-btn" style-hover="background:#3B86F5; transform:translateY(-2px);">Conversemos <span style="font-size:18px;">&rarr;</span></a>
-    </div>
-  </section>
+    <section class="about-origin" aria-labelledby="origin-title">
+      <div class="about-origin__inner">
+        <div class="about-origin__head">
+          <div data-reveal>
+            <div class="about-kicker">Nuestro origen</div>
+            <h2 id="origin-title">Una mirada nueva para una ciudad que sigue creciendo.</h2>
+          </div>
+          <div class="about-origin__copy" data-reveal>
+            <p>Empezamos con una idea sencilla: la publicidad exterior puede sentirse más <strong>estratégica, cuidada y cercana</strong>.</p>
+            <p>No buscamos llenar la ciudad de soportes. Queremos identificar lugares donde una marca pueda aparecer con propósito, integrarse al recorrido cotidiano y permanecer en la memoria.</p>
+          </div>
+        </div>
+        <div class="about-origin__statement" data-reveal>La ubicación atrae la mirada. La ejecución construye confianza.</div>
+      </div>
+    </section>
+
+    <section class="about-city" aria-labelledby="city-title">
+      <img class="about-city__image" src="panels/editorial-mural-night.jpg" alt="Mural publicitario iluminado integrado a una fachada urbana" />
+      <div class="about-city__veil"></div>
+      <div class="about-city__inner">
+        <div data-reveal>
+          <div class="about-kicker about-kicker--light">La ciudad como medio</div>
+          <h2 id="city-title">La arquitectura también puede comunicar.</h2>
+          <p>Observamos fachadas, avenidas y puntos de encuentro para encontrar el lugar donde cada mensaje puede adquirir escala sin perder claridad.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-method" aria-labelledby="method-title">
+      <div class="about-method__inner">
+        <div class="about-method__head" data-reveal>
+          <div>
+            <div class="about-kicker about-kicker--light">Nuestra forma de trabajar</div>
+            <h2 id="method-title">De la intención a la calle, con un mismo criterio.</h2>
+          </div>
+          <p>Cada campaña se construye como una secuencia. Escuchamos, elegimos, producimos y acompañamos para que la idea conserve su fuerza hasta el momento de ser vista.</p>
+        </div>
+        <div class="about-method__visual" data-reveal>
+          <img src="panels/story-mural-install-detail-v2.jpg" alt="Detalle del proceso de instalación de una campaña mural" />
+          <div class="about-method__steps">
+            <article class="about-method__step">
+              <span>01 / ESCUCHAMOS</span>
+              <h3>Entendemos el objetivo.</h3>
+              <p>Partimos de lo que la marca necesita conseguir.</p>
+            </article>
+            <article class="about-method__step">
+              <span>02 / UBICAMOS</span>
+              <h3>Elegimos el recorrido.</h3>
+              <p>Relacionamos público, zona, visibilidad y formato.</p>
+            </article>
+            <article class="about-method__step">
+              <span>03 / PRODUCIMOS</span>
+              <h3>Cuidamos la ejecución.</h3>
+              <p>Preparamos cada pieza para que comunique con claridad.</p>
+            </article>
+            <article class="about-method__step">
+              <span>04 / ACOMPAÑAMOS</span>
+              <h3>Seguimos la campaña.</h3>
+              <p>Mantenemos una comunicación cercana durante el proceso.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-player" aria-labelledby="player-title">
+      <div class="about-player__inner">
+        <div class="about-kicker">Tecnología que acompaña</div>
+        <h2 id="player-title">La campaña también continúa después de instalarse.</h2>
+        <p class="about-player__lead">VISTA360 Player reúne campañas, pantallas, evidencias y reportes para ofrecer una experiencia más clara y ordenada desde cualquier dispositivo.</p>
+        <img class="about-player__devices" data-reveal src="panels/vista360-player-devices-v1.png" alt="VISTA360 Player presentado en una computadora portátil y un teléfono" />
+      </div>
+    </section>
+
+    <section class="about-commit" aria-labelledby="commit-title">
+      <div class="about-commit__inner">
+        <div data-reveal>
+          <div class="about-kicker">Lo que defendemos</div>
+          <h2 id="commit-title">Crecer sin perder el cuidado.</h2>
+        </div>
+        <div class="about-commit__list" data-reveal>
+          <article class="about-commit__item">
+            <span>01</span>
+            <div><h3>Criterio antes que cantidad.</h3><p>Seleccionar mejor vale más que ocupar por ocupar.</p></div>
+          </article>
+          <article class="about-commit__item">
+            <span>02</span>
+            <div><h3>Claridad en cada conversación.</h3><p>Explicamos posibilidades, tiempos y siguientes pasos sin complicarlos.</p></div>
+          </article>
+          <article class="about-commit__item">
+            <span>03</span>
+            <div><h3>Detalle visible en el resultado.</h3><p>La calidad se reconoce en cómo se integra, se instala y se presenta una campaña.</p></div>
+          </article>
+          <article class="about-commit__item">
+            <span>04</span>
+            <div><h3>Ambición con raíces locales.</h3><p>Nacemos en Huánuco y construimos desde el conocimiento cercano de su ciudad.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-final" aria-labelledby="final-title">
+      <img class="about-final__image" src="panels/campaign-unipolar-blue-hour-v1.jpg" alt="Campaña VISTA360 de gran formato integrada a una avenida al anochecer" />
+      <div class="about-final__veil"></div>
+      <div class="about-final__inner" data-reveal>
+        <div class="about-kicker about-kicker--light">El siguiente lugar puede ser el tuyo</div>
+        <h2 id="final-title">Tu marca puede ser parte de lo que la ciudad mira.</h2>
+        <a class="about-final__button" href="contacto.html">Conversemos sobre tu campaña <span>&rarr;</span></a>
+      </div>
+    </section>
+  </main>
 
   <dc-import name="SiteFooter" hint-size="100%,400px"></dc-import>
   <dc-import name="SiteChat" hint-size="100%,0px"></dc-import>
-  <div style="background:#05080F; min-height:20px;"></div>
-
+  <div style="background:#05080F;min-height:20px;"></div>
 </div>
 </x-dc>
+
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { principio: 0, paso: 0, formato: 0, heroSlide: 0 };
-
-  _restartHeroTimer() {
-    if (this._heroTimer) clearInterval(this._heroTimer);
-    this._heroTimer = setInterval(() => {
-      this.setState({ heroSlide: (this.state.heroSlide + 1) % 3 });
-    }, 5000);
-  }
-
   componentDidMount() {
     const root = this.rootEl;
     if (!root) return;
-
-    // ---- scroll reveals ----
     const els = Array.from(root.querySelectorAll('[data-reveal]'));
     els.forEach((el) => {
       el.style.opacity = '0';
@@ -303,110 +634,26 @@ class Component extends DCLogic {
     });
     if (!('IntersectionObserver' in window)) {
       els.forEach((el) => { el.style.opacity = '1'; el.style.transform = 'none'; });
-    } else {
-      this.io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; this.io.unobserve(e.target); } });
-      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-      els.forEach((el) => this.io.observe(el));
+      return;
     }
-
-    this._restartHeroTimer();
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'none';
+        this.io.unobserve(entry.target);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    els.forEach((el) => this.io.observe(el));
   }
-
   componentWillUnmount() {
     if (this.io) this.io.disconnect();
-    if (this._heroTimer) clearInterval(this._heroTimer);
   }
-
   renderVals() {
-    // ----- HERO (carrusel) -----
-    const hs = this.state.heroSlide;
-    const heroIsActive = (i) => (hs === i ? { opacity: 1, pointerEvents: 'auto', zIndex: 1 } : { opacity: 0, pointerEvents: 'none', zIndex: 0 });
-    const heroBgStyle = (i) => (hs === i ? { opacity: 1 } : { opacity: 0 });
-
-    // ----- PRINCIPIOS -----
-    const prinData = [
-      { tag: 'Propósito', label: 'Misión', body: 'Darle a cada marca de la región un lugar imposible de ignorar en la ciudad, con soportes bien ubicados, creatividad propia y un servicio que cuida cada detalle de la campaña.' },
-      { tag: 'Horizonte', label: 'Visión', body: 'Ser la red de publicidad exterior y digital de referencia en Huánuco y el centro del país, reconocida por la calidad de sus ubicaciones, su tecnología y los resultados que genera.' },
-      { tag: 'Valor', label: 'Cercanía local', body: 'Conocemos la ciudad calle por calle. Esa cercanía nos deja ubicar tu marca donde de verdad importa, no donde sobra espacio.' },
-      { tag: 'Valor', label: 'Impacto real', body: 'Cada soporte se elige por su tránsito y su visibilidad. No vendemos espacios: vendemos miradas que se convierten en recuerdo de marca.' },
-      { tag: 'Valor', label: 'Creatividad propia', body: 'Un área creativa in-house que adapta tu mensaje a cada formato para que comunique con fuerza desde la distancia y en segundos.' },
-      { tag: 'Valor', label: 'Cumplimiento', body: 'Producción, permisos, montaje y mantenimiento bajo un mismo equipo. Lo que prometemos, lo entregamos impecable y a tiempo.' }
-    ];
-    const pi = this.state.principio;
-    const principios = prinData.map((p, i) => {
-      const active = i === pi;
-      const num = ('0' + (i + 1)).slice(-2);
-      return {
-        num: num, label: p.label, tag: p.tag, body: p.body,
-        onClick: () => this.setState({ principio: i }),
-        railStyle: { paddingLeft: active ? '18px' : '6px' },
-        numStyle: { color: active ? '#1C6FE8' : '' },
-        labStyle: { color: active ? '#0E1A2E' : '' },
-        dotStyle: { background: active ? '#1C6FE8' : 'transparent', boxShadow: active ? '0 0 10px rgba(28,111,232,0.45)' : 'none' },
-        panelStyle: { opacity: active ? 1 : 0, transform: active ? 'translateY(0)' : 'translateY(14px)', pointerEvents: active ? 'auto' : 'none' }
-      };
-    });
-
-    // ----- RECORRIDO -----
-    const pasoData = [
-      { label: 'Planificación', title: 'Ubicamos tu marca con datos, no con suerte.', body: 'Analizamos el flujo vehicular y peatonal de la ciudad para colocar tu campaña donde de verdad la van a ver. Cada punto se justifica por su tránsito real.' },
-      { label: 'Diseño', title: 'Creatividad que se lee a 80 km/h.', body: 'Nuestro equipo in-house adapta tu mensaje a cada formato: jerarquía clara, contraste alto y una idea que comunica en el segundo que dura una mirada.' },
-      { label: 'Producción', title: 'Impresión, permisos y estructura, en una sola mano.', body: 'Gestionamos la producción del material, los permisos municipales y la estructura. Un solo responsable de principio a fin, sin terceros que diluyan la calidad.' },
-      { label: 'Montaje y reporte', title: 'Instalamos, y te mostramos el resultado.', body: 'Montamos tu campaña y te enviamos reportes con fotografías de la pieza ya instalada, con seguimiento cercano durante toda su exhibición.' }
-    ];
-    const si = this.state.paso;
-    const stepW = (100 / pasoData.length).toFixed(4) + '%';
-    const pasos = pasoData.map((s, i) => {
-      const active = i === si;
-      const done = i <= si;
-      return {
-        num: ('0' + (i + 1)).slice(-2), label: s.label, title: s.title, body: s.body,
-        onClick: () => this.setState({ paso: i }),
-        barStyle: { width: done ? '100%' : '0%' },
-        snStyle: { color: active ? '#1C6FE8' : (done ? '#1C6FE8' : '') },
-        slStyle: { color: active ? '#0E1A2E' : '' },
-        panelStyle: { opacity: active ? 1 : 0, transform: active ? 'translateY(0)' : 'translateY(12px)', pointerEvents: active ? 'auto' : 'none' }
-      };
-    });
-
-    // ----- FORMATOS -----
-    const fmtData = [
-      { label: 'Unipolares', img: 'panels/unipolar-billboard-night.jpg', title: 'Unipolares', desc: 'Gran formato a la altura de la avenida, visible desde cientos de metros.', pos: 'center center' },
-      { label: 'Murales', img: 'panels/mural.jpg', title: 'Murales urbanos', desc: 'Gran escala que convierte una pared en un punto de referencia de la ciudad.', pos: '56% 42%' },
-      { label: 'Tótems', img: 'panels/totem.jpg', title: 'Tótems peatonales', desc: 'Impacto a la altura del peatón en los puntos de mayor flujo a pie.', pos: '57% 48%' },
-      { label: 'Pantallas LED', img: 'panels/led.jpg', title: 'Pantallas LED · Próximamente', desc: 'Contenido dinámico que cambia según la hora y la campaña. Llega pronto a nuestra red.', pos: '44% 42%' }
-    ];
-    const fi = this.state.formato;
-    const formatos = fmtData.map((f, i) => {
-      const active = i === fi;
-      return {
-        num: ('0' + (i + 1)).slice(-2), label: f.label, img: f.img, title: f.title, desc: f.desc,
-        onClick: () => this.setState({ formato: i }),
-        imgStyle: { objectPosition: f.pos, opacity: active ? 1 : 0, transform: active ? 'scale(1)' : 'scale(1.06)', transition: 'opacity .7s ease, transform 1.5s cubic-bezier(.16,1,.3,1)' },
-        rowStyle: { paddingLeft: active ? '18px' : '6px' },
-        rlStyle: { color: active ? '#0E1A2E' : '' },
-        arrowStyle: { color: active ? '#1C6FE8' : '', transform: active ? 'translateX(4px)' : 'none' }
-      };
-    });
-
-    return {
-      setRoot: (el) => { this.rootEl = el; },
-      heroBg0: heroBgStyle(0),
-      heroBg1: heroBgStyle(1),
-      heroBg2: heroBgStyle(2),
-      heroSlideStyle0: heroIsActive(0),
-      heroSlideStyle1: heroIsActive(1),
-      heroSlideStyle2: heroIsActive(2),
-      principios: principios,
-      pasos: pasos,
-      formatos: formatos,
-      activeFmtTitle: fmtData[fi].title,
-      activeFmtDesc: fmtData[fi].desc
-    };
+    return { setRoot: (el) => { this.rootEl = el; } };
   }
 }
 </script>
-  <script src="hover.js"></script>
+<script src="hover.js"></script>
 </body>
 </html>
