@@ -6728,6 +6728,162 @@
   .vn-control-point span {
     color:rgba(255,255,255,.58);
   }
+  .v-player-next {
+    position:relative;
+    overflow:hidden;
+    padding:132px 0 126px !important;
+    color:#101724;
+    background:#FFFFFF !important;
+  }
+  .v-player-next::before {
+    display:none !important;
+  }
+  .v-player-next::after {
+    content:"";
+    position:absolute;
+    inset:auto;
+    top:240px;
+    right:auto;
+    bottom:auto;
+    left:50%;
+    width:920px;
+    height:620px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(28,111,232,.14),rgba(28,111,232,.035) 48%,transparent 72%);
+    filter:blur(12px);
+    transform:translateX(-50%);
+    pointer-events:none;
+  }
+  .v-player-next__shell {
+    position:relative;
+    z-index:1;
+    width:min(100% - 48px,1180px);
+    margin:0 auto;
+  }
+  .v-player-next__head {
+    max-width:850px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .v-player-next__logo {
+    display:block;
+    width:250px;
+    height:auto;
+    margin:0 auto 42px;
+  }
+  .v-player-next__eyebrow {
+    margin-bottom:20px;
+    color:#1769E8;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+  .v-player-next__head h2 {
+    max-width:820px !important;
+    margin:0 auto 24px;
+    color:#0B111D;
+    font-size:64px !important;
+    font-weight:800;
+    line-height:1;
+    letter-spacing:0 !important;
+  }
+  .v-player-next__head p {
+    max-width:650px;
+    margin:0 auto;
+    color:#626B7A;
+    font-size:18px;
+    line-height:1.65;
+  }
+  .v-player-next__visual {
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:680px;
+    margin:52px auto 0;
+  }
+  .v-player-next__visual::before {
+    content:"";
+    position:absolute;
+    right:4%;
+    bottom:8%;
+    left:4%;
+    height:86px;
+    border-radius:50%;
+    background:rgba(24,39,67,.2);
+    filter:blur(34px);
+    transform:scaleX(.84);
+  }
+  .v-player-next__devices {
+    position:relative;
+    z-index:1;
+    display:block;
+    width:min(100%,1120px);
+    height:auto;
+    object-fit:contain;
+    filter:drop-shadow(0 34px 34px rgba(14,25,45,.18));
+  }
+  .v-player-next__benefits {
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    margin-top:10px;
+    border-top:1px solid #DDE3EC;
+  }
+  .v-player-next__benefit {
+    min-height:190px;
+    padding:34px 32px 0 0;
+  }
+  .v-player-next__benefit + .v-player-next__benefit {
+    padding-left:32px;
+    border-left:1px solid #DDE3EC;
+  }
+  .v-player-next__benefit span {
+    display:block;
+    margin-bottom:28px;
+    color:#1769E8;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.12em;
+  }
+  .v-player-next__benefit h3 {
+    margin:0 0 10px;
+    color:#111827;
+    font-size:22px;
+    font-weight:800;
+    line-height:1.2;
+  }
+  .v-player-next__benefit p {
+    max-width:300px;
+    margin:0;
+    color:#697386;
+    font-size:15px;
+    line-height:1.6;
+  }
+  .v-player-next__action {
+    display:flex;
+    justify-content:center;
+    margin-top:54px;
+  }
+  .v-player-next__action a {
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 22px;
+    border-radius:7px;
+    color:#FFFFFF;
+    background:#1769E8;
+    box-shadow:0 14px 30px rgba(23,105,232,.2);
+    font-size:14px;
+    font-weight:800;
+    text-decoration:none;
+    transition:background .22s ease,transform .22s ease,box-shadow .22s ease;
+  }
+  .v-player-next__action a:hover {
+    background:#2778EE;
+    box-shadow:0 18px 36px rgba(23,105,232,.28);
+    transform:translateY(-2px);
+  }
   @media (max-width:900px) {
     .vn-intro {
       padding:110px 0 104px;
@@ -6737,6 +6893,15 @@
     }
     .vn-summary-footer .vn-solutions-action {
       justify-content:flex-start;
+    }
+    .v-player-next {
+      padding:104px 0 100px !important;
+    }
+    .v-player-next__head h2 {
+      font-size:50px !important;
+    }
+    .v-player-next__visual {
+      min-height:520px;
     }
   }
   @media (max-width:520px) {
@@ -6760,6 +6925,54 @@
     }
     .vn-control {
       padding:88px 0 92px;
+    }
+    .v-player-next {
+      padding:82px 0 78px !important;
+    }
+    .v-player-next__shell {
+      width:calc(100% - 36px);
+    }
+    .v-player-next__logo {
+      width:196px;
+      margin-bottom:34px;
+    }
+    .v-player-next__head h2 {
+      font-size:40px !important;
+      line-height:1.04;
+    }
+    .v-player-next__head p {
+      font-size:16px;
+      line-height:1.58;
+    }
+    .v-player-next__visual {
+      min-height:340px;
+      margin-top:38px;
+    }
+    .v-player-next__devices {
+      width:115%;
+      max-width:none;
+    }
+    .v-player-next__benefits {
+      grid-template-columns:1fr;
+      margin-top:16px;
+    }
+    .v-player-next__benefit,
+    .v-player-next__benefit + .v-player-next__benefit {
+      min-height:0;
+      padding:26px 0;
+      border-left:0;
+      border-bottom:1px solid #DDE3EC;
+    }
+    .v-player-next__benefit span {
+      margin-bottom:14px;
+    }
+    .v-player-next__action {
+      justify-content:stretch;
+      margin-top:38px;
+    }
+    .v-player-next__action a {
+      width:100%;
+      justify-content:center;
     }
   }
   @media (prefers-reduced-motion:reduce) {
@@ -7684,68 +7897,40 @@
     </div>
   </section>
 
-  <!-- ============ VISTA360 PLAYER (app showcase) ============ -->
-  <section class="v-premium-player" data-player-scroll>
-    <div class="v-premium-player-shell">
-      <div class="v-player-localnav">
-        <div class="v-player-localnav__brand">Vista360 Player</div>
-        <div class="v-player-localnav__actions">
-          <a class="v-player-localnav__link" href="#player-features">Conocer</a>
-          <a class="v-player-localnav__link v-player-localnav__link--primary" href="contacto.html">Próximamente</a>
-        </div>
+  <!-- ============ VISTA360 PLAYER ============ -->
+  <section class="v-premium-player v-player-next" aria-labelledby="v-player-next-title">
+    <div class="v-player-next__shell">
+      <div class="v-player-next__head" data-reveal>
+        <img class="v-player-next__logo" src="vista360player-logo-v2.png" width="1147" height="224" loading="lazy" decoding="async" alt="VISTA360 Player">
+        <div class="v-player-next__eyebrow">Una ventaja incluida en tu campaña</div>
+        <h2 id="v-player-next-title">Tu publicidad, visible también para ti.</h2>
+        <p>VISTA360 Player reúne el estado de tus campañas, sus ubicaciones y la evidencia de cada soporte en una experiencia clara desde cualquier pantalla.</p>
       </div>
 
-      <div class="v-player-story">
-        <div class="v-player-hero">
-          <div class="v-player-kicker">Vista360 Player</div>
-          <h2>Tu campaña, clara de principio a fin.</h2>
-          <p>Una experiencia pensada para que sepas dónde está tu publicidad, qué estado tiene y cómo avanza cada soporte sin depender de mensajes sueltos.</p>
-          <div class="v-player-proof">
-            <div class="v-player-proof__item"><b>24/7</b><span>Visibilidad del estado</span></div>
-            <div class="v-player-proof__item"><b>Mapa</b><span>Ubicaciones ordenadas</span></div>
-            <div class="v-player-proof__item"><b>Soporte</b><span>Acompañamiento directo</span></div>
-          </div>
-        </div>
-
-        <div class="v-player-visual" data-player-landscape aria-label="Vista conceptual de Vista360 Player">
-          <div class="v-player-glow" aria-hidden="true"></div>
-          <div class="v-player-phone-stage">
-            <img class="v-player-phone-img" src="panels/vista360-player-phones.png" width="1024" height="1024" loading="eager" decoding="async" fetchpriority="high" alt="Tres celulares mostrando la experiencia visual de Vista360 Player">
-            <div class="v-player-floating-copy v-player-floating-copy--right">
-              <span>En la palma</span>
-              <b>Tu campaña se siente ordenada desde el primer día.</b>
-              <p>Una vista clara para consultar estado, ubicación y próximos pasos sin fricción.</p>
-            </div>
-            <div class="v-player-floating-copy v-player-floating-copy--left">
-              <span>Próximamente</span>
-              <b>Vista360 Player acompaña cada soporte.</b>
-              <p>Diseñado para que tu publicidad exterior no se sienta lejana, sino controlada.</p>
-            </div>
-          </div>
-        </div>
+      <div class="v-player-next__visual" data-reveal>
+        <img class="v-player-next__devices" src="panels/vista360-player-devices-v1.png" width="1339" height="857" loading="lazy" decoding="async" alt="VISTA360 Player funcionando en una MacBook Pro y un iPhone Pro Max">
       </div>
 
-      <div id="player-features" class="v-player-feature-grid">
-        <article class="v-player-feature">
-          <div class="v-player-feature__icon">◎</div>
-          <h3>Monitoreo claro.</h3>
-          <p>Consulta el estado de tus soportes y accede a la información esencial de cada ubicación.</p>
+      <div class="v-player-next__benefits" id="player-features">
+        <article class="v-player-next__benefit">
+          <span>01 / UBICACIONES</span>
+          <h3>Todo en un mapa.</h3>
+          <p>Consulta dónde está activa tu campaña y revisa cada punto desde una sola vista.</p>
         </article>
-        <article class="v-player-feature">
-          <div class="v-player-feature__icon">↗</div>
-          <h3>Información útil.</h3>
-          <p>Visualiza actividad y métricas disponibles sin perderte entre reportes complicados.</p>
+        <article class="v-player-next__benefit">
+          <span>02 / EVIDENCIA</span>
+          <h3>Comprueba cada publicación.</h3>
+          <p>Accede a verificaciones fotográficas y al estado actualizado de tus soportes.</p>
         </article>
-        <article class="v-player-feature">
-          <div class="v-player-feature__icon">●</div>
-          <h3>Soporte cercano.</h3>
-          <p>Comunícate directamente con Vista360 desde una experiencia rápida y sencilla.</p>
+        <article class="v-player-next__benefit">
+          <span>03 / RESULTADOS</span>
+          <h3>Decide con más claridad.</h3>
+          <p>Reúne actividad y métricas esenciales sin depender de reportes dispersos.</p>
         </article>
       </div>
 
-      <div class="v-player-stores" aria-label="Próximamente disponible">
-        <img src="app-store-badge.svg" loading="lazy" decoding="async" alt="Próximamente en App Store">
-        <img src="google-play-badge.svg" loading="lazy" decoding="async" alt="Próximamente en Google Play">
+      <div class="v-player-next__action">
+        <a href="contacto.html">Conocer VISTA360 Player <span aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
   </section>
