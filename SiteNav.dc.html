@@ -12,7 +12,21 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+  .vn-nav-inner {
+    width:100%;
+    max-width:1500px;
+    height:66px;
+    margin:0 auto;
+    padding:0 clamp(20px,5vw,72px);
+    display:grid;
+    grid-template-columns:minmax(190px,1fr) auto minmax(190px,1fr);
+    align-items:center;
+    gap:28px;
+    font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+  }
   .vn-links { display:flex; align-items:center; gap:clamp(20px,2vw,32px); }
+  .vn-nav-logo { justify-self:start; }
+  .vn-cta { justify-self:end; }
   .vn-nav-logo img { transition:opacity .22s ease,transform .22s ease; }
   .vn-nav-logo:hover img { opacity:.9; transform:translateY(-1px); }
   .vn-nav-link {
@@ -71,6 +85,10 @@
   .vn-mobile-cta::after { content:"\2192"; }
   .vn-burger { display:none; }
   @media (max-width: 940px){
+    .vn-nav-inner {
+      display:flex;
+      justify-content:space-between;
+    }
     .vn-links { display:none !important; }
     .vn-cta { display:none !important; }
     .vn-burger { display:flex !important; }
@@ -82,7 +100,7 @@
 </style>
 </helmet>
 <nav style="{{ navStyle }}">
-  <div style="width:100%; max-width:1500px; margin:0 auto; padding:0 clamp(20px,5vw,72px); height:66px; display:flex; align-items:center; justify-content:space-between; gap:28px; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif;">
+  <div class="vn-nav-inner">
     <a href="index.html" class="vn-nav-logo" style="display:flex; align-items:center; text-decoration:none;">
       <img src="vista360-logo.png" alt="VISTA360" style="height:34px; width:auto; display:block;" />
     </a>
@@ -92,7 +110,7 @@
       <a href="servicios.html" class="vn-nav-link" style="{{ serviciosStyle }}" style-hover="color:#fff;">Servicios</a>
       <a href="nosotros.html" class="vn-nav-link" style="{{ nosotrosStyle }}" style-hover="color:#fff;">Nosotros</a>
     </div>
-    <a href="contacto.html" class="vn-cta" style="text-decoration:none; padding:11px 20px; border-radius:8px; background:#1C6FE8; color:#fff; font-size:14px; font-weight:700; white-space:nowrap; transition:background .25s ease, transform .2s ease, box-shadow .2s ease; box-shadow:0 9px 24px rgba(28,111,232,.2);" style-hover="background:#2A78EA; transform:translateY(-1px); box-shadow:0 12px 28px rgba(28,111,232,.3);">Consultar espacios</a>
+    <a href="contacto.html" class="vn-cta" style="text-decoration:none; padding:10px 16px; border-radius:7px; background:#1C6FE8; color:#fff; font-size:13px; font-weight:700; white-space:nowrap; transition:background .25s ease, transform .2s ease, box-shadow .2s ease; box-shadow:0 9px 24px rgba(28,111,232,.2);" style-hover="background:#2A78EA; transform:translateY(-1px); box-shadow:0 12px 28px rgba(28,111,232,.3);">Consultar espacios</a>
     <button class="vn-burger" onClick="{{ toggleMenu }}" aria-label="Menú" style="flex-direction:column; gap:5px; background:transparent; border:none; cursor:pointer; padding:6px;">
       <span style="width:24px; height:2px; background:#fff; border-radius:2px;"></span>
       <span style="width:24px; height:2px; background:#fff; border-radius:2px;"></span>
@@ -324,4 +342,3 @@ class Component extends DCLogic {
 </script>
 </body>
 </html>
-

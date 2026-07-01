@@ -6360,6 +6360,90 @@
     opacity:0;
     animation:vfadeup .9s cubic-bezier(.16,1,.3,1) .05s forwards;
   }
+  .v-hero-shade {
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(180deg,rgba(5,9,17,.38) 0%,rgba(5,9,17,.08) 24%,rgba(5,9,17,.13) 64%,rgba(5,9,17,.5) 100%),
+      radial-gradient(ellipse at center,rgba(7,11,20,.16) 0%,rgba(7,11,20,.38) 76%);
+    pointer-events:none;
+  }
+  #heroContent {
+    transform:translateY(-34px) !important;
+  }
+  #heroContent h1 {
+    max-width:900px;
+    margin-right:auto !important;
+    margin-left:auto !important;
+  }
+  #heroContent h1 > span:first-child {
+    margin-bottom:12px !important;
+    color:rgba(255,255,255,.84) !important;
+    font-size:32px !important;
+    font-weight:400 !important;
+  }
+  #heroContent h1 > span:last-child {
+    font-size:84px !important;
+    line-height:.95 !important;
+    letter-spacing:-.025em !important;
+    text-wrap:balance;
+  }
+  #heroContent > p {
+    max-width:540px !important;
+    margin-top:26px !important;
+    margin-bottom:30px !important;
+    color:rgba(255,255,255,.76) !important;
+    font-size:17px !important;
+    line-height:1.58 !important;
+  }
+  .v-hero-primary {
+    padding:14px 23px;
+    font-size:14px;
+  }
+  .v-hero-secondary {
+    font-size:14px;
+  }
+  .vn-story-nav {
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transform:translate3d(8px,-50%,0);
+    transition:opacity .25s ease,visibility .25s ease,transform .25s ease;
+  }
+  .vn-story-nav.is-visible {
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translate3d(0,-50%,0);
+  }
+  @media (max-width:940px) {
+    #heroContent {
+      transform:translateY(-18px) !important;
+    }
+    #heroContent h1 > span:first-child {
+      font-size:27px !important;
+    }
+    #heroContent h1 > span:last-child {
+      font-size:68px !important;
+    }
+  }
+  @media (max-width:620px) {
+    #heroContent {
+      transform:none !important;
+    }
+    #heroContent h1 > span:first-child {
+      margin-bottom:9px !important;
+      font-size:23px !important;
+    }
+    #heroContent h1 > span:last-child {
+      font-size:48px !important;
+      line-height:.98 !important;
+    }
+    #heroContent > p {
+      max-width:330px !important;
+      font-size:16px !important;
+    }
+  }
   .v-hero-eyebrow::before {
     content:"";
     width:26px;
@@ -6702,7 +6786,7 @@
   <!-- ============ HERO (cinematic full-bleed) ============ -->
   <section id="top" style="position:relative; min-height:100vh; display:flex; flex-direction:column; overflow:hidden; background:#05080F;">
     <video id="heroVideo" src="uploads/que_el_video_esta_bien_pero_no.mp4" poster="uploads/hero-poster.jpg" autoplay muted loop playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; filter:brightness(0.64) contrast(1.05) saturate(1.05); pointer-events:none;"></video>
-    <div style="position:absolute; inset:0; background:rgba(7,11,20,0.46);"></div>
+    <div class="v-hero-shade"></div>
     <div style="position:absolute; top:16%; left:50%; transform:translateX(-50%); width:700px; max-width:92vw; height:430px; background:radial-gradient(circle, rgba(28,111,232,0.32), transparent 66%); filter:blur(20px); pointer-events:none;"></div>
 
     <div style="position:relative; z-index:3; flex:1; width:100%; display:flex; align-items:center; justify-content:center;">
@@ -6710,7 +6794,7 @@
       <div class="v-hero-eyebrow">Publicidad exterior en Huánuco</div>
       <h1 style="margin:0; color:#fff; letter-spacing:-0.03em; line-height:0.98; opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .18s forwards;">
         <span style="display:block; font-size:clamp(23px,4.2vw,44px); font-weight:300; color:rgba(255,255,255,0.9); letter-spacing:-0.005em; margin-bottom:clamp(4px,0.8vw,10px);">Hacemos que tu marca sea</span>
-        <span style="display:block; font-size:clamp(50px,9.6vw,118px); font-weight:800; text-transform:uppercase; letter-spacing:-0.035em; text-shadow:0 18px 54px rgba(0,0,0,0.55);">Imposible<br>no verla</span>
+        <span style="display:block; font-size:clamp(50px,9.6vw,118px); font-weight:800; text-transform:uppercase; letter-spacing:-0.035em; text-shadow:0 18px 54px rgba(0,0,0,0.55);">Imposible<br>de ignorar.</span>
       </h1>
       <p style="font-size:clamp(16px,1.5vw,20px); font-weight:400; line-height:1.55; color:rgba(255,255,255,0.82); max-width:570px; margin:clamp(22px,3vw,32px) auto clamp(30px,4vw,40px); opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .32s forwards;">Ubicación, formato y estrategia para que tu marca aparezca donde realmente importa.</p>
       <div class="v-hero-actions">
@@ -7920,6 +8004,8 @@ class Component extends DCLogic {
     const els = Array.from(root.querySelectorAll('[data-reveal]'));
     const formatChapters = Array.from(root.querySelectorAll('.v-format-chapter'));
     const formatOpenings = Array.from(root.querySelectorAll('.vn-format-opening'));
+    const formatStories = root.querySelector('.vn-format-stories');
+    const storyNav = root.querySelector('.vn-story-nav');
     const revealNow = (el) => {
       el.style.opacity = '1';
       el.style.transform = 'none';
@@ -7936,6 +8022,14 @@ class Component extends DCLogic {
       formatOpenings.forEach((el) => el.classList.add('is-lit'));
       this.animateCounts();
       return;
+    }
+    if (formatStories && storyNav) {
+      this.storyNavIO = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          storyNav.classList.toggle('is-visible', entry.isIntersecting);
+        });
+      }, { threshold:0.01, rootMargin:'-12% 0px -12% 0px' });
+      this.storyNavIO.observe(formatStories);
     }
     this.io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
@@ -8370,6 +8464,7 @@ class Component extends DCLogic {
     if (this.io) this.io.disconnect();
     if (this.formatIO) this.formatIO.disconnect();
     if (this.ledWordIO) this.ledWordIO.disconnect();
+    if (this.storyNavIO) this.storyNavIO.disconnect();
     if (this._heroVideoWatchdog) clearInterval(this._heroVideoWatchdog);
     if (this._netRAF) cancelAnimationFrame(this._netRAF);
     if (this._netRO) this._netRO.disconnect();
