@@ -45,6 +45,30 @@
     overflow:hidden;
     background:var(--paper);
   }
+  .about-progress {
+    position:fixed;
+    z-index:80;
+    top:0;
+    left:0;
+    width:100%;
+    height:2px;
+    pointer-events:none;
+  }
+  .about-progress span {
+    display:block;
+    width:100%;
+    height:100%;
+    background:linear-gradient(90deg,#1769E8,#79B1FF);
+    box-shadow:0 0 14px rgba(65,139,249,.7);
+    transform:scaleX(0);
+    transform-origin:left center;
+    will-change:transform;
+  }
+  [data-parallax] {
+    --parallax-y:0px;
+    transform:translate3d(0,var(--parallax-y),0) scale(1.035);
+    will-change:transform;
+  }
   .about-kicker {
     display:flex;
     align-items:center;
@@ -203,6 +227,23 @@
     min-height:760px;
     margin:0 auto;
   }
+  .about-city__meta {
+    position:absolute;
+    right:0;
+    bottom:50px;
+    display:grid;
+    gap:4px;
+    min-width:230px;
+    padding-top:14px;
+    border-top:1px solid rgba(255,255,255,.36);
+    color:rgba(255,255,255,.65);
+    font-size:12px;
+    line-height:1.45;
+  }
+  .about-city__meta strong {
+    color:#FFFFFF;
+    font-size:14px;
+  }
   .about-city h2 {
     max-width:720px;
     margin:0 0 28px;
@@ -281,8 +322,15 @@
     border-right:1px solid rgba(255,255,255,.18);
     background:rgba(5,8,15,.26);
     backdrop-filter:blur(7px);
+    transition:background .35s ease,opacity .35s ease,transform .35s ease;
   }
   .about-method__step:last-child { border-right:0; }
+  .about-method__steps:hover .about-method__step { opacity:.58; }
+  .about-method__steps .about-method__step:hover {
+    opacity:1;
+    background:rgba(10,25,52,.7);
+    transform:translateY(-8px);
+  }
   .about-method__step span {
     color:var(--blue-light);
     font-size:11px;
@@ -333,6 +381,12 @@
     margin:52px auto 0;
     object-fit:contain;
     object-position:center bottom;
+    filter:drop-shadow(0 34px 40px rgba(16,31,57,.16));
+    transition:transform .8s cubic-bezier(.16,1,.3,1),filter .8s ease;
+  }
+  .about-player__devices:hover {
+    transform:translateY(-10px) scale(1.012);
+    filter:drop-shadow(0 42px 52px rgba(16,31,57,.22));
   }
 
   /* Commitment */
@@ -363,6 +417,12 @@
     gap:18px;
     padding:26px 0;
     border-bottom:1px solid #CCD4E0;
+    transition:padding .35s cubic-bezier(.16,1,.3,1),background .35s ease;
+  }
+  .about-commit__item:hover {
+    padding-left:16px;
+    padding-right:16px;
+    background:rgba(255,255,255,.7);
   }
   .about-commit__item span {
     color:var(--blue);
@@ -468,6 +528,11 @@
     .about-origin__statement { margin-top:58px; }
     .about-city,
     .about-city__inner { min-height:650px; }
+    .about-city__meta {
+      position:static;
+      min-width:0;
+      margin-top:42px;
+    }
     .about-method__visual { min-height:720px; }
     .about-method__steps { grid-template-columns:1fr; min-height:720px; }
     .about-method__step { min-height:0; padding:20px; }
@@ -479,6 +544,7 @@
   }
   @media (prefers-reduced-motion:reduce) {
     * { scroll-behavior:auto !important; }
+    [data-parallax] { transform:none !important; }
   }
   .sc-placeholder { background:transparent !important; border-color:transparent !important; }
   dc-import { display:block; }
@@ -486,12 +552,13 @@
 </helmet>
 
 <div ref="{{ setRoot }}" class="about">
+  <div class="about-progress" aria-hidden="true"><span data-scroll-progress></span></div>
   <dc-import name="SiteNetwork" hint-size="100%,100%"></dc-import>
   <dc-import name="SiteNav" active="nosotros" transparent="{{ true }}" top-color="#05080F" hint-size="100%,66px"></dc-import>
 
   <main>
     <section class="about-hero" aria-labelledby="about-title">
-      <img class="about-hero__image" src="panels/hero-nosotros.jpg" alt="Panel VISTA360 integrado al paisaje urbano al anochecer" />
+      <img class="about-hero__image" data-parallax data-parallax-speed="0.08" src="panels/hero-nosotros.jpg" alt="Panel VISTA360 integrado al paisaje urbano al anochecer" />
       <div class="about-hero__veil"></div>
       <div class="about-hero__inner">
         <div class="about-kicker about-kicker--light">Quiénes somos</div>
@@ -520,7 +587,7 @@
     </section>
 
     <section class="about-city" aria-labelledby="city-title">
-      <img class="about-city__image" src="panels/editorial-mural-night.jpg" alt="Mural publicitario iluminado integrado a una fachada urbana" />
+      <img class="about-city__image" data-parallax data-parallax-speed="0.06" src="panels/campaign-mural-framed-v3.png" alt="Panel mural enmarcado e iluminado integrado a una fachada urbana" />
       <div class="about-city__veil"></div>
       <div class="about-city__inner">
         <div data-reveal>
@@ -528,6 +595,7 @@
           <h2 id="city-title">La arquitectura también puede comunicar.</h2>
           <p>Observamos fachadas, avenidas y puntos de encuentro para encontrar el lugar donde cada mensaje puede adquirir escala sin perder claridad.</p>
         </div>
+        <div class="about-city__meta" data-reveal><strong>Formato mural</strong><span>Presencia integrada a la arquitectura.</span></div>
       </div>
     </section>
 
@@ -605,7 +673,7 @@
     </section>
 
     <section class="about-final" aria-labelledby="final-title">
-      <img class="about-final__image" src="panels/campaign-unipolar-blue-hour-v1.jpg" alt="Campaña VISTA360 de gran formato integrada a una avenida al anochecer" />
+      <img class="about-final__image" data-parallax data-parallax-speed="0.05" src="panels/campaign-unipolar-blue-hour-v1.jpg" alt="Campaña VISTA360 de gran formato integrada a una avenida al anochecer" />
       <div class="about-final__veil"></div>
       <div class="about-final__inner" data-reveal>
         <div class="about-kicker about-kicker--light">El siguiente lugar puede ser el tuyo</div>
@@ -645,9 +713,37 @@ class Component extends DCLogic {
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
     els.forEach((el) => this.io.observe(el));
+
+    const progress = root.querySelector('[data-scroll-progress]');
+    const parallax = Array.from(root.querySelectorAll('[data-parallax]'));
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this._onScroll = () => {
+      if (this._scrollFrame) return;
+      this._scrollFrame = requestAnimationFrame(() => {
+        this._scrollFrame = null;
+        const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        if (progress) progress.style.transform = 'scaleX(' + Math.min(1, window.scrollY / max) + ')';
+        if (reducedMotion) return;
+        parallax.forEach((img) => {
+          const rect = img.parentElement.getBoundingClientRect();
+          if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+          const speed = Number(img.getAttribute('data-parallax-speed') || 0.05);
+          const offset = (rect.top + rect.height / 2 - window.innerHeight / 2) * -speed;
+          img.style.setProperty('--parallax-y', offset.toFixed(1) + 'px');
+        });
+      });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive:true });
+    window.addEventListener('resize', this._onScroll, { passive:true });
+    this._onScroll();
   }
   componentWillUnmount() {
     if (this.io) this.io.disconnect();
+    if (this._onScroll) {
+      window.removeEventListener('scroll', this._onScroll);
+      window.removeEventListener('resize', this._onScroll);
+    }
+    if (this._scrollFrame) cancelAnimationFrame(this._scrollFrame);
   }
   renderVals() {
     return { setRoot: (el) => { this.rootEl = el; } };
