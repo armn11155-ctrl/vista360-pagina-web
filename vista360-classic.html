@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="utf-8">
-<title>VISTA360 Classic | VISTA360</title>
+<title>VISTA360 Classic | Publicidad exterior física</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0A1426">
-<meta name="color-scheme" content="dark">
+<meta name="description" content="Descubre los formatos VISTA360 Classic: murales, unipolares y tótems publicitarios para presencia física de alto impacto.">
+<meta name="theme-color" content="#05080F">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
 <script src="./support.js"></script>
 </head>
@@ -18,275 +17,161 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  * { box-sizing: border-box; }
-  html {  overscroll-behavior-y: contain; }
-  body { margin:0; background:#ffffff; color:#0E1A2E; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
-  /* FIX celular: el body es blanco y el footer oscuro; en iPhone, el rebote
-     de scroll (bounce) y la barra de direcciones que se oculta/aparece
-     dejan ver ese blanco justo debajo del footer. En iPad/laptop no pasa
-     porque no hay ese comportamiento. Solo afecta pantallas angostas. */
-  @media (max-width: 760px) {
-    html, body { background: #0A1426; }
-  }
-  ::selection { background:#1C6FE8; color:#fff; }
-  @keyframes vfadeup { 0%{ opacity:0; transform:translateY(22px); } 100%{ opacity:1; transform:translateY(0); } }
-  .v-feat { display:grid; grid-template-columns:1fr; gap:clamp(28px,4vw,64px); align-items:center; }
-  @media (min-width:940px){ .v-feat { grid-template-columns:1.08fr 1fr; } .v-feat-rev .v-feat-media { order:2; } }
-  .v-feat-media { position:relative; }
-  .v-feat-img { position:relative; height:clamp(320px,42vw,540px); border-radius:24px; overflow:hidden; box-shadow:0 40px 90px -50px rgba(10,20,38,0.55); }
-  .v-feat-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 1.1s cubic-bezier(.16,1,.3,1); }
-  .v-feat:hover .v-feat-img img { transform:scale(1.05); }
-  .v-feat-num { position:absolute; z-index:2; top:-26px; font-size:clamp(96px,12vw,168px); font-weight:800; line-height:0.8; letter-spacing:-0.04em; color:rgba(255,255,255,0.9); text-shadow:0 18px 50px rgba(10,20,38,0.45); pointer-events:none; }
-  .v-spec-row { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,1.8vw,26px); }
-  .v-incl { display:grid; grid-template-columns:1fr; gap:1px; background:#E7E4F0; border:1px solid #E7E4F0; border-radius:22px; overflow:hidden; }
-  @media (min-width:760px){ .v-incl { grid-template-columns:repeat(3,1fr); } }
-  .fcard-inner { will-change:transform; }
-  .fcard:hover .fcard-inner, .fcard:focus-within .fcard-inner { transform:rotateY(180deg); }
-  .sc-placeholder { background: transparent !important; border-color: transparent !important; }
-  dc-import{display:block}
-</style>
+<link rel="stylesheet" href="formats-detail.css">
 </helmet>
 
-<div ref="{{ setRoot }}" style="position:relative; width:100%; overflow-x:hidden; background:transparent;">
-
-  <dc-import name="SiteNetwork" hint-size="100%,100%"></dc-import>
-
+<div class="detail detail--classic" data-detail-root>
+  <div class="detail-progress" aria-hidden="true"><span data-detail-progress></span></div>
   <dc-import name="SiteNav" active="productos" transparent="{{ true }}" top-color="#05080F" hint-size="100%,66px"></dc-import>
 
-  <!-- ============ PAGE HEADER (cinematic) ============ -->
-  <section style="position:relative; overflow:hidden; background:#05080F; padding:clamp(132px,17vh,184px) clamp(16px,3vw,28px) clamp(64px,9vw,104px);">
-    <img src="panels/unipolar.jpg" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 35%; filter:brightness(0.88) saturate(1.05); opacity:0.9; transform:scale(1.14) translateX(6%);" />
-    <div style="position:absolute; inset:0; background:linear-gradient(165deg, rgba(5,8,15,0.58) 0%, rgba(10,20,38,0.36) 52%, rgba(5,8,15,0.66) 100%);"></div>
-    <div style="position:absolute; top:-30%; right:-8%; width:520px; height:520px; max-width:84vw; border-radius:50%; background:radial-gradient(circle, rgba(28,111,232,0.34), transparent 64%); filter:blur(18px); pointer-events:none;"></div>
-
-    <div style="position:relative; z-index:2; max-width:1280px; margin:0 auto;">
-      <div style="display:inline-flex; align-items:center; gap:11px; margin-bottom:clamp(20px,2.6vw,28px); padding:8px 16px; border-radius:999px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.16); backdrop-filter:blur(8px); opacity:0; animation:vfadeup .9s cubic-bezier(.16,1,.3,1) .05s forwards;">
-        <span style="width:7px; height:7px; border-radius:50%; background:#56A2FF; box-shadow:0 0 10px #56A2FF;"></span>
-        <span style="font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#DCE8FB;">VISTA360 Classic</span>
+  <main>
+    <section class="detail-hero" aria-labelledby="classic-title">
+      <img class="detail-hero__image" src="panels/campaign-unipolar-blue-hour-v1.jpg" alt="Panel unipolar VISTA360 iluminado en una avenida al anochecer" />
+      <div class="detail-hero__veil"></div>
+      <div class="detail-hero__copy">
+        <div class="detail-kicker detail-kicker--light">VISTA360 Classic</div>
+        <h1 id="classic-title">Presencia física diseñada para permanecer.</h1>
+        <p>Murales, unipolares y tótems impresos para que tu marca ocupe un lugar real en el recorrido de la ciudad.</p>
+        <a class="detail-action" href="contacto.html">Consultar espacios Classic <span>&rarr;</span></a>
       </div>
-      <h1 style="font-size:clamp(38px,6vw,82px); font-weight:800; letter-spacing:-0.04em; line-height:0.98; color:#fff; margin:0 0 clamp(20px,2.4vw,28px); max-width:900px; opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .16s forwards;">Impacto físico que<br>domina la calle.</h1>
-      <p style="font-size:clamp(17px,1.6vw,21px); font-weight:400; line-height:1.55; color:rgba(255,255,255,0.82); margin:0; max-width:580px; opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .28s forwards;">Publicidad exterior estática de gran formato. Soportes que se ven sin necesidad de una pantalla, encendidos día y noche en los puntos de mayor tráfico de la ciudad.</p>
+    </section>
 
-      <div style="display:flex; flex-wrap:wrap; gap:clamp(28px,5vw,72px); margin-top:clamp(40px,5vw,64px); padding-top:clamp(28px,3vw,36px); border-top:1px solid rgba(255,255,255,0.12); opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .4s forwards;">
-        <div><div style="font-size:clamp(30px,3.4vw,44px); font-weight:800; letter-spacing:-0.03em; color:#fff; line-height:1;">03</div><div style="font-size:13.5px; color:rgba(255,255,255,0.62); margin-top:7px;">Formatos estáticos</div></div>
-        <div><div style="font-size:clamp(30px,3.4vw,44px); font-weight:800; letter-spacing:-0.03em; color:#fff; line-height:1;">2</div><div style="font-size:13.5px; color:rgba(255,255,255,0.62); margin-top:7px;">Puntos premium</div></div>
-        <div><div style="font-size:clamp(30px,3.4vw,44px); font-weight:800; letter-spacing:-0.03em; color:#fff; line-height:1;">+50k</div><div style="font-size:13.5px; color:rgba(255,255,255,0.62); margin-top:7px;">Impactos diarios</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ FEATURE ROWS ============ -->
-  <section style="background:#ffffff; padding:clamp(64px,9vw,120px) clamp(16px,4vw,40px) clamp(40px,5vw,64px);">
-    <div style="max-width:1240px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(72px,10vw,140px);">
-
-      <!-- 01 Unipolares -->
-      <div data-reveal class="v-feat">
-        <div class="v-feat-media">
-          <span class="v-feat-num" style="left:-8px;">01</span>
-          <div class="v-feat-img">
-            <img src="panels/unipolar.jpg" alt="Paneles unipolares VISTA360" style="object-position:72% 30%;" />
-            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,8,15,0.18) 0%, transparent 36%, rgba(5,8,15,0.35) 100%);"></div>
-            <span style="position:absolute; bottom:18px; left:18px; padding:7px 14px; border-radius:999px; background:rgba(255,255,255,0.94); font-size:12px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:#0E1A2E;">Estático · Iluminado</span>
-          </div>
-        </div>
-        <div>
-          <div style="display:inline-flex; align-items:center; gap:10px; margin-bottom:16px;"><span style="width:26px; height:2px; background:#1C6FE8; border-radius:2px;"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#1C6FE8;">Formato unipolar</span></div>
-          <h2 style="font-size:clamp(30px,3.8vw,48px); font-weight:800; letter-spacing:-0.03em; line-height:1.02; color:#0E1A2E; margin:0 0 16px;">Unipolares</h2>
-          <p style="font-size:clamp(15.5px,1.3vw,18px); line-height:1.6; color:#5A5A68; margin:0 0 clamp(26px,3vw,34px); max-width:480px;">Gran impacto a larga distancia. Estructuras de gran altura ideales para autopistas, avenidas y zonas de alto tráfico vehicular.</p>
-          <div class="v-spec-row" style="margin-bottom:clamp(26px,3vw,34px); padding:clamp(18px,2vw,24px) 0; border-top:1px solid #ECEAF3; border-bottom:1px solid #ECEAF3;">
-            <div><div style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9AA4B4; margin-bottom:6px;">Entorno</div><div style="font-size:clamp(16px,1.5vw,19px); font-weight:700; color:#0E1A2E;">Vías rápidas</div></div>
-            <div><div style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9AA4B4; margin-bottom:6px;">Visibilidad</div><div style="font-size:clamp(16px,1.5vw,19px); font-weight:700; color:#0E1A2E;">Larga dist.</div></div>
-            <div><div style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9AA4B4; margin-bottom:6px;">Iluminación</div><div style="font-size:clamp(16px,1.5vw,19px); font-weight:700; color:#0E1A2E;">Nocturna</div></div>
-          </div>
-          <a href="contacto.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:9px; padding:14px 30px; border-radius:13px; background:#1C6FE8; color:#fff; font-size:15.5px; font-weight:600; transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Cotizar unipolar <span style="font-size:17px;">&rarr;</span></a>
-        </div>
-      </div>
-
-      <!-- 02 Murales -->
-      <div data-reveal class="v-feat v-feat-rev">
-        <div class="v-feat-media">
-          <span class="v-feat-num" style="right:-8px; text-align:right;">02</span>
-          <div class="v-feat-img">
-            <img src="panels/mural.jpg" alt="Murales publicitarios VISTA360" />
-            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,8,15,0.18) 0%, transparent 36%, rgba(5,8,15,0.35) 100%);"></div>
-            <span style="position:absolute; bottom:18px; left:18px; padding:7px 14px; border-radius:999px; background:rgba(255,255,255,0.94); font-size:12px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:#0E1A2E;">Gran formato</span>
-          </div>
-        </div>
-        <div>
-          <div style="display:inline-flex; align-items:center; gap:10px; margin-bottom:16px;"><span style="width:26px; height:2px; background:#1C6FE8; border-radius:2px;"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#1C6FE8;">Formato mural</span></div>
-          <h2 style="font-size:clamp(30px,3.8vw,48px); font-weight:800; letter-spacing:-0.03em; line-height:1.02; color:#0E1A2E; margin:0 0 16px;">Murales</h2>
-          <p style="font-size:clamp(15.5px,1.3vw,18px); line-height:1.6; color:#5A5A68; margin:0 0 clamp(26px,3vw,34px); max-width:480px;">Formatos de gran escala que convierten muros y fachadas en piezas memorables. Personalización total sobre la arquitectura de la ciudad.</p>
-          <div class="v-spec-row" style="margin-bottom:clamp(26px,3vw,34px); padding:clamp(18px,2vw,24px) 0; border-top:1px solid #ECEAF3; border-bottom:1px solid #ECEAF3;">
-            <div><div style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9AA4B4; margin-bottom:6px;">Escala</div><div style="font-size:clamp(16px,1.5vw,19px); font-weight:700; color:#0E1A2E;">Gran formato</div></div>
-            <div><div style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9AA4B4; margin-bottom:6px;">Superficie</div><div style="font-size:clamp(16px,1.5vw,19px); font-weight:700; color:#0E1A2E;">Fachadas</div></div>
-            <div><div style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9AA4B4; margin-bottom:6px;">Durabilidad</div><div style="font-size:clamp(16px,1.5vw,19px); font-weight:700; color:#0E1A2E;">Alta</div></div>
-          </div>
-          <a href="contacto.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:9px; padding:14px 30px; border-radius:13px; background:#1C6FE8; color:#fff; font-size:15.5px; font-weight:600; transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Cotizar mural <span style="font-size:17px;">&rarr;</span></a>
-        </div>
-      </div>
-
-      <!-- 03 Tótems -->
-      <div data-reveal class="v-feat">
-        <div class="v-feat-media">
-          <span class="v-feat-num" style="left:-8px;">03</span>
-          <div class="v-feat-img">
-            <img src="panels/totem.jpg" alt="Tótems publicitarios VISTA360" style="object-position:57% 48%;" />
-            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,8,15,0.18) 0%, transparent 36%, rgba(5,8,15,0.35) 100%);"></div>
-            <span style="position:absolute; bottom:18px; left:18px; padding:7px 14px; border-radius:999px; background:rgba(255,255,255,0.94); font-size:12px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:#0E1A2E;">Peatonal · Doble cara</span>
-          </div>
-        </div>
-        <div>
-          <div style="display:inline-flex; align-items:center; gap:10px; margin-bottom:16px;"><span style="width:26px; height:2px; background:#1C6FE8; border-radius:2px;"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#1C6FE8;">Formato tótem</span></div>
-          <h2 style="font-size:clamp(30px,3.8vw,48px); font-weight:800; letter-spacing:-0.03em; line-height:1.02; color:#0E1A2E; margin:0 0 16px;">Tótems</h2>
-          <p style="font-size:clamp(15.5px,1.3vw,18px); line-height:1.6; color:#5A5A68; margin:0 0 clamp(26px,3vw,34px); max-width:480px;">Mobiliario urbano a la altura del peatón. Soportes verticales en veredas y bulevares que conectan tu marca con quien camina la ciudad.</p>
-          <div class="v-spec-row" style="margin-bottom:clamp(26px,3vw,34px); padding:clamp(18px,2vw,24px) 0; border-top:1px solid #ECEAF3; border-bottom:1px solid #ECEAF3;">
-            <div><div style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9AA4B4; margin-bottom:6px;">Ubicación</div><div style="font-size:clamp(16px,1.5vw,19px); font-weight:700; color:#0E1A2E;">Peatonal</div></div>
-            <div><div style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9AA4B4; margin-bottom:6px;">Caras</div><div style="font-size:clamp(16px,1.5vw,19px); font-weight:700; color:#0E1A2E;">Doble</div></div>
-            <div><div style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9AA4B4; margin-bottom:6px;">Visibilidad</div><div style="font-size:clamp(16px,1.5vw,19px); font-weight:700; color:#0E1A2E;">Cercana</div></div>
-          </div>
-          <a href="contacto.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:9px; padding:14px 30px; border-radius:13px; background:#1C6FE8; color:#fff; font-size:15.5px; font-weight:600; transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Cotizar tótem <span style="font-size:17px;">&rarr;</span></a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============ ¿POR QUÉ DIGITAL? (flip cards) ============ -->
-  <section style="background:#F6F8FB; padding:clamp(64px,9vw,110px) clamp(16px,4vw,40px) clamp(72px,10vw,120px);">
-    <div data-reveal style="max-width:1240px; margin:0 auto;">
-      <div style="text-align:center; max-width:640px; margin:0 auto clamp(40px,5vw,64px);">
-        <div style="font-size:12.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#9AA4B4; margin-bottom:14px;">Ventajas para tu marca</div>
-        <h2 style="font-size:clamp(30px,4.4vw,54px); font-weight:800; letter-spacing:-0.04em; line-height:1.02; color:#1C6FE8; margin:0 0 14px;">¿Por qué VISTA360 Classic?</h2>
-        <p style="font-size:clamp(15px,1.3vw,18px); line-height:1.6; color:#6A6A78; margin:0;">La fuerza del formato físico que ninguna pantalla reemplaza. Pasa el mouse sobre cada ventaja para conocer más.</p>
-      </div>
-
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:clamp(16px,1.8vw,24px);">
-
-        <!-- Presencia -->
-        <div class="fcard" style="perspective:1400px; aspect-ratio:1/1; cursor:pointer;">
-          <div class="fcard-inner" style="position:relative; width:100%; height:100%; transition:transform .7s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d;">
-            <div style="position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:18px; background:#0E1A2E; display:flex; flex-direction:column; justify-content:flex-end; gap:18px; padding:clamp(22px,2.6vw,32px); overflow:hidden;">
-              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#56A2FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="11" rx="1.5"></rect><path d="M12 15v5"></path><path d="M9 21h6"></path></svg>
-              <span style="font-size:clamp(22px,2.4vw,30px); font-weight:800; letter-spacing:-0.02em; color:#fff; line-height:1.05;">Presencia</span>
-            </div>
-            <div style="position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform:rotateY(180deg); border-radius:18px; background:#fff; border:1px solid #E3E9F2; display:flex; flex-direction:column; justify-content:center; gap:12px; padding:clamp(22px,2.6vw,32px);">
-              <span style="font-size:13px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#1C6FE8;">Presencia</span>
-              <p style="font-size:clamp(14.5px,1.2vw,16px); line-height:1.55; color:#43485A; margin:0;">Domina el espacio físico de la calle. Imposible de saltar, bloquear o cerrar como un anuncio en pantalla.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Permanencia -->
-        <div class="fcard" style="perspective:1400px; aspect-ratio:1/1; cursor:pointer;">
-          <div class="fcard-inner" style="position:relative; width:100%; height:100%; transition:transform .7s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d;">
-            <div style="position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:18px; background:#1C6FE8; display:flex; flex-direction:column; justify-content:flex-end; gap:18px; padding:clamp(22px,2.6vw,32px); overflow:hidden;">
-              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
-              <span style="font-size:clamp(22px,2.4vw,30px); font-weight:800; letter-spacing:-0.02em; color:#fff; line-height:1.05;">Permanencia</span>
-            </div>
-            <div style="position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform:rotateY(180deg); border-radius:18px; background:#fff; border:1px solid #E3E9F2; display:flex; flex-direction:column; justify-content:center; gap:12px; padding:clamp(22px,2.6vw,32px);">
-              <span style="font-size:13px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#1C6FE8;">Permanencia</span>
-              <p style="font-size:clamp(14.5px,1.2vw,16px); line-height:1.55; color:#43485A; margin:0;">Está 24/7 en el mismo punto, generando recordación constante de tu marca, día tras día.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Confianza -->
-        <div class="fcard" style="perspective:1400px; aspect-ratio:1/1; cursor:pointer;">
-          <div class="fcard-inner" style="position:relative; width:100%; height:100%; transition:transform .7s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d;">
-            <div style="position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:18px; background:#0E1A2E; display:flex; flex-direction:column; justify-content:flex-end; gap:18px; padding:clamp(22px,2.6vw,32px); overflow:hidden;">
-              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#56A2FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg>
-              <span style="font-size:clamp(22px,2.4vw,30px); font-weight:800; letter-spacing:-0.02em; color:#fff; line-height:1.05;">Confianza</span>
-            </div>
-            <div style="position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform:rotateY(180deg); border-radius:18px; background:#fff; border:1px solid #E3E9F2; display:flex; flex-direction:column; justify-content:center; gap:12px; padding:clamp(22px,2.6vw,32px);">
-              <span style="font-size:13px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#1C6FE8;">Confianza</span>
-              <p style="font-size:clamp(14.5px,1.2vw,16px); line-height:1.55; color:#43485A; margin:0;">El gran formato transmite solidez y credibilidad: tu marca se ve grande, sólida y establecida.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Cobertura -->
-        <div class="fcard" style="perspective:1400px; aspect-ratio:1/1; cursor:pointer;">
-          <div class="fcard-inner" style="position:relative; width:100%; height:100%; transition:transform .7s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d;">
-            <div style="position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:18px; background:#1C6FE8; display:flex; flex-direction:column; justify-content:flex-end; gap:18px; padding:clamp(22px,2.6vw,32px); overflow:hidden;">
-              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 0 0-14 0c0 5.5 7 11 7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
-              <span style="font-size:clamp(22px,2.4vw,30px); font-weight:800; letter-spacing:-0.02em; color:#fff; line-height:1.05;">Cobertura</span>
-            </div>
-            <div style="position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform:rotateY(180deg); border-radius:18px; background:#fff; border:1px solid #E3E9F2; display:flex; flex-direction:column; justify-content:center; gap:12px; padding:clamp(22px,2.6vw,32px);">
-              <span style="font-size:13px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#1C6FE8;">Cobertura</span>
-              <p style="font-size:clamp(14.5px,1.2vw,16px); line-height:1.55; color:#43485A; margin:0;">Impacta a toda la ciudad sin depender de dispositivos, datos móviles o conexión a internet.</p>
-            </div>
-          </div>
-        </div>
-
+    <div class="detail-subnav">
+      <div class="detail-subnav__inner">
+        <strong>VISTA360 Classic</strong>
+        <nav aria-label="Formatos Classic">
+          <a href="#mural">Mural</a>
+          <a href="#unipolar">Unipolar</a>
+          <a href="#totem">Tótem</a>
+        </nav>
       </div>
     </div>
-  </section>
 
-  <!-- ============ INCLUIDO EN CADA FORMATO ============ -->
-  <section style="background:#ffffff; padding:clamp(40px,5vw,64px) clamp(16px,4vw,40px) clamp(56px,7vw,90px);">
-    <div data-reveal style="max-width:1240px; margin:0 auto;">
-      <div style="text-align:center; max-width:560px; margin:0 auto clamp(32px,4vw,48px);">
-        <h2 style="font-size:clamp(24px,3vw,36px); font-weight:800; letter-spacing:-0.03em; line-height:1.1; color:#0E1A2E; margin:0 0 12px;">Incluido en cada formato</h2>
-        <p style="font-size:clamp(15px,1.2vw,17px); line-height:1.55; color:#6A6A78; margin:0;">Nos encargamos de todo, de principio a fin. Tú solo apruebas el arte.</p>
-      </div>
-      <div class="v-incl">
-        <div style="background:#fff; padding:clamp(28px,3.2vw,40px);">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1C6FE8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:18px;"><path d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.2L12 16.5 5.7 21l2.3-7.2-6-4.4h7.6z"></path></svg>
-          <h3 style="font-size:18px; font-weight:700; letter-spacing:-0.01em; color:#0E1A2E; margin:0 0 8px;">Diseño y producción</h3>
-          <p style="font-size:14.5px; line-height:1.55; color:#6A6A78; margin:0;">Adaptamos y producimos tu pieza con materiales de alta durabilidad.</p>
+    <section class="detail-intro" aria-labelledby="classic-intro-title">
+      <div class="detail-shell">
+        <div class="detail-intro__grid">
+          <div data-reveal>
+            <div class="detail-kicker">La fuerza de lo físico</div>
+            <h2 id="classic-intro-title">Una campaña que forma parte del paisaje.</h2>
+          </div>
+          <p data-reveal>Classic combina ubicación, escala, impresión e iluminación para construir una presencia constante. Cada soporte está pensado para una distancia y una forma distinta de recorrer la ciudad.</p>
         </div>
-        <div style="background:#fff; padding:clamp(28px,3.2vw,40px);">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1C6FE8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:18px;"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
-          <h3 style="font-size:18px; font-weight:700; letter-spacing:-0.01em; color:#0E1A2E; margin:0 0 8px;">Permisos y gestión</h3>
-          <p style="font-size:14.5px; line-height:1.55; color:#6A6A78; margin:0;">Tramitamos las autorizaciones municipales por ti, sin complicaciones.</p>
-        </div>
-        <div style="background:#fff; padding:clamp(28px,3.2vw,40px);">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1C6FE8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:18px;"><path d="M4 19V5"></path><path d="M4 19h16"></path><path d="M7 15l3-3 3 2 4-5"></path></svg>
-          <h3 style="font-size:18px; font-weight:700; letter-spacing:-0.01em; color:#0E1A2E; margin:0 0 8px;">Instalación y reportes</h3>
-          <p style="font-size:14.5px; line-height:1.55; color:#6A6A78; margin:0;">Montaje, mantenimiento y fotos de tu campaña en la calle.</p>
+        <div class="detail-rail" data-reveal>
+          <article><span>01</span><h3>Arquitectura</h3><p>El mural convierte una fachada en comunicación.</p></article>
+          <article><span>02</span><h3>Gran distancia</h3><p>El unipolar anticipa el mensaje desde la vía.</p></article>
+          <article><span>03</span><h3>Proximidad</h3><p>El tótem acompaña recorridos peatonales y accesos.</p></article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============ SOMOS LÍDERES (full-bleed banner) ============ -->
-  <section style="position:relative; overflow:hidden; min-height:clamp(420px,52vw,580px); display:flex; align-items:center; justify-content:center; text-align:center; padding:clamp(72px,10vw,120px) clamp(20px,5vw,40px);">
-    <img src="panels/billboard-vista360.jpg" alt="Publicidad exterior VISTA360" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
-    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,8,15,0.55) 0%, rgba(5,8,15,0.4) 45%, rgba(5,8,15,0.6) 100%);"></div>
-    <div data-reveal style="position:relative; z-index:2; max-width:880px;">
-      <h2 style="font-size:clamp(32px,5vw,64px); font-weight:800; letter-spacing:-0.03em; line-height:1.08; color:#fff; margin:0 0 clamp(28px,4vw,44px); text-shadow:0 8px 40px rgba(5,8,15,0.5);">Le damos a tu marca la escala de toda la ciudad.</h2>
-      <a href="contacto.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:11px; padding:17px 38px; border-radius:14px; background:#1C6FE8; color:#fff; font-size:16.5px; font-weight:700; transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Conversemos <span style="font-size:18px;">&rarr;</span></a>
-    </div>
-  </section>
+    <section id="mural" class="detail-feature" aria-labelledby="mural-title">
+      <img class="detail-feature__image" src="panels/campaign-mural-framed-v3.png" alt="Panel mural VISTA360 enmarcado e iluminado en una fachada" />
+      <div class="detail-feature__veil"></div>
+      <div class="detail-feature__inner">
+        <div class="detail-feature__copy" data-reveal>
+          <div class="detail-kicker detail-kicker--light">01 / Mural</div>
+          <h2 id="mural-title">La arquitectura también puede comunicar.</h2>
+          <p>Una superficie de gran escala integrada a la fachada. El formato mural crea presencia sin separarse del entorno que lo sostiene.</p>
+          <div class="detail-specs">
+            <div><span>LECTURA</span><strong>Distancia media</strong></div>
+            <div><span>ENTORNO</span><strong>Fachadas urbanas</strong></div>
+            <div><span>CONTENIDO</span><strong>Estático</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-studio" aria-labelledby="material-title">
+      <div class="detail-shell detail-studio__grid">
+        <img class="detail-studio__image" data-reveal src="panels/story-mural-install-detail-v2.jpg" alt="Detalle de producción e instalación de un mural publicitario" />
+        <div data-reveal>
+          <div class="detail-kicker">Detalle material</div>
+          <h2 id="material-title">La calidad también se reconoce de cerca.</h2>
+          <p>Adaptamos la pieza a la superficie y cuidamos la preparación visual para conservar contraste, jerarquía y lectura después de ampliar el diseño.</p>
+          <div class="detail-list">
+            <div><span>01</span><strong>Adaptación a la arquitectura</strong></div>
+            <div><span>02</span><strong>Preparación para gran formato</strong></div>
+            <div><span>03</span><strong>Instalación e iluminación</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="unipolar" class="detail-feature detail-feature--right" aria-labelledby="unipolar-title">
+      <img class="detail-feature__image" src="panels/campaign-unipolar-fashion-v2.jpg" alt="Panel unipolar VISTA360 de gran escala en una avenida" />
+      <div class="detail-feature__veil"></div>
+      <div class="detail-feature__inner">
+        <div class="detail-feature__copy" data-reveal>
+          <div class="detail-kicker detail-kicker--light">02 / Unipolar</div>
+          <h2 id="unipolar-title">Visible antes de llegar.</h2>
+          <p>Su altura libera el mensaje del ruido inmediato de la vía y crea una lectura clara mientras el público se aproxima.</p>
+          <div class="detail-specs">
+            <div><span>LECTURA</span><strong>Larga distancia</strong></div>
+            <div><span>ENTORNO</span><strong>Avenidas y vías</strong></div>
+            <div><span>ILUMINACIÓN</span><strong>Nocturna</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="totem" class="detail-feature" aria-labelledby="totem-title">
+      <img class="detail-feature__image" src="panels/campaign-totem-fragrance-v2.jpg" alt="Tótem VISTA360 integrado a una zona urbana peatonal" />
+      <div class="detail-feature__veil"></div>
+      <div class="detail-feature__inner">
+        <div class="detail-feature__copy" data-reveal>
+          <div class="detail-kicker detail-kicker--light">03 / Tótem</div>
+          <h2 id="totem-title">Presencia a la altura del recorrido.</h2>
+          <p>Una superficie vertical para accesos, plazas y zonas peatonales donde el mensaje se descubre desde una distancia cercana.</p>
+          <div class="detail-specs">
+            <div><span>LECTURA</span><strong>Cercana</strong></div>
+            <div><span>ENTORNO</span><strong>Accesos y plazas</strong></div>
+            <div><span>FORMATO</span><strong>Vertical</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-values" aria-labelledby="classic-values-title">
+      <div class="detail-shell">
+        <div class="detail-values__head">
+          <div data-reveal><div class="detail-kicker">Por qué Classic</div><h2 id="classic-values-title">Una presencia que no necesita una pantalla.</h2></div>
+          <p data-reveal>El mensaje permanece visible, ocupa una superficie real y acompaña el recorrido durante toda la campaña.</p>
+        </div>
+        <div class="detail-values__grid" data-reveal>
+          <article><span>01</span><h3>Presencia constante</h3><p>El soporte comunica durante todo el periodo contratado.</p></article>
+          <article><span>02</span><h3>Escala urbana</h3><p>Cada formato aprovecha el tamaño y la distancia de su entorno.</p></article>
+          <article><span>03</span><h3>Iluminación dedicada</h3><p>La campaña conserva lectura cuando cambia la luz de la ciudad.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-included" aria-labelledby="classic-included-title">
+      <div class="detail-shell detail-included__grid">
+        <div data-reveal><div class="detail-kicker">Servicio VISTA360</div><h2 id="classic-included-title">Del archivo final a la campaña instalada.</h2></div>
+        <div class="detail-included__items" data-reveal>
+          <article class="detail-included__item"><span>01</span><div><h3>Selección del espacio</h3><p>Relacionamos objetivo, recorrido y formato disponible.</p></div></article>
+          <article class="detail-included__item"><span>02</span><div><h3>Adaptación y producción</h3><p>Preparamos la pieza para la escala y soporte elegidos.</p></div></article>
+          <article class="detail-included__item"><span>03</span><div><h3>Instalación y evidencia</h3><p>Coordinamos la ejecución y organizamos el seguimiento.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-cta" aria-labelledby="classic-cta-title">
+      <img class="detail-cta__image" src="panels/story-unipolar-newyork-v2.jpg" alt="Panel Classic de gran escala integrado a una ciudad nocturna" />
+      <div class="detail-cta__veil"></div>
+      <div class="detail-cta__copy" data-reveal>
+        <div class="detail-kicker detail-kicker--light">El siguiente espacio puede ser el tuyo</div>
+        <h2 id="classic-cta-title">Encuentra el formato Classic para tu marca.</h2>
+        <a class="detail-action" href="contacto.html">Solicitar disponibilidad <span>&rarr;</span></a>
+      </div>
+    </section>
+  </main>
 
   <dc-import name="SiteFooter" hint-size="100%,400px"></dc-import>
   <dc-import name="SiteChat" hint-size="100%,0px"></dc-import>
-  <div style="background:#0A1426; min-height:20px;"></div>
-
+  <div style="min-height:20px;background:#05080F;"></div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script>
-class Component extends DCLogic {
-  componentDidMount() {
-    const root = this.rootEl;
-    if (!root) return;
-    const els = Array.from(root.querySelectorAll('[data-reveal]'));
-    els.forEach((el) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(30px)';
-      el.style.transition = 'opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1)';
-    });
-    if (!('IntersectionObserver' in window)) { els.forEach((el) => { el.style.opacity = '1'; el.style.transform = 'none'; }); return; }
-    this.io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; this.io.unobserve(e.target); } });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    els.forEach((el) => this.io.observe(el));
-  }
-  componentWillUnmount() { if (this.io) this.io.disconnect(); }
-  renderVals() { return { setRoot: (el) => { this.rootEl = el; } }; }
-}
-</script>
-  <script src="hover.js"></script>
+<script src="formats-detail.js"></script>
 </body>
 </html>

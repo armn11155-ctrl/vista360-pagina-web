@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="utf-8">
-<title>VISTA360 Digital | VISTA360</title>
+<title>VISTA360 Digital | Publicidad exterior dinámica</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0A1426">
-<meta name="color-scheme" content="dark">
+<meta name="description" content="Conoce VISTA360 Digital: pantallas LED, tótems digitales y seguimiento de campañas mediante VISTA360 Player.">
+<meta name="theme-color" content="#05080F">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
 <script src="./support.js"></script>
 </head>
@@ -18,229 +17,161 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  * { box-sizing: border-box; }
-  html {  overscroll-behavior-y: contain; }
-  body { margin:0; background:#ffffff; color:#0E1A2E; font-family:'Plus Jakarta Sans','Helvetica Neue',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
-  /* FIX celular: el body es blanco y el footer oscuro; en iPhone, el rebote
-     de scroll (bounce) y la barra de direcciones que se oculta/aparece
-     dejan ver ese blanco justo debajo del footer. En iPad/laptop no pasa
-     porque no hay ese comportamiento. Solo afecta pantallas angostas. */
-  @media (max-width: 760px) {
-    html, body { background: #0A1426; }
-  }
-  ::selection { background:#1C6FE8; color:#fff; }
-  @keyframes vfadeup { 0%{ opacity:0; transform:translateY(22px); } 100%{ opacity:1; transform:translateY(0); } }
-  .v-feat { display:grid; grid-template-columns:1fr; gap:clamp(28px,4vw,64px); align-items:center; }
-  @media (min-width:940px){ .v-feat { grid-template-columns:1.08fr 1fr; } .v-feat-rev .v-feat-media { order:2; } }
-  .v-feat-media { position:relative; }
-  .v-feat-img { position:relative; height:clamp(320px,42vw,540px); border-radius:24px; overflow:hidden; box-shadow:0 40px 90px -50px rgba(10,20,38,0.55); }
-  .v-feat-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 1.1s cubic-bezier(.16,1,.3,1); }
-  .v-feat:hover .v-feat-img img { transform:scale(1.05); }
-  .v-feat-num { position:absolute; z-index:2; top:-26px; font-size:clamp(96px,12vw,168px); font-weight:800; line-height:0.8; letter-spacing:-0.04em; color:rgba(255,255,255,0.9); text-shadow:0 18px 50px rgba(10,20,38,0.45); pointer-events:none; }
-  .v-spec-row { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,1.8vw,26px); }
-  .v-incl { display:grid; grid-template-columns:1fr; gap:1px; background:#E7E4F0; border:1px solid #E7E4F0; border-radius:22px; overflow:hidden; }
-  @media (min-width:760px){ .v-incl { grid-template-columns:repeat(3,1fr); } }
-  .fcard-inner { will-change:transform; }
-  .fcard:hover .fcard-inner, .fcard:focus-within .fcard-inner { transform:rotateY(180deg); }
-  .sc-placeholder { background: transparent !important; border-color: transparent !important; }
-  dc-import{display:block}
-</style>
+<link rel="stylesheet" href="formats-detail.css">
 </helmet>
 
-<div ref="{{ setRoot }}" style="position:relative; width:100%; overflow-x:hidden; background:transparent;">
-
-  <dc-import name="SiteNetwork" hint-size="100%,100%"></dc-import>
-
+<div class="detail detail--digital" data-detail-root>
+  <div class="detail-progress" aria-hidden="true"><span data-detail-progress></span></div>
   <dc-import name="SiteNav" active="productos" transparent="{{ true }}" top-color="#05080F" hint-size="100%,66px"></dc-import>
 
-  <!-- ============ PAGE HEADER (cinematic) ============ -->
-  <section style="position:relative; overflow:hidden; background:#05080F; padding:clamp(132px,17vh,184px) clamp(16px,3vw,28px) clamp(64px,9vw,104px);">
-    <img src="panels/led.jpg" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 35%; filter:brightness(0.88) saturate(1.05); opacity:0.9; transform:scale(1.14) translateX(6%);" />
-    <div style="position:absolute; inset:0; background:linear-gradient(165deg, rgba(5,8,15,0.58) 0%, rgba(10,20,38,0.36) 52%, rgba(5,8,15,0.66) 100%);"></div>
-    <div style="position:absolute; top:-30%; right:-8%; width:520px; height:520px; max-width:84vw; border-radius:50%; background:radial-gradient(circle, rgba(28,111,232,0.34), transparent 64%); filter:blur(18px); pointer-events:none;"></div>
-
-    <div style="position:relative; z-index:2; max-width:1280px; margin:0 auto;">
-      <div style="display:inline-flex; align-items:center; gap:11px; margin-bottom:clamp(20px,2.6vw,28px); padding:8px 16px; border-radius:999px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.16); backdrop-filter:blur(8px); opacity:0; animation:vfadeup .9s cubic-bezier(.16,1,.3,1) .05s forwards;">
-        <span style="width:7px; height:7px; border-radius:50%; background:#56A2FF; box-shadow:0 0 10px #56A2FF;"></span>
-        <span style="font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#DCE8FB;">VISTA360 Digital</span>
+  <main>
+    <section class="detail-hero" aria-labelledby="digital-title">
+      <img class="detail-hero__image" src="panels/story-led-service-v3.jpg" alt="Pantalla LED VISTA360 iluminando una avenida urbana por la noche" />
+      <div class="detail-hero__veil"></div>
+      <div class="detail-hero__copy">
+        <div class="detail-kicker detail-kicker--light">VISTA360 Digital · Próximamente</div>
+        <h1 id="digital-title">Contenido que responde al momento.</h1>
+        <p>Pantallas LED y tótems digitales preparados para campañas dinámicas, programación y comunicación actualizable.</p>
+        <a class="detail-action" href="contacto.html">Registrar mi interés <span>&rarr;</span></a>
       </div>
-      <h1 style="font-size:clamp(38px,6vw,82px); font-weight:800; letter-spacing:-0.04em; line-height:0.98; color:#fff; margin:0 0 clamp(20px,2.4vw,28px); max-width:900px; opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .16s forwards;">El futuro de la<br>publicidad exterior.</h1>
-      <p style="font-size:clamp(17px,1.6vw,21px); font-weight:400; line-height:1.55; color:rgba(255,255,255,0.82); margin:0; max-width:580px; opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .28s forwards;">Pantallas LED con contenido en movimiento, programable y medible. Tecnología dinámica que muy pronto llegará a los puntos de mayor tráfico de Huánuco.</p>
+    </section>
 
-      <div style="display:flex; flex-wrap:wrap; gap:clamp(28px,5vw,72px); margin-top:clamp(40px,5vw,64px); padding-top:clamp(28px,3vw,36px); border-top:1px solid rgba(255,255,255,0.12); opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .4s forwards;">
-        <div><div style="font-size:clamp(30px,3.4vw,44px); font-weight:800; letter-spacing:-0.03em; color:#fff; line-height:1;">2026</div><div style="font-size:13.5px; color:rgba(255,255,255,0.62); margin-top:7px;">Llegada a Huánuco</div></div>
-        <div><div style="font-size:clamp(30px,3.4vw,44px); font-weight:800; letter-spacing:-0.03em; color:#fff; line-height:1;">HD</div><div style="font-size:13.5px; color:rgba(255,255,255,0.62); margin-top:7px;">Alta definición</div></div>
-        <div><div style="font-size:clamp(30px,3.4vw,44px); font-weight:800; letter-spacing:-0.03em; color:#fff; line-height:1;">24/7</div><div style="font-size:13.5px; color:rgba(255,255,255,0.62); margin-top:7px;">Contenido programable</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ FEATURE ROWS ============ -->
-  <section style="background:#ffffff; padding:clamp(64px,9vw,120px) clamp(16px,4vw,40px) clamp(40px,5vw,64px);">
-    <div style="max-width:1240px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(72px,10vw,140px);">
-
-      <!-- 01 LED -->
-      <div data-reveal class="v-feat v-feat-rev">
-        <div class="v-feat-media">
-          <span class="v-feat-num" style="right:-8px; text-align:right;">01</span>
-          <div class="v-feat-img">
-            <img src="panels/led.jpg" alt="Pantallas LED VISTA360" />
-            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,8,15,0.2) 0%, transparent 36%, rgba(5,8,15,0.4) 100%);"></div>
-            <span style="position:absolute; bottom:18px; left:18px; padding:7px 14px; border-radius:999px; background:#1C6FE8; color:#fff; font-size:12px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase;">Próximamente</span>
-          </div>
-        </div>
-        <div>
-          <div style="display:inline-flex; align-items:center; gap:10px; margin-bottom:16px;"><span style="width:26px; height:2px; background:#1C6FE8; border-radius:2px;"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#1C6FE8;">Formato digital</span></div>
-          <h2 style="font-size:clamp(30px,3.8vw,48px); font-weight:800; letter-spacing:-0.03em; line-height:1.02; color:#0E1A2E; margin:0 0 16px;">Pantallas LED</h2>
-          <p style="font-size:clamp(15.5px,1.3vw,18px); line-height:1.6; color:#5A5A68; margin:0 0 clamp(26px,3vw,34px); max-width:480px;">Tecnología dinámica con contenido en movimiento y mayor interacción. Programable, en alta definición y muy pronto en Huánuco.</p>
-          <div class="v-spec-row" style="margin-bottom:clamp(26px,3vw,34px); padding:clamp(18px,2vw,24px) 0; border-top:1px solid #ECEAF3; border-bottom:1px solid #ECEAF3;">
-            <div><div style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9AA4B4; margin-bottom:6px;">Resolución</div><div style="font-size:clamp(16px,1.5vw,19px); font-weight:700; color:#0E1A2E;">Alta def.</div></div>
-            <div><div style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9AA4B4; margin-bottom:6px;">Contenido</div><div style="font-size:clamp(16px,1.5vw,19px); font-weight:700; color:#0E1A2E;">Dinámico</div></div>
-            <div><div style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9AA4B4; margin-bottom:6px;">Estado</div><div style="font-size:clamp(16px,1.5vw,19px); font-weight:700; color:#1C6FE8;">2026</div></div>
-          </div>
-          <a href="contacto.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:9px; padding:14px 30px; border-radius:13px; background:#0E1A2E; color:#fff; font-size:15.5px; font-weight:600; transition:background .25s ease, transform .2s ease;" style-hover="background:#1C2A44; transform:translateY(-2px);">Reservar interés <span style="font-size:17px;">&rarr;</span></a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============ ¿POR QUÉ DIGITAL? (flip cards) ============ -->
-  <section style="background:#F6F8FB; padding:clamp(64px,9vw,110px) clamp(16px,4vw,40px) clamp(72px,10vw,120px);">
-    <div data-reveal style="max-width:1240px; margin:0 auto;">
-      <div style="text-align:center; max-width:640px; margin:0 auto clamp(40px,5vw,64px);">
-        <div style="font-size:12.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#9AA4B4; margin-bottom:14px;">Ventajas para tu marca</div>
-        <h2 style="font-size:clamp(30px,4.4vw,54px); font-weight:800; letter-spacing:-0.04em; line-height:1.02; color:#1C6FE8; margin:0 0 14px;">¿Por qué VISTA360 Digital?</h2>
-        <p style="font-size:clamp(15px,1.3vw,18px); line-height:1.6; color:#6A6A78; margin:0;">Lo que el formato tradicional no puede ofrecer. Pasa el mouse sobre cada ventaja para conocer más.</p>
-      </div>
-
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:clamp(16px,1.8vw,24px);">
-
-        <!-- App propio -->
-        <div class="fcard" style="perspective:1400px; aspect-ratio:1/1; cursor:pointer;">
-          <div class="fcard-inner" style="position:relative; width:100%; height:100%; transition:transform .7s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d;">
-            <div style="position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:18px; background:#0E1A2E; display:flex; flex-direction:column; justify-content:flex-end; gap:18px; padding:clamp(22px,2.6vw,32px); overflow:hidden;">
-              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#56A2FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"></rect><path d="M11 18h2"></path><path d="M9 6h6"></path></svg>
-              <span style="font-size:clamp(22px,2.4vw,30px); font-weight:800; letter-spacing:-0.02em; color:#fff; line-height:1.05;">App propio</span>
-            </div>
-            <div style="position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform:rotateY(180deg); border-radius:18px; background:#fff; border:1px solid #E3E9F2; display:flex; flex-direction:column; justify-content:center; gap:12px; padding:clamp(22px,2.6vw,32px);">
-              <span style="font-size:13px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#1C6FE8;">App propio</span>
-              <p style="font-size:clamp(14.5px,1.2vw,16px); line-height:1.55; color:#43485A; margin:0;">Tu marca en una plataforma propia, con contenido programable y actualizable cuando quieras, sin reimprimir nada.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Alcance -->
-        <div class="fcard" style="perspective:1400px; aspect-ratio:1/1; cursor:pointer;">
-          <div class="fcard-inner" style="position:relative; width:100%; height:100%; transition:transform .7s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d;">
-            <div style="position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:18px; background:#1C6FE8; display:flex; flex-direction:column; justify-content:flex-end; gap:18px; padding:clamp(22px,2.6vw,32px); overflow:hidden;">
-              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"></circle><path d="M7.8 7.8a6 6 0 0 0 0 8.5"></path><path d="M16.2 16.3a6 6 0 0 0 0-8.5"></path><path d="M5 5a10 10 0 0 0 0 14"></path><path d="M19 19a10 10 0 0 0 0-14"></path></svg>
-              <span style="font-size:clamp(22px,2.4vw,30px); font-weight:800; letter-spacing:-0.02em; color:#fff; line-height:1.05;">Alcance</span>
-            </div>
-            <div style="position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform:rotateY(180deg); border-radius:18px; background:#fff; border:1px solid #E3E9F2; display:flex; flex-direction:column; justify-content:center; gap:12px; padding:clamp(22px,2.6vw,32px);">
-              <span style="font-size:13px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#1C6FE8;">Alcance</span>
-              <p style="font-size:clamp(14.5px,1.2vw,16px); line-height:1.55; color:#43485A; margin:0;">Llega a más personas en más puntos y horarios, multiplicando la exposición de tu campaña frente al formato fijo.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Medible -->
-        <div class="fcard" style="perspective:1400px; aspect-ratio:1/1; cursor:pointer;">
-          <div class="fcard-inner" style="position:relative; width:100%; height:100%; transition:transform .7s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d;">
-            <div style="position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:18px; background:#0E1A2E; display:flex; flex-direction:column; justify-content:flex-end; gap:18px; padding:clamp(22px,2.6vw,32px); overflow:hidden;">
-              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#56A2FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4"></path><path d="M4 20h16"></path><rect x="7" y="12" width="3" height="5"></rect><rect x="12" y="8" width="3" height="9"></rect><rect x="17" y="5" width="3" height="12"></rect></svg>
-              <span style="font-size:clamp(22px,2.4vw,30px); font-weight:800; letter-spacing:-0.02em; color:#fff; line-height:1.05;">Medible</span>
-            </div>
-            <div style="position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform:rotateY(180deg); border-radius:18px; background:#fff; border:1px solid #E3E9F2; display:flex; flex-direction:column; justify-content:center; gap:12px; padding:clamp(22px,2.6vw,32px);">
-              <span style="font-size:13px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#1C6FE8;">Medible</span>
-              <p style="font-size:clamp(14.5px,1.2vw,16px); line-height:1.55; color:#43485A; margin:0;">Reportes y métricas reales de reproducciones e impactos para saber exactamente cómo rinde tu inversión.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Interactividad -->
-        <div class="fcard" style="perspective:1400px; aspect-ratio:1/1; cursor:pointer;">
-          <div class="fcard-inner" style="position:relative; width:100%; height:100%; transition:transform .7s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d;">
-            <div style="position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:18px; background:#1C6FE8; display:flex; flex-direction:column; justify-content:flex-end; gap:18px; padding:clamp(22px,2.6vw,32px); overflow:hidden;">
-              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 7-6 2-2 6z"></path><path d="M13 13l5 5"></path></svg>
-              <span style="font-size:clamp(22px,2.4vw,30px); font-weight:800; letter-spacing:-0.02em; color:#fff; line-height:1.05;">Interactividad</span>
-            </div>
-            <div style="position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform:rotateY(180deg); border-radius:18px; background:#fff; border:1px solid #E3E9F2; display:flex; flex-direction:column; justify-content:center; gap:12px; padding:clamp(22px,2.6vw,32px);">
-              <span style="font-size:13px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#1C6FE8;">Interactividad</span>
-              <p style="font-size:clamp(14.5px,1.2vw,16px); line-height:1.55; color:#43485A; margin:0;">Contenido dinámico en movimiento que capta la atención e invita a la audiencia a interactuar con tu marca.</p>
-            </div>
-          </div>
-        </div>
-
+    <div class="detail-subnav">
+      <div class="detail-subnav__inner">
+        <strong>VISTA360 Digital</strong>
+        <nav aria-label="Formatos Digital">
+          <a href="#led">Panel LED</a>
+          <a href="#totem-digital">Tótem digital</a>
+          <a href="#player">Player</a>
+        </nav>
       </div>
     </div>
-  </section>
 
-  <!-- ============ INCLUIDO EN CADA FORMATO ============ -->
-  <section style="background:#ffffff; padding:clamp(40px,5vw,64px) clamp(16px,4vw,40px) clamp(56px,7vw,90px);">
-    <div data-reveal style="max-width:1240px; margin:0 auto;">
-      <div style="text-align:center; max-width:560px; margin:0 auto clamp(32px,4vw,48px);">
-        <h2 style="font-size:clamp(24px,3vw,36px); font-weight:800; letter-spacing:-0.03em; line-height:1.1; color:#0E1A2E; margin:0 0 12px;">Incluido en cada formato</h2>
-        <p style="font-size:clamp(15px,1.2vw,17px); line-height:1.55; color:#6A6A78; margin:0;">Nos encargamos de todo, de principio a fin. Tú solo apruebas el arte.</p>
+    <section class="detail-pixels" aria-labelledby="pixels-title">
+      <div class="detail-shell">
+        <div class="detail-kicker detail-kicker--light" style="justify-content:center;">Luz en movimiento</div>
+        <h2 id="pixels-title" class="pixel-word">DIGITAL</h2>
+        <p>La tecnología amplía las posibilidades de la publicidad exterior: una misma superficie puede mostrar distintas piezas y adaptarse a la programación de la campaña.</p>
       </div>
-      <div class="v-incl">
-        <div style="background:#fff; padding:clamp(28px,3.2vw,40px);">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1C6FE8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:18px;"><path d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.2L12 16.5 5.7 21l2.3-7.2-6-4.4h7.6z"></path></svg>
-          <h3 style="font-size:18px; font-weight:700; letter-spacing:-0.01em; color:#0E1A2E; margin:0 0 8px;">Diseño y producción</h3>
-          <p style="font-size:14.5px; line-height:1.55; color:#6A6A78; margin:0;">Adaptamos y producimos tu pieza con materiales de alta durabilidad.</p>
+    </section>
+
+    <section class="detail-intro" aria-labelledby="digital-intro-title">
+      <div class="detail-shell">
+        <div class="detail-intro__grid">
+          <div data-reveal>
+            <div class="detail-kicker">Una superficie activa</div>
+            <h2 id="digital-intro-title">El mensaje cambia. La presencia permanece.</h2>
+          </div>
+          <p data-reveal>Digital conserva la escala y ubicación de un soporte exterior, pero añade movimiento, actualización de piezas y una experiencia de seguimiento más ordenada.</p>
         </div>
-        <div style="background:#fff; padding:clamp(28px,3.2vw,40px);">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1C6FE8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:18px;"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
-          <h3 style="font-size:18px; font-weight:700; letter-spacing:-0.01em; color:#0E1A2E; margin:0 0 8px;">Permisos y gestión</h3>
-          <p style="font-size:14.5px; line-height:1.55; color:#6A6A78; margin:0;">Tramitamos las autorizaciones municipales por ti, sin complicaciones.</p>
-        </div>
-        <div style="background:#fff; padding:clamp(28px,3.2vw,40px);">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1C6FE8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:18px;"><path d="M4 19V5"></path><path d="M4 19h16"></path><path d="M7 15l3-3 3 2 4-5"></path></svg>
-          <h3 style="font-size:18px; font-weight:700; letter-spacing:-0.01em; color:#0E1A2E; margin:0 0 8px;">Instalación y reportes</h3>
-          <p style="font-size:14.5px; line-height:1.55; color:#6A6A78; margin:0;">Montaje, mantenimiento y fotos de tu campaña en la calle.</p>
+        <div class="detail-rail" data-reveal>
+          <article><span>01</span><h3>Movimiento</h3><p>Contenido animado para captar atención en el recorrido.</p></article>
+          <article><span>02</span><h3>Programación</h3><p>Diferentes piezas pueden organizarse durante la campaña.</p></article>
+          <article><span>03</span><h3>Seguimiento</h3><p>La información permanece disponible mediante Player.</p></article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============ SOMOS LÍDERES (full-bleed banner) ============ -->
-  <section style="position:relative; overflow:hidden; min-height:clamp(420px,52vw,580px); display:flex; align-items:center; justify-content:center; text-align:center; padding:clamp(72px,10vw,120px) clamp(20px,5vw,40px);">
-    <img src="panels/billboard-vista360.jpg" alt="Publicidad exterior VISTA360" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
-    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,8,15,0.55) 0%, rgba(5,8,15,0.4) 45%, rgba(5,8,15,0.6) 100%);"></div>
-    <div data-reveal style="position:relative; z-index:2; max-width:880px;">
-      <h2 style="font-size:clamp(32px,5vw,64px); font-weight:800; letter-spacing:-0.03em; line-height:1.08; color:#fff; margin:0 0 clamp(28px,4vw,44px); text-shadow:0 8px 40px rgba(5,8,15,0.5);">Le damos a tu marca la escala de toda la ciudad.</h2>
-      <a href="contacto.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:11px; padding:17px 38px; border-radius:14px; background:#1C6FE8; color:#fff; font-size:16.5px; font-weight:700; transition:background .25s ease, transform .2s ease;" style-hover="background:#3B86F5; transform:translateY(-2px);">Conversemos <span style="font-size:18px;">&rarr;</span></a>
-    </div>
-  </section>
+    <section id="led" class="detail-feature" aria-labelledby="led-title">
+      <img class="detail-feature__image" src="panels/campaign-led-technology-v2.jpg" alt="Panel LED VISTA360 con contenido dinámico en una avenida nocturna" />
+      <div class="detail-feature__veil"></div>
+      <div class="detail-feature__inner">
+        <div class="detail-feature__copy" data-reveal>
+          <div class="detail-kicker detail-kicker--light">01 / Panel LED</div>
+          <h2 id="led-title">La campaña puede responder al momento.</h2>
+          <p>Un panel exterior de gran escala preparado para mostrar contenido dinámico y diferentes piezas durante el día.</p>
+          <div class="detail-specs">
+            <div><span>LECTURA</span><strong>Media o larga</strong></div>
+            <div><span>CONTENIDO</span><strong>Dinámico</strong></div>
+            <div><span>ENTORNO</span><strong>Vías y avenidas</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-studio" aria-labelledby="pixel-detail-title">
+      <div class="detail-shell detail-studio__grid">
+        <img class="detail-studio__image" data-reveal src="panels/story-led-macro-v2.jpg" alt="Detalle cercano de módulos y píxeles de una pantalla LED" />
+        <div data-reveal>
+          <div class="detail-kicker">Detalle LED</div>
+          <h2 id="pixel-detail-title">La imagen también se construye punto por punto.</h2>
+          <p>El contenido se adapta a una superficie luminosa. Contraste, escala, ritmo y duración trabajan juntos para mantener claridad en movimiento.</p>
+          <div class="detail-list">
+            <div><span>01</span><strong>Adaptación para pantalla</strong></div>
+            <div><span>02</span><strong>Secuencia y duración</strong></div>
+            <div><span>03</span><strong>Lectura diurna y nocturna</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="totem-digital" class="detail-feature detail-feature--right" aria-labelledby="totem-digital-title">
+      <img class="detail-feature__image detail-feature__image--product" src="panels/story-totem-transparent-v4.png" alt="Tótem digital VISTA360 de formato vertical" />
+      <div class="detail-feature__veil"></div>
+      <div class="detail-feature__inner">
+        <div class="detail-feature__copy" data-reveal>
+          <div class="detail-kicker detail-kicker--light">02 / Tótem digital</div>
+          <h2 id="totem-digital-title">Movimiento a una distancia cercana.</h2>
+          <p>Una pantalla vertical para accesos, plazas y zonas de espera donde la comunicación puede actualizarse sin reemplazar una pieza impresa.</p>
+          <div class="detail-specs">
+            <div><span>LECTURA</span><strong>Cercana</strong></div>
+            <div><span>CONTENIDO</span><strong>Vertical dinámico</strong></div>
+            <div><span>ENTORNO</span><strong>Accesos y plazas</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-values" aria-labelledby="digital-values-title">
+      <div class="detail-shell">
+        <div class="detail-values__head">
+          <div data-reveal><div class="detail-kicker">Por qué Digital</div><h2 id="digital-values-title">Más posibilidades sobre una misma superficie.</h2></div>
+          <p data-reveal>Digital añade flexibilidad creativa y programación sin perder la presencia física de la publicidad exterior.</p>
+        </div>
+        <div class="detail-values__grid" data-reveal>
+          <article><span>01</span><h3>Contenido dinámico</h3><p>Movimiento y transiciones pensados para el recorrido.</p></article>
+          <article><span>02</span><h3>Piezas programables</h3><p>Una campaña puede organizar distintos mensajes.</p></article>
+          <article><span>03</span><h3>Seguimiento digital</h3><p>La información se centraliza para una revisión más clara.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="player" class="detail-player" aria-labelledby="player-digital-title">
+      <div class="detail-shell">
+        <div class="detail-kicker detail-kicker--light">VISTA360 Player</div>
+        <h2 id="player-digital-title">La experiencia continúa después de publicar.</h2>
+        <p>Player reúne campañas, pantallas, evidencias y reportes para que el seguimiento se mantenga disponible desde cualquier dispositivo.</p>
+        <img data-reveal src="panels/vista360-player-devices-v1.png" alt="VISTA360 Player presentado en una computadora portátil y un teléfono" />
+      </div>
+    </section>
+
+    <section class="detail-included" aria-labelledby="digital-included-title">
+      <div class="detail-shell detail-included__grid">
+        <div data-reveal><div class="detail-kicker">Servicio VISTA360 Digital</div><h2 id="digital-included-title">De la pieza animada a la campaña programada.</h2></div>
+        <div class="detail-included__items" data-reveal>
+          <article class="detail-included__item"><span>01</span><div><h3>Selección del formato</h3><p>Relacionamos distancia, entorno y tipo de contenido.</p></div></article>
+          <article class="detail-included__item"><span>02</span><div><h3>Adaptación digital</h3><p>Preparamos la pieza para su superficie y duración.</p></div></article>
+          <article class="detail-included__item"><span>03</span><div><h3>Programación y seguimiento</h3><p>Organizamos la publicación y la información de campaña.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-cta" aria-labelledby="digital-cta-title">
+      <img class="detail-cta__image" src="panels/premium-led.jpg" alt="Pantalla LED VISTA360 iluminada en una ciudad nocturna" />
+      <div class="detail-cta__veil"></div>
+      <div class="detail-cta__copy" data-reveal>
+        <div class="detail-kicker detail-kicker--light">VISTA360 Digital · Próximamente</div>
+        <h2 id="digital-cta-title">Prepara tu campaña para el movimiento.</h2>
+        <a class="detail-action" href="contacto.html">Registrar mi interés <span>&rarr;</span></a>
+      </div>
+    </section>
+  </main>
 
   <dc-import name="SiteFooter" hint-size="100%,400px"></dc-import>
   <dc-import name="SiteChat" hint-size="100%,0px"></dc-import>
-  <div style="background:#0A1426; min-height:20px;"></div>
-
+  <div style="min-height:20px;background:#05080F;"></div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script>
-class Component extends DCLogic {
-  componentDidMount() {
-    const root = this.rootEl;
-    if (!root) return;
-    const els = Array.from(root.querySelectorAll('[data-reveal]'));
-    els.forEach((el) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(30px)';
-      el.style.transition = 'opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1)';
-    });
-    if (!('IntersectionObserver' in window)) { els.forEach((el) => { el.style.opacity = '1'; el.style.transform = 'none'; }); return; }
-    this.io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; this.io.unobserve(e.target); } });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    els.forEach((el) => this.io.observe(el));
-  }
-  componentWillUnmount() { if (this.io) this.io.disconnect(); }
-  renderVals() { return { setRoot: (el) => { this.rootEl = el; } }; }
-}
-</script>
-  <script src="hover.js"></script>
+<script src="formats-detail.js"></script>
 </body>
 </html>
