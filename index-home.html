@@ -6676,52 +6676,6 @@
   .vn-format-story--totem .vn-format-number {
     color:rgba(255,255,255,.55);
   }
-  /* Solo la placa de presentación: foto desenfocada sin alterar su tamaño. */
-  .vn-format-story--mural .vn-format-opening,
-  .vn-format-story--unipolar .vn-format-opening {
-    isolation:isolate;
-  }
-  .vn-format-story--mural .vn-format-opening::before,
-  .vn-format-story--unipolar .vn-format-opening::before {
-    display:block;
-    content:"";
-    position:absolute;
-    inset:-14%;
-    z-index:0;
-    background-image:var(--chapter-bg);
-    background-position:center;
-    background-size:cover;
-    transform:scale(1.08);
-  }
-  .vn-format-story--mural .vn-format-opening::after,
-  .vn-format-story--unipolar .vn-format-opening::after {
-    display:block;
-    content:"";
-    position:absolute;
-    inset:0;
-    z-index:0;
-    pointer-events:none;
-  }
-  .vn-format-story--mural .vn-format-opening::before {
-    background-position:58% 42%;
-    filter:blur(20px) saturate(.72) brightness(1.32);
-    opacity:.78;
-  }
-  .vn-format-story--mural .vn-format-opening::after {
-    background:
-      linear-gradient(180deg,rgba(255,255,255,.55),rgba(245,248,253,.46)),
-      radial-gradient(circle at 48% 46%,rgba(255,255,255,.22),transparent 62%);
-  }
-  .vn-format-story--unipolar .vn-format-opening::before {
-    background-position:center 42%;
-    filter:blur(19px) saturate(1.02) brightness(.58);
-    opacity:.94;
-  }
-  .vn-format-story--unipolar .vn-format-opening::after {
-    background:
-      linear-gradient(180deg,rgba(3,6,12,.38),rgba(3,6,12,.57)),
-      radial-gradient(circle at 50% 50%,rgba(23,105,232,.08),transparent 62%);
-  }
   .vn-summary-footer {
     display:grid;
     grid-template-columns:minmax(0,1fr) auto;
