@@ -188,7 +188,7 @@
 
   <!-- ============ SOMOS LÍDERES (full-bleed banner) ============ -->
   <section style="position:relative; overflow:hidden; min-height:clamp(420px,52vw,580px); display:flex; align-items:center; justify-content:center; text-align:center; padding:clamp(72px,10vw,120px) clamp(20px,5vw,40px);">
-    <img src="panels/billboard-vista360.jpg" alt="Publicidad exterior VISTA360" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+    <img src="panels/billboard-vista360.webp" alt="Publicidad exterior VISTA360" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
     <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,8,15,0.55) 0%, rgba(5,8,15,0.4) 45%, rgba(5,8,15,0.6) 100%);"></div>
     <div data-reveal style="position:relative; z-index:2; max-width:880px;">
       <h2 style="font-size:clamp(32px,5vw,64px); font-weight:800; letter-spacing:-0.03em; line-height:1.08; color:#fff; margin:0 0 clamp(28px,4vw,44px); text-shadow:0 8px 40px rgba(5,8,15,0.5);">Le damos a tu marca la escala de toda la ciudad.</h2>
@@ -251,10 +251,10 @@ class Component extends DCLogic {
 
   renderVals() {
     const fmtData = [
-      { label: 'Unipolares', img: 'panels/unipolar.jpg', title: 'Unipolares', desc: 'Gran formato a la altura de la avenida, visible desde cientos de metros.', pos: '53% 42%' },
-      { label: 'Murales', img: 'panels/mural.jpg', title: 'Murales urbanos', desc: 'Gran escala que convierte una pared en un punto de referencia de la ciudad.', pos: '56% 42%' },
-      { label: 'Pantallas LED', img: 'panels/led.jpg', title: 'Pantallas digitales', desc: 'Contenido dinámico que cambia según la hora y la campaña. Próximamente en nuestra red.', pos: '44% 42%' },
-      { label: 'Tótems', img: 'panels/totem.jpg', title: 'Tótems peatonales', desc: 'Impacto a la altura del peatón en los puntos de mayor flujo a pie.', pos: '57% 48%' }
+      { label: 'Unipolares', img: 'panels/unipolar.webp', title: 'Unipolares', desc: 'Gran formato a la altura de la avenida, visible desde cientos de metros.', pos: '53% 42%' },
+      { label: 'Murales', img: 'panels/mural.webp', title: 'Murales urbanos', desc: 'Gran escala que convierte una pared en un punto de referencia de la ciudad.', pos: '56% 42%' },
+      { label: 'Pantallas LED', img: 'panels/led.webp', title: 'Pantallas digitales', desc: 'Contenido dinámico que cambia según la hora y la campaña. Próximamente en nuestra red.', pos: '44% 42%' },
+      { label: 'Tótems', img: 'panels/totem.webp', title: 'Tótems peatonales', desc: 'Impacto a la altura del peatón en los puntos de mayor flujo a pie.', pos: '57% 48%' }
     ];
     const af = this.state.activeFormat;
     const formats = fmtData.map((f, i) => {

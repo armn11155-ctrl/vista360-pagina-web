@@ -100,7 +100,7 @@
 
   <!-- ============ HERO (cinematic full-bleed) ============ -->
   <section id="top" style="position:relative; min-height:100vh; display:flex; flex-direction:column; overflow:hidden; background:#05080F;">
-    <video id="heroVideo" src="uploads/que_el_video_esta_bien_pero_no.mp4" poster="uploads/hero-poster.jpg" autoplay muted loop playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; filter:brightness(0.64) contrast(1.05) saturate(1.05); pointer-events:none;"></video>
+    <video id="heroVideo" src="uploads/que_el_video_esta_bien_pero_no.mp4" poster="uploads/hero-poster.jpg" autoplay muted loop playsinline preload="metadata" disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; filter:brightness(0.64) contrast(1.05) saturate(1.05); pointer-events:none;"></video>
     <div style="position:absolute; inset:0; background:rgba(7,11,20,0.46);"></div>
     <div style="position:absolute; top:16%; left:50%; transform:translateX(-50%); width:700px; max-width:92vw; height:430px; background:radial-gradient(circle, rgba(28,111,232,0.32), transparent 66%); filter:blur(20px); pointer-events:none;"></div>
 
@@ -177,7 +177,7 @@
 
   <!-- ============ INTRO + STATS (headline left / stat grid right over photo) ============ -->
   <section style="position:relative; overflow:hidden; background:#05080F; margin-top:clamp(20px,3vw,40px);">
-    <img src="panels/unipolar.jpg" alt="Panel publicitario VISTA360 iluminado en Huánuco" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:brightness(0.66) contrast(1.04) saturate(1.04);" />
+    <img src="panels/unipolar.webp" alt="Panel publicitario VISTA360 iluminado en Huánuco" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:brightness(0.66) contrast(1.04) saturate(1.04);" />
     <div style="position:absolute; inset:0; background:linear-gradient(105deg, rgba(5,8,15,0.6) 0%, rgba(5,8,15,0.34) 48%, rgba(5,8,15,0.5) 100%);"></div>
     <div style="position:absolute; top:-22%; right:-6%; width:480px; height:480px; max-width:70vw; border-radius:50%; background:radial-gradient(circle, rgba(28,111,232,0.3), transparent 64%); filter:blur(16px); pointer-events:none;"></div>
 
@@ -415,9 +415,9 @@ class Component extends DCLogic {
 
   renderVals() {
     const fmt = [
-      { title: 'Unipolares', desc: 'Gran impacto a larga distancia en autopistas, avenidas y zonas de alto tráfico.', img: 'panels/unipolar.jpg' },
-      { title: 'Murales', desc: 'Formatos de gran escala que convierten muros y fachadas en piezas memorables.', img: 'panels/mural.jpg' },
-      { title: 'LED (Próximamente)', desc: 'Tecnología dinámica con contenido en movimiento y mayor interacción.', img: 'panels/led.jpg' }
+      { title: 'Unipolares', desc: 'Gran impacto a larga distancia en autopistas, avenidas y zonas de alto tráfico.', img: 'panels/unipolar.webp' },
+      { title: 'Murales', desc: 'Formatos de gran escala que convierten muros y fachadas en piezas memorables.', img: 'panels/mural.webp' },
+      { title: 'LED (Próximamente)', desc: 'Tecnología dinámica con contenido en movimiento y mayor interacción.', img: 'panels/led.webp' }
     ];
     const formats = fmt.map((f) => ({
       title: f.title, desc: f.desc,
@@ -455,10 +455,10 @@ class Component extends DCLogic {
     ];
 
     const productData = [
-      { title: 'Murales', desc: 'Gran escala en muros y fachadas de alto tránsito.', img: 'panels/mural.jpg', objPos: 'center 45%' },
-      { title: 'Unipolares', desc: 'Impacto a larga distancia en avenidas principales.', img: 'panels/unipolar.jpg', objPos: 'center 38%' },
-      { title: 'Tótems', desc: 'Presencia peatonal, a la altura de la calle.', img: 'panels/totem.jpg', objPos: '57% 48%' },
-      { title: 'Pantallas LED', desc: 'Contenido dinámico en movimiento. Próximamente.', img: 'panels/led.jpg', objPos: 'center 42%' }
+      { title: 'Murales', desc: 'Gran escala en muros y fachadas de alto tránsito.', img: 'panels/mural.webp', objPos: 'center 45%' },
+      { title: 'Unipolares', desc: 'Impacto a larga distancia en avenidas principales.', img: 'panels/unipolar.webp', objPos: 'center 38%' },
+      { title: 'Tótems', desc: 'Presencia peatonal, a la altura de la calle.', img: 'panels/totem.webp', objPos: '57% 48%' },
+      { title: 'Pantallas LED', desc: 'Contenido dinámico en movimiento. Próximamente.', img: 'panels/led.webp', objPos: 'center 42%' }
     ];
     const products = productData.map((p) => ({
       title: p.title, desc: p.desc,

@@ -784,6 +784,12 @@ class Component extends DCLogic {
   }
 
   _renderTurnstile() {
+    const isLocalPreview = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
+    if (isLocalPreview) {
+      const previewEl = document.querySelector('.cf-turnstile');
+      if (previewEl) previewEl.style.display = 'none';
+      return;
+    }
     // BUG FIX: el formulario (y el div .cf-turnstile dentro de el) se
     // renderiza dinamicamente con JS. El escaneo automatico del script de
     // Turnstile puede correr ANTES de que ese div exista todavia en el DOM,
