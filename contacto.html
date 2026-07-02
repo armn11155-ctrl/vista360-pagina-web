@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
-<script src="./support.js?v=20260701"></script>
+<script src="./support.js?v=20260702b"></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 </head>
 <body>
@@ -497,7 +497,7 @@
   <dc-import name="SiteNav" active="contacto" hint-size="100%,66px"></dc-import>
 
   <section class="vc-hero" aria-labelledby="vc-hero-title">
-    <img class="vc-hero__image" src="panels/campaign-mural-framed-v3.png" alt="Campaña mural VISTA360 integrada a una fachada urbana" />
+    <img class="vc-hero__image" src="panels/campaign-mural-framed-v3.webp" decoding="async" fetchpriority="high" alt="Campaña mural VISTA360 integrada a una fachada urbana" />
     <div class="vc-hero__veil"></div>
     <div class="vc-hero__inner">
       <div class="vc-kicker">Planifiquemos tu campaña</div>
@@ -531,7 +531,7 @@
 
       <div data-reveal data-reveal-delay="100">
         <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
-          <div class="vc-success">
+          <div class="vc-success" role="status" aria-live="polite">
             <div style="width:58px;height:58px;border-radius:50%;background:#1769E8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:22px;">&checkmark;</div>
             <h3 style="margin:0 0 10px;color:#101724;font-size:28px;">Solicitud recibida.</h3>
             <p style="max-width:350px;margin:0;color:#6D7687;line-height:1.65;">Gracias por confiar en VISTA360. Revisaremos tu información y nos pondremos en contacto contigo para preparar el siguiente paso.</p>
@@ -586,7 +586,7 @@
             </div>
             <input type="text" id="v-hp" name="website" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
             <div class="cf-turnstile" data-sitekey="0x4AAAAAADqIxnZryQOUjZzt" data-action="turnstile-spin-v1" style="margin-bottom:16px;"></div>
-            <p id="v-send-err" style="font-size:13px;color:#E0506A;margin:0 0 12px;display:none;">Ocurrió un error al enviar. Intenta de nuevo.</p>
+            <p id="v-send-err" role="alert" aria-live="assertive" style="font-size:13px;color:#E0506A;margin:0 0 12px;display:none;">Ocurrió un error al enviar. Intenta de nuevo.</p>
             <button type="submit" id="v-submit-btn" class="vc-submit">Recibir una propuesta</button>
             <p class="vc-submit-note">Usaremos tus datos únicamente para responder esta solicitud.</p>
           </form>
