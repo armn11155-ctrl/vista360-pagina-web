@@ -6076,35 +6076,6 @@
   .vn-context-cta:hover::after {
     transform:translateX(5px);
   }
-  .vn-story-nav {
-    position:fixed;
-    top:50%;
-    right:22px;
-    z-index:20;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    padding:12px 9px;
-    border:1px solid rgba(255,255,255,.14);
-    border-radius:18px;
-    background:rgba(5,8,15,.52);
-    backdrop-filter:blur(14px);
-    transform:translateY(-50%);
-  }
-  .vn-story-nav a {
-    display:block;
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:rgba(255,255,255,.42);
-    text-indent:-9999px;
-    transition:background .2s ease,transform .2s ease;
-  }
-  .vn-story-nav a:hover,
-  .vn-story-nav a:focus-visible {
-    background:#72A9FF;
-    transform:scale(1.45);
-  }
   .vn-solutions-summary {
     padding:126px 0 138px;
     background:#FFFFFF;
@@ -6258,9 +6229,6 @@
     .vn-solutions-grid {
       grid-template-columns:1fr 1fr;
     }
-    .vn-story-nav {
-      display:none;
-    }
     .vn-availability-layout {
       grid-template-columns:1fr;
       gap:54px;
@@ -6404,19 +6372,6 @@
   }
   .v-hero-secondary {
     font-size:14px;
-  }
-  .vn-story-nav {
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-    transform:translate3d(8px,-50%,0);
-    transition:opacity .25s ease,visibility .25s ease,transform .25s ease;
-  }
-  .vn-story-nav.is-visible {
-    opacity:1;
-    visibility:visible;
-    pointer-events:auto;
-    transform:translate3d(0,-50%,0);
   }
   @media (max-width:940px) {
     #heroContent {
@@ -7117,12 +7072,6 @@
   </section>
 
   <main class="vn-story">
-    <nav class="vn-story-nav" aria-label="Recorrido de formatos">
-      <a href="#formato-mural" aria-label="Ir a Mural">Mural</a>
-      <a href="#formato-unipolar" aria-label="Ir a Unipolar">Unipolar</a>
-      <a href="#formato-led" aria-label="Ir a Panel LED">LED</a>
-      <a href="#formato-totem" aria-label="Ir a Tótem">Tótem</a>
-    </nav>
     <section class="vn-intro" aria-labelledby="vn-intro-title">
       <div class="vn-shell">
         <div class="vn-intro-copy" data-reveal>
@@ -8279,8 +8228,6 @@ class Component extends DCLogic {
     const els = Array.from(root.querySelectorAll('[data-reveal]'));
     const formatChapters = Array.from(root.querySelectorAll('.v-format-chapter'));
     const formatOpenings = Array.from(root.querySelectorAll('.vn-format-opening'));
-    const formatStories = root.querySelector('.vn-format-stories');
-    const storyNav = root.querySelector('.vn-story-nav');
     const revealNow = (el) => {
       el.style.opacity = '1';
       el.style.transform = 'none';
@@ -8297,14 +8244,6 @@ class Component extends DCLogic {
       formatOpenings.forEach((el) => el.classList.add('is-lit'));
       this.animateCounts();
       return;
-    }
-    if (formatStories && storyNav) {
-      this.storyNavIO = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          storyNav.classList.toggle('is-visible', entry.isIntersecting);
-        });
-      }, { threshold:0.01, rootMargin:'-12% 0px -12% 0px' });
-      this.storyNavIO.observe(formatStories);
     }
     this.io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
@@ -8737,7 +8676,6 @@ class Component extends DCLogic {
     if (this.io) this.io.disconnect();
     if (this.formatIO) this.formatIO.disconnect();
     if (this.ledWordIO) this.ledWordIO.disconnect();
-    if (this.storyNavIO) this.storyNavIO.disconnect();
     if (this._heroVideoWatchdog) clearInterval(this._heroVideoWatchdog);
     if (this._netRAF) cancelAnimationFrame(this._netRAF);
     if (this._netRO) this._netRO.disconnect();
