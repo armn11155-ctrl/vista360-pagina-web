@@ -264,9 +264,7 @@ dc-import { display:block; }
     padding:0;
     object-fit:cover;
     object-position:left center;
-    filter:contrast(1.04) saturate(1.02);
-    -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 76%,transparent 100%);
-    mask-image:linear-gradient(90deg,#000 0%,#000 76%,transparent 100%);
+    filter:drop-shadow(0 32px 34px rgba(0,0,0,.38));
   }
   .detail-feature--mural .detail-feature__image,
   .detail-feature--unipolar .detail-feature__image,
@@ -523,8 +521,6 @@ dc-import { display:block; }
     height:360px;
     object-fit:cover;
     object-position:left center;
-    -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 82%,transparent 100%);
-    mask-image:linear-gradient(180deg,#000 0%,#000 82%,transparent 100%);
   }
   .detail-feature--catalog-wide .detail-feature__image {
     object-fit:contain;
