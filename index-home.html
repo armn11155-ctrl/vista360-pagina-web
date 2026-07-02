@@ -6690,7 +6690,7 @@
   .vn-format-story--totem .vn-format-number {
     color:rgba(255,255,255,.55);
   }
-  /* Blue pixel matrix with the same white sweep used by CLASSIC / DIGITAL. */
+  /* Dense LED matrix. The white sweep belongs only on the dark chapters. */
   .vn-format-story--mural .vn-format-opening,
   .vn-format-story--led .vn-format-opening {
     color:#111318;
@@ -6710,27 +6710,15 @@
     color:rgba(255,255,255,.56);
   }
   .vn-format-opening .vn-format-word {
-    background-image:
-      linear-gradient(
-        105deg,
-        transparent 0%,
-        transparent 36%,
-        rgba(255,255,255,.28) 43%,
-        #FFFFFF 48%,
-        #FFFFFF 52%,
-        rgba(255,255,255,.28) 57%,
-        transparent 64%,
-        transparent 100%
-      ),
-      radial-gradient(
+    background-image:radial-gradient(
         circle at center,
-        #1769E8 0 .72px,
-        rgba(11,43,93,.42) .78px 1.14px,
-        transparent 1.2px
-      ) !important;
-    background-size:320% 100%,3.2px 3.2px !important;
-    background-position:100% 50%,center;
-    background-repeat:no-repeat,repeat;
+        #1769E8 0 .46px,
+        rgba(11,43,93,.48) .5px .72px,
+        transparent .76px
+    ) !important;
+    background-size:2px 2px !important;
+    background-position:center;
+    background-repeat:repeat;
     opacity:1;
     filter:drop-shadow(0 0 8px rgba(23,105,232,.24));
   }
@@ -6750,15 +6738,21 @@
       ),
       radial-gradient(
         circle at center,
-        #72AEFF 0 .72px,
-        rgba(23,105,232,.36) .78px 1.14px,
-        transparent 1.2px
+        #72AEFF 0 .46px,
+        rgba(23,105,232,.4) .5px .72px,
+        transparent .76px
       ) !important;
+    background-size:320% 100%,2px 2px !important;
+    background-position:100% 50%,center;
+    background-repeat:no-repeat,repeat;
   }
-  .vn-format-opening.is-lit .vn-format-word,
+  .vn-format-story--unipolar .vn-format-opening.is-lit .vn-format-word,
+  .vn-format-story--totem .vn-format-opening.is-lit .vn-format-word {
+    animation:vn-format-white-sweep 5.6s cubic-bezier(.45,0,.25,1) infinite !important;
+  }
   .vn-format-story--mural .vn-format-opening.is-lit .vn-format-word,
   .vn-format-story--led .vn-format-opening.is-lit .vn-format-word {
-    animation:vn-format-white-sweep 5.6s cubic-bezier(.45,0,.25,1) infinite !important;
+    animation:none !important;
   }
   @keyframes vn-format-white-sweep {
     0%,14% {
@@ -7323,7 +7317,7 @@
         <header class="vn-format-opening">
           <div class="vn-format-opening-inner">
             <span class="vn-format-number">04 / Lectura cercana</span>
-            <h2 class="vn-format-word" data-format-word>TÓTEM</h2>
+            <h2 class="vn-format-word" data-format-word>TOTEM</h2>
             <p>Tu marca presente justo donde las personas entran, esperan, deciden y cambian de dirección.</p>
           </div>
         </header>
