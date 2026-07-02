@@ -197,9 +197,31 @@ dc-import { display:block; }
   color:#FFFFFF;
   background:var(--ink);
 }
+.detail-feature::before {
+  content:"";
+  position:absolute;
+  z-index:0;
+  inset:-34px;
+  background:
+    linear-gradient(rgba(5,8,15,.12),rgba(5,8,15,.12)),
+    var(--feature-bg) center/cover no-repeat;
+  filter:blur(24px) saturate(.88);
+  transform:scale(1.06);
+}
+.detail-feature::after {
+  content:"";
+  position:absolute;
+  z-index:0;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(4,8,16,.28),rgba(4,8,16,.1) 48%,rgba(4,8,16,.36)),
+    radial-gradient(circle at 70% 48%,rgba(23,105,232,.12),transparent 45%);
+  pointer-events:none;
+}
 .detail-feature--light { color:var(--text); background:var(--paper); }
 .detail-feature__image {
   position:absolute;
+  z-index:1;
   inset:0;
   width:100%;
   height:100%;
@@ -215,15 +237,16 @@ dc-import { display:block; }
 }
 .detail-feature__veil {
   position:absolute;
+  z-index:2;
   inset:0;
-  background:linear-gradient(90deg,rgba(5,8,15,.94),rgba(5,8,15,.62) 44%,rgba(5,8,15,.06) 78%);
+  background:linear-gradient(90deg,rgba(5,8,15,.88),rgba(5,8,15,.54) 44%,rgba(5,8,15,.12) 78%);
 }
 .detail-feature--right .detail-feature__veil {
-  background:linear-gradient(270deg,rgba(5,8,15,.94),rgba(5,8,15,.58) 44%,rgba(5,8,15,.04) 78%);
+  background:linear-gradient(270deg,rgba(5,8,15,.78),rgba(5,8,15,.46) 44%,rgba(5,8,15,.04) 78%);
 }
 .detail-feature__inner {
   position:relative;
-  z-index:1;
+  z-index:3;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -242,6 +265,8 @@ dc-import { display:block; }
     object-fit:cover;
     object-position:left center;
     filter:none;
+    mix-blend-mode:screen;
+    opacity:.94;
   }
   .detail-feature--mural .detail-feature__image,
   .detail-feature--unipolar .detail-feature__image,
@@ -256,7 +281,7 @@ dc-import { display:block; }
   .detail-feature--unipolar .detail-feature__image,
   .detail-feature--totem .detail-feature__image { width:68%; }
   .detail-feature--catalog .detail-feature__veil {
-    background:linear-gradient(270deg,rgba(5,8,15,.99) 3%,rgba(5,8,15,.94) 42%,rgba(5,8,15,.22) 68%,rgba(5,8,15,.02) 100%);
+    background:linear-gradient(270deg,rgba(5,8,15,.8) 3%,rgba(5,8,15,.64) 42%,rgba(5,8,15,.14) 68%,rgba(5,8,15,.01) 100%);
   }
 }
 .detail-feature h2 { color:#FFFFFF; }
@@ -480,7 +505,7 @@ dc-import { display:block; }
   .detail-feature__inner { min-height:720px; }
   .detail-feature--right .detail-feature__inner { align-items:flex-start; }
   .detail-feature--right .detail-feature__veil {
-    background:linear-gradient(90deg,rgba(5,8,15,.94),rgba(5,8,15,.6) 64%,rgba(5,8,15,.18));
+    background:linear-gradient(90deg,rgba(5,8,15,.84),rgba(5,8,15,.62) 64%,rgba(5,8,15,.28));
   }
   .detail-feature__image--product {
     width:100%;
@@ -505,7 +530,7 @@ dc-import { display:block; }
   }
   .detail-feature--catalog .detail-feature__veil,
   .detail-feature--catalog.detail-feature--right .detail-feature__veil {
-    background:linear-gradient(180deg,rgba(5,8,15,.02) 12%,rgba(5,8,15,.28) 36%,#05080F 48%);
+    background:linear-gradient(180deg,rgba(5,8,15,.02) 12%,rgba(5,8,15,.3) 36%,rgba(5,8,15,.8) 52%,rgba(5,8,15,.74) 100%);
   }
   .detail-feature--catalog .detail-feature__inner {
     justify-content:flex-end;
