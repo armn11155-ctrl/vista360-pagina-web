@@ -6364,12 +6364,12 @@
     position:absolute;
     inset:0;
     background:
-      linear-gradient(180deg,rgba(5,9,17,.38) 0%,rgba(5,9,17,.08) 24%,rgba(5,9,17,.13) 64%,rgba(5,9,17,.5) 100%),
-      radial-gradient(ellipse at center,rgba(7,11,20,.16) 0%,rgba(7,11,20,.38) 76%);
+      linear-gradient(180deg,rgba(5,9,17,.44) 0%,rgba(5,9,17,.12) 24%,rgba(5,9,17,.2) 64%,rgba(5,9,17,.58) 100%),
+      radial-gradient(ellipse at 50% 48%,rgba(7,11,20,.08) 0%,rgba(7,11,20,.24) 42%,rgba(7,11,20,.5) 100%);
     pointer-events:none;
   }
   #heroContent {
-    transform:translateY(-34px) !important;
+    transform:translateY(-42px) !important;
   }
   #heroContent h1 {
     max-width:900px;
@@ -6387,14 +6387,16 @@
     line-height:.95 !important;
     letter-spacing:-.025em !important;
     text-wrap:balance;
+    text-shadow:0 20px 60px rgba(0,0,0,.62),0 2px 16px rgba(7,24,52,.34) !important;
   }
   #heroContent > p {
-    max-width:540px !important;
-    margin-top:26px !important;
-    margin-bottom:30px !important;
-    color:rgba(255,255,255,.76) !important;
+    max-width:590px !important;
+    margin-top:28px !important;
+    margin-bottom:32px !important;
+    color:rgba(255,255,255,.86) !important;
     font-size:17px !important;
-    line-height:1.58 !important;
+    line-height:1.55 !important;
+    text-shadow:0 2px 18px rgba(0,0,0,.72);
   }
   .v-hero-primary {
     padding:14px 23px;
@@ -6456,13 +6458,14 @@
     flex-wrap:wrap;
     align-items:center;
     justify-content:center;
-    gap:22px;
+    gap:14px;
     opacity:0;
     animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .46s forwards;
   }
   .v-hero-primary {
-    padding:15px 27px;
-    border-radius:6px;
+    padding:15px 28px;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:8px;
     background:#1769E8;
     color:#FFFFFF;
     font-size:15px;
@@ -6480,11 +6483,17 @@
     display:inline-flex;
     align-items:center;
     gap:9px;
-    padding:12px 0;
+    padding:14px 20px;
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:8px;
+    background:rgba(6,15,29,.24);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
     color:#FFFFFF;
     font-size:15px;
     font-weight:700;
     text-decoration:none;
+    transition:background .22s ease,border-color .22s ease,transform .22s ease;
   }
   .v-hero-secondary::after {
     content:"\2192";
@@ -6493,6 +6502,11 @@
   }
   .v-hero-secondary:hover::after {
     transform:translateX(5px);
+  }
+  .v-hero-secondary:hover {
+    border-color:rgba(120,174,255,.58);
+    background:rgba(18,47,88,.46);
+    transform:translateY(-2px);
   }
   .vn-context-benefits b,
   .vn-solution,
@@ -7009,7 +7023,7 @@
         <span style="display:block; font-size:clamp(23px,4.2vw,44px); font-weight:300; color:rgba(255,255,255,0.9); letter-spacing:-0.005em; margin-bottom:clamp(4px,0.8vw,10px);">Hacemos que tu marca sea</span>
         <span style="display:block; font-size:clamp(50px,9.6vw,118px); font-weight:800; text-transform:uppercase; letter-spacing:-0.035em; text-shadow:0 18px 54px rgba(0,0,0,0.55);">Imposible<br>de ignorar.</span>
       </h1>
-      <p style="font-size:clamp(16px,1.5vw,20px); font-weight:400; line-height:1.55; color:rgba(255,255,255,0.82); max-width:570px; margin:clamp(22px,3vw,32px) auto clamp(30px,4vw,40px); opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .32s forwards;">Ubicación, formato y estrategia para que tu marca aparezca donde realmente importa.</p>
+      <p style="font-size:clamp(16px,1.5vw,20px); font-weight:400; line-height:1.55; color:rgba(255,255,255,0.82); max-width:570px; margin:clamp(22px,3vw,32px) auto clamp(30px,4vw,40px); opacity:0; animation:vfadeup 1s cubic-bezier(.16,1,.3,1) .32s forwards;">Ubicación, formato y estrategia para que tu marca destaque donde realmente importa.</p>
       <div class="v-hero-actions">
         <a class="v-hero-primary" href="contacto.html">Planear mi campaña</a>
         <a class="v-hero-secondary" href="#formato-mural">Explorar formatos</a>
