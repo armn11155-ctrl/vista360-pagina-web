@@ -6690,6 +6690,56 @@
   .vn-format-story--totem .vn-format-number {
     color:rgba(255,255,255,.55);
   }
+  /* White pixel-matrix treatment shared by every format opening. */
+  .vn-format-story .vn-format-opening {
+    color:#FFFFFF;
+    background:#05080F;
+  }
+  .vn-format-story .vn-format-number {
+    color:rgba(255,255,255,.56);
+  }
+  .vn-format-opening .vn-format-word {
+    background-image:
+      linear-gradient(
+        105deg,
+        transparent 0%,
+        transparent 36%,
+        rgba(255,255,255,.28) 43%,
+        #FFFFFF 48%,
+        #FFFFFF 52%,
+        rgba(255,255,255,.28) 57%,
+        transparent 64%,
+        transparent 100%
+      ),
+      radial-gradient(
+        circle at center,
+        rgba(255,255,255,.98) 0 .72px,
+        rgba(255,255,255,.24) .78px 1.14px,
+        transparent 1.2px
+      ) !important;
+    background-size:320% 100%,3.2px 3.2px !important;
+    background-position:100% 50%,center !important;
+    opacity:.96;
+    filter:drop-shadow(0 0 9px rgba(255,255,255,.2));
+  }
+  .vn-format-opening.is-lit .vn-format-word,
+  .vn-format-story--mural .vn-format-opening.is-lit .vn-format-word,
+  .vn-format-story--led .vn-format-opening.is-lit .vn-format-word {
+    animation:vn-format-white-sweep 5.6s cubic-bezier(.45,0,.25,1) infinite !important;
+  }
+  @keyframes vn-format-white-sweep {
+    0%,14% {
+      background-position:100% 50%,center;
+      filter:brightness(.88) drop-shadow(0 0 6px rgba(255,255,255,.12));
+    }
+    46%,54% {
+      filter:brightness(1.18) drop-shadow(0 0 18px rgba(255,255,255,.4));
+    }
+    86%,100% {
+      background-position:0% 50%,center;
+      filter:brightness(.94) drop-shadow(0 0 9px rgba(255,255,255,.2));
+    }
+  }
   .vn-summary-footer {
     display:grid;
     grid-template-columns:minmax(0,1fr) auto;
@@ -6994,12 +7044,12 @@
     .vn-format-opening.is-lit .vn-format-word {
       animation:none;
       opacity:.98;
-      filter:brightness(1.15) saturate(1.08) drop-shadow(0 0 14px rgba(23,105,232,.32));
-      background-position:center 0;
+      filter:brightness(1.04) drop-shadow(0 0 10px rgba(255,255,255,.22));
+      background-position:48% 50%,center !important;
     }
     .vn-format-story--mural .vn-format-word,
     .vn-format-story--led .vn-format-word {
-      filter:brightness(.98) saturate(1.2) drop-shadow(0 0 7px rgba(22,128,255,.28));
+      filter:brightness(1.04) drop-shadow(0 0 10px rgba(255,255,255,.22));
     }
   }
   dc-import{display:block}
