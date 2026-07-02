@@ -415,11 +415,12 @@ dc-import { display:block; }
   filter:drop-shadow(0 34px 44px rgba(0,0,0,.35));
 }
 .pixel-word {
-  margin:0;
+  margin:-.08em 0;
+  padding:.08em 0 .14em;
   color:transparent;
   font-size:clamp(90px,17vw,250px);
   font-weight:800;
-  line-height:.8;
+  line-height:.9;
   text-align:center;
   background:linear-gradient(
     105deg,

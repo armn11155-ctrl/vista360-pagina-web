@@ -6690,12 +6690,23 @@
   .vn-format-story--totem .vn-format-number {
     color:rgba(255,255,255,.55);
   }
-  /* White pixel-matrix treatment shared by every format opening. */
-  .vn-format-story .vn-format-opening {
+  /* Blue pixel matrix with the same white sweep used by CLASSIC / DIGITAL. */
+  .vn-format-story--mural .vn-format-opening,
+  .vn-format-story--led .vn-format-opening {
+    color:#111318;
+    background:#FFFFFF;
+  }
+  .vn-format-story--mural .vn-format-number,
+  .vn-format-story--led .vn-format-number {
+    color:#68707D;
+  }
+  .vn-format-story--unipolar .vn-format-opening,
+  .vn-format-story--totem .vn-format-opening {
     color:#FFFFFF;
     background:#05080F;
   }
-  .vn-format-story .vn-format-number {
+  .vn-format-story--unipolar .vn-format-number,
+  .vn-format-story--totem .vn-format-number {
     color:rgba(255,255,255,.56);
   }
   .vn-format-opening .vn-format-word {
@@ -6713,14 +6724,35 @@
       ),
       radial-gradient(
         circle at center,
-        rgba(255,255,255,.98) 0 .72px,
-        rgba(255,255,255,.24) .78px 1.14px,
+        #1769E8 0 .72px,
+        rgba(11,43,93,.42) .78px 1.14px,
         transparent 1.2px
       ) !important;
     background-size:320% 100%,3.2px 3.2px !important;
     background-position:100% 50%,center !important;
-    opacity:.96;
-    filter:drop-shadow(0 0 9px rgba(255,255,255,.2));
+    opacity:1;
+    filter:drop-shadow(0 0 8px rgba(23,105,232,.24));
+  }
+  .vn-format-story--unipolar .vn-format-word,
+  .vn-format-story--totem .vn-format-word {
+    background-image:
+      linear-gradient(
+        105deg,
+        transparent 0%,
+        transparent 36%,
+        rgba(255,255,255,.3) 43%,
+        #FFFFFF 48%,
+        #FFFFFF 52%,
+        rgba(255,255,255,.3) 57%,
+        transparent 64%,
+        transparent 100%
+      ),
+      radial-gradient(
+        circle at center,
+        #72AEFF 0 .72px,
+        rgba(23,105,232,.36) .78px 1.14px,
+        transparent 1.2px
+      ) !important;
   }
   .vn-format-opening.is-lit .vn-format-word,
   .vn-format-story--mural .vn-format-opening.is-lit .vn-format-word,
@@ -6730,14 +6762,14 @@
   @keyframes vn-format-white-sweep {
     0%,14% {
       background-position:100% 50%,center;
-      filter:brightness(.88) drop-shadow(0 0 6px rgba(255,255,255,.12));
+      filter:brightness(.88) drop-shadow(0 0 7px rgba(23,105,232,.18));
     }
     46%,54% {
-      filter:brightness(1.18) drop-shadow(0 0 18px rgba(255,255,255,.4));
+      filter:brightness(1.18) drop-shadow(0 0 18px rgba(255,255,255,.42));
     }
     86%,100% {
       background-position:0% 50%,center;
-      filter:brightness(.94) drop-shadow(0 0 9px rgba(255,255,255,.2));
+      filter:brightness(.96) drop-shadow(0 0 10px rgba(23,105,232,.24));
     }
   }
   .vn-summary-footer {
