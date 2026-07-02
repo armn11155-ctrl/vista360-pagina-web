@@ -246,11 +246,15 @@ dc-import { display:block; }
   .detail-feature--mural .detail-feature__image,
   .detail-feature--unipolar .detail-feature__image,
   .detail-feature--totem .detail-feature__image {
-    top:3%;
+    top:50%;
     bottom:auto;
-    width:calc(50% - 40px);
-    height:94%;
+    height:auto;
+    object-fit:contain;
+    transform:translateY(-50%);
   }
+  .detail-feature--mural .detail-feature__image { width:60%; }
+  .detail-feature--unipolar .detail-feature__image,
+  .detail-feature--totem .detail-feature__image { width:68%; }
   .detail-feature--catalog .detail-feature__veil {
     background:linear-gradient(270deg,rgba(5,8,15,.99) 3%,rgba(5,8,15,.94) 42%,rgba(5,8,15,.22) 68%,rgba(5,8,15,.02) 100%);
   }
