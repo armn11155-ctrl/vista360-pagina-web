@@ -246,7 +246,10 @@ dc-import { display:block; }
   .detail-feature--mural .detail-feature__image,
   .detail-feature--unipolar .detail-feature__image,
   .detail-feature--totem .detail-feature__image {
+    top:3%;
+    bottom:auto;
     width:calc(50% - 40px);
+    height:94%;
   }
   .detail-feature--catalog .detail-feature__veil {
     background:linear-gradient(270deg,rgba(5,8,15,.99) 3%,rgba(5,8,15,.94) 42%,rgba(5,8,15,.22) 68%,rgba(5,8,15,.02) 100%);
@@ -408,23 +411,14 @@ dc-import { display:block; }
   background-clip:text;
   -webkit-mask:radial-gradient(circle,#000 0 1px,transparent 1.25px) 0 0/4px 4px;
   mask:radial-gradient(circle,#000 0 1px,transparent 1.25px) 0 0/4px 4px;
-  filter:drop-shadow(0 0 16px rgba(50,130,255,.4));
   animation:pixelSweep 5.6s cubic-bezier(.45,0,.25,1) infinite;
 }
 @keyframes pixelSweep {
   0%,14% {
     background-position:100% 50%;
-    filter:drop-shadow(0 0 10px rgba(50,130,255,.34));
-    opacity:.9;
-  }
-  48%,58% {
-    filter:drop-shadow(0 0 25px rgba(86,159,255,.82));
-    opacity:1;
   }
   86%,100% {
     background-position:0% 50%;
-    filter:drop-shadow(0 0 12px rgba(50,130,255,.42));
-    opacity:.92;
   }
 }
 .detail-pixels { padding:126px 0 116px; color:#FFFFFF; background:var(--ink); }
