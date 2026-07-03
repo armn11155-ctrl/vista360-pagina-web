@@ -61,11 +61,14 @@ export async function onRequestPost(context) {
   });
   const verifyJson = await verifyRes.json();
 
-  if (!verifyJson.success) {
+  if (!verifyJson.success || verifyJson.action !== 'turnstile-spin-v1') {
     return json({ success: false, error: 'turnstile_failed', codes: verifyJson['error-codes'] || [] }, 400);
   }
 
   // 2) Validacion minima de campos requeridos.
+  if (data.privacyAccepted !== true) {
+    return json({ success: false, error: 'privacy_consent_required' }, 400);
+  }
   const contacto = String(data.contacto || '').trim();
   const empresa = String(data.empresa || '').trim();
   const celular = String(data.celular || '').trim();
@@ -85,6 +88,7 @@ export async function onRequestPost(context) {
     PROJECT_ID +
     '/databases/(default)/documents/solicitudesWeb?key=' +
     env.FIREBASE_API_KEY;
+  const now = new Date().toISOString();
   const fsBody = {
     fields: {
       contacto: { stringValue: contacto },
@@ -96,7 +100,10 @@ export async function onRequestPost(context) {
       tipo: { stringValue: 'Prospecto' },
       estado: { stringValue: 'En contacto' },
       origen: { stringValue: 'web' },
-      createdAt: { timestampValue: new Date().toISOString() },
+      createdAt: { timestampValue: now },
+      privacyAccepted: { booleanValue: true },
+      privacyVersion: { stringValue: '2026-07-02-v1' },
+      privacyAcceptedAt: { timestampValue: now },
       importado: { booleanValue: false },
     },
   };

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Política de privacidad | VISTA360</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Conoce cómo VISTA360 y OCHO MILLAS S.R.L. recopilan, utilizan y protegen los datos personales enviados mediante este sitio web.">
+<meta name="theme-color" content="#05080F">
+<meta name="color-scheme" content="light">
+<link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
+<script src="./support.js?v=20260702b"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing:border-box; }
+  html { background:#05080F; overscroll-behavior-y:contain; }
+  body {
+    margin:0;
+    overflow-x:hidden;
+    background:#F5F7FA;
+    color:#111827;
+    font-family:'Plus Jakarta Sans','Helvetica Neue',Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection { background:#1769E8; color:#FFFFFF; }
+  dc-import { display:block; }
+  .privacy-hero {
+    position:relative;
+    overflow:hidden;
+    padding:172px 24px 92px;
+    background:
+      radial-gradient(circle at 76% 12%,rgba(28,111,232,.24),transparent 35%),
+      linear-gradient(145deg,#05080F 0%,#0A1426 100%);
+    color:#FFFFFF;
+  }
+  .privacy-hero::after {
+    content:"";
+    position:absolute;
+    right:-100px;
+    bottom:-180px;
+    width:430px;
+    height:430px;
+    border:1px solid rgba(124,177,255,.14);
+    border-radius:50%;
+    box-shadow:0 0 0 70px rgba(124,177,255,.035),0 0 0 140px rgba(124,177,255,.02);
+  }
+  .privacy-shell { width:min(100%,980px); margin:0 auto; }
+  .privacy-kicker {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:0 0 22px;
+    color:#7CB1FF;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+  }
+  .privacy-kicker::before { content:""; width:34px; height:2px; background:#3E8CFA; }
+  .privacy-hero h1 {
+    max-width:760px;
+    margin:0;
+    font-size:clamp(46px,7vw,88px);
+    line-height:.96;
+    letter-spacing:-.055em;
+  }
+  .privacy-hero p {
+    max-width:680px;
+    margin:28px 0 0;
+    color:rgba(255,255,255,.72);
+    font-size:17px;
+    line-height:1.7;
+  }
+  .privacy-meta {
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 24px;
+    margin-top:34px;
+    color:rgba(255,255,255,.55);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.04em;
+  }
+  .privacy-main { padding:76px 24px 104px; }
+  .privacy-card {
+    padding:clamp(28px,5vw,54px);
+    border:1px solid #E0E6EF;
+    border-radius:24px;
+    background:#FFFFFF;
+    box-shadow:0 22px 70px rgba(21,38,68,.08);
+  }
+  .privacy-summary {
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:1px;
+    margin-bottom:54px;
+    overflow:hidden;
+    border:1px solid #E4E9F1;
+    border-radius:16px;
+    background:#E4E9F1;
+  }
+  .privacy-summary div { padding:22px; background:#F8FAFC; }
+  .privacy-summary span {
+    display:block;
+    margin-bottom:7px;
+    color:#1769E8;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  .privacy-summary strong { color:#111827; font-size:14px; line-height:1.5; }
+  .privacy-section { padding:34px 0; border-top:1px solid #E6EBF2; }
+  .privacy-section:first-of-type { padding-top:0; border-top:0; }
+  .privacy-section h2 {
+    margin:0 0 18px;
+    color:#0D1729;
+    font-size:clamp(23px,3vw,30px);
+    letter-spacing:-.035em;
+  }
+  .privacy-section p,
+  .privacy-section li {
+    color:#566176;
+    font-size:15px;
+    line-height:1.78;
+  }
+  .privacy-section p { margin:0 0 14px; }
+  .privacy-section p:last-child { margin-bottom:0; }
+  .privacy-section ul { margin:12px 0 0; padding-left:22px; }
+  .privacy-section li + li { margin-top:8px; }
+  .privacy-section a { color:#1769E8; font-weight:700; }
+  .privacy-callout {
+    margin-top:18px;
+    padding:18px 20px;
+    border-left:3px solid #1769E8;
+    border-radius:0 12px 12px 0;
+    background:#F2F7FF;
+    color:#344054;
+    font-size:14px;
+    line-height:1.7;
+  }
+  @media (max-width:700px) {
+    .privacy-hero { padding:138px 20px 72px; }
+    .privacy-main { padding:50px 18px 76px; }
+    .privacy-card { padding:28px 22px; border-radius:19px; }
+    .privacy-summary { grid-template-columns:1fr; }
+  }
+</style>
+</helmet>
+
+<div>
+  <dc-import name="SiteNetwork" hint-size="100%,100%"></dc-import>
+  <dc-import name="SiteNav" transparent="{{ true }}" top-color="#05080F" hint-size="100%,66px"></dc-import>
+
+  <header class="privacy-hero">
+    <div class="privacy-shell">
+      <p class="privacy-kicker">Transparencia y confianza</p>
+      <h1>Política de privacidad.</h1>
+      <p>Te explicamos de forma clara qué datos recibimos cuando contactas a VISTA360, para qué los utilizamos y cómo puedes ejercer tus derechos.</p>
+      <div class="privacy-meta">
+        <span>Versión 1.0</span>
+        <span>Actualizada el 2 de julio de 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="privacy-main">
+    <div class="privacy-shell privacy-card">
+      <div class="privacy-summary">
+        <div><span>Responsable</span><strong>OCHO MILLAS S.R.L.</strong></div>
+        <div><span>RUC</span><strong>20615629431</strong></div>
+        <div><span>Canal de privacidad</span><strong>ochomillas.101@hotmail.com</strong></div>
+      </div>
+
+      <section class="privacy-section">
+        <h2>1. Identidad del responsable</h2>
+        <p>OCHO MILLAS S.R.L., identificada con RUC N.° 20615629431, es responsable del tratamiento de los datos personales recopilados mediante el sitio web y los canales digitales de VISTA360.</p>
+        <p>El responsable tiene domicilio empresarial en el distrito, provincia y departamento de Huánuco, Perú. Para consultas sobre privacidad puedes escribir a <a href="mailto:ochomillas.101@hotmail.com">ochomillas.101@hotmail.com</a>.</p>
+      </section>
+
+      <section class="privacy-section">
+        <h2>2. Datos que recopilamos</h2>
+        <p>Cuando completas el formulario de contacto podemos recopilar:</p>
+        <ul>
+          <li>Nombre completo.</li>
+          <li>Empresa o marca.</li>
+          <li>Número de teléfono o WhatsApp.</li>
+          <li>Correo electrónico.</li>
+          <li>Formato publicitario de interés.</li>
+          <li>Objetivo, zona, fecha u otra información que decidas incluir en tu mensaje.</li>
+        </ul>
+      </section>
+
+      <section class="privacy-section">
+        <h2>3. Finalidad del tratamiento</h2>
+        <p>Utilizamos estos datos exclusivamente para atender tu consulta, comunicarnos contigo, evaluar disponibilidad, preparar una recomendación y elaborar una propuesta comercial relacionada con los servicios de publicidad exterior de VISTA360.</p>
+        <p>No utilizaremos la información del formulario para enviarte publicidad masiva o comunicaciones ajenas a tu solicitud sin obtener previamente una autorización adicional.</p>
+      </section>
+
+      <section class="privacy-section">
+        <h2>4. Consentimiento y datos necesarios</h2>
+        <p>El tratamiento se realiza con tu consentimiento libre, previo, informado, expreso e inequívoco, manifestado al marcar la casilla correspondiente antes de enviar el formulario.</p>
+        <p>Los campos identificados como obligatorios son necesarios para responder y preparar la propuesta. Si no los completas, no podremos tramitar la solicitud. El campo de observaciones es opcional.</p>
+      </section>
+
+      <section class="privacy-section">
+        <h2>5. Almacenamiento y proveedores tecnológicos</h2>
+        <p>Las solicitudes se almacenan en un banco de datos de prospectos comerciales bajo responsabilidad de OCHO MILLAS S.R.L. Para operar y proteger el formulario utilizamos servicios tecnológicos de Google Firebase/Firestore y Cloudflare Turnstile.</p>
+        <p>Estos proveedores pueden procesar información mediante infraestructura ubicada fuera del Perú. OCHO MILLAS S.R.L. limitará el acceso a personal autorizado y aplicará medidas razonables de seguridad y confidencialidad.</p>
+      </section>
+
+      <section class="privacy-section">
+        <h2>6. Conservación</h2>
+        <p>Los datos de solicitudes que no generen una relación contractual se conservarán por un máximo de doce meses desde el último contacto y luego serán eliminados o anonimizados, salvo que exista una obligación legal que justifique un plazo diferente.</p>
+        <p>Cuando se establezca una relación contractual, la información necesaria se conservará durante el tiempo requerido para ejecutar el servicio y cumplir obligaciones legales, contables o de defensa frente a reclamaciones.</p>
+      </section>
+
+      <section class="privacy-section">
+        <h2>7. Destinatarios</h2>
+        <p>Los datos podrán ser tratados por personal autorizado de OCHO MILLAS S.R.L. y por proveedores tecnológicos que actúan para permitir el almacenamiento, seguridad y funcionamiento del sitio. No vendemos tus datos personales ni los utilizamos para finalidades incompatibles con las aquí informadas.</p>
+      </section>
+
+      <section class="privacy-section">
+        <h2>8. Derechos sobre tus datos</h2>
+        <p>Puedes solicitar acceso, rectificación, actualización, cancelación o supresión de tus datos, oponerte a su tratamiento y revocar tu consentimiento.</p>
+        <p>Envía tu solicitud a <a href="mailto:ochomillas.101@hotmail.com?subject=Solicitud%20de%20derechos%20ARCO">ochomillas.101@hotmail.com</a> con el asunto “Solicitud de derechos ARCO”, indicando tu nombre, el derecho que deseas ejercer y la información necesaria para verificar tu identidad.</p>
+        <div class="privacy-callout">Si consideras que tu solicitud no fue atendida adecuadamente, puedes recurrir ante la Autoridad Nacional de Protección de Datos Personales del Ministerio de Justicia y Derechos Humanos.</div>
+      </section>
+
+      <section class="privacy-section">
+        <h2>9. Seguridad</h2>
+        <p>Aplicamos medidas técnicas y organizativas orientadas a evitar la pérdida, alteración, acceso o tratamiento no autorizado de los datos. El formulario incorpora verificación antispam y la transmisión del sitio deberá realizarse mediante HTTPS en su dominio definitivo.</p>
+      </section>
+
+      <section class="privacy-section">
+        <h2>10. Cookies y tecnologías necesarias</h2>
+        <p>El sitio puede utilizar almacenamiento local y tecnologías estrictamente necesarias para seguridad, funcionamiento y prevención de envíos duplicados. Actualmente no utilizamos estas tecnologías para publicidad personalizada.</p>
+        <p>Si posteriormente incorporamos herramientas analíticas o publicitarias no esenciales, actualizaremos esta política y habilitaremos los controles de consentimiento correspondientes antes de su activación.</p>
+      </section>
+
+      <section class="privacy-section">
+        <h2>11. Menores de edad</h2>
+        <p>Los servicios de VISTA360 están dirigidos a empresas y personas adultas. No solicitamos intencionalmente datos de menores de edad mediante este formulario.</p>
+      </section>
+
+      <section class="privacy-section">
+        <h2>12. Actualizaciones</h2>
+        <p>Podremos actualizar esta política por cambios normativos, tecnológicos o en nuestros servicios. La versión vigente y su fecha de actualización estarán siempre disponibles en esta página.</p>
+      </section>
+    </div>
+  </main>
+
+  <dc-import name="SiteFooter" hint-size="100%,430px"></dc-import>
+  <dc-import name="SiteChat" hint-size="100%,0px"></dc-import>
+</div>
+</x-dc>
+</body>
+</html>

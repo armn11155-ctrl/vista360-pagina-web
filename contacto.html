@@ -319,6 +319,28 @@
     line-height:1.5;
     text-align:center;
   }
+  .vc-consent {
+    display:grid;
+    grid-template-columns:20px minmax(0,1fr);
+    gap:10px;
+    align-items:start;
+    margin:4px 0 18px;
+  }
+  .vc-consent input {
+    width:18px;
+    height:18px;
+    margin:2px 0 0;
+    accent-color:#1769E8;
+    cursor:pointer;
+  }
+  .vc-consent label {
+    color:#667085;
+    font-size:12px;
+    line-height:1.6;
+    cursor:pointer;
+  }
+  .vc-consent a { color:#1769E8; font-weight:750; }
+  .vc-consent .v-err { grid-column:2; margin:0; }
   .vc-success {
     min-height:620px;
     padding:48px;
@@ -524,7 +546,7 @@
         </div>
         <div class="vc-direct">
           <span>También puedes escribirnos directamente</span>
-          <a href="mailto:armn.101@hotmail.com">armn.101@hotmail.com</a>
+          <a href="mailto:ochomillas.101@hotmail.com">ochomillas.101@hotmail.com</a>
           <span>Huánuco, Perú</span>
         </div>
       </aside>
@@ -585,6 +607,11 @@
               <textarea id="v-notas" rows="4" placeholder="Ejemplo: lanzamiento en julio, presencia en una avenida principal..."></textarea>
             </div>
             <input type="text" id="v-hp" name="website" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
+            <div class="vc-consent">
+              <input id="v-privacy" type="checkbox" required />
+              <label for="v-privacy">He leído la <a href="politica-privacidad.html" target="_blank" rel="noopener">Política de privacidad</a> y autorizo a OCHO MILLAS S.R.L. a utilizar mis datos para atender esta solicitud.</label>
+              <p id="v-privacy-err" class="v-err">Debes aceptar la Política de privacidad para continuar.</p>
+            </div>
             <div class="cf-turnstile" data-sitekey="0x4AAAAAADqIxnZryQOUjZzt" data-action="turnstile-spin-v1" style="margin-bottom:16px;"></div>
             <p id="v-send-err" role="alert" aria-live="assertive" style="font-size:13px;color:#E0506A;margin:0 0 12px;display:none;">Ocurrió un error al enviar. Intenta de nuevo.</p>
             <button type="submit" id="v-submit-btn" class="vc-submit">Recibir una propuesta</button>
@@ -709,6 +736,11 @@ class Component extends DCLogic {
         const el = document.getElementById(id);
         if (el) el.addEventListener('input', () => this._clearFieldError(id, errId));
       });
+    const privacy = document.getElementById('v-privacy');
+    if (privacy) privacy.addEventListener('change', () => {
+      const err = document.getElementById('v-privacy-err');
+      if (err) err.style.display = 'none';
+    });
   }
 
   _validarFormulario() {
@@ -729,6 +761,7 @@ class Component extends DCLogic {
     const empresa = document.getElementById('v-empresa').value.trim();
     const celular = document.getElementById('v-celular').value.trim();
     const email = document.getElementById('v-email').value.trim();
+    const privacy = document.getElementById('v-privacy');
 
     if (!nombre) marcar('v-nombre','v-nombre-err','Falta tu nombre completo');
     if (!empresa) marcar('v-empresa','v-empresa-err','Falta el nombre de tu empresa o marca');
@@ -736,6 +769,15 @@ class Component extends DCLogic {
     else if (celular.replace(/[^0-9]/g, '').length < 7) marcar('v-celular','v-celular-err','Ese número de WhatsApp está incompleto');
     if (!email) marcar('v-email','v-email-err','Falta tu email');
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) marcar('v-email','v-email-err','Ese email no es válido');
+
+    const privacyErr = document.getElementById('v-privacy-err');
+    if (!privacy || !privacy.checked) {
+      privacyErr.style.display = 'block';
+      valido = false;
+      if (!primero) primero = privacy;
+    } else {
+      privacyErr.style.display = 'none';
+    }
 
     const panelErr = document.getElementById('v-panel-err');
     if (!this._panelSel) {
@@ -856,6 +898,7 @@ class Component extends DCLogic {
             email:       document.getElementById('v-email').value.trim(),
             panelInteres: this._panelSel,
             notas:       document.getElementById('v-notas').value.trim(),
+            privacyAccepted: document.getElementById('v-privacy').checked,
             hp,
             token
           });
