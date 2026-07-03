@@ -35,7 +35,7 @@
   .privacy-hero {
     position:relative;
     overflow:hidden;
-    padding:172px 24px 92px;
+    padding:172px 24px 82px;
     background:
       radial-gradient(circle at 76% 12%,rgba(28,111,232,.24),transparent 35%),
       linear-gradient(145deg,#05080F 0%,#0A1426 100%);
@@ -89,13 +89,35 @@
     font-weight:700;
     letter-spacing:.04em;
   }
-  .privacy-main { padding:76px 24px 104px; }
+  .privacy-main {
+    position:relative;
+    isolation:isolate;
+    padding:82px 24px 112px;
+    border-top:1px solid rgba(23,105,232,.08);
+    background:
+      radial-gradient(circle at 92% 4%,rgba(23,105,232,.055),transparent 26%),
+      linear-gradient(180deg,#F7F9FC 0%,#EEF2F7 100%);
+  }
+  .privacy-main::before {
+    content:"";
+    position:absolute;
+    top:0;
+    left:50%;
+    width:min(86%,1120px);
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(62,140,250,.34),transparent);
+    transform:translateX(-50%);
+  }
   .privacy-card {
+    position:relative;
+    margin:0 auto;
     padding:clamp(28px,5vw,54px);
-    border:1px solid #E0E6EF;
-    border-radius:24px;
-    background:#FFFFFF;
-    box-shadow:0 22px 70px rgba(21,38,68,.08);
+    border:1px solid rgba(205,214,227,.82);
+    border-radius:22px;
+    background:linear-gradient(180deg,#FFFFFF 0%,#FCFDFE 100%);
+    box-shadow:0 24px 64px rgba(21,38,68,.085);
+    transform:none !important;
+    translate:none !important;
   }
   .privacy-summary {
     display:grid;
@@ -117,7 +139,13 @@
     letter-spacing:.12em;
     text-transform:uppercase;
   }
-  .privacy-summary strong { color:#111827; font-size:14px; line-height:1.5; }
+  .privacy-summary strong {
+    display:block;
+    overflow-wrap:anywhere;
+    color:#111827;
+    font-size:14px;
+    line-height:1.5;
+  }
   .privacy-section { padding:34px 0; border-top:1px solid #E6EBF2; }
   .privacy-section:first-of-type { padding-top:0; border-top:0; }
   .privacy-section h2 {
@@ -149,7 +177,7 @@
   }
   @media (max-width:700px) {
     .privacy-hero { padding:138px 20px 72px; }
-    .privacy-main { padding:50px 18px 76px; }
+    .privacy-main { padding:54px 18px 82px; }
     .privacy-card { padding:28px 22px; border-radius:19px; }
     .privacy-summary { grid-template-columns:1fr; }
   }
