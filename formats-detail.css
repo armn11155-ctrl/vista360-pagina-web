@@ -278,6 +278,9 @@ dc-import { display:block; }
   .detail-feature--mural .detail-feature__image { width:60%; }
   .detail-feature--unipolar .detail-feature__image,
   .detail-feature--totem .detail-feature__image { width:68%; }
+  .detail-feature--led .detail-feature__image {
+    left:-7%;
+  }
   .detail-feature--catalog .detail-feature__veil {
     background:linear-gradient(270deg,rgba(5,8,15,.8) 3%,rgba(5,8,15,.64) 42%,rgba(5,8,15,.14) 68%,rgba(5,8,15,.01) 100%);
   }
