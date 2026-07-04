@@ -7044,50 +7044,30 @@
     }
     .v-hero-shade {
       background:
-        linear-gradient(180deg,rgba(5,9,17,.58) 0%,rgba(5,9,17,.3) 24%,rgba(5,9,17,.42) 62%,rgba(5,9,17,.82) 100%),
-        radial-gradient(ellipse at 50% 47%,rgba(3,7,14,.42) 0%,rgba(3,7,14,.34) 48%,rgba(7,11,20,.62) 100%);
+        linear-gradient(180deg,rgba(5,9,17,.52) 0%,rgba(5,9,17,.22) 24%,rgba(5,9,17,.34) 62%,rgba(5,9,17,.78) 100%),
+        radial-gradient(ellipse at 50% 46%,rgba(7,11,20,.04) 0%,rgba(7,11,20,.28) 52%,rgba(7,11,20,.58) 100%);
     }
     #heroContent {
-      position:relative;
-      isolation:isolate;
       max-width:430px !important;
       padding:clamp(42px,7vh,68px) 20px clamp(104px,14vh,126px) !important;
       transform:none !important;
     }
-    #heroContent::before {
-      content:"";
-      position:absolute;
-      z-index:-1;
-      top:7%;
-      right:-2%;
-      bottom:12%;
-      left:-2%;
-      border-radius:42%;
-      background:radial-gradient(ellipse at center,rgba(2,6,13,.72) 0%,rgba(2,6,13,.48) 48%,rgba(2,6,13,0) 76%);
-      filter:blur(12px);
-      pointer-events:none;
-    }
     #heroContent h1 > span:first-child {
       margin-bottom:8px !important;
-      color:#FFFFFF !important;
       font-size:clamp(20px,5.8vw,25px) !important;
       line-height:1.16 !important;
-      text-shadow:0 2px 18px rgba(0,0,0,.92) !important;
     }
     #heroContent h1 > span:last-child {
       font-size:clamp(40px,11.8vw,50px) !important;
       line-height:.98 !important;
       letter-spacing:-.035em !important;
-      text-shadow:0 3px 22px rgba(0,0,0,.95),0 14px 44px rgba(0,0,0,.72) !important;
     }
     #heroContent > p {
       max-width:340px !important;
       margin-top:20px !important;
       margin-bottom:24px !important;
-      color:rgba(255,255,255,.94) !important;
       font-size:15px !important;
       line-height:1.5 !important;
-      text-shadow:0 2px 14px rgba(0,0,0,.96) !important;
     }
     .v-hero-actions {
       width:min(100%,320px);
@@ -7124,6 +7104,76 @@
     }
     .vn-intro .vn-ad-signals {
       margin-top:38px;
+    }
+    .vn-format-context,
+    .vn-format-story--mural .vn-format-context,
+    .vn-format-story--unipolar .vn-format-context,
+    .vn-format-story--led .vn-format-context,
+    .vn-format-story--totem .vn-format-context {
+      display:block;
+      min-height:0 !important;
+      overflow:hidden;
+      border-top:1px solid rgba(255,255,255,.1);
+      background:#05080F !important;
+    }
+    .vn-format-context::before,
+    .vn-format-context--right::before {
+      position:relative;
+      inset:auto;
+      display:block;
+      width:100%;
+      height:clamp(285px,78vw,410px);
+      border-bottom:1px solid rgba(255,255,255,.1);
+      background-image:
+        linear-gradient(180deg,rgba(4,7,12,.02) 58%,rgba(4,7,12,.28) 100%),
+        var(--context-bg);
+      background-position:center,var(--mobile-context-position,center);
+      background-size:100% 100%,cover;
+      background-repeat:no-repeat;
+    }
+    .vn-format-story--mural .vn-format-context {
+      --mobile-context-position:42% center;
+    }
+    .vn-format-story--unipolar .vn-format-context {
+      --mobile-context-position:34% center;
+    }
+    .vn-format-story--led .vn-format-context {
+      --mobile-context-position:70% center;
+    }
+    .vn-format-story--totem .vn-format-context {
+      --mobile-context-position:72% center;
+    }
+    .vn-format-context > .vn-shell {
+      width:min(100% - 40px,720px);
+    }
+    .vn-format-context-copy,
+    .vn-format-context--right .vn-format-context-copy {
+      max-width:100%;
+      margin:0;
+      padding:42px 0 58px;
+    }
+    .vn-format-context-copy h3 {
+      margin-top:14px;
+      font-size:clamp(36px,10.5vw,44px);
+      line-height:1.02;
+      text-shadow:none;
+    }
+    .vn-format-context-copy p {
+      margin-top:18px;
+      color:rgba(255,255,255,.72);
+      font-size:16px;
+      line-height:1.55;
+    }
+    .vn-context-benefits {
+      margin-top:24px;
+      gap:8px;
+    }
+    .vn-context-benefits b {
+      padding:9px 12px;
+      font-size:12px;
+    }
+    .vn-context-cta {
+      margin-top:26px;
     }
     .vn-format-context-copy h3,
     .vn-solutions-summary-head h2,
