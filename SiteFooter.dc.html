@@ -36,6 +36,7 @@
   .v-foot-bottom { display:flex; flex-direction:column; align-items:flex-start; gap:12px; margin-top:clamp(48px,6vw,72px); padding-top:24px; border-top:1px solid rgba(255,255,255,.08); }
   .v-foot-bottom span,.v-foot-bottom a { color:#707B8E; font-size:12px; text-decoration:none; }
   .v-foot-legal { display:flex; flex-direction:column; gap:6px; }
+  .v-foot-legal-links { display:flex; flex-wrap:wrap; gap:8px 18px; }
   .v-foot-bottom a { transition:color .2s ease; }
   .v-foot-bottom a:hover { color:#C7D2E5; }
   @media (min-width:680px) {
@@ -106,7 +107,10 @@
         <span>© 2026 VISTA360. Todos los derechos reservados.</span>
         <span>VISTA360 es una marca de OCHO MILLAS S.R.L. · RUC 20615629431 · Huánuco, Perú</span>
       </div>
-      <a href="politica-privacidad.html">Política de privacidad</a>
+      <div class="v-foot-legal-links">
+        <a href="terminos-condiciones.html">Términos y condiciones</a>
+        <a href="politica-privacidad.html">Política de privacidad</a>
+      </div>
     </div>
   </div>
 </footer>
