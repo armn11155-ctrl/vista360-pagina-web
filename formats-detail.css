@@ -543,6 +543,29 @@ dc-import { display:block; }
     justify-content:flex-end;
     padding-bottom:58px;
   }
+  .detail-feature--mobile-catalog,
+  .detail-feature--mobile-catalog .detail-feature__inner {
+    min-height:980px;
+  }
+  .detail-feature--mobile-catalog .detail-feature__image {
+    inset:66px 0 auto;
+    width:100%;
+    height:360px;
+    padding:0 28px;
+    object-fit:contain;
+    object-position:center;
+    opacity:1;
+    filter:drop-shadow(0 28px 34px rgba(0,0,0,.42));
+  }
+  .detail-feature--mobile-catalog .detail-feature__veil,
+  .detail-feature--mobile-catalog.detail-feature--right .detail-feature__veil {
+    background:linear-gradient(180deg,rgba(5,8,15,.02) 10%,rgba(5,8,15,.26) 36%,rgba(5,8,15,.82) 52%,rgba(5,8,15,.76) 100%);
+  }
+  .detail-feature--mobile-catalog .detail-feature__inner {
+    align-items:flex-start;
+    justify-content:flex-end;
+    padding-bottom:58px;
+  }
   .detail-format-notes { display:none; }
   .detail-specs { grid-template-columns:1fr; }
   .detail-specs div,
