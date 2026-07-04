@@ -7044,30 +7044,50 @@
     }
     .v-hero-shade {
       background:
-        linear-gradient(180deg,rgba(5,9,17,.52) 0%,rgba(5,9,17,.22) 24%,rgba(5,9,17,.34) 62%,rgba(5,9,17,.78) 100%),
-        radial-gradient(ellipse at 50% 46%,rgba(7,11,20,.04) 0%,rgba(7,11,20,.28) 52%,rgba(7,11,20,.58) 100%);
+        linear-gradient(180deg,rgba(5,9,17,.58) 0%,rgba(5,9,17,.3) 24%,rgba(5,9,17,.42) 62%,rgba(5,9,17,.82) 100%),
+        radial-gradient(ellipse at 50% 47%,rgba(3,7,14,.42) 0%,rgba(3,7,14,.34) 48%,rgba(7,11,20,.62) 100%);
     }
     #heroContent {
+      position:relative;
+      isolation:isolate;
       max-width:430px !important;
       padding:clamp(42px,7vh,68px) 20px clamp(104px,14vh,126px) !important;
       transform:none !important;
     }
+    #heroContent::before {
+      content:"";
+      position:absolute;
+      z-index:-1;
+      top:7%;
+      right:-2%;
+      bottom:12%;
+      left:-2%;
+      border-radius:42%;
+      background:radial-gradient(ellipse at center,rgba(2,6,13,.72) 0%,rgba(2,6,13,.48) 48%,rgba(2,6,13,0) 76%);
+      filter:blur(12px);
+      pointer-events:none;
+    }
     #heroContent h1 > span:first-child {
       margin-bottom:8px !important;
+      color:#FFFFFF !important;
       font-size:clamp(20px,5.8vw,25px) !important;
       line-height:1.16 !important;
+      text-shadow:0 2px 18px rgba(0,0,0,.92) !important;
     }
     #heroContent h1 > span:last-child {
       font-size:clamp(40px,11.8vw,50px) !important;
       line-height:.98 !important;
       letter-spacing:-.035em !important;
+      text-shadow:0 3px 22px rgba(0,0,0,.95),0 14px 44px rgba(0,0,0,.72) !important;
     }
     #heroContent > p {
       max-width:340px !important;
       margin-top:20px !important;
       margin-bottom:24px !important;
+      color:rgba(255,255,255,.94) !important;
       font-size:15px !important;
       line-height:1.5 !important;
+      text-shadow:0 2px 14px rgba(0,0,0,.96) !important;
     }
     .v-hero-actions {
       width:min(100%,320px);
