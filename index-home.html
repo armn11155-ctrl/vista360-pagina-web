@@ -7049,38 +7049,54 @@
     }
     #heroContent {
       max-width:430px !important;
-      padding:clamp(42px,7vh,68px) 20px clamp(104px,14vh,126px) !important;
+      padding:clamp(48px,7.5vh,74px) 20px clamp(108px,14vh,128px) !important;
       transform:none !important;
     }
+    #heroContent h1::before {
+      content:"";
+      display:block;
+      width:34px;
+      height:2px;
+      margin:0 auto 18px;
+      border-radius:2px;
+      background:#65A8FF;
+      box-shadow:0 0 14px rgba(101,168,255,.72);
+    }
     #heroContent h1 > span:first-child {
-      margin-bottom:8px !important;
-      font-size:clamp(20px,5.8vw,25px) !important;
-      line-height:1.16 !important;
+      margin-bottom:12px !important;
+      color:rgba(255,255,255,.9) !important;
+      font-size:clamp(18px,5.1vw,21px) !important;
+      font-weight:500 !important;
+      line-height:1.24 !important;
+      letter-spacing:.005em !important;
     }
     #heroContent h1 > span:last-child {
-      font-size:clamp(40px,11.8vw,50px) !important;
-      line-height:.98 !important;
-      letter-spacing:-.035em !important;
+      font-size:clamp(44px,12.6vw,54px) !important;
+      line-height:.94 !important;
+      letter-spacing:-.045em !important;
+      text-shadow:0 16px 44px rgba(0,0,0,.62),0 2px 14px rgba(0,0,0,.4) !important;
     }
     #heroContent > p {
-      max-width:340px !important;
-      margin-top:20px !important;
-      margin-bottom:24px !important;
+      max-width:320px !important;
+      margin-top:27px !important;
+      margin-bottom:30px !important;
+      color:rgba(255,255,255,.82) !important;
       font-size:15px !important;
-      line-height:1.5 !important;
+      line-height:1.58 !important;
     }
     .v-hero-actions {
-      width:min(100%,320px);
+      width:min(100%,324px);
       margin:0 auto;
       flex-direction:column;
-      gap:10px;
+      gap:12px;
     }
     .v-hero-primary,
     .v-hero-secondary {
       width:100% !important;
-      min-height:48px;
+      min-height:50px;
       justify-content:center;
       padding:13px 18px !important;
+      border-radius:10px;
       text-align:center;
     }
     #scrollHint {
@@ -7186,15 +7202,19 @@
       padding-top:30px !important;
       padding-bottom:82px !important;
     }
+    #heroContent h1::before {
+      margin-bottom:12px;
+    }
     #heroContent h1 > span:first-child {
-      font-size:19px !important;
+      margin-bottom:8px !important;
+      font-size:17px !important;
     }
     #heroContent h1 > span:last-child {
-      font-size:38px !important;
+      font-size:41px !important;
     }
     #heroContent > p {
-      margin-top:15px !important;
-      margin-bottom:18px !important;
+      margin-top:18px !important;
+      margin-bottom:20px !important;
       font-size:14px !important;
     }
     .v-hero-primary,
