@@ -1,13 +1,12 @@
 "use strict";
 
 (() => {
-  if (typeof document.startViewTransition === "function") return;
-
   const root = document.documentElement;
   root.classList.add("v-page-fallback-enter");
 
   addEventListener("pageshow", () => {
     root.classList.remove("v-page-fallback-leave");
+    root.classList.remove("v-page-is-navigating");
   });
 
   addEventListener("click", (event) => {
@@ -20,7 +19,9 @@
       event.altKey
     ) return;
 
-    const link = event.target.closest("a[href]");
+    const link = event.target instanceof Element
+      ? event.target.closest("a[href]")
+      : null;
     if (!link || link.target || link.hasAttribute("download")) return;
 
     const destination = new URL(link.href, location.href);
@@ -31,9 +32,12 @@
     ) return;
 
     event.preventDefault();
+    if (root.classList.contains("v-page-is-navigating")) return;
+
+    root.classList.add("v-page-is-navigating");
     root.classList.remove("v-page-fallback-enter");
     root.classList.add("v-page-fallback-leave");
 
-    setTimeout(() => location.assign(destination.href), 180);
+    setTimeout(() => location.assign(destination.href), 260);
   });
 })();
