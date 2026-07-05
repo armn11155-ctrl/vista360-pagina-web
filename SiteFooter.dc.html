@@ -39,6 +39,48 @@
   .v-foot-legal-links { display:flex; flex-wrap:wrap; gap:8px 18px; }
   .v-foot-bottom a { transition:color .2s ease; }
   .v-foot-bottom a:hover { color:#C7D2E5; }
+  @media (max-width:679px) {
+    .v-foot-wrap { padding:44px 18px 22px; }
+    .v-foot-grid {
+      grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+      gap:30px 22px;
+    }
+    .v-foot-brand,
+    .v-foot-contact { grid-column:1 / -1; }
+    .v-foot-brand { max-width:310px; }
+    .v-foot-brand img { height:31px; margin-bottom:16px; }
+    .v-foot-statement {
+      max-width:290px;
+      margin-bottom:13px;
+      font-size:22px;
+      line-height:1.14;
+    }
+    .v-foot-location { font-size:12px; }
+    .v-foot-title { margin-bottom:14px; font-size:11px; }
+    .v-foot-links { gap:10px; }
+    .v-foot-links a { font-size:13px; }
+    .v-foot-soc {
+      display:grid;
+      grid-template-columns:repeat(3,39px);
+      max-width:none;
+      gap:8px;
+    }
+    .v-foot-contact-list { gap:9px; }
+    .v-foot-contact a { gap:9px; font-size:12.5px; }
+    .v-foot-ico { width:30px; height:30px; border-radius:8px; }
+    .v-foot-bottom {
+      gap:10px;
+      margin-top:34px;
+      padding-top:18px;
+    }
+    .v-foot-bottom span,
+    .v-foot-bottom a {
+      font-size:11px;
+      line-height:1.5;
+    }
+    .v-foot-legal { gap:4px; }
+    .v-foot-legal-links { gap:6px 14px; }
+  }
   @media (min-width:680px) {
     .v-foot-grid { grid-template-columns:1.35fr .8fr; gap:54px 72px; }
     .v-foot-bottom { flex-direction:row; align-items:center; justify-content:space-between; padding-right:76px; }
@@ -58,7 +100,7 @@
         <p class="v-foot-location">Huánuco, Perú</p>
       </div>
 
-      <nav aria-label="Navegación del pie de página">
+      <nav class="v-foot-nav" aria-label="Navegación del pie de página">
         <div class="v-foot-title">Explorar</div>
         <div class="v-foot-links">
           <a href="index.html">Inicio</a>
@@ -69,7 +111,7 @@
         </div>
       </nav>
 
-      <div>
+      <div class="v-foot-social">
         <div class="v-foot-title">Síguenos</div>
         <div class="v-foot-soc">
           <a href="#" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3l.4-3H14V4.5c0-.9.3-1.5 1.6-1.5H17.5V.3C17.1.2 16.1 0 15 0 12.6 0 11 1.5 11 4v2H8v3h3v9h3V9z"></path></svg></a>
