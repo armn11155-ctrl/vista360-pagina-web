@@ -1287,7 +1287,7 @@
       const r = registry.get(name);
       if (r.fetched) return;
       r.fetched = true;
-      const url = COMPONENT_DIR + "/" + encodeURIComponent(name) + ".dc.html?v=20260702b";
+      const url = COMPONENT_DIR + "/" + encodeURIComponent(name) + ".dc.html?v=20260704c";
       fetch(url).then((res) => {
         if (!res.ok) {
           console.error(
