@@ -8,15 +8,15 @@
 }
 
 .v-page-fallback-enter #dc-root {
-  animation: vista360-fallback-in 440ms cubic-bezier(.16, 1, .3, 1) both;
+  animation: vista360-fallback-in 260ms cubic-bezier(.16, 1, .3, 1) both;
 }
 
 .v-page-fallback-leave #dc-root {
   opacity: .76;
   transform: scale(.998);
   transition:
-    opacity 260ms cubic-bezier(.4, 0, 1, 1),
-    transform 260ms cubic-bezier(.4, 0, 1, 1);
+    opacity 80ms ease,
+    transform 80ms ease;
 }
 
 @view-transition {
