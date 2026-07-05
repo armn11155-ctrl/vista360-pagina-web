@@ -8,6 +8,7 @@
    ────────────────────────────────────────────────────────────────── */
 (function () {
   "use strict";
+  window.__vista360HeroVideoLoaded = true;
 
   function intentar() {
     const v = document.getElementById("heroVideo");
@@ -45,6 +46,7 @@
   }
 
   intentar();
+  window.addEventListener("vista360:navigation", intentar);
   document.addEventListener("DOMContentLoaded", intentar);
   window.addEventListener("load", intentar);
   requestAnimationFrame(function () { requestAnimationFrame(intentar); });

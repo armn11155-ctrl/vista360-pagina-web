@@ -1,6 +1,9 @@
 (function () {
+  function init() {
+  if (window.__vista360DetailCleanup) window.__vista360DetailCleanup();
   const root = document.querySelector('[data-detail-root]');
   if (!root) return;
+  let observer = null;
 
   const reveals = Array.from(root.querySelectorAll('[data-reveal]'));
   reveals.forEach((el) => {
@@ -10,7 +13,7 @@
   });
 
   if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
+    observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         entry.target.style.opacity = '1';
@@ -32,5 +35,15 @@
     if (progress) progress.style.transform = `scaleX(${Math.min(1, window.scrollY / max)})`;
   };
   window.addEventListener('scroll', updateProgress, { passive:true });
+  window.__vista360DetailCleanup = () => {
+    window.removeEventListener('scroll', updateProgress);
+    observer?.disconnect();
+    window.__vista360DetailCleanup = null;
+  };
   updateProgress();
+  }
+
+  window.initVista360Detail = init;
+  window.addEventListener('vista360:navigation', init);
+  init();
 })();

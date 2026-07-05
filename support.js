@@ -144,6 +144,17 @@
       return s;
     }
   }
+  var activeReactRoot = null;
+  var activeHostEl = null;
+  function unmountActiveRoot() {
+    if (activeReactRoot?.unmount) {
+      activeReactRoot.unmount();
+    } else if (activeHostEl && getReactDOM().unmountComponentAtNode) {
+      getReactDOM().unmountComponentAtNode(activeHostEl);
+    }
+    activeReactRoot = null;
+    activeHostEl = null;
+  }
   function boot(runtime, doc = document) {
     const parsed = parseDcDocument(doc);
     if (!parsed) return null;
@@ -179,9 +190,13 @@
       return h(Root, entry.propOverrides || null);
     }
     const ReactDOM = getReactDOM();
-    if (ReactDOM.createRoot)
-      ReactDOM.createRoot(hostEl).render(h(StandaloneRoot));
-    else ReactDOM.render(h(StandaloneRoot), hostEl);
+    activeHostEl = hostEl;
+    if (ReactDOM.createRoot) {
+      activeReactRoot = ReactDOM.createRoot(hostEl);
+      activeReactRoot.render(h(StandaloneRoot));
+    } else {
+      ReactDOM.render(h(StandaloneRoot), hostEl);
+    }
     return rootName;
   }
 
@@ -1494,6 +1509,7 @@
         rootName = boot(runtime, document) ?? rootName;
         notifyHost();
       },
+      __dcUnmount: () => unmountActiveRoot(),
       __dcRegistry: runtime.registry.entries,
       getDC: (name) => runtime.getDC(name),
       // `DCLogic` is the documented base class name; `StreamableLogic` is the

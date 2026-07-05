@@ -9,6 +9,7 @@
    ────────────────────────────────────────────────────────────────── */
 (function () {
   "use strict";
+  window.__vista360HoverLoaded = true;
 
   function parseStyle(text) {
     const out = {};
