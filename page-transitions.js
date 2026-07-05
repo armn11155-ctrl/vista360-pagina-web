@@ -164,7 +164,9 @@
         await transition.finished;
       } else {
         root.classList.add("v-page-fallback-leave");
+        await new Promise((resolve) => setTimeout(resolve, 160));
         await swap();
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
       }
 
       root.classList.remove("v-page-fallback-leave");

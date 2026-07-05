@@ -7,16 +7,29 @@
   background: #05080f;
 }
 
+body::after {
+  content: "";
+  position: fixed;
+  z-index: 2147483640;
+  inset: 66px 0 0;
+  pointer-events: none;
+  background: #05080f;
+  opacity: 0;
+  transition: opacity 220ms cubic-bezier(.4, 0, .2, 1);
+}
+
+.v-page-fallback-leave body::after {
+  opacity: .92;
+}
+
 .v-page-fallback-enter #dc-root {
-  animation: vista360-fallback-in 260ms cubic-bezier(.16, 1, .3, 1) both;
+  animation: vista360-fallback-in 420ms cubic-bezier(.16, 1, .3, 1) both;
 }
 
 .v-page-fallback-leave #dc-root {
-  opacity: .76;
-  transform: scale(.998);
+  transform: scale(.997);
   transition:
-    opacity 80ms ease,
-    transform 80ms ease;
+    transform 220ms cubic-bezier(.4, 0, .2, 1);
 }
 
 @view-transition {
@@ -24,21 +37,37 @@
 }
 
 ::view-transition-group(root) {
-  animation-duration: 420ms;
+  animation-duration: 460ms;
   animation-timing-function: cubic-bezier(.16, 1, .3, 1);
 }
 
 ::view-transition-old(root) {
-  animation: vista360-page-out 220ms ease both;
+  animation: vista360-page-out 260ms cubic-bezier(.4, 0, .2, 1) both;
 }
 
 ::view-transition-new(root) {
-  animation: vista360-page-in 420ms cubic-bezier(.16, 1, .3, 1) both;
+  animation: vista360-page-in 460ms cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.vn-site-nav {
+  view-transition-name: vista360-nav;
+}
+
+::view-transition-group(vista360-nav) {
+  z-index: 2147483646;
+  animation-duration: 460ms;
+  animation-timing-function: cubic-bezier(.16, 1, .3, 1);
+}
+
+::view-transition-old(vista360-nav),
+::view-transition-new(vista360-nav) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
 @keyframes vista360-page-out {
   to {
-    opacity: .72;
+    opacity: .48;
     transform: scale(.997);
   }
 }
@@ -46,7 +75,7 @@
 @keyframes vista360-page-in {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(6px);
   }
 }
 
@@ -60,12 +89,14 @@
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(root),
   ::view-transition-old(root),
-  ::view-transition-new(root) {
+  ::view-transition-new(root),
+  ::view-transition-group(vista360-nav) {
     animation-duration: 1ms;
   }
 
   .v-page-fallback-enter #dc-root,
-  .v-page-fallback-leave #dc-root {
+  .v-page-fallback-leave #dc-root,
+  body::after {
     animation-duration: 1ms;
     transition-duration: 1ms;
   }
