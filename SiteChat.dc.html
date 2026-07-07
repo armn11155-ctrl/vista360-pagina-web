@@ -59,7 +59,21 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:100,&quot;height&quot;:100},&quot;phone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;51999000000&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;message&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Hola VISTA360, me gustaría recibir información.&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   componentDidMount() {
+    const wa = document.querySelector('.v-wa-btn');
+    if (wa && wa.parentElement !== document.body) {
+      this._waButton = wa;
+      this._waPlaceholder = document.createComment('SiteChat WhatsApp');
+      wa.parentNode.insertBefore(this._waPlaceholder, wa);
+      document.body.appendChild(wa);
+    }
+
     const badge = document.getElementById('vShieldBadge');
+    if (badge && badge.parentElement !== document.body) {
+      this._badge = badge;
+      this._badgePlaceholder = document.createComment('SiteChat Shield');
+      badge.parentNode.insertBefore(this._badgePlaceholder, badge);
+      document.body.appendChild(badge);
+    }
     if (!badge) return;
     const sync = () => {
       badge.style.display = (window.innerWidth <= 760) ? 'none' : 'flex';
@@ -71,6 +85,14 @@ class Component extends DCLogic {
 
   componentWillUnmount() {
     if (this._syncShield) window.removeEventListener('resize', this._syncShield);
+    if (this._waButton && this._waPlaceholder?.parentNode) {
+      this._waPlaceholder.parentNode.insertBefore(this._waButton, this._waPlaceholder);
+      this._waPlaceholder.remove();
+    }
+    if (this._badge && this._badgePlaceholder?.parentNode) {
+      this._badgePlaceholder.parentNode.insertBefore(this._badge, this._badgePlaceholder);
+      this._badgePlaceholder.remove();
+    }
   }
 
   renderVals() {

@@ -10,6 +10,15 @@
   const root = document.documentElement;
   let navigating = false;
   let currentPageUrl = normalizeUrl(location.href).href;
+  let enterTimer = 0;
+
+  function playEnterAnimation() {
+    root.classList.add("v-page-fallback-enter");
+    clearTimeout(enterTimer);
+    enterTimer = setTimeout(() => {
+      root.classList.remove("v-page-fallback-enter");
+    }, 320);
+  }
 
   function normalizeUrl(value) {
     const url = new URL(value, location.href);
@@ -168,7 +177,7 @@
       }
 
       root.classList.remove("v-page-fallback-leave");
-      root.classList.add("v-page-fallback-enter");
+      playEnterAnimation();
     } catch (error) {
       console.warn("[VISTA360] SPA fallback:", error);
       location.assign(url.href);
@@ -223,7 +232,7 @@
   });
 
   history.replaceState({ vista360: true }, "", location.href);
-  root.classList.add("v-page-fallback-enter");
+  playEnterAnimation();
 
   const prefetchMainPages = () => {
     [
