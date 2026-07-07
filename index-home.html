@@ -6078,6 +6078,41 @@
   .vn-context-cta:hover::after {
     transform:translateX(5px);
   }
+  @media (min-width:901px) {
+    .vn-format-context > .vn-shell {
+      width:min(100% - 56px,1840px);
+    }
+    .vn-format-context--right .vn-format-context-copy {
+      width:clamp(430px,32vw,540px);
+      max-width:none;
+      margin-left:auto;
+      margin-right:clamp(44px,6vw,120px);
+      padding-left:clamp(22px,2.4vw,42px);
+    }
+    .vn-format-context-copy h3 {
+      font-size:clamp(42px,4.05vw,64px);
+      line-height:.98;
+      text-wrap:balance;
+    }
+    .vn-format-context-copy p {
+      max-width:100%;
+      font-size:clamp(16px,1.45vw,19px);
+    }
+    .vn-format-story--mural .vn-format-context {
+      background-position:center;
+    }
+    .vn-format-story--mural .vn-format-context-copy {
+      width:clamp(520px,37vw,680px);
+      margin-right:clamp(240px,22vw,420px);
+      padding-left:0;
+    }
+    .vn-format-story--mural .vn-format-context-copy h3 {
+      font-size:clamp(40px,3.8vw,60px);
+    }
+    .vn-format-story--unipolar .vn-format-context {
+      background-position:center;
+    }
+  }
   .vn-solutions-summary {
     padding:126px 0 138px;
     background:#FFFFFF;
