@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="formats-detail.css?v=5">
+<link rel="stylesheet" href="formats-detail.css?v=7">
 </helmet>
 
 <div class="detail detail--classic" data-detail-root>
@@ -91,6 +91,34 @@
       </div>
     </section>
 
+    <section class="detail-availability" aria-labelledby="mural-availability-title">
+      <div class="detail-shell">
+        <div class="detail-availability__head" data-reveal>
+          <div>
+            <div class="detail-kicker">Disponibilidad de murales</div>
+            <h2 id="mural-availability-title">Espacios murales listos para campaña.</h2>
+          </div>
+          <p>Selecciona una ubicación para ver fotos, mapa, audiencia estimada y condiciones comerciales.</p>
+        </div>
+        <a class="detail-location-card" href="mural-pacific-blue.html" data-reveal>
+          <div class="detail-location-card__media">
+            <img src="panels/pacific-blue-mural-03.jpg" loading="lazy" decoding="async" alt="Mural disponible Pacific Blue en Jr. Progreso 560">
+          </div>
+          <div class="detail-location-card__copy">
+            <span>01 / Jr. Progreso 560</span>
+            <h3>Centro de Natación Pacific Blue</h3>
+            <p>Mural premium iluminado en entorno céntrico de Huánuco, cerca del Parque Amarilis.</p>
+            <div class="detail-location-card__meta">
+              <b>Mural iluminado</b>
+              <b>Pacific Blue</b>
+              <b>Huánuco</b>
+            </div>
+            <strong class="detail-location-card__action">Ver detalle <span>&rarr;</span></strong>
+          </div>
+        </a>
+      </div>
+    </section>
+
     <section class="detail-studio" aria-labelledby="material-title">
       <div class="detail-shell detail-studio__grid">
         <img class="detail-studio__image" data-reveal src="panels/story-mural-install-detail-v2.webp" loading="lazy" decoding="async" alt="Detalle de producción e instalación de un mural publicitario" />
@@ -154,7 +182,10 @@
     </section>
 
     <section id="totem" class="detail-feature detail-feature--right detail-feature--catalog detail-feature--totem" style="--feature-bg:url('panels/campaign-totem-decision-v1.webp');" aria-labelledby="totem-title">
-      <img class="detail-feature__image" src="panels/product-totem-classic-transparent-v1.png" loading="lazy" decoding="async" alt="Tótem publicitario Classic VISTA360 presentado como producto" />
+      <picture class="detail-feature__picture">
+        <source media="(max-width:600px)" srcset="panels/product-totem-classic-mobile-v1.png" />
+        <img class="detail-feature__image" src="panels/product-totem-classic-transparent-v1.png" loading="lazy" decoding="async" alt="Tótem publicitario impreso Classic VISTA360 con estructura metálica" />
+      </picture>
       <div class="detail-feature__veil"></div>
       <div class="detail-feature__inner">
         <div class="detail-feature__copy" data-reveal>

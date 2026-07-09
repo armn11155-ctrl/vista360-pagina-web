@@ -7346,7 +7346,7 @@
               <h3>Tu marca se vuelve parte del lugar.</h3>
               <p>Una fachada estratégica se transforma en una presencia que la ciudad reconoce y recuerda.</p>
               <div class="vn-context-benefits"><b>Alta recordación</b><b>Cercanía</b><b>Visibilidad nocturna</b></div>
-              <a class="vn-context-cta" href="contacto.html">Quiero mi marca en esta fachada</a>
+              <a class="vn-context-cta" href="vista360-classic.html?v=20260709mural#mural">Ver disponibilidad de murales</a>
             </div>
           </div>
         </section>
@@ -8265,7 +8265,7 @@
           <button type="button" class="v-prod-peek" aria-label="Producto anterior" onClick="{{ prevProduct }}">
             {{ prevPeekImg }}
           </button>
-          <a href="soluciones.html" class="v-prod-card v-prod-center">
+          <a href="{{ currentProduct.href }}" class="v-prod-card v-prod-center">
             {{ currentProduct.imgNode }}
           </a>
           <button type="button" class="v-prod-peek" aria-label="Producto siguiente" onClick="{{ nextProduct }}">
@@ -8282,7 +8282,7 @@
           <div class="v-prod-location"><span aria-hidden="true">●</span> {{ currentProduct.location }}</div>
           <h3 style="font-size:clamp(21px,2vw,26px); font-weight:800; letter-spacing:-0.02em; line-height:1.1; color:#0E1A2E; margin:0 0 8px;">{{ currentProduct.title }}</h3>
           <p style="font-size:14px; line-height:1.5; color:#5B6678; margin:0 0 14px; max-width:520px;">{{ currentProduct.desc }}</p>
-          <a href="soluciones.html" style="display:inline-flex; align-items:center; gap:8px; color:#0E1A2E; font-size:13px; font-weight:800; letter-spacing:.02em; text-decoration:none;">Explorar formato <span style="font-size:16px; color:#1C6FE8;">&rarr;</span></a>
+          <a href="{{ currentProduct.href }}" style="display:inline-flex; align-items:center; gap:8px; color:#0E1A2E; font-size:13px; font-weight:800; letter-spacing:.02em; text-decoration:none;">Explorar formato <span style="font-size:16px; color:#1C6FE8;">&rarr;</span></a>
         </div>
         {{ productDotsNode }}
       </div>
@@ -8972,10 +8972,10 @@ class Component extends DCLogic {
     ];
 
     const productData = [
-      { title: 'Murales', location: 'Muros urbanos · Huánuco', desc: 'Gran escala en fachadas de alto tránsito.', img: 'panels/premium-mural.jpg', detail: 'panels/detail-mural.webp', objPos: 'center' },
-      { title: 'Unipolares', location: 'Avenidas principales · Huánuco', desc: 'Visibilidad a larga distancia en rutas clave.', img: 'panels/premium-unipolar.webp', detail: 'panels/detail-unipolar.webp', objPos: 'center' },
-      { title: 'Tótems', location: 'Zonas peatonales · Huánuco', desc: 'Presencia cercana, a la altura de la calle.', img: 'panels/premium-totem.webp', detail: 'panels/detail-totem.jpg', objPos: 'center' },
-      { title: 'Pantallas LED', location: 'Circuito digital · Próximamente', desc: 'Contenido dinámico con mayor frecuencia visual.', img: 'panels/premium-led.webp', detail: 'panels/detail-led.jpg', objPos: 'center' }
+      { title: 'Murales', location: 'Pacific Blue · Jr. Progreso 560', desc: 'Fachada premium iluminada para presencia diaria.', img: 'panels/pacific-blue-mural-03.jpg', detail: 'panels/pacific-blue-mural-04.jpg', objPos: 'center', href: 'vista360-classic.html?v=20260709mural#mural' },
+      { title: 'Unipolares', location: 'Avenidas principales · Huánuco', desc: 'Visibilidad a larga distancia en rutas clave.', img: 'panels/premium-unipolar.webp', detail: 'panels/detail-unipolar.webp', objPos: 'center', href: 'soluciones.html' },
+      { title: 'Tótems', location: 'Zonas peatonales · Huánuco', desc: 'Presencia cercana, a la altura de la calle.', img: 'panels/premium-totem.webp', detail: 'panels/detail-totem.jpg', objPos: 'center', href: 'soluciones.html' },
+      { title: 'Pantallas LED', location: 'Circuito digital · Próximamente', desc: 'Contenido dinámico con mayor frecuencia visual.', img: 'panels/premium-led.webp', detail: 'panels/detail-led.jpg', objPos: 'center', href: 'soluciones.html' }
     ];
     const products = productData.map((p) => ({
       title: p.title, location: p.location, desc: p.desc,
@@ -9012,7 +9012,7 @@ class Component extends DCLogic {
         }
       }))
     );
-    const currentProduct = { title: cp.title, location: cp.location, desc: cp.desc, imgNode: productStackNode };
+    const currentProduct = { title: cp.title, location: cp.location, desc: cp.desc, href: cp.href, imgNode: productStackNode };
     // Imágenes "peek" a los costados (anterior/siguiente) -- efecto rueda.
     const prevIdx = (productIndex - 1 + productCount) % productCount;
     const nextIdx = (productIndex + 1) % productCount;
