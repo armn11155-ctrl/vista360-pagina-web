@@ -40,6 +40,16 @@
   .pb-hero h1 { margin:18px 0 20px; font-size:clamp(42px,7.2vw,92px); line-height:.94; letter-spacing:-.045em; font-weight:800; }
   .pb-hero p { margin:0; max-width:620px; color:#D8E5F8; font-size:clamp(16px,1.45vw,20px); line-height:1.62; }
   .pb-hero__actions { display:flex; flex-wrap:wrap; gap:13px; margin-top:32px; }
+  .pb-client-logo {
+    display:block;
+    width:min(100%,420px);
+    max-height:132px;
+    margin:20px 0 26px;
+    object-fit:contain;
+    object-position:left center;
+    border-radius:18px;
+    box-shadow:0 24px 70px -42px rgba(255,255,255,.6);
+  }
   .pb-btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:48px; padding:14px 24px; border-radius:14px; text-decoration:none; font-size:14px; font-weight:800; letter-spacing:.01em; transition:transform .22s cubic-bezier(.16,1,.3,1), background .22s ease, border-color .22s ease; }
   .pb-btn:hover { transform:translateY(-2px); }
   .pb-btn--primary { background:#1C6FE8; color:#fff; box-shadow:0 20px 46px -28px rgba(28,111,232,.85); }
@@ -135,6 +145,7 @@
     <div class="pb-shell">
       <div class="pb-hero__content">
         <span class="pb-kicker">Mural premium / Huanuco</span>
+        <img class="pb-client-logo" src="logos/pacific-blue-lit.png" loading="eager" decoding="async" alt="Pacific Blue Centro de Natación">
         <h1>Pacific Blue en gran formato.</h1>
         <p>Una presencia iluminada dentro de uno de los centros de natacion con mayor convocatoria de Huanuco. Fachada, arquitectura y flujo cotidiano se unen para sostener recordacion de marca dia y noche.</p>
         <div class="pb-hero__actions">
